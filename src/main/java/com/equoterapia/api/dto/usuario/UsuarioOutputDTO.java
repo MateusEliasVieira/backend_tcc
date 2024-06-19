@@ -1,22 +1,14 @@
 package com.equoterapia.api.dto.usuario;
 
-import com.equoterapia.domain.enums.EstadoCivil;
-import com.equoterapia.domain.enums.Role;
-import com.equoterapia.domain.enums.Vinculo;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.equoterapia.dominio.enums.EstadoCivil;
+import com.equoterapia.dominio.enums.Role;
+import com.equoterapia.dominio.enums.Vinculo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
-
-import static com.equoterapia.utils.Feedback.*;
 
 @Getter
 @Setter
