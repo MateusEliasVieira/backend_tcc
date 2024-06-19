@@ -12,7 +12,6 @@ import com.equoterapia.domain.service.usuario.UsuarioService;
 import com.equoterapia.utils.Feedback;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,8 +50,8 @@ public class UsuarioController {
         return new ResponseEntity<List<UsuarioOutputDTO>>(UsuarioMapper.converterListaUsuarioEmListaUsuarioOutputDTO(listUsuario), HttpStatus.OK);
     }
 
-    @GetMapping("/buscar-usuario-por-id")
-    public ResponseEntity<?> pesquisarUsuarioPorNome(@RequestParam("id") @Valid @NotNull Long id) {
+    @GetMapping("/buscar-usuario-por-id/{id}")
+    public ResponseEntity<?> pesquisarUsuarioPorID(@PathVariable("id") Long id) {
         Usuario usuario = usuarioService.findUsuario(id);
         return new ResponseEntity<UsuarioOutputDTO>(UsuarioMapper.converterUsuarioEmUsuarioOutputDTO(usuario), HttpStatus.OK);
     }

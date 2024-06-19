@@ -1,5 +1,6 @@
 package com.equoterapia.security;
 
+import com.equoterapia.domain.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -64,32 +65,31 @@ public class WebFilterConfiguration {
 				// Login Controller
 				.requestMatchers(HttpMethod.POST, "/login/*").permitAll()
 				// ====== Usuário =======
-				.requestMatchers(HttpMethod.POST, "/usuario/salvar-novo-usuario").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/usuario/atualizar-usuario").permitAll()
-				.requestMatchers(HttpMethod.GET, "/usuario/buscar-usuario-por-nome").permitAll()
-				.requestMatchers(HttpMethod.GET, "/usuario/buscar-usuario-por-id").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/usuario/deletar-usuario").permitAll()
+				.requestMatchers(HttpMethod.POST, "/usuario/salvar-novo-usuario").hasAuthority(Role.ROLE_ADMIN.name())
+                .requestMatchers(HttpMethod.PUT, "/usuario/atualizar-usuario").hasAuthority(Role.ROLE_ADMIN.name())
+				.requestMatchers(HttpMethod.GET, "/usuario/buscar-usuario-por-nome").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET, "/usuario/buscar-usuario-por-id").hasAuthority(Role.ROLE_USER.name())
+                .requestMatchers(HttpMethod.DELETE, "/usuario/deletar-usuario").hasAuthority(Role.ROLE_ADMIN.name())
 				// ====== Paciente =======
 				// Dados Pessoais
-				.requestMatchers(HttpMethod.POST, "/paciente/salvar-novo-paciente").permitAll()
-				.requestMatchers(HttpMethod.POST, "/paciente/dados-pessoais/*").permitAll()
-				.requestMatchers(HttpMethod.PUT, "/paciente/dados-pessoais/*").permitAll()
-				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-por-id/*").permitAll()
-				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-dos-pacientes").permitAll()
+				.requestMatchers(HttpMethod.POST, "/paciente/salvar-novo-paciente").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.POST, "/paciente/dados-pessoais/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/paciente/dados-pessoais/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-por-id/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-dos-pacientes").hasAuthority(Role.ROLE_USER.name())
 				// Completude Matricula
-				.requestMatchers(HttpMethod.POST, "/paciente/completude-matricula/salvar-completude-matricula").permitAll()
-				.requestMatchers(HttpMethod.PUT, "/paciente/completude-matricula/atualizar-completude-matricula").permitAll()
-				.requestMatchers(HttpMethod.GET,"/paciente/completude-matricula/buscar-completude-matricula-por-id/*").permitAll()
+				.requestMatchers(HttpMethod.POST, "/paciente/completude-matricula/salvar-completude-matricula").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/paciente/completude-matricula/atualizar-completude-matricula").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/paciente/completude-matricula/buscar-completude-matricula-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				// Educação Paciente
-				.requestMatchers(HttpMethod.POST, "/paciente/educacao-paciente/salvar-educacao-paciente").permitAll()
-				.requestMatchers(HttpMethod.PUT, "/paciente/educacao-paciente/atualizar-educacao-paciente").permitAll()
-				.requestMatchers(HttpMethod.GET,"/paciente/educacao-paciente/buscar-educacao-paciente-por-id/*").permitAll()
+				.requestMatchers(HttpMethod.POST, "/paciente/educacao-paciente/salvar-educacao-paciente").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/paciente/educacao-paciente/atualizar-educacao-paciente").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/paciente/educacao-paciente/buscar-educacao-paciente-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				// Emergencia
-				.requestMatchers(HttpMethod.POST, "/paciente/emergencia/salvar-emergencia").permitAll()
-				.requestMatchers(HttpMethod.PUT, "/paciente/emergencia/atualizar-emergencia").permitAll()
-				.requestMatchers(HttpMethod.GET,"/paciente/emergencia/buscar-emergencia-por-id/*").permitAll()
+				.requestMatchers(HttpMethod.POST, "/paciente/emergencia/salvar-emergencia").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/paciente/emergencia/atualizar-emergencia").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/paciente/emergencia/buscar-emergencia-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				.anyRequest().authenticated());
-
 		http.addFilterBefore(this.interceptorFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
