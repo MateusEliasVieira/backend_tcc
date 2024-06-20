@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/paciente/responsavel-pelo-paciente")
+@RequestMapping(path = "/praticante/responsavel-pelo-praticante")
 public class ResponsavelPeloPraticanteControlador {
 
     @Autowired
     private ResponsavelPraticanteServico service;
 
-    @PostMapping(path = "/salvar-responsavel-pelo-paciente")
+    @PostMapping(path = "/salvar-responsavel-do-praticante")
     public ResponseEntity<ResponsavelPraticanteSaidaDTO> salvarResponsavelPeloPaciente(@RequestBody ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO) {
         return new ResponseEntity<ResponsavelPraticanteSaidaDTO>(PraticanteMapeador.converterResponsavelPacienteEmResponsavelPacienteOutputDTO(service.salvar(PraticanteMapeador.converterResponsavelPacienteInputDTOEmResponsavelPaciente(responsavelPraticanteEntradaDTO))), HttpStatus.CREATED);
     }

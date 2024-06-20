@@ -12,13 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/paciente/educacao-paciente")
+@RequestMapping("/praticante/educacao-praticante")
 public class EducacaoPraticanteControlador {
 
     @Autowired
     private EducacaoPraticanteServico educacaoPraticanteServico;
 
-    @PostMapping("/salvar-educacao-paciente")
+    @PostMapping("/salvar-educacao-do-praticante")
     public ResponseEntity<?> salvarEducacaoPaciente(@RequestBody @Valid EducacaoPraticanteEntradaDTO educacaoPraticanteEntradaDTO){
         System.out.println("ID = "+ educacaoPraticanteEntradaDTO.getPaciente().getIdPaciente());
         EducacaoPraticante educacaoPraticante = PraticanteMapeador.converterEducacaoPacienteInputDTOParaEducacaoPaciente(educacaoPraticanteEntradaDTO);
@@ -26,14 +26,14 @@ public class EducacaoPraticanteControlador {
         return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/atualizar-educacao-paciente")
+    @PutMapping("/atualizar-educacao-do-praticante")
     public ResponseEntity<?> atualizarEducacaoPaciente(@RequestBody @Valid EducacaoPraticanteEntradaDTO educacaoPraticanteEntradaDTO){
         EducacaoPraticante educacaoPraticante = PraticanteMapeador.converterEducacaoPacienteInputDTOParaEducacaoPaciente(educacaoPraticanteEntradaDTO);
         EducacaoPraticanteSaidaDTO educacaoPraticanteSaidaDTO = PraticanteMapeador.converterEducacaoPacienteParaEducacaoPacienteOutputDTO(educacaoPraticanteServico.atualizarEducacaoPaciente(educacaoPraticante));
         return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar-educacao-paciente-por-id/{id}")
+    @GetMapping("/buscar-educacao-do-praticante-por-id/{id}")
     public ResponseEntity<?> buscarEducacaoPaciente(@Valid @PathVariable("id") Long id){
         EducacaoPraticante educacaoPraticante = educacaoPraticanteServico.buscarEducacaoPaciente(id);
         EducacaoPraticanteSaidaDTO educacaoPraticanteSaidaDTO = PraticanteMapeador.converterEducacaoPacienteParaEducacaoPacienteOutputDTO(educacaoPraticante);

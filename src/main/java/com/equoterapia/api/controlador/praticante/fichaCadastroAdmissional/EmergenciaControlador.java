@@ -12,13 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/paciente/emergencia")
+@RequestMapping("/praticante/emergencia")
 public class EmergenciaControlador {
 
     @Autowired
     private EmergenciaServico emergenciaServico;
 
-    @PostMapping("/salvar-emergencia")
+    @PostMapping("/salvar-emergencia-do-praticante")
     public ResponseEntity<?> salvarEmergencia(@RequestBody @Valid EmergenciaEntradaDTO emergenciaEntradaDTO){
         Emergencia emergencia = PraticanteMapeador.converterEmergenciaInputDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.salvarEmergencia(emergencia);
@@ -26,7 +26,7 @@ public class EmergenciaControlador {
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/atualizar-emergencia")
+    @PutMapping("/atualizar-emergencia-do-praticante")
     public ResponseEntity<?> atualizarEmergencia(@RequestBody @Valid EmergenciaEntradaDTO emergenciaEntradaDTO){
         Emergencia emergencia = PraticanteMapeador.converterEmergenciaInputDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.atualizarEmergencia(emergencia);
@@ -34,7 +34,7 @@ public class EmergenciaControlador {
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar-emergencia-por-id/{id}")
+    @GetMapping("/buscar-emergencia-do-praticante-por-id/{id}")
     public ResponseEntity<?> buscarEmergencia(@PathVariable("id") @Valid Long id){
         Emergencia emergenciaEncontrada = emergenciaServico.buscarEmergencia(id);
         EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaOutputDTO(emergenciaEncontrada);

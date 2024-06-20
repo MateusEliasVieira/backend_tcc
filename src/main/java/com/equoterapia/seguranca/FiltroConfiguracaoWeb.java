@@ -72,23 +72,22 @@ public class FiltroConfiguracaoWeb {
                 .requestMatchers(HttpMethod.DELETE, "/usuario/deletar-usuario").hasAuthority(Role.ROLE_ADMIN.name())
 				// ====== Paciente =======
 				// Dados Pessoais
-				.requestMatchers(HttpMethod.POST, "/paciente/salvar-novo-paciente").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.POST, "/paciente/dados-pessoais/*").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.PUT, "/paciente/dados-pessoais/*").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-por-id/*").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET,"/paciente/dados-pessoais/buscar-dados-pessoais-dos-pacientes").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.POST, "/praticante/dados-pessoais/salvar-dados-pessoais-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/praticante/dados-pessoais/atualizar-dados-pessoais-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/praticante/dados-pessoais/buscar-dados-pessoais-do-praticante-por-id/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/praticante/dados-pessoais/buscar-dados-pessoais-dos-praticantes").hasAuthority(Role.ROLE_USER.name())
 				// Completude Matricula
-				.requestMatchers(HttpMethod.POST, "/paciente/completude-matricula/salvar-completude-matricula").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.PUT, "/paciente/completude-matricula/atualizar-completude-matricula").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET,"/paciente/completude-matricula/buscar-completude-matricula-por-id/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.POST, "/praticante/completude-matricula/salvar-completude-matricula-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/praticante/completude-matricula/atualizar-completude-matricula-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/praticante/completude-matricula/buscar-completude-matricula-do-praticante-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				// Educação Paciente
-				.requestMatchers(HttpMethod.POST, "/paciente/educacao-paciente/salvar-educacao-paciente").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.PUT, "/paciente/educacao-paciente/atualizar-educacao-paciente").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET,"/paciente/educacao-paciente/buscar-educacao-paciente-por-id/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.POST, "/praticante/educacao-praticante/salvar-educacao-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/praticante/educacao-praticante/atualizar-educacao-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/praticante/educacao-praticante/buscar-educacao-do-praticante-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				// Emergencia
-				.requestMatchers(HttpMethod.POST, "/paciente/emergencia/salvar-emergencia").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.PUT, "/paciente/emergencia/atualizar-emergencia").hasAuthority(Role.ROLE_USER.name())
-				.requestMatchers(HttpMethod.GET,"/paciente/emergencia/buscar-emergencia-por-id/*").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.POST, "/praticante/emergencia/salvar-emergencia-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.PUT, "/praticante/emergencia/atualizar-emergencia-do-praticante").hasAuthority(Role.ROLE_USER.name())
+				.requestMatchers(HttpMethod.GET,"/praticante/emergencia/buscar-emergencia-do-praticante-por-id/*").hasAuthority(Role.ROLE_USER.name())
 				.anyRequest().authenticated());
 		http.addFilterBefore(this.filtroInterceptador, UsernamePasswordAuthenticationFilter.class);
 

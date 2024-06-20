@@ -18,21 +18,21 @@ public class CompletudeMatriculaControlador {
     @Autowired
     private CompletudeMatriculaServico completudeMatriculaServico;
 
-    @PostMapping("/salvar-completude-matricula")
+    @PostMapping("/salvar-completude-matricula-do-praticante")
     public ResponseEntity<?> salvarCompletudeMatricula(@RequestBody @Valid CompletudeMatriculaEntradaDTO completudeMatriculaEntradaDTO){
         CompletudeMatricula completudeMatriculaSalvar = PraticanteMapeador.converterCompletudeMatriculaInputDTOParaCompletudeMatricula(completudeMatriculaEntradaDTO);
         CompletudeMatriculaSaidaDTO completudeMatriculaOutputDTO = PraticanteMapeador.converterCompletudeMatriculaParaCompletudeMatriculaOutputDTO(completudeMatriculaServico.salvarCompletudeMatricula(completudeMatriculaSalvar));
         return new ResponseEntity<CompletudeMatriculaSaidaDTO>(completudeMatriculaOutputDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping("/atualizar-completude-matricula")
+    @PutMapping("/atualizar-completude-matricula-do-praticante")
     public ResponseEntity<?> atualizarCompletudeMatricula(@RequestBody @Valid CompletudeMatriculaEntradaDTO completudeMatriculaEntradaDTO){
         CompletudeMatricula completudeMatriculaSalvar = PraticanteMapeador.converterCompletudeMatriculaInputDTOParaCompletudeMatricula(completudeMatriculaEntradaDTO);
         CompletudeMatriculaSaidaDTO completudeMatriculaOutputDTO = PraticanteMapeador.converterCompletudeMatriculaParaCompletudeMatriculaOutputDTO(completudeMatriculaServico.atualizarCompletudeMatricula(completudeMatriculaSalvar));
         return new ResponseEntity<CompletudeMatriculaSaidaDTO>(completudeMatriculaOutputDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/buscar-completude-matricula-por-id/{id}")
+    @GetMapping("/buscar-completude-matricula-do-praticante-por-id/{id}")
     public ResponseEntity<?> buscarCompletudeMatricula(@Valid @PathVariable("id") Long id){
         CompletudeMatricula completudeMatricula = completudeMatriculaServico.buscarCompletudeMatricula(id);
         CompletudeMatriculaSaidaDTO completudeMatriculaOutputDTO = PraticanteMapeador.converterCompletudeMatriculaParaCompletudeMatriculaOutputDTO(completudeMatricula);
