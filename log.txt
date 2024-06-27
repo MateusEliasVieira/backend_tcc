@@ -122,3 +122,7 @@ Date: 1719517433766, IP: 0:0:0:0:0:0:0:1, Browser: Unknown, SO: Unknown -> Login
 Date: 1719517896266, IP: 0:0:0:0:0:0:0:1, Browser: Unknown, SO: Unknown -> Login = [nome de usuário: mateus10, senha: ifhonese]
 Date: 1719518586211, IP: 0:0:0:0:0:0:0:1, Browser: Chrome 12, SO: Windows 10 -> Login = [nome de usuário: jose10, senha: ifhonese]
 Date: 1719518612359, IP: 0:0:0:0:0:0:0:1, Browser: Chrome 12, SO: Windows 10 -> Login = [nome de usuário: mateus10, senha: ifhonese]
+Data: 27/06/2024 17:50:11, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: sdsdsd)
+Data: 27/06/2024 17:50:24, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: sdsdsd)
+Data: 27/06/2024 17:51:07, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome Mobile, Sistema Operacional: Android 6.x Login = (Nome de Usuário: mateus10, Senha: sdsdsd)
+Data: 27/06/2024 17:51:48, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome Mobile, Sistema Operacional: Android 6.x Login = (Nome de Usuário: mateus10, Senha: sdsdsd)

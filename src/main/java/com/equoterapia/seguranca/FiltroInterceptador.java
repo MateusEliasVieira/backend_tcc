@@ -65,7 +65,7 @@ public class FiltroInterceptador extends OncePerRequestFilter {
                 var username_subject = decode.getSubject();
 
                 if (validate.after(new Date(System.currentTimeMillis()))) {
-                    UserDetails user = service.findUserByUsername(username_subject);
+                    UserDetails user = service.buscarUsuarioPorNomeDeUsuario(username_subject);
                     // caso a requisição tenha o cabeçalho correto, gero um "token interno"
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username_subject, null, user.getAuthorities());
                     return authenticationToken;

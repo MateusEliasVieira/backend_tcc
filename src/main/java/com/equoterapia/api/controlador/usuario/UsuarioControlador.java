@@ -28,19 +28,19 @@ public class UsuarioControlador {
 
     @PostMapping("/salvar-novo-usuario")
     public ResponseEntity<Mensagem> salvarNovoUsuario(@RequestBody @Valid UsuarioInputDTO usuarioInputDTO) {
-        usuarioService.save(UsuarioMapeador.converterUsuarioInputDTOEmUsuario(usuarioInputDTO));
+        usuarioService.salvar(UsuarioMapeador.converterUsuarioInputDTOEmUsuario(usuarioInputDTO));
         return new ResponseEntity<Mensagem>(new Mensagem(Resposta.USUARIO_CAD_OK), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deletar-usuario")
     public ResponseEntity<?> deletarUsuario(@RequestParam("id") Long id){
-        usuarioService.deleteUserById(id);
+        usuarioService.deletarUsuarioPorId(id);
         return new ResponseEntity<Mensagem>(new Mensagem("Usuário deletado com sucesso!"), HttpStatus.OK);
     }
 
     @PutMapping("/atualizar-usuario")
     public ResponseEntity<Mensagem> atualizarUsuario(@RequestBody @Valid UsuarioUpdateInputDTO usuarioUpdateInputDTO) {
-        usuarioService.update(UsuarioMapeador.converterUsuarioUpdateInputDTOEmUsuario(usuarioUpdateInputDTO));
+        usuarioService.atualizarUsuario(UsuarioMapeador.converterUsuarioUpdateInputDTOEmUsuario(usuarioUpdateInputDTO));
         return new ResponseEntity<Mensagem>(new Mensagem(Resposta.USUARIO_UP_OK), HttpStatus.CREATED);
     }
 
@@ -52,7 +52,7 @@ public class UsuarioControlador {
 
     @GetMapping("/buscar-usuario-por-id")
     public ResponseEntity<?> pesquisarUsuarioPorID(@RequestParam("id") Long id) {
-        Usuario usuario = usuarioService.findUsuario(id);
+        Usuario usuario = usuarioService.buscarUsuarioPorId(id);
         return new ResponseEntity<UsuarioOutputDTO>(UsuarioMapeador.converterUsuarioEmUsuarioOutputDTO(usuario), HttpStatus.OK);
     }
 

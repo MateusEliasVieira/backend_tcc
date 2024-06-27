@@ -8,22 +8,19 @@ import java.util.List;
 
 public interface UsuarioService {
 
-    public Usuario save(Usuario usuario);
-    public void update(Usuario usuario);
-    public void deleteUserById(Long idUsuario);
-    public Usuario findUsuario(Long idUsuario);
-    public Usuario saveUserAfterConfirmedAccountByEmail(String token);
+    public Usuario salvar(Usuario usuario);
+    public void atualizarUsuario(Usuario usuario);
+    public void deletarUsuarioPorId(Long idUsuario);
+    public Usuario buscarUsuarioPorId(Long idUsuario);
     public Usuario login(Usuario user);
-    //public Usuario loginWithGoogle(Usuario user);
-    public Usuario findUser(Long idUser);
-    public Boolean findUser(String username);
-    public Usuario findUserByUsername(String username);
-    public int updateAttempts(String username);
-    public int attemptsUser(String username);
-    public Date releaseLogin(String username);
-    public Boolean verifyReleaseDateLogin(String username);
-    public Date getDateReleaseLogin(String username);
-    public void resetAttemptsAndReleaseLogin(String username);
-    public Usuario updatePassword(NovaSenhaEntradaDTO newPasswordInputDTO);
+    public Boolean verificarSeExisteUsuarioPorNomeDeUsuario(String username);
+    public Usuario buscarUsuarioPorNomeDeUsuario(String username);
+    public int atualizarTentativasErradasDeLogin(String username);
+    public int buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(String username);
+    public Date atualizarDataParaNovaTentativaDeLogin(String username);
+    public Boolean verificarDataLiberarLogin(String username);
+    public Date getDataLiberarLogin(String username);
+    public void resetarTentativasELiberarLogin(String username);
+    public Usuario atualizarSenha(NovaSenhaEntradaDTO newPasswordInputDTO);
     public List<Usuario> pesquisarUsuarioPorNomeComOperadorLike(String nomeUsuario);
 }

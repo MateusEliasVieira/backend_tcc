@@ -31,22 +31,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario save(Usuario usuario) {
+    public Usuario salvar(Usuario usuario) {
         if (repository.findByEmail(usuario.getEmail()).isEmpty()) {
-            if (repository.findUserByUsername(usuario.getUsername()).isEmpty()) {
+            if (repository.buscarUsuarioPorNomeDeUsuario(usuario.getUsername()).isEmpty()) {
                 if (repository.findByTelefone(usuario.getTelefone()).isEmpty()) {
                     if (repository.findByCpf(usuario.getCpf()).isEmpty()) {
                         // empty usuario
-                        String firstTokenUser = JwtToken.generateTokenJWT(usuario);
-                        usuario.setToken(firstTokenUser);
+                        String tokenDoUsuario = JwtToken.generateTokenJWT(usuario);
+                        usuario.setToken(tokenDoUsuario);
                         usuario.setStatus(false);
                         usuario.setRole(usuario.getRole());
                         usuario.setSenha(passwordEncoder.encode(usuario.getPassword()));
-                        Usuario userSaved = repository.save(usuario);
-                        if (userSaved.getIdUsuario() == null) {
+                        Usuario usuarioSalvo = repository.save(usuario);
+                        if (usuarioSalvo.getIdUsuario() == null) {
                             throw new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_SALVAR_USUARIO + usuario.getNome());
                         } else {
-                            return userSaved;
+                            return usuarioSalvo;
                         }
                     } else {
                         throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o cpf " + usuario.getCpf());
@@ -64,8 +64,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = false)
     @Override
-    public void update(Usuario usuario) {
-        Optional<Usuario> usuarioPorNomeUsuario = repository.findUserByUsername(usuario.getNomeUsuario());
+    public void atualizarUsuario(Usuario usuario) {
+        Optional<Usuario> usuarioPorNomeUsuario = repository.buscarUsuarioPorNomeDeUsuario(usuario.getNomeUsuario());
         Optional<Usuario> usuarioPorCpf = repository.findByCpf(usuario.getCpf());
         Optional<Usuario> usuarioPorEmail = repository.findByEmail(usuario.getEmail());
         Optional<Usuario> usuarioPorTelefone = repository.findByTelefone(usuario.getTelefone());
@@ -87,7 +87,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         // Pode salvar, pois não tem risco de ter atualizado algum email, CPF, nome de usuário ou telefone que seja de outro usuário cadastrado
-        repository.updateUserById(
+        repository.atualizarUsuarioPorId(
                 usuario.getIdUsuario(), usuario.getNome(), usuario.getFoto(),
                 usuario.getDataNascimento(), usuario.getCpf(),
                 usuario.getEstadoCivil(), usuario.getTelefone(),
@@ -99,7 +99,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void deleteUserById(Long idUsuario) {
+    public void deletarUsuarioPorId(Long idUsuario) {
         repository.findById(idUsuario).ifPresentOrElse((usuario) -> {
             repository.deleteById(idUsuario);
         }, () -> {
@@ -109,7 +109,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = true)
     @Override
-    public Usuario findUsuario(Long idUsuario) {
+    public Usuario buscarUsuarioPorId(Long idUsuario) {
         Optional<Usuario> UsuarioOptional = repository.findById(idUsuario);
         return UsuarioOptional.orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.USUARIO_ID_INEXISTENTE + idUsuario));
     }
@@ -118,15 +118,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> pesquisarUsuarioPorNomeComOperadorLike(String nomeUsuario) {
         return repository.pesquisarUsuarioPorNomeComOperadorLike(nomeUsuario);
-    }
-
-    @Transactional(readOnly = false)
-    @Override
-    public Usuario saveUserAfterConfirmedAccountByEmail(String token) {
-        Usuario usuario = repository.findUserByToken(token).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_CONFIRMACAO_CONTA));
-        // token exist from email confirmation
-        usuario.setStatus(true);
-        return repository.save(usuario);
     }
 
     @Transactional(readOnly = false)
@@ -141,75 +132,68 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = true)
     @Override
-    public Usuario findUser(Long idUser) {
-        Optional<Usuario> userOptional = repository.findById(idUser);
-        return userOptional.orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.USUARIO_ID_INEXISTENTE + idUser));
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Boolean findUser(String username) {
-        Optional<Usuario> userOptional = repository.findUserByUsername(username);
+    public Boolean verificarSeExisteUsuarioPorNomeDeUsuario(String username) {
+        Optional<Usuario> userOptional = repository.buscarUsuarioPorNomeDeUsuario(username);
         return userOptional.isPresent();
     }
 
     @Transactional(readOnly = false)
     @Override
-    public int updateAttempts(String username) {
-        int attempts = repository.attemptsUser(username) + 1;
-        repository.updateAttemptsUser(attempts, username);
-        return repository.attemptsUser(username);
+    public int atualizarTentativasErradasDeLogin(String username) {
+        int attempts = repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username) + 1;
+        repository.atualizarTentativasErradasDeLoginDoUsuario(attempts, username);
+        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public int attemptsUser(String username) {
-        return repository.attemptsUser(username);
+    public int buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(String username) {
+        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Date releaseLogin(String username) {
+    public Date atualizarDataParaNovaTentativaDeLogin(String username) {
         // get current date and time
         LocalDateTime now = LocalDateTime.now();
         // Add minutes
         LocalDateTime minutes = now.plusMinutes(MINUTES_TO_RETRY);
         // release date
         Date releaseDate = Date.from(minutes.toInstant(ZoneOffset.of("-03:00")));
-        repository.updateReleaseDate(releaseDate, username);
+        repository.atualizarDataParaNovaTentativaDeLogin(releaseDate, username);
         return releaseDate;
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Date getDateReleaseLogin(String username) {
-        return repository.getDateReleaseLogin(username);
+    public Date getDataLiberarLogin(String username) {
+        return repository.getDataLiberarLogin(username);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Boolean verifyReleaseDateLogin(String username) {
-        return repository.getDateReleaseLogin(username) != null;
+    public Boolean verificarDataLiberarLogin(String username) {
+        return repository.getDataLiberarLogin(username) != null;
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void resetAttemptsAndReleaseLogin(String username) {
-        repository.resetAttemptsAndReleaseLogin(username);
+    public void resetarTentativasELiberarLogin(String username) {
+        repository.resetarTentativasELiberarLogin(username);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario updatePassword(NovaSenhaEntradaDTO newPasswordInputDTO) {
-        Usuario usuario = repository.findUserByToken(newPasswordInputDTO.getToken()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_MUDANCA_SENHA));
+    public Usuario atualizarSenha(NovaSenhaEntradaDTO newPasswordInputDTO) {
+        Usuario usuario = repository.pesquisarUsuarioPorToken(newPasswordInputDTO.getToken()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_MUDANCA_SENHA));
         usuario.setSenha(passwordEncoder.encode(newPasswordInputDTO.getNovaSenha()));
         return repository.save(usuario);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario findUserByUsername(String username) {
-        return repository.findUserByUsername(username).get();
+    public Usuario buscarUsuarioPorNomeDeUsuario(String username) {
+        return repository.buscarUsuarioPorNomeDeUsuario(username).get();
     }
 }
 

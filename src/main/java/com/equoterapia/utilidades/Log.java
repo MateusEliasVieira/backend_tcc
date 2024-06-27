@@ -13,9 +13,9 @@ import java.util.Date;
 
 public class Log {
 
-    public static void createSimpleLog(LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
+    public static void registrarLog(LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
         try {
-            String dataRequest = getDataRequest(loginEntradaDTO, request);
+            String dataRequest = getDadosDaRequisicao(loginEntradaDTO, request);
 
             File file = new File("log.txt");
             FileWriter fileWriter = new FileWriter(file, true);
@@ -28,36 +28,34 @@ public class Log {
 
     }
 
-    private static String getDataRequest(LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
-        Date date = new Date();
+    private static String getDadosDaRequisicao(LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
+        Date data = new Date();
 
         // Obtém o User-Agent do cabeçalho da requisição
-        String userAgentString = request.getHeader("User-Agent");
+        String usuarioAgenteTexto = request.getHeader("User-Agent");
 
         // Analisa o User-Agent usando a biblioteca UserAgentUtils
-        UserAgent userAgent = UserAgent.parseUserAgentString(userAgentString);
+        UserAgent usuarioAgente = UserAgent.parseUserAgentString(usuarioAgenteTexto);
 
         // Obtém informações sobre o sistema operacional e navegador
-        OperatingSystem operatingSystem = userAgent.getOperatingSystem();
-        Browser browser = userAgent.getBrowser();
+        OperatingSystem sistemaOperacional = usuarioAgente.getOperatingSystem();
+        Browser browser = usuarioAgente.getBrowser();
 
         // Obtém o nome do sistema operacional
-        String so = operatingSystem.getName();
+        String so = sistemaOperacional.getName();
 
         // Obtém o nome do navegador
         String browserClient = browser.getName();
 
         String xForwardedForHeader = request.getHeader("X-Forwarded-For");
-        String ipClient = "";
+        String enderecoIpDoCliente = "";
         if (xForwardedForHeader == null) {
-            ipClient = request.getRemoteAddr();
+            enderecoIpDoCliente = request.getRemoteAddr();
         } else {
             // O cabeçalho X-Forwarded-For pode conter uma lista de endereços IP, onde o primeiro endereço é o endereço do cliente.
-            ipClient = xForwardedForHeader.split(",")[0].trim();
+            enderecoIpDoCliente = xForwardedForHeader.split(",")[0].trim();
         }
-
-        return "Date: " + date.getTime() + ", IP: " + ipClient + ", Browser: " + browserClient + ", SO: " + so + " -> Login = [nome de usuário: " + loginEntradaDTO.getNomeUsuario() + ", senha: " + loginEntradaDTO.getSenha() + "]\n";
-
+        return "Data: " + FormataData.formateMinhaData(data) + ", IP: " + enderecoIpDoCliente + ", Navegador: " + browserClient + ", Sistema Operacional: " + so + " Login = (Nome de Usuário: " + loginEntradaDTO.getNomeUsuario() + ", Senha: " + loginEntradaDTO.getSenha() + ")\n";
     }
 
 
