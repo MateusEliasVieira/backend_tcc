@@ -21,7 +21,7 @@ public class ResponsavelPacienteServicoImplementacao implements ResponsavelPrati
 
     @Override
     public ResponsavelPraticante salvar(ResponsavelPraticante responsavelPraticante) {
-        praticanteRepositorio.findById(responsavelPraticante.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + responsavelPraticante.getPaciente().getIdPaciente() + "!"));
+        praticanteRepositorio.findById(responsavelPraticante.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + responsavelPraticante.getPraticante().getIdPaciente() + "!"));
 
         if (buscarPorEmail(responsavelPraticante.getEmail()).isPresent()) {
             throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável pelo paciente com o email " + responsavelPraticante.getEmail() + " para o praticante!");
@@ -32,7 +32,7 @@ public class ResponsavelPacienteServicoImplementacao implements ResponsavelPrati
 
     @Override
     public ResponsavelPraticante atualizar(ResponsavelPraticante responsavelPraticante) {
-        praticanteRepositorio.findById(responsavelPraticante.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+ responsavelPraticante.getPaciente().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(responsavelPraticante.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+ responsavelPraticante.getPraticante().getIdPaciente()+"!"));
         if(responsavelPraticante.getIdResponsavelPaciente() != null){
             Optional<ResponsavelPraticante> optional = repository.findById(responsavelPraticante.getIdResponsavelPaciente());
             if(optional.isPresent()){

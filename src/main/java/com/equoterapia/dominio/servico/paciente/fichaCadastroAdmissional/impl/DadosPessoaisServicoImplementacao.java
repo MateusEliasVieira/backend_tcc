@@ -32,14 +32,14 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
         else {
             Praticante paciente = new Praticante();
             paciente = praticanteRepositorio.save(paciente);
-            dadosPessoais.setPaciente(paciente);
+            dadosPessoais.setPraticante(paciente);
             return dadosPessoaisRepositorio.save(dadosPessoais);
         }
     }
 
     @Override
     public DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais) {
-        praticanteRepositorio.findById(dadosPessoais.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + dadosPessoais.getPaciente().getIdPaciente() + "!"));
+        praticanteRepositorio.findById(dadosPessoais.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + dadosPessoais.getPraticante().getIdPaciente() + "!"));
         Optional<DadosPessoais> dadosPessoaisExistente = dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf());
         if (dadosPessoaisExistente.isPresent()) {
             dadosPessoais.setIdDadosPessoais(dadosPessoaisExistente.get().getIdDadosPessoais());

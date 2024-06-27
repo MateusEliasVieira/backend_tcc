@@ -29,8 +29,8 @@ public class EquilibrioDinamico {
     private String comentariosCorrerDesviandoObstaculos;
 
     @OneToOne
-    @JoinColumn(name = "paciente_id_fk")
-    private Praticante paciente;
+    @JoinColumn
+    private Praticante praticante;
 
 }
 

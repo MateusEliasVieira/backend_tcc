@@ -26,8 +26,8 @@ public class Socializacao {
     private PreencherLegenda fazContatoVisual;
 
     @OneToOne
-    @JoinColumn(name = "paciente_id_fk")
-    private Praticante paciente;
+    @JoinColumn
+    private Praticante praticante;
 
 }
 

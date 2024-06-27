@@ -21,7 +21,7 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
     @Override
     public Emergencia salvarEmergencia(Emergencia emergencia) {
-        praticanteRepositorio.findById(emergencia.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+emergencia.getPaciente().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(emergencia.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+emergencia.getPraticante().getIdPaciente()+"!"));
         Optional<Emergencia> optional = emergenciaRepositorio.findByTelefone(emergencia.getTelefone());
         if(optional.isPresent()){
             throw new ExcecaoDeRegrasDeNegocio("Já existe um registro de emergência com esse telefone "+emergencia.getTelefone()+" para o praticante!");
@@ -32,7 +32,7 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
     @Override
     public Emergencia atualizarEmergencia(Emergencia emergencia) { // id obrigatório
-        praticanteRepositorio.findById(emergencia.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+emergencia.getPaciente().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(emergencia.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+emergencia.getPraticante().getIdPaciente()+"!"));
         if(emergencia.getIdEmergencia() != null){
             Optional<Emergencia> optional = emergenciaRepositorio.findById(emergencia.getIdEmergencia());
             if(optional.isPresent()){

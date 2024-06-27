@@ -31,7 +31,7 @@ public class PlanoTerapeuticoSingular {
     private String imagemCarimboAssinaturaTerapeutas;
 
     @OneToOne
-    @JoinColumn(name = "praticante_id_fk")
+    @JoinColumn
     private Praticante praticante;
 
 }

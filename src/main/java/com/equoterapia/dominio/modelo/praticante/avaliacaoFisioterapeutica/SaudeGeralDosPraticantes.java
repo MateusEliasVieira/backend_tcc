@@ -41,8 +41,8 @@ public class SaudeGeralDosPraticantes {
     private String consideracoesAlergias;
 
     @OneToOne
-    @JoinColumn(name = "paciente_id_fk")
-    private Praticante paciente;
+    @JoinColumn
+    private Praticante praticante;
 
 }
 

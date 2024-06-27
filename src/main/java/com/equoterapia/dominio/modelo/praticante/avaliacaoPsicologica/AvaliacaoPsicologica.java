@@ -21,8 +21,8 @@ public class AvaliacaoPsicologica {
     private String imagemAssinaturaOuCRPECarimbo;
 
     @OneToOne
-    @JoinColumn(name = "paciente_id_fk")
-    private Praticante paciente;
+    @JoinColumn
+    private Praticante praticante;
 
 }
 

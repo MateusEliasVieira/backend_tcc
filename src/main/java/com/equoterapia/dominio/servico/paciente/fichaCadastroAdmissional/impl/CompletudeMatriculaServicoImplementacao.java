@@ -21,20 +21,20 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
     @Override
     public CompletudeMatricula salvarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        Praticante pacienteEncontrado = praticanteRepositorio.findById(completudeMatricula.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPaciente().getIdPaciente()+"!"));
+        Praticante pacienteEncontrado = praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPraticante().getIdPaciente()+"!"));
         if(pacienteEncontrado.getCompletudeMatricula().getIdCompletudeMatricula() != null){
             // Já existe uma completude de matricula para esse paciente
             throw new ExcecaoDeRegrasDeNegocio("Já existe uma completude de matricula para esse praticante!");
         }else{
             // não existe completude de matricula para esse paciente
-            completudeMatricula.getPaciente().setIdPaciente(pacienteEncontrado.getIdPaciente());
+            completudeMatricula.getPraticante().setIdPaciente(pacienteEncontrado.getIdPaciente());
             return completudeMatriculaRepositorio.save(completudeMatricula);
         }
     }
 
     @Override
     public CompletudeMatricula atualizarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        praticanteRepositorio.findById(completudeMatricula.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPaciente().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPraticante().getIdPaciente()+"!"));
         if (completudeMatricula.getIdCompletudeMatricula() != null) { // foi passado o id
             Optional<CompletudeMatricula> completudeMatriculaExistente = completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula());
             if (completudeMatriculaExistente.isPresent()) { // existe um registro com esse id cadastrado

@@ -22,12 +22,12 @@ public class EducacaoPacienteServicoImplementacao implements EducacaoPraticanteS
     @Override
     public EducacaoPraticante salvarEducacaoPaciente(EducacaoPraticante educacaoPraticante) {
         try {
-            if(educacaoPraticante.getPaciente().getIdPaciente() != null) {
+            if(educacaoPraticante.getPraticante().getIdPaciente() != null) {
                 // passou o id do paciente
                 praticanteRepositorio.findById(
-                        educacaoPraticante.getPaciente().getIdPaciente()).orElseThrow(
+                        educacaoPraticante.getPraticante().getIdPaciente()).orElseThrow(
                         () -> new ExcecaoDeRegrasDeNegocio("Não foi encontrado o praticante de id "
-                                + educacaoPraticante.getPaciente().getIdPaciente() +
+                                + educacaoPraticante.getPraticante().getIdPaciente() +
                                 " vinculado a essa educação fornecida!"));
 
 
@@ -43,7 +43,7 @@ public class EducacaoPacienteServicoImplementacao implements EducacaoPraticanteS
 
     @Override
     public EducacaoPraticante atualizarEducacaoPaciente(EducacaoPraticante educacaoPraticante) {
-        praticanteRepositorio.findById(educacaoPraticante.getPaciente().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+ educacaoPraticante.getPaciente().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(educacaoPraticante.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+ educacaoPraticante.getPraticante().getIdPaciente()+"!"));
         Optional<EducacaoPraticante> educacaoPacienteExistente = educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPaciente());
         if (educacaoPacienteExistente.isPresent()) {
             educacaoPraticante.setIdEducacaoPaciente(educacaoPacienteExistente.get().getIdEducacaoPaciente());

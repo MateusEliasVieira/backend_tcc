@@ -20,7 +20,7 @@ public class FichaCadastroAdmissional {
     private Date dataAvaliacao; // Data da avaliação
 
     @OneToOne
-    @JoinColumn(name = "paciente_id_fk")
-    private Praticante paciente;
+    @JoinColumn
+    private Praticante praticante;
 }
 
