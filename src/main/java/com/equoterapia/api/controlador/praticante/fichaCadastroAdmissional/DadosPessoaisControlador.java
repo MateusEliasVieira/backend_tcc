@@ -22,6 +22,7 @@ public class DadosPessoaisControlador {
 
     @PostMapping("/salvar-dados-pessoais-do-praticante")
     public ResponseEntity<?> salvarDadosPessoais(@RequestBody @Valid DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO){
+        System.out.println("=============== Entrou para salvar os dados pessoais ===============");
         DadosPessoais dadosPessoais = PraticanteMapeador.converterDadosPessoaisInputDTOParaDadosPessoais(dadosPessoaisEntradaDTO);
         DadosPessoais dadosPessoaisSalvo = dadosPessoaisServico.salvarDadosPessoais(dadosPessoais);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisOutputDTO(dadosPessoaisSalvo);
