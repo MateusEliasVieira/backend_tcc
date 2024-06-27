@@ -31,35 +31,69 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario save(Usuario user) {
-        if (repository.findUserByEmail(user.getEmail()) == null && repository.findUserByUsername(user.getUsername()) == null) {
-            // empty user
-            String firstTokenUser = JwtToken.generateTokenJWT(user);
-            user.setToken(firstTokenUser);
-            user.setStatus(false);
-            user.setRole(user.getRole());
-            user.setSenha(passwordEncoder.encode(user.getPassword()));
-            Usuario userSaved = repository.save(user);
-            if (userSaved.getIdUsuario() == null) {
-                throw new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_SALVAR_USUARIO + user.getNome());
+    public Usuario save(Usuario usuario) {
+        if (repository.findByEmail(usuario.getEmail()).isEmpty()) {
+            if (repository.findUserByUsername(usuario.getUsername()).isEmpty()) {
+                if (repository.findByTelefone(usuario.getTelefone()).isEmpty()) {
+                    if (repository.findByCpf(usuario.getCpf()).isEmpty()) {
+                        // empty usuario
+                        String firstTokenUser = JwtToken.generateTokenJWT(usuario);
+                        usuario.setToken(firstTokenUser);
+                        usuario.setStatus(false);
+                        usuario.setRole(usuario.getRole());
+                        usuario.setSenha(passwordEncoder.encode(usuario.getPassword()));
+                        Usuario userSaved = repository.save(usuario);
+                        if (userSaved.getIdUsuario() == null) {
+                            throw new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_SALVAR_USUARIO + usuario.getNome());
+                        } else {
+                            return userSaved;
+                        }
+                    } else {
+                        throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o cpf " + usuario.getCpf());
+                    }
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o telefone " + usuario.getTelefone());
+                }
             } else {
-                return userSaved;
+                throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o nome de usuário " + usuario.getUsername());
             }
         } else {
-            throw new ExcecaoDeRegrasDeNegocio(Resposta.USUARIO_EXISTE);
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o email " + usuario.getEmail());
         }
     }
 
     @Transactional(readOnly = false)
     @Override
     public void update(Usuario usuario) {
-        repository.updateUserById(usuario.getIdUsuario(), usuario.getNome(), usuario.getFoto(),
-                usuario.getDataNascimento(), usuario.getCpf(),
-                usuario.getEstadoCivil(), usuario.getTelefone(),
-                usuario.getEmail(), usuario.getDetalhesFormacao(),
-                usuario.getCidade(), usuario.getBairro(),
-                usuario.getLogradouro(), usuario.getRole(),
-                usuario.getVinculo(), usuario.getPossuiFormacao());
+        Usuario usuarioEncontradorPorEmail = repository.findByEmail(usuario.getEmail()).get();
+        Usuario usuarioEncontradorPorNomeDeUsuario = repository.findUserByUsername(usuario.getNomeUsuario()).get();
+        Usuario usuarioEncontradorporTelefone = repository.findByTelefone(usuario.getTelefone()).get();
+        Usuario usuarioEncontradorPorCpf = repository.findByCpf(usuario.getCpf()).get();
+        if (usuarioEncontradorPorEmail.getIdUsuario() == usuario.getIdUsuario()) {
+            if (usuarioEncontradorPorNomeDeUsuario.getIdUsuario() == usuario.getIdUsuario()) {
+                if (usuarioEncontradorporTelefone.getIdUsuario() == usuario.getIdUsuario()) {
+                    if (usuarioEncontradorPorCpf.getIdUsuario() == usuario.getIdUsuario()) {
+                        // pode salvar, pois não tem risco de ter atualizado algum email,cpf, nome de usuario ou telefone que seja de outro usuario cadastrado
+                        repository.updateUserById(usuario.getIdUsuario(), usuario.getNome(), usuario.getFoto(),
+                                usuario.getDataNascimento(), usuario.getCpf(),
+                                usuario.getEstadoCivil(), usuario.getTelefone(),
+                                usuario.getEmail(), usuario.getDetalhesFormacao(),
+                                usuario.getCidade(), usuario.getBairro(),
+                                usuario.getLogradouro(), usuario.getRole(),
+                                usuario.getVinculo(), usuario.getPossuiFormacao());
+                    } else {
+                        throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o cpf " + usuario.getCpf());
+                    }
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o telefone " + usuario.getTelefone());
+                }
+            } else {
+                throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o nome de usuário " + usuario.getUsername());
+            }
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o email " + usuario.getEmail());
+        }
+
     }
 
     @Override
@@ -87,20 +121,20 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = false)
     @Override
     public Usuario saveUserAfterConfirmedAccountByEmail(String token) {
-        Usuario user = repository.findUserByToken(token).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_CONFIRMACAO_CONTA));
+        Usuario usuario = repository.findUserByToken(token).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_CONFIRMACAO_CONTA));
         // token exist from email confirmation
-        user.setStatus(true);
-        return repository.save(user);
+        usuario.setStatus(true);
+        return repository.save(usuario);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario login(Usuario user) {
-        user.setToken(JwtToken.generateTokenJWT(user));
-        user.setTentativasLogin(0);
-        user.setLiberarLogin(null);
-        user.setStatus(true);
-        return repository.save(user);
+    public Usuario login(Usuario usuario) {
+        usuario.setToken(JwtToken.generateTokenJWT(usuario));
+        usuario.setTentativasLogin(0);
+        usuario.setLiberarLogin(null);
+        usuario.setStatus(true);
+        return repository.save(usuario);
     }
 
     @Transactional(readOnly = true)
@@ -113,7 +147,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = true)
     @Override
     public Boolean findUser(String username) {
-        Optional<Usuario> userOptional = Optional.ofNullable(repository.findUserByUsername(username));
+        Optional<Usuario> userOptional = repository.findUserByUsername(username);
         return userOptional.isPresent();
     }
 
@@ -165,15 +199,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = false)
     @Override
     public Usuario updatePassword(NovaSenhaEntradaDTO newPasswordInputDTO) {
-        Usuario user = repository.findUserByToken(newPasswordInputDTO.getToken()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_MUDANCA_SENHA));
-        user.setSenha(passwordEncoder.encode(newPasswordInputDTO.getNovaSenha()));
-        return repository.save(user);
+        Usuario usuario = repository.findUserByToken(newPasswordInputDTO.getToken()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_MUDANCA_SENHA));
+        usuario.setSenha(passwordEncoder.encode(newPasswordInputDTO.getNovaSenha()));
+        return repository.save(usuario);
     }
 
     @Transactional(readOnly = false)
     @Override
     public Usuario findUserByUsername(String username) {
-        return repository.findUserByUsername(username);
+        return repository.findUserByUsername(username).get();
     }
 }
 

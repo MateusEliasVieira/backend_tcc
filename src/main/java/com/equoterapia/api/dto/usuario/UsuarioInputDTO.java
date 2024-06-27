@@ -24,8 +24,8 @@ import static com.equoterapia.utilidades.Resposta.*;
 @NoArgsConstructor
 public class UsuarioInputDTO {
 
-    @NotBlank(message = NOME_COMPLETO)
-    @Size(min = 4)
+    @NotBlank
+    @Size(min = 4, message = NOME_COMPLETO)
     private String nome;
     private String foto;
     @NotNull(message = DATA_NASCIMENTO)
@@ -40,11 +40,11 @@ public class UsuarioInputDTO {
     @NotBlank
     @Email
     private String email;
-    @NotBlank(message = NOME_USUARIO)
-    @Size(min = 6, max = 50)
+    @NotBlank
+    @Size(min = 6, max = 50, message = NOME_USUARIO)
     private String nomeUsuario;
-    @NotBlank(message = SENHA)
-    @Size(min = 6, max = 100)
+    @NotBlank
+    @Size(min = 6, max = 100, message = SENHA)
     private String senha;
     @Column(columnDefinition = "text")
     private String detalhesFormacao;

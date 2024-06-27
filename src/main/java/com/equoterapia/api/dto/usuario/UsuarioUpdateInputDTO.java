@@ -8,10 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
@@ -22,6 +19,7 @@ import static com.equoterapia.utilidades.Resposta.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UsuarioUpdateInputDTO {
 
     @NotNull
