@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 public class Problema {
 
     private Integer status;
-    private OffsetDateTime date;
-    private String title;
+    private OffsetDateTime data;
+    private String titulo;
 
 }

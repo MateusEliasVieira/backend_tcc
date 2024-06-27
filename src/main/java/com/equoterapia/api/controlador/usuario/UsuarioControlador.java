@@ -40,7 +40,6 @@ public class UsuarioControlador {
 
     @PutMapping("/atualizar-usuario")
     public ResponseEntity<Mensagem> atualizarUsuario(@RequestBody @Valid UsuarioUpdateInputDTO usuarioUpdateInputDTO) {
-        System.out.println(usuarioUpdateInputDTO.toString());
         usuarioService.update(UsuarioMapeador.converterUsuarioUpdateInputDTOEmUsuario(usuarioUpdateInputDTO));
         return new ResponseEntity<Mensagem>(new Mensagem(Resposta.USUARIO_UP_OK), HttpStatus.CREATED);
     }

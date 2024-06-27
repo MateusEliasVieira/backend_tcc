@@ -14,11 +14,11 @@ public class ManipuladorExcecaoDominio {
 
         var status = HttpStatus.NOT_FOUND;
 
-        var problem = new Problema();
-        problem.setStatus(status.value());
-        problem.setTitle(ex.getMessage());
-        problem.setDate(OffsetDateTime.now());
+        var problema = new Problema();
+        problema.setStatus(status.value());
+        problema.setTitulo(ex.getMessage());
+        problema.setData(OffsetDateTime.now());
 
-        return ResponseEntity.badRequest().body(problem);
+        return ResponseEntity.badRequest().body(problema);
     }
 }

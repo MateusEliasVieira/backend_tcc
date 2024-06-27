@@ -65,35 +65,37 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional(readOnly = false)
     @Override
     public void update(Usuario usuario) {
-        Usuario usuarioEncontradorPorEmail = repository.findByEmail(usuario.getEmail()).get();
-        Usuario usuarioEncontradorPorNomeDeUsuario = repository.findUserByUsername(usuario.getNomeUsuario()).get();
-        Usuario usuarioEncontradorporTelefone = repository.findByTelefone(usuario.getTelefone()).get();
-        Usuario usuarioEncontradorPorCpf = repository.findByCpf(usuario.getCpf()).get();
-        if (usuarioEncontradorPorEmail.getIdUsuario() == usuario.getIdUsuario()) {
-            if (usuarioEncontradorPorNomeDeUsuario.getIdUsuario() == usuario.getIdUsuario()) {
-                if (usuarioEncontradorporTelefone.getIdUsuario() == usuario.getIdUsuario()) {
-                    if (usuarioEncontradorPorCpf.getIdUsuario() == usuario.getIdUsuario()) {
-                        // pode salvar, pois não tem risco de ter atualizado algum email,cpf, nome de usuario ou telefone que seja de outro usuario cadastrado
-                        repository.updateUserById(usuario.getIdUsuario(), usuario.getNome(), usuario.getFoto(),
-                                usuario.getDataNascimento(), usuario.getCpf(),
-                                usuario.getEstadoCivil(), usuario.getTelefone(),
-                                usuario.getEmail(), usuario.getDetalhesFormacao(),
-                                usuario.getCidade(), usuario.getBairro(),
-                                usuario.getLogradouro(), usuario.getRole(),
-                                usuario.getVinculo(), usuario.getPossuiFormacao());
-                    } else {
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o cpf " + usuario.getCpf());
-                    }
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o telefone " + usuario.getTelefone());
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o nome de usuário " + usuario.getUsername());
-            }
-        } else {
-            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o email " + usuario.getEmail());
+        Optional<Usuario> usuarioPorNomeUsuario = repository.findUserByUsername(usuario.getNomeUsuario());
+        Optional<Usuario> usuarioPorCpf = repository.findByCpf(usuario.getCpf());
+        Optional<Usuario> usuarioPorEmail = repository.findByEmail(usuario.getEmail());
+        Optional<Usuario> usuarioPorTelefone = repository.findByTelefone(usuario.getTelefone());
+
+        if (usuarioPorNomeUsuario.isPresent() && !usuarioPorNomeUsuario.get().getIdUsuario().equals(usuario.getIdUsuario())) {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o nome de usuário " + usuarioPorNomeUsuario.get().getUsername());
         }
 
+        if (usuarioPorCpf.isPresent() && !usuarioPorCpf.get().getIdUsuario().equals(usuario.getIdUsuario())) {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o CPF " + usuarioPorCpf.get().getCpf());
+        }
+
+        if (usuarioPorEmail.isPresent() && !usuarioPorEmail.get().getIdUsuario().equals(usuario.getIdUsuario())) {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o E-mail " + usuarioPorEmail.get().getEmail());
+        }
+
+        if (usuarioPorTelefone.isPresent() && !usuarioPorTelefone.get().getIdUsuario().equals(usuario.getIdUsuario())) {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe um usuário cadastrado com o telefone " + usuarioPorTelefone.get().getTelefone());
+        }
+
+        // Pode salvar, pois não tem risco de ter atualizado algum email, CPF, nome de usuário ou telefone que seja de outro usuário cadastrado
+        repository.updateUserById(
+                usuario.getIdUsuario(), usuario.getNome(), usuario.getFoto(),
+                usuario.getDataNascimento(), usuario.getCpf(),
+                usuario.getEstadoCivil(), usuario.getTelefone(),
+                usuario.getEmail(), usuario.getDetalhesFormacao(),
+                usuario.getCidade(), usuario.getBairro(),
+                usuario.getLogradouro(), usuario.getRole(),
+                usuario.getVinculo(), usuario.getPossuiFormacao()
+        );
     }
 
     @Override
