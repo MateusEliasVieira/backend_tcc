@@ -36,7 +36,7 @@ public class GruposMusculares {
     private String plantiflexoresTornozeloDireito;
     private String plantiflexoresTornozeloEsquerdo;
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

@@ -17,7 +17,7 @@ public class ResponsavelPraticanteEntradaDTO {
 
     // Responsável do paciente
 
-    private Long idResponsavelPaciente;
+    private Long idResponsavelPraticante;
     @NotBlank(message = NOME_RESPONSAVEL)
     private String nomeResponsavel;
     @NotBlank
@@ -36,7 +36,7 @@ public class ResponsavelPraticanteEntradaDTO {
     private String telefoneTrabalho;
     private Double rendaFamiliar;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

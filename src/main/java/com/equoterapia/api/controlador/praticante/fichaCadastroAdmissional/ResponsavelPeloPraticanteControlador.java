@@ -3,7 +3,7 @@ package com.equoterapia.api.controlador.praticante.fichaCadastroAdmissional;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.ResponsavelPraticanteEntradaDTO;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.ResponsavelPraticanteSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
-import com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.ResponsavelPraticanteServico;
+import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.ResponsavelPraticanteServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class ResponsavelPeloPraticanteControlador {
     private ResponsavelPraticanteServico service;
 
     @PostMapping(path = "/salvar-responsavel-do-praticante")
-    public ResponseEntity<ResponsavelPraticanteSaidaDTO> salvarResponsavelPeloPaciente(@RequestBody ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO) {
-        return new ResponseEntity<ResponsavelPraticanteSaidaDTO>(PraticanteMapeador.converterResponsavelPacienteEmResponsavelPacienteOutputDTO(service.salvar(PraticanteMapeador.converterResponsavelPacienteInputDTOEmResponsavelPaciente(responsavelPraticanteEntradaDTO))), HttpStatus.CREATED);
+    public ResponseEntity<ResponsavelPraticanteSaidaDTO> salvarResponsavelPeloPraticante(@RequestBody ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO) {
+        return new ResponseEntity<ResponsavelPraticanteSaidaDTO>(PraticanteMapeador.converterResponsavelPraticanteEmResponsavelPraticanteSaidaDTO(service.salvar(PraticanteMapeador.converterResponsavelPraticanteEntradaDTOEmResponsavelPraticante(responsavelPraticanteEntradaDTO))), HttpStatus.CREATED);
     }
 }

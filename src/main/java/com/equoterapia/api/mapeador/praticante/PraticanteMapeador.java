@@ -10,78 +10,78 @@ import java.util.List;
 public class PraticanteMapeador {
 
     // Dados Pessoais
-    public static DadosPessoais converterDadosPessoaisInputDTOParaDadosPessoais(DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO) {
+    public static DadosPessoais converterDadosPessoaisEntradaDTOParaDadosPessoais(DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(dadosPessoaisEntradaDTO, DadosPessoais.class);
     }
 
-    public static DadosPessoaisSaidaDTO converterDadosPessoaisParaDadosPessoaisOutputDTO(DadosPessoais dadosPessoais) {
+    public static DadosPessoaisSaidaDTO converterDadosPessoaisParaDadosPessoaisSaidaDTO(DadosPessoais dadosPessoais) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(dadosPessoais, DadosPessoaisSaidaDTO.class);
     }
 
-    public static List<DadosPessoaisSaidaDTO> converterListaDeDadosPessoaisParaListaDeDadosPessoaisOutputDTO(List<DadosPessoais> listaDadosPessoais) {
+    public static List<DadosPessoaisSaidaDTO> converterListaDeDadosPessoaisParaListaDeDadosPessoaisSaidaDTO(List<DadosPessoais> listaDadosPessoais) {
         ModelMapper modelMapper = new ModelMapper();
-        List<DadosPessoaisSaidaDTO> listaOutputDTO = new ArrayList<>();
+        List<DadosPessoaisSaidaDTO> listaSaidaDTO = new ArrayList<>();
         for (DadosPessoais dadosPessoais : listaDadosPessoais) {
             DadosPessoaisSaidaDTO outputDTO = modelMapper.map(dadosPessoais, DadosPessoaisSaidaDTO.class);
-            listaOutputDTO.add(outputDTO);
+            listaSaidaDTO.add(outputDTO);
         }
-        return listaOutputDTO;
+        return listaSaidaDTO;
     }
 
     // Completude Matricula
-    public static CompletudeMatricula converterCompletudeMatriculaInputDTOParaCompletudeMatricula(CompletudeMatriculaEntradaDTO completudeMatriculaEntradaDTO) {
+    public static CompletudeMatricula converterCompletudeMatriculaEntradaDTOParaCompletudeMatricula(CompletudeMatriculaEntradaDTO completudeMatriculaEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(completudeMatriculaEntradaDTO, CompletudeMatricula.class);
     }
 
-    public static CompletudeMatriculaSaidaDTO converterCompletudeMatriculaParaCompletudeMatriculaOutputDTO(CompletudeMatricula completudeMatricula) {
+    public static CompletudeMatriculaSaidaDTO converterCompletudeMatriculaParaCompletudeMatriculaSaidaDTO(CompletudeMatricula completudeMatricula) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(completudeMatricula, CompletudeMatriculaSaidaDTO.class);
     }
 
-    public static List<CompletudeMatriculaSaidaDTO> converterListaDeCompletudeMatriculaParaListaDeCompletudeMatriculaOutputDTO(List<CompletudeMatricula> listaCompletudeMatricula) {
+    public static List<CompletudeMatriculaSaidaDTO> converterListaDeCompletudeMatriculaParaListaDeCompletudeMatriculaSaidaDTO(List<CompletudeMatricula> listaCompletudeMatricula) {
         ModelMapper modelMapper = new ModelMapper();
-        List<CompletudeMatriculaSaidaDTO> listaOutputDTO = new ArrayList<>();
+        List<CompletudeMatriculaSaidaDTO> listaSaidaDTO = new ArrayList<>();
         for (CompletudeMatricula completudeMatricula : listaCompletudeMatricula) {
             CompletudeMatriculaSaidaDTO outputDTO = modelMapper.map(completudeMatricula, CompletudeMatriculaSaidaDTO.class);
-            listaOutputDTO.add(outputDTO);
+            listaSaidaDTO.add(outputDTO);
         }
-        return listaOutputDTO;
+        return listaSaidaDTO;
     }
 
-    // Educação Paciente
+    // Educação Praticante
 
-    public static EducacaoPraticante converterEducacaoPacienteInputDTOParaEducacaoPaciente(EducacaoPraticanteEntradaDTO educacaoPraticanteEntradaDTO) {
+    public static EducacaoPraticante converterEducacaoPraticanteEntradaDTOParaEducacaoPraticante(EducacaoPraticanteEntradaDTO educacaoPraticanteEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(educacaoPraticanteEntradaDTO, EducacaoPraticante.class);
     }
 
-    public static EducacaoPraticanteSaidaDTO converterEducacaoPacienteParaEducacaoPacienteOutputDTO(EducacaoPraticante educacaoPraticante) {
+    public static EducacaoPraticanteSaidaDTO converterEducacaoPraticanteParaEducacaoPraticanteSaidaDTO(EducacaoPraticante educacaoPraticante) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(educacaoPraticante, EducacaoPraticanteSaidaDTO.class);
     }
 
     // Emergencia
 
-    public static Emergencia converterEmergenciaInputDTOParaEmergencia(EmergenciaEntradaDTO emergenciaEntradaDTO) {
+    public static Emergencia converterEmergenciaEntradaDTOParaEmergencia(EmergenciaEntradaDTO emergenciaEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(emergenciaEntradaDTO, Emergencia.class);
     }
 
-    public static EmergenciaSaidaDTO converterEmergenciaParaEmergenciaOutputDTO(Emergencia emergencia) {
+    public static EmergenciaSaidaDTO converterEmergenciaParaEmergenciaSaidaDTO(Emergencia emergencia) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(emergencia, EmergenciaSaidaDTO.class);
     }
 
     // Responsavel pelo paciente
-    public static ResponsavelPraticante converterResponsavelPacienteInputDTOEmResponsavelPaciente(ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO) {
+    public static ResponsavelPraticante converterResponsavelPraticanteEntradaDTOEmResponsavelPraticante(ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(responsavelPraticanteEntradaDTO, ResponsavelPraticante.class);
     }
 
-    public static ResponsavelPraticanteSaidaDTO converterResponsavelPacienteEmResponsavelPacienteOutputDTO(ResponsavelPraticante responsavelPraticante) {
+    public static ResponsavelPraticanteSaidaDTO converterResponsavelPraticanteEmResponsavelPraticanteSaidaDTO(ResponsavelPraticante responsavelPraticante) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(responsavelPraticante, ResponsavelPraticanteSaidaDTO.class);
     }

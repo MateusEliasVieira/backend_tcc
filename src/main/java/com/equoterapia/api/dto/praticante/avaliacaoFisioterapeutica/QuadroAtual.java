@@ -22,7 +22,7 @@ public class QuadroAtual {
     private String deformidades;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

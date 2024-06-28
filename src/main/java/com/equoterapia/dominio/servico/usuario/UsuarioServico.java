@@ -6,7 +6,7 @@ import com.equoterapia.dominio.modelo.usuario.Usuario;
 import java.util.Date;
 import java.util.List;
 
-public interface UsuarioService {
+public interface UsuarioServico {
 
     public Usuario salvar(Usuario usuario);
     public void atualizarUsuario(Usuario usuario);

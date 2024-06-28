@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioOutputDTO {
+public class UsuarioSaidaDTO {
 
     private Long idUsuario;
     private String nome;

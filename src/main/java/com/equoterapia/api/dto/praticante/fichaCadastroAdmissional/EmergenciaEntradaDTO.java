@@ -28,6 +28,6 @@ public class EmergenciaEntradaDTO {
     private String plano; // Caso tenha, qual é?
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }

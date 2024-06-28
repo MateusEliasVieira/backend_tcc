@@ -17,7 +17,7 @@ import lombok.*;
 public class Praticante {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaciente;
+    private Long idPraticante;
 
     // Avaliação Fisioterapeutica
     @OneToOne(mappedBy = "praticante")

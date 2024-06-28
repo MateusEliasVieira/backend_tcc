@@ -25,7 +25,7 @@ public class SobreACriancaInputDTO {
     private String alimentacao;
     private String observacao;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

@@ -23,6 +23,6 @@ public class CuidadosPessoaisEntradaDTO {
     @Enumerated @NotNull
     private PreencherLegenda seAlimentaSozinho;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }

@@ -16,6 +16,6 @@ public class FichaCadastroAdmissionalEntradaDTO {
     private Long idFichaCadastroAdmissional;
     private Date dataAvaliacao; // Data da avaliação
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 }
 

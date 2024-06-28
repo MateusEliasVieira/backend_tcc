@@ -16,7 +16,7 @@ public class EducacaoPraticanteSaidaDTO {
 
     // Escolaridade do paciente
 
-    private Long idEducacaoPaciente;
+    private Long idEducacaoPraticante;
     @NotBlank
     private String serieEscolar;
     @Enumerated

@@ -16,7 +16,7 @@ public class ResponsavelPraticanteSaidaDTO {
 
     // Responsável do paciente
 
-    private Long idResponsavelPaciente;
+    private Long idResponsavelPraticante;
     @NotBlank(message = NOME_RESPONSAVEL)
     private String nomeResponsavel;
     @NotBlank

@@ -33,6 +33,6 @@ public class TracosDePersonalidadeInputDTO {
     @Enumerated @NotNull
     private PreencherLegenda timidez;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }

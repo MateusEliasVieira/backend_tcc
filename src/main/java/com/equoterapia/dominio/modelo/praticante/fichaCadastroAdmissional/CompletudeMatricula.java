@@ -21,7 +21,8 @@ public class CompletudeMatricula {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCompletudeMatricula;
     private Date dataCompletudeMatricula;
-    @Column(columnDefinition = "text")
+    @Lob // usada em JPA para indicar que um atributo de uma entidade deve ser mapeado para um tipo de objeto grande no banco de dados
+    @Column(columnDefinition = "LONGTEXT")
     private String imagemAssinaturaResponsavel;
 
     @OneToOne

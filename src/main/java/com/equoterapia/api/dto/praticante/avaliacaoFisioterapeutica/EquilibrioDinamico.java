@@ -34,7 +34,7 @@ public class EquilibrioDinamico {
     private String comentariosCorrerDesviandoObstaculos;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

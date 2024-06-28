@@ -4,7 +4,7 @@ import com.equoterapia.api.dto.novaSenha.NovaSenhaEntradaDTO;
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import com.equoterapia.dominio.repositorio.usuario.UsuarioRepositorio;
-import com.equoterapia.dominio.servico.usuario.UsuarioService;
+import com.equoterapia.dominio.servico.usuario.UsuarioServico;
 import com.equoterapia.seguranca.jwt.JwtToken;
 import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServicoImpl implements UsuarioServico {
 
     @Autowired
     private UsuarioRepositorio repository;
 
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encriptadorDeSenha = new BCryptPasswordEncoder();
 
     private final int  MINUTOS_PARA_NOVA_TENTATIVA = 1;
 
@@ -42,7 +41,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                         usuario.setToken(tokenDoUsuario);
                         usuario.setStatus(false);
                         usuario.setRole(usuario.getRole());
-                        usuario.setSenha(passwordEncoder.encode(usuario.getPassword()));
+                        usuario.setSenha(encriptadorDeSenha.encode(usuario.getPassword()));
                         Usuario usuarioSalvo = repository.save(usuario);
                         if (usuarioSalvo.getIdUsuario() == null) {
                             throw new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_SALVAR_USUARIO + usuario.getNome());
@@ -188,7 +187,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario atualizarSenha(NovaSenhaEntradaDTO newPasswordInputDTO) {
         Usuario usuario = repository.pesquisarUsuarioPorToken(newPasswordInputDTO.getToken()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.ERRO_MUDANCA_SENHA));
-        usuario.setSenha(passwordEncoder.encode(newPasswordInputDTO.getNovaSenha()));
+        usuario.setSenha(encriptadorDeSenha.encode(newPasswordInputDTO.getNovaSenha()));
         return repository.save(usuario);
     }
 

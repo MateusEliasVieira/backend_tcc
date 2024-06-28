@@ -25,7 +25,7 @@ public class AfetividadeEntradaDTO {
     @Enumerated @NotNull
     private PreencherLegenda expressaoDeSentimentos;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

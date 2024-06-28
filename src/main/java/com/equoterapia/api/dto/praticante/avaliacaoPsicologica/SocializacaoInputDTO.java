@@ -27,7 +27,7 @@ public class SocializacaoInputDTO {
     @Enumerated @NotBlank
     private PreencherLegenda fazContatoVisual;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

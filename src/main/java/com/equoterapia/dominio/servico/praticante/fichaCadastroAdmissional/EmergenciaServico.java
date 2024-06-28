@@ -1,4 +1,4 @@
-package com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Emergencia;
 

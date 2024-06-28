@@ -1,4 +1,4 @@
-package com.equoterapia.api.mapeador;
+package com.equoterapia.api.mapeador.login;
 
 import com.equoterapia.api.dto.login.LoginEntradaDTO;
 import com.equoterapia.api.dto.login.LoginSaidaDTO;

@@ -60,7 +60,7 @@ public class DadosPessoaisSaidaDTO {
     private String cep;
 
     @NotNull
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

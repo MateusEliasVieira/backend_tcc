@@ -37,7 +37,7 @@ public class CoordenacaoMotora {
     private String consideracoesTesteAlcancePegar;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

@@ -23,7 +23,7 @@ public class SaudeMentalEntradaDTO {
     @Enumerated @NotNull
     private PreencherLegenda apresentaAlucinacoes;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

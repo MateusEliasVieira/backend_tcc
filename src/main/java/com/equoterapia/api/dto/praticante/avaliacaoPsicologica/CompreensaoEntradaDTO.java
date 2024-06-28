@@ -24,7 +24,7 @@ public class CompreensaoEntradaDTO {
     private PreencherLegenda executaOrdensComplexas;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

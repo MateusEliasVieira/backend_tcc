@@ -59,7 +59,7 @@ public class DadosPessoaisEntradaDTO {
     @NotBlank
     private String cep;
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

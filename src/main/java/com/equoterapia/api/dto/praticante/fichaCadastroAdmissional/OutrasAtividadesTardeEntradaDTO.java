@@ -21,7 +21,7 @@ public class OutrasAtividadesTardeEntradaDTO {
     private String sabado;
     private String domingo;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

@@ -18,7 +18,7 @@ public class EducacaoPraticante {
     // Escolaridade do paciente
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEducacaoPaciente;
+    private Long idEducacaoPraticante;
     private String serieEscolar;
     private ClasseDeEscola classeDeEscola;
     private String instituicaoEducacional;

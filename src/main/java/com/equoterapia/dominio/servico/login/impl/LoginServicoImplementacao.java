@@ -3,11 +3,11 @@ package com.equoterapia.dominio.servico.login.impl;
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.login.LoginEntradaDTO;
 import com.equoterapia.api.dto.login.LoginSaidaDTO;
-import com.equoterapia.api.mapeador.LoginMapeador;
+import com.equoterapia.api.mapeador.login.LoginMapeador;
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import com.equoterapia.dominio.servico.login.LoginServico;
-import com.equoterapia.dominio.servico.usuario.UsuarioService;
+import com.equoterapia.dominio.servico.usuario.UsuarioServico;
 import com.equoterapia.utilidades.FormataData;
 import com.equoterapia.utilidades.Log;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ import java.util.Date;
 public class LoginServicoImplementacao implements LoginServico {
 
     @Autowired
-    private UsuarioService service;
+    private UsuarioServico service;
 
     @Autowired
     public AuthenticationManager authenticationManager;

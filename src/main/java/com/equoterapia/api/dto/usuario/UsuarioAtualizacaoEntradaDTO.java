@@ -8,10 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
@@ -22,10 +19,13 @@ import static com.equoterapia.utilidades.Resposta.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioInputDTO {
+@ToString
+public class UsuarioAtualizacaoEntradaDTO {
 
-    @NotBlank
-    @Size(min = 4, message = NOME_COMPLETO)
+    @NotNull
+    private Long idUsuario;
+    @NotBlank(message = NOME_COMPLETO)
+    @Size(min = 4)
     private String nome;
     private String foto;
     @NotNull(message = DATA_NASCIMENTO)
@@ -40,12 +40,6 @@ public class UsuarioInputDTO {
     @NotBlank
     @Email
     private String email;
-    @NotBlank
-    @Size(min = 6, max = 50, message = NOME_USUARIO)
-    private String nomeUsuario;
-    @NotBlank
-    @Size(min = 6, max = 100, message = SENHA)
-    private String senha;
     @Column(columnDefinition = "text")
     private String detalhesFormacao;
     @NotBlank(message = CIDADE)

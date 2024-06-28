@@ -8,5 +8,5 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class PraticanteIdDTO {
-    private Long idPaciente;
+    private Long idPraticante;
 }

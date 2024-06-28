@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @ControllerAdvice
 public class ManipuladorExcecaoDominio {
     @ExceptionHandler(ExcecaoDeRegrasDeNegocio.class)
-    public ResponseEntity<Problema> handleRegrasDeNegocioException(ExcecaoDeRegrasDeNegocio ex) {
+    public ResponseEntity<Problema> manipuladorDeExcecaoDeRegrasDeNegocio(ExcecaoDeRegrasDeNegocio ex) {
 
         var status = HttpStatus.NOT_FOUND;
 

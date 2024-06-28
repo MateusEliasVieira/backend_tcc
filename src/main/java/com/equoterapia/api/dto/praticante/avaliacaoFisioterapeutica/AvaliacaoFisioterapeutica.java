@@ -21,7 +21,7 @@ public class AvaliacaoFisioterapeutica {
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

@@ -28,6 +28,6 @@ public class ComportamentoEntradaDTO {
     private PreencherLegenda atencaoConcentracao;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }

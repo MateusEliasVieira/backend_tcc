@@ -58,7 +58,7 @@ public class SaudeGeralDosPraticantes {
     @NotBlank
     private String consideracoesAlergias;
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 
 }

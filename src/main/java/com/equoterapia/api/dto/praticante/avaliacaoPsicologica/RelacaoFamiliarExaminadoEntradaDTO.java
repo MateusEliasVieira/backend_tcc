@@ -30,7 +30,7 @@ public class RelacaoFamiliarExaminadoEntradaDTO {
     private PreencherLegenda ansiedadePercebidaEntrevistador;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

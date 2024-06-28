@@ -4,7 +4,7 @@ import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.EmergenciaEnt
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.EmergenciaSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Emergencia;
-import com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.EmergenciaServico;
+import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.EmergenciaServico;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,24 +20,24 @@ public class EmergenciaControlador {
 
     @PostMapping("/salvar-emergencia-do-praticante")
     public ResponseEntity<?> salvarEmergencia(@RequestBody @Valid EmergenciaEntradaDTO emergenciaEntradaDTO){
-        Emergencia emergencia = PraticanteMapeador.converterEmergenciaInputDTOParaEmergencia(emergenciaEntradaDTO);
+        Emergencia emergencia = PraticanteMapeador.converterEmergenciaEntradaDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.salvarEmergencia(emergencia);
-        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaOutputDTO(emergenciaSalva);
+        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaSalva);
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar-emergencia-do-praticante")
     public ResponseEntity<?> atualizarEmergencia(@RequestBody @Valid EmergenciaEntradaDTO emergenciaEntradaDTO){
-        Emergencia emergencia = PraticanteMapeador.converterEmergenciaInputDTOParaEmergencia(emergenciaEntradaDTO);
+        Emergencia emergencia = PraticanteMapeador.converterEmergenciaEntradaDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.atualizarEmergencia(emergencia);
-        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaOutputDTO(emergenciaSalva);
+        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaSalva);
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);
     }
 
     @GetMapping("/buscar-emergencia-do-praticante-por-id/{id}")
     public ResponseEntity<?> buscarEmergencia(@PathVariable("id") @Valid Long id){
         Emergencia emergenciaEncontrada = emergenciaServico.buscarEmergencia(id);
-        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaOutputDTO(emergenciaEncontrada);
+        EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaEncontrada);
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);
     }
 

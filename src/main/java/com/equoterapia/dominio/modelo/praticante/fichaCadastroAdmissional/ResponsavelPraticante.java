@@ -19,7 +19,7 @@ public class ResponsavelPraticante {
     // Responsável do paciente
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idResponsavelPaciente;
+    private Long idResponsavelPraticante;
     private String nomeResponsavel;
     private String grauParentesco; // Parentesco
     private String profissao;

@@ -29,7 +29,7 @@ public class FormaDeComunicacao {
     private String consideracoesUsoDosOlhos;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

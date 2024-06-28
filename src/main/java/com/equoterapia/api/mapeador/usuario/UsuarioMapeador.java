@@ -1,8 +1,8 @@
 package com.equoterapia.api.mapeador.usuario;
 
-import com.equoterapia.api.dto.usuario.UsuarioInputDTO;
-import com.equoterapia.api.dto.usuario.UsuarioOutputDTO;
-import com.equoterapia.api.dto.usuario.UsuarioUpdateInputDTO;
+import com.equoterapia.api.dto.usuario.UsuarioEntradaDTO;
+import com.equoterapia.api.dto.usuario.UsuarioSaidaDTO;
+import com.equoterapia.api.dto.usuario.UsuarioAtualizacaoEntradaDTO;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import org.modelmapper.ModelMapper;
 
@@ -11,28 +11,28 @@ import java.util.List;
 
 public class UsuarioMapeador {
 
-    public static Usuario converterUsuarioInputDTOEmUsuario(UsuarioInputDTO usuarioInputDTO){
+    public static Usuario converterUsuarioEntradaDTOEmUsuario(UsuarioEntradaDTO usuarioEntradaDTO){
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(usuarioInputDTO, Usuario.class);
+        return modelMapper.map(usuarioEntradaDTO, Usuario.class);
     }
 
-    public static Usuario converterUsuarioUpdateInputDTOEmUsuario(UsuarioUpdateInputDTO usuarioUpdateInputDTO){
+    public static Usuario converterUsuarioUpdateEntradaDTOEmUsuario(UsuarioAtualizacaoEntradaDTO usuarioAtualizacaoEntradaDTO){
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(usuarioUpdateInputDTO, Usuario.class);
+        return modelMapper.map(usuarioAtualizacaoEntradaDTO, Usuario.class);
     }
 
-    public static UsuarioOutputDTO converterUsuarioEmUsuarioOutputDTO(Usuario usuario){
+    public static UsuarioSaidaDTO converterUsuarioEmUsuarioSaidaDTO(Usuario usuario){
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(usuario, UsuarioOutputDTO.class);
+        return modelMapper.map(usuario, UsuarioSaidaDTO.class);
     }
 
-    public static List<UsuarioOutputDTO> converterListaUsuarioEmListaUsuarioOutputDTO(List<Usuario> listaUsuario){
+    public static List<UsuarioSaidaDTO> converterListaUsuarioEmListaUsuarioSaidaDTO(List<Usuario> listaUsuario){
         ModelMapper modelMapper = new ModelMapper();
-        List<UsuarioOutputDTO> listaUsuarioOutputDTO = new ArrayList<>();
+        List<UsuarioSaidaDTO> listaUsuarioSaidaDTO = new ArrayList<>();
         for(Usuario usuario:listaUsuario){
-            UsuarioOutputDTO usuarioOutputDTO = modelMapper.map(usuario,UsuarioOutputDTO.class);
-            listaUsuarioOutputDTO.add(usuarioOutputDTO);
+            UsuarioSaidaDTO usuarioSaidaDTO = modelMapper.map(usuario, UsuarioSaidaDTO.class);
+            listaUsuarioSaidaDTO.add(usuarioSaidaDTO);
         }
-        return listaUsuarioOutputDTO;
+        return listaUsuarioSaidaDTO;
     }
 }

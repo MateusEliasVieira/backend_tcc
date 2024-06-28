@@ -19,7 +19,7 @@ public class AvaliacaoPsicologicaEntradaDTO {
 
     private String imagemAssinaturaOuCRPECarimbo;
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

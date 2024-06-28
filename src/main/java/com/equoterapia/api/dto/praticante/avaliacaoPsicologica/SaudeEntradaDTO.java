@@ -32,7 +32,7 @@ public class SaudeEntradaDTO {
     private String deficitCognitivo;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

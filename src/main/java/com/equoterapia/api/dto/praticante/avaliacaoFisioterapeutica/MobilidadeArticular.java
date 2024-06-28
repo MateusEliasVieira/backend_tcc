@@ -56,6 +56,6 @@ public class MobilidadeArticular {
     private String flexaoPlantarPassivaTornozelo;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 }
 

@@ -26,7 +26,7 @@ public class HabilidadesSociaisEntradaDTO {
     private PreencherLegenda assertividade;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

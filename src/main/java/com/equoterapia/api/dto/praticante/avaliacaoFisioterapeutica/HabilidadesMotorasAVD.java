@@ -53,7 +53,7 @@ public class HabilidadesMotorasAVD {
     private String consideracoesEscritaManual;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }
 

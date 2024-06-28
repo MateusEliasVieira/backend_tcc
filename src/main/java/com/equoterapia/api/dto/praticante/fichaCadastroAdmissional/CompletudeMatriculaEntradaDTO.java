@@ -24,7 +24,7 @@ public class CompletudeMatriculaEntradaDTO {
     @NotBlank(message = ASSINATURA_IMAGEM)
     private String imagemAssinaturaResponsavel;
     @NotNull
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

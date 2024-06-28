@@ -1,11 +1,11 @@
-package com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.impl;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl;
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.CompletudeMatricula;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.CompletudeMatriculaRepositorio;
-import com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.CompletudeMatriculaServico;
+import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.CompletudeMatriculaServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,22 +19,25 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
     @Autowired
     private PraticanteRepositorio praticanteRepositorio;
 
-    @Override
+
     public CompletudeMatricula salvarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        Praticante pacienteEncontrado = praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPraticante().getIdPaciente()+"!"));
-        if(pacienteEncontrado.getCompletudeMatricula().getIdCompletudeMatricula() != null){
-            // Já existe uma completude de matricula para esse paciente
+        Praticante praticanteEncontrado = praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + completudeMatricula.getPraticante().getIdPraticante() + "!"));
+
+        CompletudeMatricula completudeExistente = praticanteEncontrado.getCompletudeMatricula();
+        if (completudeExistente != null && completudeExistente.getIdCompletudeMatricula() != null) {
+            // Já existe uma completude de matricula para esse praticante
             throw new ExcecaoDeRegrasDeNegocio("Já existe uma completude de matricula para esse praticante!");
-        }else{
-            // não existe completude de matricula para esse paciente
-            completudeMatricula.getPraticante().setIdPaciente(pacienteEncontrado.getIdPaciente());
+        } else {
+            // Não existe completude de matricula para esse praticante
+            completudeMatricula.getPraticante().setIdPraticante(praticanteEncontrado.getIdPraticante());
             return completudeMatriculaRepositorio.save(completudeMatricula);
         }
     }
 
-    @Override
+
     public CompletudeMatricula atualizarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id "+completudeMatricula.getPraticante().getIdPaciente()+"!"));
+        praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPraticante()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + completudeMatricula.getPraticante().getIdPraticante() + "!"));
         if (completudeMatricula.getIdCompletudeMatricula() != null) { // foi passado o id
             Optional<CompletudeMatricula> completudeMatriculaExistente = completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula());
             if (completudeMatriculaExistente.isPresent()) { // existe um registro com esse id cadastrado
@@ -47,7 +50,7 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
         }
     }
 
-    @Override
+
     public CompletudeMatricula buscarCompletudeMatricula(Long idCompletudeMatricula) {
         return completudeMatriculaRepositorio.findById(idCompletudeMatricula).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum registro de completude de matrícula com esse id cadastrado na base de dados!"));
     }

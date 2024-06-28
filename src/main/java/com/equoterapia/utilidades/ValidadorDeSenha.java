@@ -4,30 +4,30 @@ import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 
 public class ValidadorDeSenha {
 
-    public static void isStrong(String password) {
-        int countLetter = 0;
-        int countSpecialCharacters = 0;
-        int countNumbers = 0;
+    public static void isStrong(String senha) {
+        int contadorDeCaracteres = 0;
+        int contadorDeCaracteresEspeciais = 0;
+        int contadorDeNumeros = 0;
 
-        for (int i = 0; i < password.length(); i++) {
-            if (password.toLowerCase().charAt(i) >= 'a' && password.toLowerCase().charAt(i) <= 'z') {
-                countLetter++;
-            } else if (password.toLowerCase().charAt(i) == '!' || password.toLowerCase().charAt(i) == '@'
-                    || password.toLowerCase().charAt(i) == '#' || password.toLowerCase().charAt(i) == '$'
-                    || password.toLowerCase().charAt(i) == '%' || password.toLowerCase().charAt(i) == '*'
-                    || password.toLowerCase().charAt(i) == '(' || password.toLowerCase().charAt(i) == ')'
-                    || password.toLowerCase().charAt(i) == '-' || password.toLowerCase().charAt(i) == '+') {
-                countSpecialCharacters++;
-            } else if (password.toLowerCase().charAt(i) == '0' || password.toLowerCase().charAt(i) == '1'
-                    || password.toLowerCase().charAt(i) == '2' || password.toLowerCase().charAt(i) == '3'
-                    || password.toLowerCase().charAt(i) == '4' || password.toLowerCase().charAt(i) == '5'
-                    || password.toLowerCase().charAt(i) == '6' || password.toLowerCase().charAt(i) == '7'
-                    || password.toLowerCase().charAt(i) == '8' || password.toLowerCase().charAt(i) == '9') {
-                countNumbers++;
+        for (int i = 0; i < senha.length(); i++) {
+            if (senha.toLowerCase().charAt(i) >= 'a' && senha.toLowerCase().charAt(i) <= 'z') {
+                contadorDeCaracteres++;
+            } else if (senha.toLowerCase().charAt(i) == '!' || senha.toLowerCase().charAt(i) == '@'
+                    || senha.toLowerCase().charAt(i) == '#' || senha.toLowerCase().charAt(i) == '$'
+                    || senha.toLowerCase().charAt(i) == '%' || senha.toLowerCase().charAt(i) == '*'
+                    || senha.toLowerCase().charAt(i) == '(' || senha.toLowerCase().charAt(i) == ')'
+                    || senha.toLowerCase().charAt(i) == '-' || senha.toLowerCase().charAt(i) == '+') {
+                contadorDeCaracteresEspeciais++;
+            } else if (senha.toLowerCase().charAt(i) == '0' || senha.toLowerCase().charAt(i) == '1'
+                    || senha.toLowerCase().charAt(i) == '2' || senha.toLowerCase().charAt(i) == '3'
+                    || senha.toLowerCase().charAt(i) == '4' || senha.toLowerCase().charAt(i) == '5'
+                    || senha.toLowerCase().charAt(i) == '6' || senha.toLowerCase().charAt(i) == '7'
+                    || senha.toLowerCase().charAt(i) == '8' || senha.toLowerCase().charAt(i) == '9') {
+                contadorDeNumeros++;
             }
         }
 
-        if (!(countLetter >= 2 && countSpecialCharacters >= 2 && countNumbers >= 2)) {
+        if (!(contadorDeCaracteres >= 2 && contadorDeCaracteresEspeciais >= 2 && contadorDeNumeros >= 2)) {
             throw new ExcecaoDeRegrasDeNegocio(Resposta.SENHA_CADASTRO);
         }
 

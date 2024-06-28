@@ -64,6 +64,6 @@ public class EquilibrioEstatico {
     private String comentariosUmPeOlhosFechados;
 
 
-    private Praticante paciente;
+    private Praticante praticante;
 
 }

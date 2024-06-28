@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.equoterapia.dominio.servico.usuario.UsuarioService;
+import com.equoterapia.dominio.servico.usuario.UsuarioServico;
 import com.equoterapia.seguranca.jwt.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class FiltroInterceptador extends OncePerRequestFilter {
 
     @Autowired
-    private UsuarioService service;
+    private UsuarioServico service;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

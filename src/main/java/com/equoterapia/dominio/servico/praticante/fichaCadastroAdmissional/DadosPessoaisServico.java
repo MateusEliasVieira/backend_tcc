@@ -1,4 +1,4 @@
-package com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional;
 
 
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
@@ -12,9 +12,9 @@ public interface DadosPessoaisServico {
 
     DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais);
 
-    DadosPessoais buscarDadosPessoaisPorID(Long id_paciente);
+    DadosPessoais buscarDadosPessoaisPorID(Long id_praticante);
 
-    List<DadosPessoais> buscarDadosPessoaisDosPacientes();
+    List<DadosPessoais> buscarDadosPessoaisDosPraticantes();
 }
 
 

@@ -32,7 +32,7 @@ public class LinguagemEntradaDTO {
     private PreencherLegenda frasesCompletas;
 
 
-    private PraticanteIdDTO paciente;
+    private PraticanteIdDTO praticante;
 
 }
 

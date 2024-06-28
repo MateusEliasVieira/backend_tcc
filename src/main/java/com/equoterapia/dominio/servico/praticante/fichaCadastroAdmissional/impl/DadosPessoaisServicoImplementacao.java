@@ -1,4 +1,4 @@
-package com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.impl;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl;
 
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
@@ -6,7 +6,7 @@ import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.DadosPessoaisRepositorio;
-import com.equoterapia.dominio.servico.paciente.fichaCadastroAdmissional.DadosPessoaisServico;
+import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.DadosPessoaisServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais) {
-        praticanteRepositorio.findById(dadosPessoais.getPraticante().getIdPaciente()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + dadosPessoais.getPraticante().getIdPaciente() + "!"));
+        praticanteRepositorio.findById(dadosPessoais.getPraticante().getIdPraticante()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + dadosPessoais.getPraticante().getIdPraticante() + "!"));
         Optional<DadosPessoais> dadosPessoaisExistente = dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf());
         if (dadosPessoaisExistente.isPresent()) {
             dadosPessoais.setIdDadosPessoais(dadosPessoaisExistente.get().getIdDadosPessoais());
@@ -51,11 +51,11 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais buscarDadosPessoaisPorID(Long id_paciente) {
-        return dadosPessoaisRepositorio.findById(id_paciente).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Paciente não encontrado."));
+        return dadosPessoaisRepositorio.findById(id_paciente).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Praticante não encontrado."));
     }
 
     @Override
-    public List<DadosPessoais> buscarDadosPessoaisDosPacientes() {
+    public List<DadosPessoais> buscarDadosPessoaisDosPraticantes() {
         return dadosPessoaisRepositorio.findAll();
     }
 
