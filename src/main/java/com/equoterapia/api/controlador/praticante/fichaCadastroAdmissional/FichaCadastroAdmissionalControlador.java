@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping( "/ficha-cadastro-admissional")
+@RequestMapping( "/praticante/ficha-cadastro-admissional")
 public class FichaCadastroAdmissionalControlador {
 
     public ResponseEntity<?> salvarDadosPessoais(@RequestBody @Valid DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO){

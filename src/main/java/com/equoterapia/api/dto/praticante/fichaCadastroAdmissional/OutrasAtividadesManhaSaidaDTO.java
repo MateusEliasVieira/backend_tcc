@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OutrasAtividadesManhaEntradaDTO {
+public class OutrasAtividadesManhaSaidaDTO {
 
     // Cronograma de atividade do paciente em outras instituições período matutino
 
@@ -20,7 +20,5 @@ public class OutrasAtividadesManhaEntradaDTO {
     private String sextaFeira;
     private String sabado;
     private String domingo;
-
-    private PraticanteIdDTO praticante;
 
 }

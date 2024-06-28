@@ -8,11 +8,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OutrasAtividadesManhaEntradaDTO {
+public class OutrasAtividadesTardeSaidaDTO {
 
-    // Cronograma de atividade do paciente em outras instituições período matutino
+    // Cronograma de atividade do paciente em outras instituições período vespertino
 
-    private Long idOutrasAtividadesManha;
+    private Long idOutrasAtividadesTarde;
     private String segundaFeira;
     private String tercaFeira;
     private String quartaFeira;
@@ -21,6 +21,5 @@ public class OutrasAtividadesManhaEntradaDTO {
     private String sabado;
     private String domingo;
 
-    private PraticanteIdDTO praticante;
-
 }
+

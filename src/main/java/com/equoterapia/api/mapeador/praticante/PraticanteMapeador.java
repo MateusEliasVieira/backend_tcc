@@ -86,5 +86,27 @@ public class PraticanteMapeador {
         return modelMapper.map(responsavelPraticante, ResponsavelPraticanteSaidaDTO.class);
     }
 
+    // Outras Atividades Manha
+    public static OutrasAtividadesManha converterOutrasAtividadesManhaEntradaDTOEmOutrasAtividadesManha(OutrasAtividadesManhaEntradaDTO outrasAtividadesManhaEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(outrasAtividadesManhaEntradaDTO, OutrasAtividadesManha.class);
+    }
+
+    public static OutrasAtividadesManhaSaidaDTO converterOutrasAtividadesManhaEmOutrasAtividadesManhaSaidaDTO(OutrasAtividadesManha outrasAtividadesManha) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(outrasAtividadesManha, OutrasAtividadesManhaSaidaDTO.class);
+    }
+
+    // Outras Atividades Tarde
+    public static OutrasAtividadesTarde converterOutrasAtividadesTardeEntradaDTOEmOutrasAtividadesTarde(OutrasAtividadesTardeEntradaDTO outrasAtividadesTardeEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(outrasAtividadesTardeEntradaDTO, OutrasAtividadesTarde.class);
+    }
+
+    public static OutrasAtividadesTardeSaidaDTO converterOutrasAtividadesTardeEmOutrasAtividadesTardeSaidaDTO(OutrasAtividadesTarde outrasAtividadesTarde) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(outrasAtividadesTarde, OutrasAtividadesTardeSaidaDTO.class);
+    }
+
 
 }
