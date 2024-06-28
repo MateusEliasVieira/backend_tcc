@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    private final int MINUTES_TO_RETRY = 1;
+    private final int  MINUTOS_PARA_NOVA_TENTATIVA = 1;
 
     @Transactional(readOnly = false)
     @Override
@@ -125,61 +126,62 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario login(Usuario usuario) {
         usuario.setToken(JwtToken.generateTokenJWT(usuario));
         usuario.setTentativasLogin(0);
-        usuario.setLiberarLogin(null);
+        usuario.setLiberarLogin(null); // coloca a data atual para liberar o login (colocado apenas para não deixar nulo) Date.from(LocalDateTime.now().toInstant(ZoneOffset.of("-03:00")))
         usuario.setStatus(true);
         return repository.save(usuario);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Boolean verificarSeExisteUsuarioPorNomeDeUsuario(String username) {
-        Optional<Usuario> userOptional = repository.buscarUsuarioPorNomeDeUsuario(username);
+    public Boolean verificarSeExisteUsuarioPorNomeDeUsuario(String nomeDeUsuario) {
+        Optional<Usuario> userOptional = repository.buscarUsuarioPorNomeDeUsuario(nomeDeUsuario);
         return userOptional.isPresent();
     }
 
     @Transactional(readOnly = false)
     @Override
-    public int atualizarTentativasErradasDeLogin(String username) {
-        int attempts = repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username) + 1;
-        repository.atualizarTentativasErradasDeLoginDoUsuario(attempts, username);
-        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username);
+    public int atualizarTentativasErradasDeLogin(String nomeDeUsuario) {
+        int tentativas = repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(nomeDeUsuario) + 1;
+        repository.atualizarTentativasErradasDeLoginDoUsuario(tentativas, nomeDeUsuario);
+        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(nomeDeUsuario);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public int buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(String username) {
-        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(username);
+    public int buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(String nomeDeUsuario) {
+        return repository.buscarTentativasDeLoginDoUsuarioPorNomeDeUsuario(nomeDeUsuario);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public Date atualizarDataParaNovaTentativaDeLogin(String username) {
+    public Date atualizarDataParaNovaTentativaDeLogin(String nomeDeUsuario) {
         // get current date and time
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime agora = LocalDateTime.now();
         // Add minutes
-        LocalDateTime minutes = now.plusMinutes(MINUTES_TO_RETRY);
+        LocalDateTime minutos = agora.plusMinutes(MINUTOS_PARA_NOVA_TENTATIVA);
         // release date
-        Date releaseDate = Date.from(minutes.toInstant(ZoneOffset.of("-03:00")));
-        repository.atualizarDataParaNovaTentativaDeLogin(releaseDate, username);
-        return releaseDate;
+        Date dataParaLiberarLogin = Date.from(minutos.toInstant(ZoneOffset.of("-03:00")));
+        repository.atualizarDataParaNovaTentativaDeLogin(dataParaLiberarLogin, nomeDeUsuario);
+        return dataParaLiberarLogin;
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Date getDataLiberarLogin(String username) {
-        return repository.getDataLiberarLogin(username);
+    public Date getDataLiberarLogin(String nomeDeUsuario) {
+        return repository.getDataLiberarLogin(nomeDeUsuario);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Boolean verificarDataLiberarLogin(String username) {
-        return repository.getDataLiberarLogin(username) != null;
+    public Boolean verificarDataLiberarLogin(String nomeDeUsuario) {
+        System.out.println("Data = "+repository.getDataLiberarLogin(nomeDeUsuario));
+        return repository.getDataLiberarLogin(nomeDeUsuario) != null;
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void resetarTentativasELiberarLogin(String username) {
-        repository.resetarTentativasELiberarLogin(username);
+    public void resetarTentativasELiberarLogin(String nomeDeUsuario) {
+        repository.resetarTentativasELiberarLogin(nomeDeUsuario);
     }
 
     @Transactional(readOnly = false)
@@ -192,8 +194,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Transactional(readOnly = false)
     @Override
-    public Usuario buscarUsuarioPorNomeDeUsuario(String username) {
-        return repository.buscarUsuarioPorNomeDeUsuario(username).get();
+    public Usuario buscarUsuarioPorNomeDeUsuario(String nomeDeUsuario) {
+        return repository.buscarUsuarioPorNomeDeUsuario(nomeDeUsuario).get();
     }
 }
 

@@ -1,6 +1,7 @@
 package com.equoterapia.utilidades;
 
 import com.equoterapia.api.dto.login.LoginEntradaDTO;
+import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
@@ -15,15 +16,13 @@ public class Log {
 
     public static void registrarLog(LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
         try {
-            String dataRequest = getDadosDaRequisicao(loginEntradaDTO, request);
-
-            File file = new File("log.txt");
-            FileWriter fileWriter = new FileWriter(file, true);
-
-            fileWriter.append(dataRequest);
-            fileWriter.close();
+            String dadosDaRequisicao = getDadosDaRequisicao(loginEntradaDTO, request);
+            File arquivo = new File("log.txt");
+            FileWriter arquivoDeEscrita = new FileWriter(arquivo, true);
+            arquivoDeEscrita.append(dadosDaRequisicao);
+            arquivoDeEscrita.close();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new ExcecaoDeRegrasDeNegocio("Erro Interno do sistema!");
         }
 
     }
