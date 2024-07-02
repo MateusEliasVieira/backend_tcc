@@ -5,6 +5,7 @@ import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Educac
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.EducacaoPraticanteRepositorio;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.EducacaoServico;
+import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,33 +24,48 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
     public EducacaoPraticante salvarEducacaoPraticante(EducacaoPraticante educacaoPraticante) {
         try {
             if (educacaoPraticante.getPraticante().getIdPraticante() != null) {
+
                 // passou o id do paciente
                 praticanteRepositorio.findById(
                         educacaoPraticante.getPraticante().getIdPraticante()).orElseThrow(
-                        () -> new ExcecaoDeRegrasDeNegocio("Não foi encontrado o praticante de id "
-                                + educacaoPraticante.getPraticante().getIdPraticante() +
-                                " vinculado a essa educação fornecida!"));
+                        () -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
-
-                return educacaoPraticanteRepositorio.save(educacaoPraticante);
+                if (!educacaoPraticanteRepositorio.buscarEducacaoPraticantePorChaveEstrangeira(educacaoPraticante.getPraticante().getIdPraticante()).isPresent()) {
+                    return educacaoPraticanteRepositorio.save(educacaoPraticante);
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado a educação do praticante!");
+                }
 
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("É preciso informar o id do paciente, que é dono da educação informada!");
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
             }
+
         } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados da educação para o devido praticante!");
+            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados da educação do praticante!");
         }
     }
 
     @Override
     public EducacaoPraticante atualizarEducacaoPraticante(EducacaoPraticante educacaoPraticante) {
-        praticanteRepositorio.findById(educacaoPraticante.getPraticante().getIdPraticante()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + educacaoPraticante.getPraticante().getIdPraticante() + "!"));
-        Optional<EducacaoPraticante> educacaoPraticanteExistente = educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPraticante());
-        if (educacaoPraticanteExistente.isPresent()) {
-            educacaoPraticante.setIdEducacaoPraticante(educacaoPraticanteExistente.get().getIdEducacaoPraticante());
-            return educacaoPraticanteRepositorio.save(educacaoPraticante);
-        } else {
-            throw new ExcecaoDeRegrasDeNegocio("Não existe registros sobre a educação do praticante cadastrado no sistema!");
+        try {
+            if (educacaoPraticante.getIdEducacaoPraticante() != null) {
+
+                praticanteRepositorio.findById(educacaoPraticante
+                                .getPraticante()
+                                .getIdPraticante())
+                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a educação!"));
+
+                if (educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPraticante()).isPresent()) {
+                    return educacaoPraticanteRepositorio.save(educacaoPraticante);
+
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe registros sobre a educação do praticante cadastrado no sistema!");
+                }
+            } else {
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a educação do praticante, pois não foi possível encontra-la!");
+            }
+        } catch (Exception e) {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
         }
     }
 

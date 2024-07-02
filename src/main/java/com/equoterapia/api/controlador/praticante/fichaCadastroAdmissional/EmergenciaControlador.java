@@ -34,8 +34,8 @@ public class EmergenciaControlador {
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar-emergencia-do-praticante-por-id/{id}")
-    public ResponseEntity<?> buscarEmergencia(@PathVariable("id") @Valid Long id){
+    @GetMapping("/buscar-emergencia-do-praticante-por-id")
+    public ResponseEntity<?> buscarEmergencia(@RequestParam("id") Long id){
         Emergencia emergenciaEncontrada = emergenciaServico.buscarEmergencia(id);
         EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaEncontrada);
         return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);

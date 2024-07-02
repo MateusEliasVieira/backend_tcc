@@ -23,9 +23,12 @@ public class ResponsavelPraticante {
     private String nomeResponsavel;
     private String grauParentesco; // Parentesco
     private String profissao;
+    @Column(unique = true)
     private String telefone;
     private Date dataNascimento;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String telefoneTrabalho;
     private Double rendaFamiliar;
 

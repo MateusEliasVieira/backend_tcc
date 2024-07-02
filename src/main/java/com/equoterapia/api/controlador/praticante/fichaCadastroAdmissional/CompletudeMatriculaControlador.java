@@ -32,8 +32,8 @@ public class CompletudeMatriculaControlador {
         return new ResponseEntity<CompletudeMatriculaSaidaDTO>(completudeMatriculaSaidaDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/buscar-completude-matricula-do-praticante-por-id/{id}")
-    public ResponseEntity<?> buscarCompletudeMatricula(@Valid @PathVariable("id") Long id){
+    @GetMapping("/buscar-completude-matricula-do-praticante-por-id")
+    public ResponseEntity<?> buscarCompletudeMatricula(@RequestParam("id") Long id){
         CompletudeMatricula completudeMatricula = completudeMatriculaServico.buscarCompletudeMatricula(id);
         CompletudeMatriculaSaidaDTO completudeMatriculaSaidaDTO = PraticanteMapeador.converterCompletudeMatriculaParaCompletudeMatriculaSaidaDTO(completudeMatricula);
         return new ResponseEntity<CompletudeMatriculaSaidaDTO>(completudeMatriculaSaidaDTO,HttpStatus.OK);

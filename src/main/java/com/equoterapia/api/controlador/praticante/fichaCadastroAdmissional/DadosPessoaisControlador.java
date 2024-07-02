@@ -36,9 +36,9 @@ public class DadosPessoaisControlador {
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/buscar-dados-pessoais-do-praticante-por-id/{id_paciente}")
-    public ResponseEntity<?> buscarDadosPessoaisDosPacientes(@PathVariable("id_paciente") Long id_paciente){
-        DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorID(id_paciente);
+    @GetMapping("/buscar-dados-pessoais-do-praticante-por-id")
+    public ResponseEntity<?> buscarDadosPessoaisDosPacientes(@RequestParam("id") Long id){
+        DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorID(id);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
     }

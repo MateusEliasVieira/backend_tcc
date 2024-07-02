@@ -6,6 +6,7 @@ import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Comple
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.CompletudeMatriculaRepositorio;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.CompletudeMatriculaServico;
+import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,32 +22,51 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
 
     public CompletudeMatricula salvarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        Praticante praticanteEncontrado = praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPraticante())
-                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + completudeMatricula.getPraticante().getIdPraticante() + "!"));
+        try {
+            if (completudeMatricula.getPraticante().getIdPraticante() != null) {
 
-        CompletudeMatricula completudeExistente = praticanteEncontrado.getCompletudeMatricula();
-        if (completudeExistente != null && completudeExistente.getIdCompletudeMatricula() != null) {
-            // Já existe uma completude de matricula para esse praticante
-            throw new ExcecaoDeRegrasDeNegocio("Já existe uma completude de matricula para esse praticante!");
-        } else {
-            // Não existe completude de matricula para esse praticante
-            completudeMatricula.getPraticante().setIdPraticante(praticanteEncontrado.getIdPraticante());
-            return completudeMatriculaRepositorio.save(completudeMatricula);
+                praticanteRepositorio.findById(completudeMatricula
+                                .getPraticante()
+                                .getIdPraticante())
+                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                        + completudeMatricula.getPraticante().getIdPraticante() + "!"
+                        ));
+                if (!completudeMatriculaRepositorio.buscarCompletudeMatriculaPorChaveEstrangeira(completudeMatricula.getPraticante().getIdPraticante()).isPresent()) {
+
+                    return completudeMatriculaRepositorio.save(completudeMatricula);
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Essa completude de matrícula já foi cadastrada!");
+                }
+
+            } else {
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a completude de matrícula, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+            }
+        } catch (Exception e) {
+            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a completude de matrícula do praticante!");
         }
     }
 
 
     public CompletudeMatricula atualizarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPraticante()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + completudeMatricula.getPraticante().getIdPraticante() + "!"));
-        if (completudeMatricula.getIdCompletudeMatricula() != null) { // foi passado o id
-            Optional<CompletudeMatricula> completudeMatriculaExistente = completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula());
-            if (completudeMatriculaExistente.isPresent()) { // existe um registro com esse id cadastrado
-                return completudeMatriculaRepositorio.save(completudeMatricula);
+        try {
+            if (completudeMatricula.getIdCompletudeMatricula() != null) {
+
+                praticanteRepositorio.findById(completudeMatricula
+                                .getPraticante()
+                                .getIdPraticante())
+                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a completude de matrícula!"));
+
+                if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
+                    return completudeMatriculaRepositorio.save(completudeMatricula);
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de completude de matrícula!");
+                }
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não existe nenhum registro de completude de matrícula com esse id cadastrado na base de dados!");
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
             }
-        } else {
-            throw new ExcecaoDeRegrasDeNegocio("É preciso do id para realizar a atualização da completude de matrícula!");
+        } catch (Exception e) {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
         }
     }
 

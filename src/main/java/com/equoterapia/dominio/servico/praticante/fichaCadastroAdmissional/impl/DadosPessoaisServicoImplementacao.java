@@ -24,34 +24,64 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais salvarDadosPessoais(DadosPessoais dadosPessoais) {
-        if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
-            throw new ExcecaoDeRegrasDeNegocio("O praticante com CPF " + dadosPessoais.getCpf() + " já está cadastrado no sistema.");
-        }else if(dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).isPresent()){
-            throw new ExcecaoDeRegrasDeNegocio("O praticante com cartão SUS " + dadosPessoais.getCartaoSUS() + " já está cadastrado no sistema.");
-        }
-        else {
-            Praticante paciente = new Praticante();
-            paciente = praticanteRepositorio.save(paciente);
-            dadosPessoais.setPraticante(paciente);
-            return dadosPessoaisRepositorio.save(dadosPessoais);
+        try {
+            if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
+
+                throw new ExcecaoDeRegrasDeNegocio("O praticante com CPF "
+                        + dadosPessoais.getCpf() + " já está cadastrado no sistema!");
+
+            } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).isPresent()) {
+
+                throw new ExcecaoDeRegrasDeNegocio("O praticante com cartão do SUS "
+                        + dadosPessoais.getCartaoSUS()
+                        + " já está cadastrado no sistema!");
+
+            } else {
+                Praticante praticante = new Praticante();
+                praticante = praticanteRepositorio.save(praticante);
+                dadosPessoais.setPraticante(praticante);
+                return dadosPessoaisRepositorio.save(dadosPessoais);
+            }
+        } catch (Exception e) {
+            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
         }
     }
 
     @Override
     public DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais) {
-        praticanteRepositorio.findById(dadosPessoais.getPraticante().getIdPraticante()).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante com id " + dadosPessoais.getPraticante().getIdPraticante() + "!"));
-        Optional<DadosPessoais> dadosPessoaisExistente = dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf());
-        if (dadosPessoaisExistente.isPresent()) {
-            dadosPessoais.setIdDadosPessoais(dadosPessoaisExistente.get().getIdDadosPessoais());
-            return dadosPessoaisRepositorio.save(dadosPessoais);
-        } else {
-            throw new ExcecaoDeRegrasDeNegocio("Não existe praticante com CPF " + dadosPessoais.getCpf() + " cadastrado no sistema.");
+        try {
+            if (dadosPessoais.getIdDadosPessoais() != null) {
+
+                praticanteRepositorio.findById(dadosPessoais
+                                .getPraticante()
+                                .getIdPraticante())
+                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos dados pessoais!"));
+
+                if (dadosPessoaisRepositorio.findById(dadosPessoais.getIdDadosPessoais()).isPresent()) {
+
+                    if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
+                        // cadastros diferentes
+                        throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cpf " + dadosPessoais.getCpf());
+                    } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
+                        // cadastros diferentes
+                        throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cartão do SUS " + dadosPessoais.getCartaoSUS());
+                    } else {
+                        return dadosPessoaisRepositorio.save(dadosPessoais);
+                    }
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de dados pessoais!");
+                }
+            } else {
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados pessoais, pois não foi possível encontra-lo!");
+            }
+        } catch (Exception e) {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
         }
     }
 
     @Override
-    public DadosPessoais buscarDadosPessoaisPorID(Long id_paciente) {
-        return dadosPessoaisRepositorio.findById(id_paciente).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Praticante não encontrado."));
+    public DadosPessoais buscarDadosPessoaisPorID(Long id_praticante) {
+        return dadosPessoaisRepositorio.findById(id_praticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Praticante não encontrado."));
     }
 
     @Override

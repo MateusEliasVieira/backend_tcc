@@ -29,6 +29,8 @@ public class Resposta {
     public static final String ERRO_MUDANCA_SENHA = "Houve um erro ao realizar a mudança de senha!";
     public static final String TENTATIVAS_ESGOTADAS = "Tentativas esgotadas, tente novamente mais tarde!";
 
+    public static final String DADOS_PESSOAIS_NAO_CADASTRADOS = "Cadastre os dados pessoais do praticante primeiro!";
+
     // Usuário
     public static final String ERRO_PADRAO = "Ops, aconteceu um erro interno do sistema!";
     public static final String USUARIO_CAD_OK = "Novo usuário cadastrado com sucesso!";

@@ -38,6 +38,7 @@ public class DadosPessoais {
     private CorOuRaca corOuRaca;
     @Column(unique = true)
     private String cpf;
+    @Column(unique = true)
     private String cartaoSUS;
     private String enderecoResidencial;
     private String bairro;

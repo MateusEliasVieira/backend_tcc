@@ -32,8 +32,8 @@ public class EducacaoPraticanteControlador {
         return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/buscar-educacao-do-praticante-por-id/{id}")
-    public ResponseEntity<?> buscarEducacaoPraticante(@Valid @PathVariable("id") Long id){
+    @GetMapping("/buscar-educacao-do-praticante-por-id")
+    public ResponseEntity<?> buscarEducacaoPraticante(@RequestParam("id") Long id){
         EducacaoPraticante educacaoPraticante = educacaoServico.buscarEducacaoPraticante(id);
         EducacaoPraticanteSaidaDTO educacaoPraticanteSaidaDTO = PraticanteMapeador.converterEducacaoPraticanteParaEducacaoPraticanteSaidaDTO(educacaoPraticante);
         return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.OK);

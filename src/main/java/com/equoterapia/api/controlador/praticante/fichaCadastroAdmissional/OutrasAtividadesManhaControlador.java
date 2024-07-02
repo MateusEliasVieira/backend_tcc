@@ -30,7 +30,6 @@ public class OutrasAtividadesManhaControlador {
 
     @GetMapping("/buscar-outras-atividades-manha-do-praticante-por-id")
     public ResponseEntity<?> buscarOutrasAtividadesManha(@RequestParam("id") Long id){
-
         return new ResponseEntity<>(PraticanteMapeador.converterOutrasAtividadesManhaEmOutrasAtividadesManhaSaidaDTO(servico.buscarOutrasAtividadesManhaPorId(id)), HttpStatus.CREATED);
     }
 }
