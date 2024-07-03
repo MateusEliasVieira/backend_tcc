@@ -12,7 +12,7 @@ public interface DadosPessoaisServico {
 
     DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais);
 
-    DadosPessoais buscarDadosPessoaisPorID(Long id_praticante);
+    DadosPessoais buscarDadosPessoaisPorID(Long idDadosPessoais);
 
     List<DadosPessoais> buscarDadosPessoaisDosPraticantes();
 }

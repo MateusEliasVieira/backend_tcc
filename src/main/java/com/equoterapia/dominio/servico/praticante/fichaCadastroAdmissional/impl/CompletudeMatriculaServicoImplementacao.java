@@ -72,6 +72,6 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
 
     public CompletudeMatricula buscarCompletudeMatricula(Long idCompletudeMatricula) {
-        return completudeMatriculaRepositorio.findById(idCompletudeMatricula).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum registro de completude de matrícula com esse id cadastrado na base de dados!"));
+        return completudeMatriculaRepositorio.findById(idCompletudeMatricula).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Completude de matrícula do praticante não encontrado!"));
     }
 }

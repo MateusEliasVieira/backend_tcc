@@ -83,7 +83,7 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
     @Override
     public Emergencia buscarEmergencia(Long id_emergencia) {
-        return emergenciaRepositorio.findById(id_emergencia).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi encontrado um registro de emergência com id " + id_emergencia + "!"));
+        return emergenciaRepositorio.findById(id_emergencia).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Emergência do praticante não encontrada!"));
     }
 
 }

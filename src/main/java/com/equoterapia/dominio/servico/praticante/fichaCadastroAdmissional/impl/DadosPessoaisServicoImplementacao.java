@@ -4,14 +4,17 @@ package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
+import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.FichaCadastroAdmissional;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.DadosPessoaisRepositorio;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.DadosPessoaisServico;
+import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.FichaCadastroAdmissionalServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
@@ -21,6 +24,9 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Autowired
     private DadosPessoaisRepositorio dadosPessoaisRepositorio;
+
+    @Autowired
+    private FichaCadastroAdmissionalServico fichaCadastroAdmissionalServico;
 
     @Override
     public DadosPessoais salvarDadosPessoais(DadosPessoais dadosPessoais) {
@@ -40,7 +46,14 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
                 Praticante praticante = new Praticante();
                 praticante = praticanteRepositorio.save(praticante);
                 dadosPessoais.setPraticante(praticante);
-                return dadosPessoaisRepositorio.save(dadosPessoais);
+                FichaCadastroAdmissional fichaCadastroAdmissional = new FichaCadastroAdmissional();
+                fichaCadastroAdmissional.setPraticante(praticante);
+                fichaCadastroAdmissional.setDataAvaliacao(new Date());
+                if (fichaCadastroAdmissionalServico.salvarFichaCadastroAdmissional(fichaCadastroAdmissional) != null) {
+                    return dadosPessoaisRepositorio.save(dadosPessoais);
+                } else {
+                    throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
+                }
             }
         } catch (Exception e) {
             throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
@@ -80,8 +93,8 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
     }
 
     @Override
-    public DadosPessoais buscarDadosPessoaisPorID(Long id_praticante) {
-        return dadosPessoaisRepositorio.findById(id_praticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Praticante não encontrado."));
+    public DadosPessoais buscarDadosPessoaisPorID(Long idDadosPessoais) {
+        return dadosPessoaisRepositorio.findById(idDadosPessoais).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Dados pessoais do praticante não encontrado!"));
     }
 
     @Override
