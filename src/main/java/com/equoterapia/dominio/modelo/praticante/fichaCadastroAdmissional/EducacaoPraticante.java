@@ -22,8 +22,8 @@ public class EducacaoPraticante {
     private String serieEscolar;
     private ClasseDeEscola classeDeEscola;
     private String instituicaoEducacional;
-    private TipoDeInstituicaoEducacional tipoDeInstituicaoEducacional;
-    private Periodo periodo;
+    private TipoDeInstituicaoEducacionalEnum tipoDeInstituicaoEducacional;
+    private PeriodoEnum periodo;
 
     @OneToOne
     @JoinColumn

@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.enums;
 
-public enum Periodo {
+public enum PeriodoEnum {
 
     MATUTINO, VESPERTINO
 }

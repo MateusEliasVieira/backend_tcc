@@ -1,6 +1,6 @@
 package com.equoterapia.api.dto.login;
 
-import com.equoterapia.dominio.enums.Role;
+import com.equoterapia.dominio.enums.RoleEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -18,6 +18,6 @@ public class LoginSaidaDTO {
     @NotBlank
     private String token;
     @NotNull
-    private Role role;
+    private RoleEnum role;
 
 }

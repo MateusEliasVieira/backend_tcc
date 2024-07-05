@@ -1,7 +1,7 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -17,21 +17,21 @@ public class TracosDePersonalidadeInputDTO {
 
     private Long idTracosDePersonalidade;
     @Enumerated @NotNull
-    private PreencherLegenda extroversao;
+    private PreencherLegendaEnum extroversao;
     @Enumerated @NotNull
-    private PreencherLegenda fobia;
+    private PreencherLegendaEnum fobia;
     @Enumerated @NotNull
-    private PreencherLegenda obsessao;
+    private PreencherLegendaEnum obsessao;
     @Enumerated @NotNull
-    private PreencherLegenda introversao;
+    private PreencherLegendaEnum introversao;
     @Enumerated @NotNull
-    private PreencherLegenda ansiedade;
+    private PreencherLegendaEnum ansiedade;
     @Enumerated @NotNull
-    private PreencherLegenda histeria;
+    private PreencherLegendaEnum histeria;
     @Enumerated @NotNull
-    private PreencherLegenda dependenciaEmocional;
+    private PreencherLegendaEnum dependenciaEmocional;
     @Enumerated @NotNull
-    private PreencherLegenda timidez;
+    private PreencherLegendaEnum timidez;
 
     private PraticanteIdDTO praticante;
 

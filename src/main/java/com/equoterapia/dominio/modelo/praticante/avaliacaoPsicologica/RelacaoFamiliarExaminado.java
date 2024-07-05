@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,12 +19,12 @@ public class RelacaoFamiliarExaminado {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRelacaoFamiliarExaminado;
-    private PreencherLegenda adequado;
-    private PreencherLegenda superprotecao;
-    private PreencherLegenda dificuldadePerceberDeficiencias;
-    private PreencherLegenda rejeicao;
-    private PreencherLegenda indiferenca;
-    private PreencherLegenda ansiedadePercebidaEntrevistador;
+    private PreencherLegendaEnum adequado;
+    private PreencherLegendaEnum superprotecao;
+    private PreencherLegendaEnum dificuldadePerceberDeficiencias;
+    private PreencherLegendaEnum rejeicao;
+    private PreencherLegendaEnum indiferenca;
+    private PreencherLegendaEnum ansiedadePercebidaEntrevistador;
 
     @OneToOne
     @JoinColumn

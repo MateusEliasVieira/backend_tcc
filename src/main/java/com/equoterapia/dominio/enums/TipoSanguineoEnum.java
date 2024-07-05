@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.enums;
 
-public enum TipoSanguineo {
+public enum TipoSanguineoEnum {
     A_POSITIVO, A_NEGATIVO,
     B_POSITIVO, B_NEGATIVO,
     AB_POSITIVO, AB_NEGATIVO,

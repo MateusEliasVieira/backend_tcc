@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.enums;
 
-public enum Vinculo {
+public enum VinculoEnum {
     PREFEITURA_PIRES_DO_RIO,
     PREFEITURA_URUTAI,
     IFGOIANO

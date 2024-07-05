@@ -18,6 +18,8 @@ public class AvaliacaoPsicologica {
     private Long idAvaliacaoPsicologica;
     private String expectativasFamiliaresTerapiaEquina;
     private String resumoCasoObservacoesComplementares;
+    @Lob // usada em JPA para indicar que um atributo de uma entidade deve ser mapeado para um tipo de objeto grande no banco de dados
+    @Column(columnDefinition = "LONGTEXT")
     private String imagemAssinaturaOuCRPECarimbo;
 
     @OneToOne

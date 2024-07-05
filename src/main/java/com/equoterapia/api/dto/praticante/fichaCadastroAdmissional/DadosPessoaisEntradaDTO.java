@@ -1,8 +1,8 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.dominio.enums.CorOuRaca;
-import com.equoterapia.dominio.enums.Sexo;
-import com.equoterapia.dominio.enums.TipoSanguineo;
+import com.equoterapia.dominio.enums.SexoEnum;
+import com.equoterapia.dominio.enums.TipoSanguineoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -35,13 +35,13 @@ public class DadosPessoaisEntradaDTO {
     @NotNull
     private Double peso;
     @Enumerated
-    private TipoSanguineo tipoSanguineo;
+    private TipoSanguineoEnum tipoSanguineo;
     @NotBlank
     private String fatorRH;
     @NotNull
     private Double altura;
     @Enumerated
-    private Sexo sexo;
+    private SexoEnum sexo;
     @NotBlank
     private String naturalidade;
     @Enumerated

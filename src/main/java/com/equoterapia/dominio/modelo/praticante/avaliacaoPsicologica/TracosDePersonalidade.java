@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,14 +19,14 @@ public class TracosDePersonalidade {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTracosDePersonalidade;
-    private PreencherLegenda extroversao;
-    private PreencherLegenda fobia;
-    private PreencherLegenda obsessao;
-    private PreencherLegenda introversao;
-    private PreencherLegenda ansiedade;
-    private PreencherLegenda histeria;
-    private PreencherLegenda dependenciaEmocional;
-    private PreencherLegenda timidez;
+    private PreencherLegendaEnum extroversao;
+    private PreencherLegendaEnum fobia;
+    private PreencherLegendaEnum obsessao;
+    private PreencherLegendaEnum introversao;
+    private PreencherLegendaEnum ansiedade;
+    private PreencherLegendaEnum histeria;
+    private PreencherLegendaEnum dependenciaEmocional;
+    private PreencherLegendaEnum timidez;
 
     @OneToOne
     @JoinColumn

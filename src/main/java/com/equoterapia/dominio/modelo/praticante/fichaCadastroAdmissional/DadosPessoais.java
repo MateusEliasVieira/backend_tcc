@@ -1,8 +1,8 @@
 package com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.dominio.enums.CorOuRaca;
-import com.equoterapia.dominio.enums.Sexo;
-import com.equoterapia.dominio.enums.TipoSanguineo;
+import com.equoterapia.dominio.enums.SexoEnum;
+import com.equoterapia.dominio.enums.TipoSanguineoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,10 +30,10 @@ public class DadosPessoais {
     private String CID;
     private Date dataNascimento;
     private Double peso;
-    private TipoSanguineo tipoSanguineo;
+    private TipoSanguineoEnum tipoSanguineo;
     private String fatorRH;
     private Double altura;
-    private Sexo sexo;
+    private SexoEnum sexo;
     private String naturalidade;
     private CorOuRaca corOuRaca;
     @Column(unique = true)

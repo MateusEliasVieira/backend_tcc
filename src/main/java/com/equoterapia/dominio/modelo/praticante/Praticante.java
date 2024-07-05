@@ -1,9 +1,10 @@
 package com.equoterapia.dominio.modelo.praticante;
 
+import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioEstatico;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.FormaDeComunicacao;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.SaudeGeralDosPraticantes;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.EducacaoPraticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.ResponsavelPraticante;
-import com.equoterapia.dominio.modelo.usuario.Usuario;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,9 +28,9 @@ public class Praticante {
     @OneToOne(mappedBy = "praticante")
     private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioDinamico equilibrioDinamico;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioEstatico equilibrioEstatico;
+    private EquilibrioEstatico equilibrioEstatico;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.FormaDeComunicacao formaDeComunicacao;
+    private FormaDeComunicacao formaDeComunicacao;
     @OneToOne(mappedBy = "praticante")
     private com.equoterapia.dominio.modelo.patient.physicalTherapyAssessment.GruposMusculares gruposMusculares;
     @OneToOne(mappedBy = "praticante")

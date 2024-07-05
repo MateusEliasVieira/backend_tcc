@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
-import com.equoterapia.dominio.enums.EquilibrioEstatico;
+import com.equoterapia.dominio.enums.EquilibrioDinamicoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,13 +19,13 @@ public class EquilibrioDinamico {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquilibrioDinamico;
-    private EquilibrioEstatico engatinhar;
+    private EquilibrioDinamicoEnum engatinhar;
     private String comentariosEngatinhar;
-    private EquilibrioEstatico marchaVoluntaria;
+    private EquilibrioDinamicoEnum marchaVoluntaria;
     private String comentariosMarchaVoluntaria;
-    private EquilibrioEstatico saltarPesJuntos;
+    private EquilibrioDinamicoEnum saltarPesJuntos;
     private String comentariosSaltarPesJuntos;
-    private EquilibrioEstatico correrDesviandoObstaculos;
+    private EquilibrioDinamicoEnum correrDesviandoObstaculos;
     private String comentariosCorrerDesviandoObstaculos;
 
     @OneToOne

@@ -1,7 +1,6 @@
-package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.implementacao;
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
-import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.OutrasAtividadesTarde;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.OutrasAtividadesTarde;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.OutrasAtividadesTardeRepositorio;

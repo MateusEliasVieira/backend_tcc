@@ -1,4 +1,4 @@
-package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.implementacao;
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Emergencia;
@@ -8,8 +8,6 @@ import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.Emerg
 import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class EmergenciaServicoImplementacao implements EmergenciaServico {

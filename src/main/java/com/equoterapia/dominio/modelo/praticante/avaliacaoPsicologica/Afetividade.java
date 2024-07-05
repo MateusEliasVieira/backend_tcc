@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,10 +19,10 @@ public class Afetividade {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAfetividade;
-    private PreencherLegenda demonstraAfeicaoEspecialPorAlguem;
-    private PreencherLegenda compartilhaSuasCoisas;
-    private PreencherLegenda ajudaQuandoSolicitado;
-    private PreencherLegenda expressaoDeSentimentos;
+    private PreencherLegendaEnum demonstraAfeicaoEspecialPorAlguem;
+    private PreencherLegendaEnum compartilhaSuasCoisas;
+    private PreencherLegendaEnum ajudaQuandoSolicitado;
+    private PreencherLegendaEnum expressaoDeSentimentos;
 
     @OneToOne
     @JoinColumn

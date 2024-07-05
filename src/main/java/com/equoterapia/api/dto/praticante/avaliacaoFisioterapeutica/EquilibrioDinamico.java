@@ -1,6 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
-import com.equoterapia.dominio.enums.EquilibrioEstatico;
+import com.equoterapia.dominio.enums.EquilibrioEstaticoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -17,19 +17,19 @@ public class EquilibrioDinamico {
 
     private Long idEquilibrioDinamico;
     @Enumerated @NotBlank
-    private EquilibrioEstatico engatinhar;
+    private EquilibrioEstaticoEnum engatinhar;
     @NotBlank
     private String comentariosEngatinhar;
     @Enumerated @NotBlank
-    private EquilibrioEstatico marchaVoluntaria;
+    private EquilibrioEstaticoEnum marchaVoluntaria;
     @NotBlank
     private String comentariosMarchaVoluntaria;
     @Enumerated @NotBlank
-    private EquilibrioEstatico saltarPesJuntos;
+    private EquilibrioEstaticoEnum saltarPesJuntos;
     @NotBlank
     private String comentariosSaltarPesJuntos;
     @Enumerated @NotBlank
-    private EquilibrioEstatico correrDesviandoObstaculos;
+    private EquilibrioEstaticoEnum correrDesviandoObstaculos;
     @NotBlank
     private String comentariosCorrerDesviandoObstaculos;
 

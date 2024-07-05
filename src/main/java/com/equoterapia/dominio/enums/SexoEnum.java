@@ -1,5 +1,5 @@
 package com.equoterapia.dominio.enums;
 
-public enum Sexo {
+public enum SexoEnum {
     MASCULINO, FEMININO
 }

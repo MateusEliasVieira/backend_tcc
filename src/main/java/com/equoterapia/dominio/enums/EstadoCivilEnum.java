@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.enums;
 
-public enum EstadoCivil {
+public enum EstadoCivilEnum {
     SOLTEIRO, CASADO,
     DIVORCIADO, VIUVO
 }

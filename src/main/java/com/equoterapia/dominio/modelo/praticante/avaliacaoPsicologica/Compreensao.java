@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,9 +19,9 @@ public class Compreensao {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCompreensao;
-    private PreencherLegenda compreendeOrdens;
-    private PreencherLegenda executaOrdensVerbaisSimples;
-    private PreencherLegenda executaOrdensComplexas;
+    private PreencherLegendaEnum compreendeOrdens;
+    private PreencherLegendaEnum executaOrdensVerbaisSimples;
+    private PreencherLegendaEnum executaOrdensComplexas;
 
     @OneToOne
     @JoinColumn

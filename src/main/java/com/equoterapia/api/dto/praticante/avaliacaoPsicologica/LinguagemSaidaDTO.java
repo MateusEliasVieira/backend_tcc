@@ -1,7 +1,7 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
 import com.equoterapia.api.dto.praticante.Praticante;
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -17,19 +17,19 @@ public class LinguagemSaidaDTO {
 
     private Long idLinguagem;
     @Enumerated @NotNull
-    private PreencherLegenda compreensaoVerbal;
+    private PreencherLegendaEnum compreensaoVerbal;
     @Enumerated @NotNull
-    private PreencherLegenda gesto;
+    private PreencherLegendaEnum gesto;
     @Enumerated @NotNull
-    private PreencherLegenda gritos;
+    private PreencherLegendaEnum gritos;
     @Enumerated @NotNull
-    private PreencherLegenda mimicaFacial;
+    private PreencherLegendaEnum mimicaFacial;
     @Enumerated @NotNull
-    private PreencherLegenda monossilabos;
+    private PreencherLegendaEnum monossilabos;
     @Enumerated @NotNull
-    private PreencherLegenda frasesCurtas;
+    private PreencherLegendaEnum frasesCurtas;
     @Enumerated @NotNull
-    private PreencherLegenda frasesCompletas;
+    private PreencherLegendaEnum frasesCompletas;
 
 
     private Praticante praticante;

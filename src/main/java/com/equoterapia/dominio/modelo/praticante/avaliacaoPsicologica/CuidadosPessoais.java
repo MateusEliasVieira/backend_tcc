@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,9 +19,9 @@ public class CuidadosPessoais {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCuidadosPessoais;
-    private PreencherLegenda higienePessoalSozinho;
-    private PreencherLegenda vesteRoupasCalcadosSozinho;
-    private PreencherLegenda seAlimentaSozinho;
+    private PreencherLegendaEnum higienePessoalSozinho;
+    private PreencherLegendaEnum vesteRoupasCalcadosSozinho;
+    private PreencherLegendaEnum seAlimentaSozinho;
 
     @OneToOne
     @JoinColumn

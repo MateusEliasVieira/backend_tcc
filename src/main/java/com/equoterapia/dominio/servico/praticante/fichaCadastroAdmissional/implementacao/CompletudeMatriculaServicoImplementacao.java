@@ -1,7 +1,6 @@
-package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl;
+package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.implementacao;
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
-import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.CompletudeMatricula;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
 import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.CompletudeMatriculaRepositorio;
@@ -9,8 +8,6 @@ import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.Compl
 import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CompletudeMatriculaServicoImplementacao implements CompletudeMatriculaServico {

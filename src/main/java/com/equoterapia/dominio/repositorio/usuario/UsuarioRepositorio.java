@@ -1,8 +1,8 @@
 package com.equoterapia.dominio.repositorio.usuario;
 
-import com.equoterapia.dominio.enums.EstadoCivil;
-import com.equoterapia.dominio.enums.Role;
-import com.equoterapia.dominio.enums.Vinculo;
+import com.equoterapia.dominio.enums.EstadoCivilEnum;
+import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.VinculoEnum;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,11 +25,11 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
             "u.possuiFormacao = :possuiFormacao WHERE u.idUsuario = :idUsuario")
     public void atualizarUsuarioPorId(@Param("idUsuario") Long idUsuario, @Param("nome") String nome, @Param("foto") String foto,
                                       @Param("dataNascimento") Date dataNascimento, @Param("cpf") String cpf,
-                                      @Param("estadoCivil") EstadoCivil estadoCivil, @Param("telefone") String telefone,
+                                      @Param("estadoCivil") EstadoCivilEnum estadoCivil, @Param("telefone") String telefone,
                                       @Param("email") String email, @Param("detalhesFormacao") String detalhesFormacao,
                                       @Param("cidade") String cidade, @Param("bairro") String bairro,
-                                      @Param("logradouro") String logradouro, @Param("role") Role role,
-                                      @Param("vinculo") Vinculo vinculo, @Param("possuiFormacao") Boolean possuiFormacao);
+                                      @Param("logradouro") String logradouro, @Param("role") RoleEnum role,
+                                      @Param("vinculo") VinculoEnum vinculo, @Param("possuiFormacao") Boolean possuiFormacao);
 
     @Query("SELECT u FROM Usuario u WHERE u.nomeUsuario LIKE %:nomeUsuario%")
     public List<Usuario> pesquisarUsuarioPorNomeComOperadorLike(@Param("nomeUsuario") String nomeUsuario);

@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.EquilibrioEstaticoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -19,47 +20,47 @@ public class EquilibrioEstatico {
     private Long idEquilibrioEstatico;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico apoioCabeca;
+    private EquilibrioEstaticoEnum apoioCabeca;
     @NotBlank
     private String comentariosApoioCabeca;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico sentarSemApoio;
+    private EquilibrioEstaticoEnum sentarSemApoio;
     @NotBlank
     private String comentariosSentarSemApoio;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico sentarComApoio;
+    private EquilibrioEstaticoEnum sentarComApoio;
     @NotBlank
     private String comentariosSentarComApoio;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico emPeSemApoio;
+    private EquilibrioEstaticoEnum emPeSemApoio;
     @NotBlank
     private String comentariosEmPeSemApoio;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico emPeComApoio;
+    private EquilibrioEstaticoEnum emPeComApoio;
     @NotBlank
     private String comentariosEmPeComApoio;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico posicaoDeSentinelaOlhosAbertos;
+    private EquilibrioEstaticoEnum posicaoDeSentinelaOlhosAbertos;
     @NotBlank
     private String comentariosPosicaoDeSentinelaOlhosAbertos;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico posicaoDeSentinelaOlhosFechados;
+    private EquilibrioEstaticoEnum posicaoDeSentinelaOlhosFechados;
     @NotBlank
     private String comentariosPosicaoDeSentinelaOlhosFechados;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico umPeOlhosAbertos;
+    private EquilibrioEstaticoEnum umPeOlhosAbertos;
     @NotBlank
     private String comentariosUmPeOlhosAbertos;
     @Enumerated
     @NotNull
-    private com.equoterapia.dominio.enums.EquilibrioEstatico umPeOlhosFechados;
+    private EquilibrioEstaticoEnum umPeOlhosFechados;
     @NotBlank
     private String comentariosUmPeOlhosFechados;
 

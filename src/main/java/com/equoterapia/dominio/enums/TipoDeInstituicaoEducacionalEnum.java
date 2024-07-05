@@ -1,5 +1,5 @@
 package com.equoterapia.dominio.enums;
 
-public enum TipoDeInstituicaoEducacional {
+public enum TipoDeInstituicaoEducacionalEnum {
     PRIVADA, PUBLICA
 }

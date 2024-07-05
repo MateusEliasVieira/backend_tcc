@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.EquilibrioEstaticoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,23 +20,23 @@ public class EquilibrioEstatico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEquilibrioEstatico;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico apoioCabeca;
+    private EquilibrioEstaticoEnum apoioCabeca;
     private String comentariosApoioCabeca;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico sentarSemApoio;
+    private EquilibrioEstaticoEnum sentarSemApoio;
     private String comentariosSentarSemApoio;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico sentarComApoio;
+    private EquilibrioEstaticoEnum sentarComApoio;
     private String comentariosSentarComApoio;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico emPeSemApoio;
+    private EquilibrioEstaticoEnum emPeSemApoio;
     private String comentariosEmPeSemApoio;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico emPeComApoio;
+    private EquilibrioEstaticoEnum emPeComApoio;
     private String comentariosEmPeComApoio;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico posicaoDeSentinelaOlhosAbertos;
+    private EquilibrioEstaticoEnum posicaoDeSentinelaOlhosAbertos;
     private String comentariosPosicaoDeSentinelaOlhosAbertos;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico posicaoDeSentinelaOlhosFechados;
+    private EquilibrioEstaticoEnum posicaoDeSentinelaOlhosFechados;
     private String comentariosPosicaoDeSentinelaOlhosFechados;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico umPeOlhosAbertos;
+    private EquilibrioEstaticoEnum umPeOlhosAbertos;
     private String comentariosUmPeOlhosAbertos;
-    private com.equoterapia.dominio.enums.EquilibrioEstatico umPeOlhosFechados;
+    private EquilibrioEstaticoEnum umPeOlhosFechados;
     private String comentariosUmPeOlhosFechados;
 
     @OneToOne

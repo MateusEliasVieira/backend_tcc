@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,10 +19,10 @@ public class HabilidadesSociais {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHabilidadesSociais;
-    private PreencherLegenda passividade;
-    private PreencherLegenda autoagressao;
-    private PreencherLegenda heteroagressividade;
-    private PreencherLegenda assertividade;
+    private PreencherLegendaEnum passividade;
+    private PreencherLegendaEnum autoagressao;
+    private PreencherLegendaEnum heteroagressividade;
+    private PreencherLegendaEnum assertividade;
 
     @OneToOne
     @JoinColumn

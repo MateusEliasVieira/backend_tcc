@@ -13,13 +13,9 @@ public class AvaliacaoPsicologicaSaidaDTO {
     // Avaliação dos aspectos psicológicos
 
     private Long idAvaliacaoPsicologica;
-
     private String expectativasFamiliaresTerapiaEquina;
     private String resumoCasoObservacoesComplementares;
-
     private String imagemAssinaturaOuCRPECarimbo;
-
-    private Praticante praticante;
 
 }
 

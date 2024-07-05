@@ -1,6 +1,12 @@
 package com.equoterapia.api.mapeador.praticante;
 
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AfetividadeEntradaDTO;
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AfetividadeSaidaDTO;
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AvaliacaoPsicologicaEntradaDTO;
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AvaliacaoPsicologicaSaidaDTO;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Afetividade;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.AvaliacaoPsicologica;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import org.modelmapper.ModelMapper;
 
@@ -108,5 +114,25 @@ public class PraticanteMapeador {
         return modelMapper.map(outrasAtividadesTarde, OutrasAtividadesTardeSaidaDTO.class);
     }
 
+    // Afetividade
+    public static Afetividade converterAfetividadeEntradaDTOEmAfetividade(AfetividadeEntradaDTO afetividadeEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(afetividadeEntradaDTO, Afetividade.class);
+    }
 
+    public static AfetividadeSaidaDTO converterAfetividadeEmAfetividadeSaidaDTO(Afetividade afetividade) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(afetividade, AfetividadeSaidaDTO.class);
+    }
+
+    // Avaliacao Psicologica
+    public static AvaliacaoPsicologica converterAvaliacaoPsicologicaEntradaDTOEmAvaliacaoPsicologica(AvaliacaoPsicologicaEntradaDTO avaliacaoPsicologicaEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(avaliacaoPsicologicaEntradaDTO, AvaliacaoPsicologica.class);
+    }
+
+    public static AvaliacaoPsicologicaSaidaDTO converterAvaliacaoPsicologicaEmAvaliacaoPsicologicaSaidaDTO(AvaliacaoPsicologica avaliacaoPsicologica) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(avaliacaoPsicologica, AvaliacaoPsicologicaSaidaDTO.class);
+    }
 }

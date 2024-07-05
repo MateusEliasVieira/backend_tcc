@@ -1,8 +1,8 @@
 package com.equoterapia.api.dto.usuario;
 
-import com.equoterapia.dominio.enums.EstadoCivil;
-import com.equoterapia.dominio.enums.Role;
-import com.equoterapia.dominio.enums.Vinculo;
+import com.equoterapia.dominio.enums.EstadoCivilEnum;
+import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.VinculoEnum;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -34,7 +34,7 @@ public class UsuarioEntradaDTO {
     @CPF
     private String cpf;
     @NotNull(message = ESTADO_CIVIL)
-    private EstadoCivil estadoCivil;
+    private EstadoCivilEnum estadoCivil;
     @NotBlank(message = TELEFONE)
     private String telefone;
     @NotBlank
@@ -55,9 +55,9 @@ public class UsuarioEntradaDTO {
     @NotBlank(message = LOGRADOURO)
     private String logradouro;
     @NotNull(message = TIPO_ROLE)
-    private Role role;
+    private RoleEnum role;
     @NotNull(message = VINCULO)
-    private Vinculo vinculo;
+    private VinculoEnum vinculo;
     @NotNull(message = POSSUI_FORMACAO)
     private Boolean possuiFormacao;
 

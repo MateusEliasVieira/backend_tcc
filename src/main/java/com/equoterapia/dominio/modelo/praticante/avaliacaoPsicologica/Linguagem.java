@@ -1,6 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,13 +19,13 @@ public class Linguagem {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLinguagem;
-    private PreencherLegenda compreensaoVerbal;
-    private PreencherLegenda gesto;
-    private PreencherLegenda gritos;
-    private PreencherLegenda mímicaFacial;
-    private PreencherLegenda monossílabos;
-    private PreencherLegenda frasesCurtas;
-    private PreencherLegenda frasesCompletas;
+    private PreencherLegendaEnum compreensaoVerbal;
+    private PreencherLegendaEnum gesto;
+    private PreencherLegendaEnum gritos;
+    private PreencherLegendaEnum mímicaFacial;
+    private PreencherLegendaEnum monossílabos;
+    private PreencherLegendaEnum frasesCurtas;
+    private PreencherLegendaEnum frasesCompletas;
 
     @OneToOne
     @JoinColumn

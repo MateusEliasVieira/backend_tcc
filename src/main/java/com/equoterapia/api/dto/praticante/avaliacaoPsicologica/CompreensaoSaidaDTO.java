@@ -1,7 +1,7 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
 import com.equoterapia.api.dto.praticante.Praticante;
-import com.equoterapia.dominio.enums.PreencherLegenda;
+import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -17,11 +17,11 @@ public class CompreensaoSaidaDTO {
 
     private Long idCompreensao;
     @Enumerated @NotBlank
-    private PreencherLegenda compreendeOrdens;
+    private PreencherLegendaEnum compreendeOrdens;
     @Enumerated @NotBlank
-    private PreencherLegenda executaOrdensVerbaisSimples;
+    private PreencherLegendaEnum executaOrdensVerbaisSimples;
     @Enumerated @NotBlank
-    private PreencherLegenda executaOrdensComplexas;
+    private PreencherLegendaEnum executaOrdensComplexas;
 
 
     private Praticante praticante;

@@ -2,8 +2,8 @@ package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.ClasseDeEscola;
-import com.equoterapia.dominio.enums.Periodo;
-import com.equoterapia.dominio.enums.TipoDeInstituicaoEducacional;
+import com.equoterapia.dominio.enums.PeriodoEnum;
+import com.equoterapia.dominio.enums.TipoDeInstituicaoEducacionalEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,9 +26,9 @@ public class EducacaoPraticanteEntradaDTO {
     @NotBlank
     private String instituicaoEducacional;
     @Enumerated
-    private TipoDeInstituicaoEducacional tipoDeInstituicaoEducacional;
+    private TipoDeInstituicaoEducacionalEnum tipoDeInstituicaoEducacional;
     @Enumerated
-    private Periodo periodo;
+    private PeriodoEnum periodo;
 
 
     @NotNull

@@ -1,8 +1,8 @@
 package com.equoterapia.dominio.modelo.usuario;
 
-import com.equoterapia.dominio.enums.EstadoCivil;
-import com.equoterapia.dominio.enums.Role;
-import com.equoterapia.dominio.enums.Vinculo;
+import com.equoterapia.dominio.enums.EstadoCivilEnum;
+import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.VinculoEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -33,7 +33,7 @@ public class Usuario implements UserDetails {
     private Date dataNascimento;
     @Column(unique = true)
     private String cpf;
-    private EstadoCivil estadoCivil;
+    private EstadoCivilEnum estadoCivil;
     @Column(unique = true)
     private String telefone;
     @Column(unique = true)
@@ -45,8 +45,8 @@ public class Usuario implements UserDetails {
     private String cidade;
     private String bairro;
     private String logradouro;
-    private Role role;
-    private Vinculo vinculo;
+    private RoleEnum role;
+    private VinculoEnum vinculo;
     private Boolean possuiFormacao;
     private String token;
     private boolean status;
@@ -55,12 +55,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.role == Role.ROLE_ADMIN) {
+        if (this.role == RoleEnum.ROLE_ADMIN) {
             // se esse usuário tiver uma role de admin, retornamos os tipos de acesso que ele pode ter no sistema, nesse caso admin e user
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         }
 
-        if (this.role == Role.ROLE_USER) {
+        if (this.role == RoleEnum.ROLE_USER) {
             // se esse usuário tiver uma role de user, retornamos o tipo de acesso que ele pode ter no sistema, nesse caso apenas user
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         } else {

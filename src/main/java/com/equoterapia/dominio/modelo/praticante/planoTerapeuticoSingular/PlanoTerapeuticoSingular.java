@@ -28,7 +28,10 @@ public class PlanoTerapeuticoSingular {
     private String estrategiasIntervencao;
     private String selasMediadorasAnimais;
     private String evolucao;
-    private String imagemCarimboAssinaturaTerapeutas;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String fisioterapeutaImagemDaAssinaturaOuCarimbo;
 
     @OneToOne
     @JoinColumn
