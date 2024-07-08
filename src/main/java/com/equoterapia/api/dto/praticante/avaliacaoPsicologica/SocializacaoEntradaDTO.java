@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SocializacaoInputDTO {
+public class SocializacaoEntradaDTO {
 
     // Socialização
 

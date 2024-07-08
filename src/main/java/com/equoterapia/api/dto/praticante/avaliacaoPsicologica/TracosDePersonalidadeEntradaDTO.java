@@ -1,8 +1,8 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.api.dto.praticante.Praticante;
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.PreencherLegendaEnum;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TracosDePersonalidadeOutputDTO {
+public class TracosDePersonalidadeEntradaDTO {
 
     // Traços de personalidade
 
@@ -33,6 +33,6 @@ public class TracosDePersonalidadeOutputDTO {
     @Enumerated @NotNull
     private PreencherLegendaEnum timidez;
 
-    private Praticante praticante;
+    private PraticanteIdDTO praticante;
 
 }

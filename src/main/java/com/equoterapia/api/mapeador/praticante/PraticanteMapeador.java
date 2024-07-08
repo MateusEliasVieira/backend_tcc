@@ -1,12 +1,11 @@
 package com.equoterapia.api.mapeador.praticante;
 
-import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AfetividadeEntradaDTO;
-import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AfetividadeSaidaDTO;
-import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AvaliacaoPsicologicaEntradaDTO;
-import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.AvaliacaoPsicologicaSaidaDTO;
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Afetividade;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.AvaliacaoPsicologica;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Saude;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.SobreACrianca;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import org.modelmapper.ModelMapper;
 
@@ -134,5 +133,27 @@ public class PraticanteMapeador {
     public static AvaliacaoPsicologicaSaidaDTO converterAvaliacaoPsicologicaEmAvaliacaoPsicologicaSaidaDTO(AvaliacaoPsicologica avaliacaoPsicologica) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(avaliacaoPsicologica, AvaliacaoPsicologicaSaidaDTO.class);
+    }
+
+    // Sobre a Criança
+    public static SobreACrianca converterSobreACriancaEntradaDTOEmSobreACrianca(SobreACriancaEntradaDTO sobreACriancaEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(sobreACriancaEntradaDTO, SobreACrianca.class);
+    }
+
+    public static SobreACriancaSaidaDTO converterSobreACriancaEmSobreACriancaSaidaDTO(SobreACrianca sobreACrianca) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(sobreACrianca, SobreACriancaSaidaDTO.class);
+    }
+
+    // Saúde
+    public static Saude converterSaudeEntradaDTOEmSaude(SaudeEntradaDTO saudeEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saudeEntradaDTO, Saude.class);
+    }
+
+    public static SaudeSaidaDTO converterSaudeEmSaudeSaidaDTO(Saude saude) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saude, SaudeSaidaDTO.class);
     }
 }

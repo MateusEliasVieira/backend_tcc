@@ -31,8 +31,5 @@ public class SaudeSaidaDTO {
     @NotBlank
     private String deficitCognitivo;
 
-
-    private Praticante praticante;
-
 }
 

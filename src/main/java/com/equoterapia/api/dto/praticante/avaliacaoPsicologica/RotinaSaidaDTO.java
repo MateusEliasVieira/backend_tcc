@@ -23,7 +23,7 @@ public class RotinaSaidaDTO {
     @NotBlank
     private String consideracoesSobreRotina;
 
-    private Praticante praticante;
+
 
 }
 

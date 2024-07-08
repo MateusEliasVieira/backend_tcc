@@ -1,6 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import com.equoterapia.api.dto.praticante.Praticante;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SobreACriancaInputDTO {
+public class SobreACriancaSaidaDTO {
 
     // Perguntas iniciais sobre a criança
 
@@ -24,8 +24,6 @@ public class SobreACriancaInputDTO {
     private Boolean chorouNoNascimento;
     private String alimentacao;
     private String observacao;
-
-    private PraticanteIdDTO praticante;
 
 }
 

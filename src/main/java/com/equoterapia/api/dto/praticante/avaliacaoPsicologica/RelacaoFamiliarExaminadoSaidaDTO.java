@@ -29,8 +29,5 @@ public class RelacaoFamiliarExaminadoSaidaDTO {
     @Enumerated @NotNull
     private PreencherLegendaEnum ansiedadePercebidaEntrevistador;
 
-
-    private Praticante praticante;
-
 }
 

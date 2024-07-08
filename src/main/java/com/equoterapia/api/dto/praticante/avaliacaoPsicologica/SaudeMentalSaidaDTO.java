@@ -23,7 +23,7 @@ public class SaudeMentalSaidaDTO {
     @Enumerated @NotNull
     private PreencherLegendaEnum apresentaAlucinacoes;
 
-    private Praticante praticante;
+
 
 }
 

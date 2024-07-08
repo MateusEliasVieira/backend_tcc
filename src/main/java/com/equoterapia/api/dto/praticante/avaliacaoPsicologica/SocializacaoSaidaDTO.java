@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SocializacaoOutputDTO {
+public class SocializacaoSaidaDTO {
 
     // Socialização
 
@@ -26,8 +26,6 @@ public class SocializacaoOutputDTO {
     private PreencherLegendaEnum temOportunidadeContato;
     @Enumerated @NotBlank
     private PreencherLegendaEnum fazContatoVisual;
-
-    private Praticante praticante;
 
 }
 
