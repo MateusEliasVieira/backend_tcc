@@ -76,3 +76,6 @@ Data: 05/07/2024 21:25:53, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Op
 Data: 05/07/2024 21:30:35, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: lucas10, Senha: ifhonese)
 Data: 05/07/2024 21:30:43, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: ifhonese)
 Data: 08/07/2024 16:36:49, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: ifhonese)
+Data: 08/07/2024 18:00:43, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: ifhonese)
+Data: 08/07/2024 18:20:53, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: fernanda10, Senha: ifhonese)
+Data: 08/07/2024 18:21:26, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: ifhonese)

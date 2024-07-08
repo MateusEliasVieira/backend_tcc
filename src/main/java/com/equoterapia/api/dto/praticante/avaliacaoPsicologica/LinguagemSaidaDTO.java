@@ -31,8 +31,5 @@ public class LinguagemSaidaDTO {
     @Enumerated @NotNull
     private PreencherLegendaEnum frasesCompletas;
 
-
-    private Praticante praticante;
-
 }
 

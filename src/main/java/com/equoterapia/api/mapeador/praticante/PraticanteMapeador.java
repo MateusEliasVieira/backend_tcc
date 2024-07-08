@@ -2,10 +2,7 @@ package com.equoterapia.api.mapeador.praticante;
 
 import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Afetividade;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.AvaliacaoPsicologica;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Saude;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.SobreACrianca;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import org.modelmapper.ModelMapper;
 
@@ -156,4 +153,49 @@ public class PraticanteMapeador {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(saude, SaudeSaidaDTO.class);
     }
+
+    // Rotina
+    public static Rotina converterRotinaEntradaDTOEmRotina(RotinaEntradaDTO rotinaEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(rotinaEntradaDTO, Rotina.class);
+    }
+
+    public static RotinaSaidaDTO converterRotinaEmRotinaSaidaDTO(Rotina rotina) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(rotina, RotinaSaidaDTO.class);
+    }
+
+    // Cuidados Pessoais
+    public static CuidadosPessoais converterCuidadosPessoaisEntradaDTOEmCuidadosPessoais(CuidadosPessoaisEntradaDTO cuidadosPessoaisEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(cuidadosPessoaisEntradaDTO, CuidadosPessoais.class);
+    }
+
+    public static RotinaSaidaDTO converterCuidadosPessoaisEmCuidadosPessoaisSaidaDTO(CuidadosPessoais cuidadosPessoais) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(cuidadosPessoais, RotinaSaidaDTO.class);
+    }
+
+    // Traços de Personalidade
+    public static TracosDePersonalidade converterTracosDePersonalidadeEntradaDTOEmTracosDePersonalidade(TracosDePersonalidadeEntradaDTO tracosDePersonalidadeEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(tracosDePersonalidadeEntradaDTO, TracosDePersonalidade.class);
+    }
+
+    public static TracosDePersonalidadeSaidaDTO converterTracosDePersonalidadeEmTracosDePersonalidadeSaidaDTO(TracosDePersonalidade tracosDePersonalidade) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(tracosDePersonalidade, TracosDePersonalidadeSaidaDTO.class);
+    }
+
+    // Linguagem
+    public static Linguagem converterLinguagemEntradaDTOEmLinguagem(LinguagemEntradaDTO linguagemEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(linguagemEntradaDTO, Linguagem.class);
+    }
+
+    public static LinguagemSaidaDTO converterLinguagemEmLinguagemSaidaDTO(Linguagem linguagem) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(linguagem, LinguagemSaidaDTO.class);
+    }
+
 }

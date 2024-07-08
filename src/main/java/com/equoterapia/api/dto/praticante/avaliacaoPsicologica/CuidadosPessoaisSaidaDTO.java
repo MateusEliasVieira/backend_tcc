@@ -23,6 +23,5 @@ public class CuidadosPessoaisSaidaDTO {
     @Enumerated @NotNull
     private PreencherLegendaEnum seAlimentaSozinho;
 
-    private Praticante praticante;
 
 }
