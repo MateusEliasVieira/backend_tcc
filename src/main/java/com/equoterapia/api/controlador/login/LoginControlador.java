@@ -1,4 +1,4 @@
-package com.equoterapia.api.controlador;
+package com.equoterapia.api.controlador.login;
 
 import com.equoterapia.api.dto.login.LoginEntradaDTO;
 import com.equoterapia.dominio.servico.login.LoginServico;

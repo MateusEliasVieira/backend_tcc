@@ -23,8 +23,5 @@ public class CompreensaoSaidaDTO {
     @Enumerated @NotBlank
     private PreencherLegendaEnum executaOrdensComplexas;
 
-
-    private Praticante praticante;
-
 }
 

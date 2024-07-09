@@ -1,8 +1,10 @@
 package com.equoterapia.seguranca;
+
 import java.io.IOException;
 import java.util.Date;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.servico.usuario.UsuarioServico;
 import com.equoterapia.seguranca.jwt.JwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,15 @@ public class FiltroInterceptador extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        // Pula a verificação de token para o endpoint de login
+        if (request.getRequestURI().startsWith("/login")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         Authentication authentication = null;
+
         try {
             authentication = getAuthentication(request);
 
@@ -35,15 +45,19 @@ public class FiltroInterceptador extends OncePerRequestFilter {
                 // Token válido. Se o meu token for válido, eu passo a requisição para frente indicando que a requisição esta autenticada.
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } else {
-                // toke inválido
-                response.setStatus(400);
+                // Token inválido
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 response.setContentType("application/json");
+                response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirect\": \"/#/404\"}");
+                return;
             }
 
         } catch (Exception e) {
-            // toke inválido
-            response.setStatus(400);
+            // Token inválido
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             response.setContentType("application/json");
+            response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirect\": \"/#/404\"}");
+            return;
         }
 
         // Passa a requisição para a frente

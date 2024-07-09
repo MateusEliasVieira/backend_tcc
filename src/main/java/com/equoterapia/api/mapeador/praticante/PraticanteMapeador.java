@@ -198,4 +198,70 @@ public class PraticanteMapeador {
         return modelMapper.map(linguagem, LinguagemSaidaDTO.class);
     }
 
+    // Compreensão
+    public static Compreensao converterCompreensaoEntradaDTOEmCompreensao(CompreensaoEntradaDTO compreensaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(compreensaoEntradaDTO, Compreensao.class);
+    }
+
+    public static CompreensaoSaidaDTO converterCompreensaoEmCompreensaoSaidaDTO(Compreensao compreensao) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(compreensao, CompreensaoSaidaDTO.class);
+    }
+
+    // Saúde Mental
+    public static SaudeMental converterSaudeMentalEntradaDTOEmSaudeMental(SaudeMentalEntradaDTO saudeMentalEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saudeMentalEntradaDTO, SaudeMental.class);
+    }
+
+    public static SaudeMentalSaidaDTO converterSaudeMentalEmSaudeMentalSaidaDTO(SaudeMental saudeMental) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saudeMental, SaudeMentalSaidaDTO.class);
+    }
+
+    // Socialização
+    public static Socializacao converterSocializacaoEntradaDTOEmSocializacao(SocializacaoEntradaDTO socializacaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(socializacaoEntradaDTO, Socializacao.class);
+    }
+
+    public static SocializacaoSaidaDTO converterSocializacaoEmSocializacaoSaidaDTO(Socializacao socializacao) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(socializacao, SocializacaoSaidaDTO.class);
+    }
+
+    // Comportamento
+    public static Comportamento converterComportamentoEntradaDTOEmComportamento(ComportamentoEntradaDTO comportamentoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(comportamentoEntradaDTO, Comportamento.class);
+    }
+
+    public static ComportamentoSaidaDTO converterComportamentoEmComportamentoSaidaDTO(Comportamento comportamento) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(comportamento, ComportamentoSaidaDTO.class);
+    }
+
+    // Habilidades Sociais
+    public static HabilidadesSociais converterHabilidadesSociaisEntradaDTOEmHabilidadesSociais(HabilidadesSociaisEntradaDTO habilidadesSociaisEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(habilidadesSociaisEntradaDTO, HabilidadesSociais.class);
+    }
+
+    public static HabilidadesSociaisSaidaDTO converterHabilidadesSociaisEmHabilidadesSociaisSaidaDTO(HabilidadesSociais habilidadesSociais) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(habilidadesSociais, HabilidadesSociaisSaidaDTO.class);
+    }
+
+    // Relação Familiar Examinado
+    public static RelacaoFamiliarExaminado converterRelacaoFamiliarExaminadoEntradaDTOEmRelacaoFamiliarExaminado(RelacaoFamiliarExaminadoEntradaDTO relacaoFamiliarExaminadoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(relacaoFamiliarExaminadoEntradaDTO, RelacaoFamiliarExaminado.class);
+    }
+
+    public static RelacaoFamiliarExaminadoSaidaDTO converterRelacaoFamiliarExaminadoEmRelacaoFamiliarExaminadoSaidaDTO(RelacaoFamiliarExaminado relacaoFamiliarExaminado) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(relacaoFamiliarExaminado, RelacaoFamiliarExaminadoSaidaDTO.class);
+    }
+
 }
