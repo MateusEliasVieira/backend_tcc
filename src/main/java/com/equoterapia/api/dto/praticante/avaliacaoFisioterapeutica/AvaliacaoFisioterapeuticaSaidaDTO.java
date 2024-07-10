@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AvaliacaoFisioterapeutica {
+public class AvaliacaoFisioterapeuticaSaidaDTO {
 
     // Avaliação Fisioterapêutica
     private Long idAvaliacaoFisioterapeutica;
@@ -21,7 +21,6 @@ public class AvaliacaoFisioterapeutica {
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
 
-    private Praticante praticante;
 
 }
 

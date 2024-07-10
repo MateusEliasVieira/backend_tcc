@@ -10,26 +10,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class FormaDeComunicacao {
+public class FormaDeComunicacaoSaidaDTO {
 
     // Forma de comunicação
 
     private Long idFormaDeComunicacao;
-    @NotNull
     private Boolean fala;
-    @NotBlank
     private String consideracoesFala;
-    @NotNull
     private Boolean gestos;
-    @NotBlank
     private String consideracoesGestos;
-    @NotNull
     private Boolean usoDosOlhos;
-    @NotBlank
     private String consideracoesUsoDosOlhos;
-
-
-    private Praticante praticante;
 
 }
 

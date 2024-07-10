@@ -1,7 +1,9 @@
 package com.equoterapia.api.mapeador.praticante;
 
+import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import org.modelmapper.ModelMapper;
@@ -263,5 +265,61 @@ public class PraticanteMapeador {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(relacaoFamiliarExaminado, RelacaoFamiliarExaminadoSaidaDTO.class);
     }
+
+    // Avaliação Fisioterapeutica
+    public static AvaliacaoFisioterapeutica converterAvaliacaoFisioterapeuticaEntradaDTOEmAvaliacaoFisioterapeutica(AvaliacaoFisioterapeuticaEntradaDTO avaliacaoFisioterapeuticaEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(avaliacaoFisioterapeuticaEntradaDTO, AvaliacaoFisioterapeutica.class);
+    }
+
+    public static AvaliacaoFisioterapeuticaSaidaDTO converterAvaliacaoFisioterapeuticaEmAvaliacaoFisioterapeuticaSaidaDTO(AvaliacaoFisioterapeutica avaliacaoFisioterapeutica) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(avaliacaoFisioterapeutica, AvaliacaoFisioterapeuticaSaidaDTO.class);
+    }
+
+    // Coordenação Motora
+    public static CoordenacaoMotora converterCoordenacaoMotoraEntradaDTOEmCoordenacaoMotora(CoordenacaoMotoraEntradaDTO coordenacaoMotoraEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(coordenacaoMotoraEntradaDTO, CoordenacaoMotora.class);
+    }
+
+    public static CoordenacaoMotoraSaidaDTO converterCoordenacaoMotoraEmCoordenacaoMotoraSaidaDTO(CoordenacaoMotora coordenacaoMotora) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(coordenacaoMotora, CoordenacaoMotoraSaidaDTO.class);
+    }
+
+    // Equilibrio Dinamico
+    public static EquilibrioDinamico converterEquilibrioDinamicoEntradaDTOEmEquilibrioDinamico(EquilibrioDinamicoEntradaDTO equilibrioDinamicoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(equilibrioDinamicoEntradaDTO, EquilibrioDinamico.class);
+    }
+
+    public static EquilibrioDinamicoSaidaDTO converterEquilibrioDinamicoEmEquilibrioDinamicoSaidaDTO(EquilibrioDinamico equilibrioDinamico) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(equilibrioDinamico, EquilibrioDinamicoSaidaDTO.class);
+    }
+
+    // Equilibrio Estático
+    public static EquilibrioEstatico converterEquilibrioEstaticoEntradaDTOEmEquilibrioEstatico(EquilibrioEstaticoEntradaDTO equilibrioEstaticoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(equilibrioEstaticoEntradaDTO, EquilibrioEstatico.class);
+    }
+
+    public static EquilibrioEstaticoSaidaDTO converterEquilibrioEstaticoEmEquilibrioEstaticoSaidaDTO(EquilibrioEstatico equilibrioEstatico) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(equilibrioEstatico, EquilibrioEstaticoSaidaDTO.class);
+    }
+
+    // Forma de Comunicação
+    public static FormaDeComunicacao converterFormaDeComunicacaoEntradaDTOEmFormaDeComunicacao(FormaDeComunicacaoEntradaDTO formaDeComunicacaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(formaDeComunicacaoEntradaDTO, FormaDeComunicacao.class);
+    }
+
+    public static FormaDeComunicacaoSaidaDTO converterFormaDeComunicacaoEmFormaDeComunicacaoSaidaDTO(FormaDeComunicacao formaDeComunicacao) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(formaDeComunicacao, FormaDeComunicacaoSaidaDTO.class);
+    }
+
 
 }

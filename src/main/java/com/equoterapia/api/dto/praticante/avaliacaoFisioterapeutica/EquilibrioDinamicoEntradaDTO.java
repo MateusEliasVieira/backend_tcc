@@ -1,9 +1,12 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import com.equoterapia.dominio.enums.EquilibrioDinamicoEnum;
 import com.equoterapia.dominio.enums.EquilibrioEstaticoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
-import jakarta.persistence.*;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -11,30 +14,30 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EquilibrioDinamico {
+public class EquilibrioDinamicoEntradaDTO {
 
     // Equilíbrio Dinâmico
 
     private Long idEquilibrioDinamico;
     @Enumerated @NotBlank
-    private EquilibrioEstaticoEnum engatinhar;
+    private EquilibrioDinamicoEnum engatinhar;
     @NotBlank
     private String comentariosEngatinhar;
     @Enumerated @NotBlank
-    private EquilibrioEstaticoEnum marchaVoluntaria;
+    private EquilibrioDinamicoEnum marchaVoluntaria;
     @NotBlank
     private String comentariosMarchaVoluntaria;
     @Enumerated @NotBlank
-    private EquilibrioEstaticoEnum saltarPesJuntos;
+    private EquilibrioDinamicoEnum saltarPesJuntos;
     @NotBlank
     private String comentariosSaltarPesJuntos;
     @Enumerated @NotBlank
-    private EquilibrioEstaticoEnum correrDesviandoObstaculos;
+    private EquilibrioDinamicoEnum correrDesviandoObstaculos;
     @NotBlank
     private String comentariosCorrerDesviandoObstaculos;
 
-
-    private Praticante praticante;
+    @NotNull
+    private PraticanteIdDTO praticante;
 
 }
 

@@ -5,6 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,6 +21,7 @@ public class LoginSaidaDTO {
     private String nomeUsuario;
     @NotBlank
     private String token;
+    private LocalDateTime validadeToken = LocalDateTime.now().plus(60, ChronoUnit.MINUTES);
     @NotNull
     private RoleEnum role;
 

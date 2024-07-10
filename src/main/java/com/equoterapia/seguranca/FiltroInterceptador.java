@@ -48,7 +48,7 @@ public class FiltroInterceptador extends OncePerRequestFilter {
                 // Token inválido
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 response.setContentType("application/json");
-                response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirect\": \"/#/404\"}");
+                response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirecionar\": \"/#/login?expirado=true\"}");
                 return;
             }
 
@@ -56,7 +56,7 @@ public class FiltroInterceptador extends OncePerRequestFilter {
             // Token inválido
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             response.setContentType("application/json");
-            response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirect\": \"/#/404\"}");
+            response.getWriter().write("{\"mensagem\": \"Sessão expirada! Por favor, faça o login novamente.\", \"redirecionar\": \"/#/login?expirado=true\"}");
             return;
         }
 

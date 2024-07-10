@@ -9,20 +9,14 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class QuadroAtual {
+public class QuadroAtualSaidaDTO {
 
     // Quadro atual
 
     private Long idQuadroAtual;
-    @NotBlank
     private String locomocaoAtual;
-    @NotBlank
     private String restricoes;
-    @NotBlank
     private String deformidades;
-
-
-    private Praticante praticante;
 
 }
 
