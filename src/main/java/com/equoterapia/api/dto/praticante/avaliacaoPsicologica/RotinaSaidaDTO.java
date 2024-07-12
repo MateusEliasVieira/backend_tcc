@@ -14,16 +14,10 @@ public class RotinaSaidaDTO {
     // Rotina
 
     private Long idRotina;
-    @NotBlank
     private String brincadeiras;
-    @NotBlank
     private String preferenciasPorBrincadeiras;
-    @NotBlank
     private Boolean aceitaMudancasNaRotina;
-    @NotBlank
     private String consideracoesSobreRotina;
-
-
 
 }
 

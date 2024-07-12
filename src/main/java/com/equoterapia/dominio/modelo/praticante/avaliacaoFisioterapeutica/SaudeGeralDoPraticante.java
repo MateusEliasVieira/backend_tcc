@@ -12,12 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SaudeGeralDosPraticantes {
+public class SaudeGeralDoPraticante {
 
     // Saúde geral do paciente
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSaudeGeralDosPacientes;
+    private Long idSaudeGeralDoPraticante;
     private Boolean convulsoesAnteriores;
     private String consideracoesConvulsoesAnteriores;
     private Boolean convulsoesAtuais;

@@ -3,9 +3,12 @@ package com.equoterapia.api.mapeador.praticante;
 import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
+import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularEntradaDTO;
+import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularSaidaDTO;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
+import com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingular;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -319,6 +322,72 @@ public class PraticanteMapeador {
     public static FormaDeComunicacaoSaidaDTO converterFormaDeComunicacaoEmFormaDeComunicacaoSaidaDTO(FormaDeComunicacao formaDeComunicacao) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(formaDeComunicacao, FormaDeComunicacaoSaidaDTO.class);
+    }
+
+    // Grupos Musculares
+    public static GruposMusculares converterGruposMuscularesEntradaDTOEmGruposMusculares(GruposMuscularesEntradaDTO gruposMuscularesEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(gruposMuscularesEntradaDTO, GruposMusculares.class);
+    }
+
+    public static GruposMuscularesSaidaDTO converterGruposMuscularesEmGruposMuscularesSaidaDTO(GruposMusculares gruposMusculares) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(gruposMusculares, GruposMuscularesSaidaDTO.class);
+    }
+
+    // Habilidades Motoras AVD
+    public static HabilidadesMotorasAVD converterHabilidadesMotorasAVDEntradaDTOEmHabilidadesMotorasAVD(HabilidadesMotorasAVDEntradaDTO habilidadesMotorasAVDEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(habilidadesMotorasAVDEntradaDTO, HabilidadesMotorasAVD.class);
+    }
+
+    public static HabilidadesMotorasAVDSaidaDTO converterHabilidadesMotorasAVDEmHabilidadesMotorasAVDSaidaDTO(HabilidadesMotorasAVD habilidadesMotorasAVD) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(habilidadesMotorasAVD, HabilidadesMotorasAVDSaidaDTO.class);
+    }
+
+    // Mobilidade Articular
+    public static MobilidadeArticular converterMobilidadeArticularEntradaDTOEmMobilidadeArticular(MobilidadeArticularEntradaDTO mobilidadeArticularEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(mobilidadeArticularEntradaDTO, MobilidadeArticular.class);
+    }
+
+    public static MobilidadeArticularSaidaDTO converterMobilidadeArticularEmMobilidadeArticularSaidaDTO(MobilidadeArticular mobilidadeArticular) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(mobilidadeArticular, MobilidadeArticularSaidaDTO.class);
+    }
+
+    // Quadro Atual
+    public static QuadroAtual converterQuadroAtualEntradaDTOEmQuadroAtual(QuadroAtualEntradaDTO quadroAtualEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(quadroAtualEntradaDTO, QuadroAtual.class);
+    }
+
+    public static QuadroAtualSaidaDTO converterQuadroAtualEmQuadroAtualSaidaDTO(QuadroAtual quadroAtual) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(quadroAtual, QuadroAtualSaidaDTO.class);
+    }
+
+    // Saúde geral Dos Praticantes
+    public static SaudeGeralDoPraticante converterSaudeGeralDosPraticantesEntradaDTOEmSaudeGeralDosPraticantes(SaudeGeralDosPraticantesEntradaDTO saudeGeralDosPraticantesEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saudeGeralDosPraticantesEntradaDTO, SaudeGeralDoPraticante.class);
+    }
+
+    public static SaudeGeralDosPraticantesSaidaDTO converterSaudeGeralDosPraticantesEmSaudeGeralDosPraticantesSaidaDTO(SaudeGeralDoPraticante saudeGeralDoPraticante) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(saudeGeralDoPraticante, SaudeGeralDosPraticantesSaidaDTO.class);
+    }
+
+    // Plano Terapêutico Singular
+    public static PlanoTerapeuticoSingular converterPlanoTerapeuticoSingularEntradaDTOEmPlanoTerapeuticoSingular(PlanoTerapeuticoSingularEntradaDTO planoTerapeuticoSingularEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(planoTerapeuticoSingularEntradaDTO, PlanoTerapeuticoSingular.class);
+    }
+
+    public static PlanoTerapeuticoSingularSaidaDTO converterPlanoTerapeuticoSingularEmPlanoTerapeuticoSingularSaidaDTO(PlanoTerapeuticoSingular planoTerapeuticoSingular) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(planoTerapeuticoSingular, PlanoTerapeuticoSingularSaidaDTO.class);
     }
 
 

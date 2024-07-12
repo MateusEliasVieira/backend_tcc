@@ -16,15 +16,10 @@ public class SocializacaoSaidaDTO {
     // Socialização
 
     private Long idSocializacao;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum interageBemComOutrasCriancas;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum interageBemComAdultos;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum buscaContatoSocial;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum temOportunidadeContato;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum fazContatoVisual;
 
 }

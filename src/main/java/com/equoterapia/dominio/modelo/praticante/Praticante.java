@@ -1,10 +1,9 @@
 package com.equoterapia.dominio.modelo.praticante;
 
-import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioEstatico;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.FormaDeComunicacao;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.SaudeGeralDosPraticantes;
-import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.EducacaoPraticante;
-import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.ResponsavelPraticante;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
+import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
+import com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.*;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,77 +21,77 @@ public class Praticante {
 
     // Avaliação Fisioterapeutica
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.AvaliacaoFisioterapeutica avaliacaoFisioterapeutica;
+    private AvaliacaoFisioterapeutica avaliacaoFisioterapeutica;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.CoordenacaoMotora coordenacaoMotora;
+    private CoordenacaoMotora coordenacaoMotora;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioDinamico equilibrioDinamico;
+    private EquilibrioDinamico equilibrioDinamico;
     @OneToOne(mappedBy = "praticante")
     private EquilibrioEstatico equilibrioEstatico;
     @OneToOne(mappedBy = "praticante")
     private FormaDeComunicacao formaDeComunicacao;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.patient.physicalTherapyAssessment.GruposMusculares gruposMusculares;
+    private GruposMusculares gruposMusculares;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.HabilidadesMotorasAVD habilidadesMotorasAVD;
+    private HabilidadesMotorasAVD habilidadesMotorasAVD;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.patient.physicalTherapyAssessment.MobilidadeArticular mobilidadeArticular;
+    private MobilidadeArticular mobilidadeArticular;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.QuadroAtual quadroAtual;
+    private QuadroAtual quadroAtual;
     @OneToOne(mappedBy = "praticante")
-    private SaudeGeralDosPraticantes saudeGeralDosPraticantes;
+    private SaudeGeralDoPraticante saudeGeralDoPraticante;
 
     // Avaliação Psicológica
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Afetividade afetividade;
+    private Afetividade afetividade;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.AvaliacaoPsicologica avaliacaoPsicologica;
+    private AvaliacaoPsicologica avaliacaoPsicologica;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Comportamento comportamento;
+    private Comportamento comportamento;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Compreensao compreensao;
+    private Compreensao compreensao;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.CuidadosPessoais cuidadosPessoais;
+    private CuidadosPessoais cuidadosPessoais;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.HabilidadesSociais habilidadesSociais;
+    private HabilidadesSociais habilidadesSociais;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Linguagem linguagem;
+    private Linguagem linguagem;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.RelacaoFamiliarExaminado relacaoFamiliarExaminado;
+    private RelacaoFamiliarExaminado relacaoFamiliarExaminado;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Rotina rotina;
+    private Rotina rotina;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Saude saude;
+    private Saude saude;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.SaudeMental saudeMental;
+    private SaudeMental saudeMental;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.SobreACrianca sobreACrianca;
+    private SobreACrianca sobreACrianca;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.Socializacao socializacao;
+    private Socializacao socializacao;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.TracosDePersonalidade tracosDePersonalidade;
+    private TracosDePersonalidade tracosDePersonalidade;
 
     // Ficha Cadastro Admissional
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.CompletudeMatricula completudeMatricula;
+    private CompletudeMatricula completudeMatricula;
     @OneToOne(mappedBy = "praticante", cascade = CascadeType.ALL)
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais dadosPessoais;
+    private DadosPessoais dadosPessoais;
     @OneToOne(mappedBy = "praticante")
     private EducacaoPraticante educacaoPraticante;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.Emergencia emergencia;
+    private Emergencia emergencia;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.FichaCadastroAdmissional fichaCadastroAdmissional;
+    private FichaCadastroAdmissional fichaCadastroAdmissional;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.OutrasAtividadesManha outrasAtividadesManha;
+    private OutrasAtividadesManha outrasAtividadesManha;
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.OutrasAtividadesTarde outrasAtividadesTarde;
+    private OutrasAtividadesTarde outrasAtividadesTarde;
     @OneToOne(mappedBy = "praticante")
     private ResponsavelPraticante responsavelPraticante;
 
     // Plano Terapeutico Singular
     @OneToOne(mappedBy = "praticante")
-    private com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingular planoTerapeuticoSingular;
+    private PlanoTerapeuticoSingular planoTerapeuticoSingular;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "usuario_id")

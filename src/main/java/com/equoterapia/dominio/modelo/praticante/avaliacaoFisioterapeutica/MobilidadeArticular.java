@@ -1,4 +1,4 @@
-package com.equoterapia.dominio.modelo.patient.physicalTherapyAssessment;
+package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.equoterapia.api.dto.praticante;
 
 import com.equoterapia.api.dto.usuario.UsuarioEntradaDTO;
-import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.SaudeGeralDosPraticantes;
+import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.SaudeGeralDoPraticante;
 import lombok.*;
 
 @Getter
@@ -13,7 +13,7 @@ public class Praticante {
 
     private Long idPraticante;
 
-    private SaudeGeralDosPraticantes saudeGeralDosPraticantes;
+    private SaudeGeralDoPraticante saudeGeralDoPraticante;
 
     private UsuarioEntradaDTO usuarioEntradaDTO;
 

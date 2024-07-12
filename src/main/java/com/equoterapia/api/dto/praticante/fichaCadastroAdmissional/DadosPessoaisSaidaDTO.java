@@ -22,45 +22,24 @@ public class DadosPessoaisSaidaDTO {
     // Dados Pessoais do Praticante
 
     private Long idDadosPessoais;
-    @NotBlank
     private String nomeCompleto;
-    @NotBlank
     private String diagnosticoClinico;
-    @NotBlank
     private String queixaPrincipal; // Queixa principal (EX: dificuldade de concentração)
-    @NotBlank
     private String cid;
-    @NotNull
     private Date dataNascimento;
-    @NotNull
     private Double peso;
-    @Enumerated
     private TipoSanguineoEnum tipoSanguineo;
-    @NotBlank
     private String fatorRH;
-    @NotNull
     private Double altura;
-    @Enumerated
     private SexoEnum sexo;
-    @NotBlank
     private String naturalidade;
-    @Enumerated
     private CorOuRaca corOuRaca;
-    @CPF
     private String cpf;
-    @NotBlank
     private String cartaoSUS;
-    @NotBlank
     private String enderecoResidencial;
-    @NotBlank
     private String bairro;
-    @NotBlank
     private String cidade;
-    @NotBlank
     private String cep;
-
-    @NotNull
-    private PraticanteIdDTO praticante;
 
 }
 

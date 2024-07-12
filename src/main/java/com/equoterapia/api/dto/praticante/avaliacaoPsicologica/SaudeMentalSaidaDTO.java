@@ -16,11 +16,8 @@ public class SaudeMentalSaidaDTO {
     // Saúde mental
 
     private Long idSaudeMental;
-    @Enumerated @NotNull
     private PreencherLegendaEnum apresentaConfusaoMental;
-    @Enumerated @NotNull
     private PreencherLegendaEnum apresentaDelirios;
-    @Enumerated @NotNull
     private PreencherLegendaEnum apresentaAlucinacoes;
 
 

@@ -14,21 +14,13 @@ public class SaudeSaidaDTO {
     // Saúde
 
     private Long idSaude;
-    @NotBlank
     private String alergias;
-    @NotBlank
     private String convulsoes;
-    @NotBlank
     private String doencas;
-    @NotBlank
     private String digestao;
-    @NotBlank
     private String transtornoAlimentar;
-    @NotBlank
     private String respiracao;
-    @NotBlank
     private String sono;
-    @NotBlank
     private String deficitCognitivo;
 
 }

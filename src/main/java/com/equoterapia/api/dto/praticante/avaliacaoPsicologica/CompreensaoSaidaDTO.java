@@ -16,11 +16,8 @@ public class CompreensaoSaidaDTO {
     // Compreensão
 
     private Long idCompreensao;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum compreendeOrdens;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum executaOrdensVerbaisSimples;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum executaOrdensComplexas;
 
 }
