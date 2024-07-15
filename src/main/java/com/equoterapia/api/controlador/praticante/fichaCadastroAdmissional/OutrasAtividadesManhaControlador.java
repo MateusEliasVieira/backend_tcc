@@ -2,7 +2,9 @@ package com.equoterapia.api.controlador.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.OutrasAtividadesManhaEntradaDTO;
+import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.OutrasAtividadesManhaSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
+import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.OutrasAtividadesManha;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.OutrasAtividadesManhaServico;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,6 @@ public class OutrasAtividadesManhaControlador {
 
     @GetMapping("/buscar-outras-atividades-manha-do-praticante-por-id")
     public ResponseEntity<?> buscarOutrasAtividadesManha(@RequestParam("id") Long id){
-        return new ResponseEntity<>(PraticanteMapeador.converterOutrasAtividadesManhaEmOutrasAtividadesManhaSaidaDTO(servico.buscarOutrasAtividadesManhaPorId(id)), HttpStatus.CREATED);
+        return new ResponseEntity<OutrasAtividadesManhaSaidaDTO>(PraticanteMapeador.converterOutrasAtividadesManhaEmOutrasAtividadesManhaSaidaDTO(servico.buscarOutrasAtividadesManhaPorId(id)), HttpStatus.OK);
     }
 }

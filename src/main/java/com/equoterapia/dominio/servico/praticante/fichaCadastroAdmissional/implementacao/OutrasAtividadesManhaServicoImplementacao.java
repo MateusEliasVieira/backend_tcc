@@ -71,6 +71,6 @@ public class OutrasAtividadesManhaServicoImplementacao implements OutrasAtividad
 
     @Override
     public OutrasAtividadesManha buscarOutrasAtividadesManhaPorId(Long id) {
-        return outrasAtividadesManhaRepositorio.findById(id).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Outras atividades da manhã do praticante não encontrada!"));
+        return outrasAtividadesManhaRepositorio.buscarOutrasAtividadesManhaPorChaveEstrangeira(id).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Outras atividades da manhã do praticante não encontrada!"));
     }
 }

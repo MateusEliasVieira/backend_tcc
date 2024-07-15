@@ -2,6 +2,7 @@ package com.equoterapia.api.controlador.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.OutrasAtividadesTardeEntradaDTO;
+import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.OutrasAtividadesTardeSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.OutrasAtividadesTardeServico;
 import jakarta.validation.Valid;
@@ -30,6 +31,6 @@ public class OutrasAtividadesTardeControlador {
 
     @GetMapping("/buscar-outras-atividades-tarde-do-praticante-por-id")
     public ResponseEntity<?> buscarOutrasAtividadesTarde(@RequestParam("id") Long id){
-        return new ResponseEntity<>(PraticanteMapeador.converterOutrasAtividadesTardeEmOutrasAtividadesTardeSaidaDTO(servico.buscarOutrasAtividadesTardePorId(id)), HttpStatus.CREATED);
+        return new ResponseEntity<OutrasAtividadesTardeSaidaDTO>(PraticanteMapeador.converterOutrasAtividadesTardeEmOutrasAtividadesTardeSaidaDTO(servico.buscarOutrasAtividadesTardePorId(id)), HttpStatus.OK);
     }
 }
