@@ -2,6 +2,7 @@ package com.equoterapia.api.controlador.praticante.avaliacaoPsicologica;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.CuidadosPessoaisEntradaDTO;
+import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.CuidadosPessoaisSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.CuidadosPessoais;
 import com.equoterapia.dominio.servico.praticante.avaliacaoPsicologica.CuidadosPessoaisServico;
@@ -33,6 +34,8 @@ public class CuidadosPessoaisControlador {
 
     @GetMapping("/buscar-cuidados-pessoais-do-praticante-por-id")
     public ResponseEntity<?> buscarCuidadosPessoaisPorId(@RequestParam("id") Long id) {
-        return new ResponseEntity<>(PraticanteMapeador.converterCuidadosPessoaisEmCuidadosPessoaisSaidaDTO(cuidadosPessoaisServico.buscarCuidadosPessoaisPorId(id)), HttpStatus.OK);
+        CuidadosPessoais cuidadosPessoais = cuidadosPessoaisServico.buscarCuidadosPessoaisPorId(id);
+        CuidadosPessoaisSaidaDTO cuidadosPessoaisSaidaDTO = PraticanteMapeador.converterCuidadosPessoaisEmCuidadosPessoaisSaidaDTO(cuidadosPessoais);
+        return new ResponseEntity<CuidadosPessoaisSaidaDTO>(cuidadosPessoaisSaidaDTO, HttpStatus.OK);
     }
 }

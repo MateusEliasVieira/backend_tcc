@@ -176,9 +176,9 @@ public class PraticanteMapeador {
         return modelMapper.map(cuidadosPessoaisEntradaDTO, CuidadosPessoais.class);
     }
 
-    public static RotinaSaidaDTO converterCuidadosPessoaisEmCuidadosPessoaisSaidaDTO(CuidadosPessoais cuidadosPessoais) {
+    public static CuidadosPessoaisSaidaDTO converterCuidadosPessoaisEmCuidadosPessoaisSaidaDTO(CuidadosPessoais cuidadosPessoais) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(cuidadosPessoais, RotinaSaidaDTO.class);
+        return modelMapper.map(cuidadosPessoais, CuidadosPessoaisSaidaDTO.class);
     }
 
     // Traços de Personalidade
