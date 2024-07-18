@@ -379,6 +379,17 @@ public class PraticanteMapeador {
         return modelMapper.map(saudeGeralDoPraticante, SaudeGeralDosPraticantesSaidaDTO.class);
     }
 
+    // Em pé
+    public static EmPe converterEmPeEntradaDTOParaEmPe(EmPeEntradaDTO emPeEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(emPeEntradaDTO, EmPe.class);
+    }
+
+    public static EmPeSaidaDTO converterEmPeParaEmPeSaidaDTO(EmPe emPe) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(emPe, EmPeSaidaDTO.class);
+    }
+
     // Plano Terapêutico Singular
     public static PlanoTerapeuticoSingular converterPlanoTerapeuticoSingularEntradaDTOEmPlanoTerapeuticoSingular(PlanoTerapeuticoSingularEntradaDTO planoTerapeuticoSingularEntradaDTO) {
         ModelMapper modelMapper = new ModelMapper();

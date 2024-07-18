@@ -116,6 +116,10 @@ public class FiltroConfiguracaoWeb {
                 .requestMatchers(HttpMethod.POST, "/praticante/coordenacao-motora/salvar-coordenacao-motora-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/coordenacao-motora/atualizar-coordenacao-motora-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.GET, "/praticante/coordenacao-motora/buscar-coordenacao-motora-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                // # Em Pé
+                .requestMatchers(HttpMethod.POST, "/praticante/em-pe/salvar-em-pe-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.PUT, "/praticante/em-pe/atualizar-em-pe-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/em-pe/buscar-em-pe-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Equilibrio Dinamico
                 .requestMatchers(HttpMethod.POST, "/praticante/equilibrio-dinamico/salvar-equilibrio-dinamico-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/equilibrio-dinamico/atualizar-equilibrio-dinamico-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
