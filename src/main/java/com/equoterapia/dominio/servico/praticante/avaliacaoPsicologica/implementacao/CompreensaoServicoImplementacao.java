@@ -69,6 +69,6 @@ public class CompreensaoServicoImplementacao implements CompreensaoServico {
 
     @Override
     public Compreensao buscarCompreensaoPorId(Long idCompreensao) {
-        return compreensaoRepositorio.findById(idCompreensao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de compreensão!"));
+        return compreensaoRepositorio.buscarCompreensaoPorChaveEstrangeira(idCompreensao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de compreensão!"));
     }
 }

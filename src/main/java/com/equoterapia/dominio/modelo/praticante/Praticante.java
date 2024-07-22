@@ -25,6 +25,8 @@ public class Praticante {
     @OneToOne(mappedBy = "praticante")
     private CoordenacaoMotora coordenacaoMotora;
     @OneToOne(mappedBy = "praticante")
+    private EmPe emPe;
+    @OneToOne(mappedBy = "praticante")
     private EquilibrioDinamico equilibrioDinamico;
     @OneToOne(mappedBy = "praticante")
     private EquilibrioEstatico equilibrioEstatico;

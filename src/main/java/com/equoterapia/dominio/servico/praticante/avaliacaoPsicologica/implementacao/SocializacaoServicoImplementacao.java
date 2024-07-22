@@ -69,6 +69,6 @@ public class SocializacaoServicoImplementacao implements SocializacaoServico {
 
     @Override
     public Socializacao buscarSocializacaoPorId(Long idSocializacao) {
-        return socializacaoRepositorio.findById(idSocializacao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de socialização!"));
+        return socializacaoRepositorio.buscarSocializacaoPorChaveEstrangeira(idSocializacao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de socialização!"));
     }
 }

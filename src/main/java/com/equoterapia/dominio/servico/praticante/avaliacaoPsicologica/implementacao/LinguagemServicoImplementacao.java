@@ -69,7 +69,7 @@ public class LinguagemServicoImplementacao implements LinguagemServico {
 
     @Override
     public Linguagem buscarLinguagemPorId(Long idLinguagem) {
-        return saudeRepositorio.findById(idLinguagem).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de linguagem!"));
+        return saudeRepositorio.buscarLinguagemPorChaveEstrangeira(idLinguagem).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de linguagem!"));
 
     }
 }

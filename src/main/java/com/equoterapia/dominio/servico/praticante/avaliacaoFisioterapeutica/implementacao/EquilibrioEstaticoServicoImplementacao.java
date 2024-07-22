@@ -68,6 +68,6 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
 
     @Override
     public EquilibrioEstatico buscarEquilibrioEstaticoPorId(Long idEquilibrioEstatico) {
-        return equilibrioEstaticoRepositorio.findById(idEquilibrioEstatico).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de equilibrio estático!"));
+        return equilibrioEstaticoRepositorio.buscarEquilibrioEstaticoPorChaveEstrangeira(idEquilibrioEstatico).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de equilibrio estático!"));
     }
 }

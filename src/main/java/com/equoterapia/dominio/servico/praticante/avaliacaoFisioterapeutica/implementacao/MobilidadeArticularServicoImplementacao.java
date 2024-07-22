@@ -69,7 +69,7 @@ public class MobilidadeArticularServicoImplementacao implements MobilidadeArticu
 
     @Override
     public MobilidadeArticular buscarMobilidadeArticularPorId(Long idMobilidadeArticular) {
-        return mobilidadeArticularRepositorio.findById(idMobilidadeArticular).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de mobilidade articular!"));
+        return mobilidadeArticularRepositorio.buscarMobilidadeArticularPorChaveEstrangeira(idMobilidadeArticular).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de mobilidade articular!"));
 
     }
 }

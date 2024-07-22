@@ -69,7 +69,7 @@ public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoF
 
     @Override
     public AvaliacaoFisioterapeutica buscarAvaliacaoFisioterapeuticaPorId(Long idAvaliacaoFisioterapeutica) {
-        return avaliacaoFisioterapeuticaRepositorio.findById(idAvaliacaoFisioterapeutica).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliação fisioterapeutica!"));
+        return avaliacaoFisioterapeuticaRepositorio.buscarAvaliacaoFisioterapeuticaPorChaveEstrangeira(idAvaliacaoFisioterapeutica).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliação fisioterapeutica!"));
 
     }
 }

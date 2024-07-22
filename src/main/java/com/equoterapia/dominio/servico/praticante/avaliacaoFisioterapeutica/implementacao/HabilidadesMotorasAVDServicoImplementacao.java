@@ -69,7 +69,7 @@ public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMot
 
     @Override
     public HabilidadesMotorasAVD buscarHabilidadesMotorasAVDPorId(Long idHabilidadesMotorasAVD) {
-        return habilidadesMotorasAVDRepositorio.findById(idHabilidadesMotorasAVD).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de habilidades motoras AVD!"));
+        return habilidadesMotorasAVDRepositorio.buscarHabilidadesMotorasAVDPorChaveEstrangeira(idHabilidadesMotorasAVD).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de habilidades motoras AVD!"));
 
     }
 }

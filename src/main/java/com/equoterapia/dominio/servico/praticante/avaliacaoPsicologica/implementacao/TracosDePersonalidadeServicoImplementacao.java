@@ -69,7 +69,7 @@ public class TracosDePersonalidadeServicoImplementacao implements TracosDePerson
 
     @Override
     public TracosDePersonalidade buscarTracosDePersonalidadePorId(Long idTracosDePersonalidade) {
-        return tracosDePersonalidadeRepositorio.findById(idTracosDePersonalidade).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de traços de personalidade!"));
+        return tracosDePersonalidadeRepositorio.buscarTracosDePersonalidadePorChaveEstrangeira(idTracosDePersonalidade).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de traços de personalidade!"));
 
     }
 }

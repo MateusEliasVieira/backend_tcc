@@ -69,7 +69,7 @@ public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPrati
 
     @Override
     public SaudeGeralDoPraticante buscarSaudeGeralDosPraticantesPorId(Long idSaudeGeralDosPraticantes) {
-        return saudeGeralDosPraticantesRepositorio.findById(idSaudeGeralDosPraticantes).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de saúde geral dos praticantes!"));
+        return saudeGeralDosPraticantesRepositorio.buscarSaudeGeralDosPraticantesPorChaveEstrangeira(idSaudeGeralDosPraticantes).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de saúde geral dos praticantes!"));
 
     }
 }

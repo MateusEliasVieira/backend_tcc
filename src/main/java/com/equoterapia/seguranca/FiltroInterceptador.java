@@ -30,7 +30,7 @@ public class FiltroInterceptador extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        // Pula a verificação de token para o endpoint de login
+        // Pula a verificação de token para o endpoint de login de documentação do swagger
         if (request.getRequestURI().startsWith("/login")) {
             filterChain.doFilter(request, response);
             return;

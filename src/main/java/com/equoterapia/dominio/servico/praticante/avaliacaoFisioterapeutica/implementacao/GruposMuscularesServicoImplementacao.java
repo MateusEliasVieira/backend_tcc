@@ -69,7 +69,7 @@ public class GruposMuscularesServicoImplementacao implements GruposMuscularesSer
 
     @Override
     public GruposMusculares buscarGruposMuscularesPorId(Long idGruposMusculares) {
-        return gruposMuscularesRepositorio.findById(idGruposMusculares).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de grupos musculares!"));
+        return gruposMuscularesRepositorio.buscarGruposMuscularesPorChaveEstrangeira(idGruposMusculares).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de grupos musculares!"));
 
     }
 }

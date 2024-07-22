@@ -69,7 +69,7 @@ public class HabilidadesSociaisServicoImplementacao implements HabilidadesSociai
 
     @Override
     public HabilidadesSociais buscarHabilidadesSociaisPorId(Long idHabilidadesSociais) {
-        return habilidadesSociaisRepositorio.findById(idHabilidadesSociais).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de habilidades sociais!"));
+        return habilidadesSociaisRepositorio.buscarHabilidadesSociaisPorChaveEstrangeira(idHabilidadesSociais).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de habilidades sociais!"));
 
     }
 }

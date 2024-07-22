@@ -69,7 +69,7 @@ public class SaudeMentalServicoImplementacao implements SaudeMentalServico {
 
     @Override
     public SaudeMental buscarSaudeMentalPorId(Long idSaudeMental) {
-        return saudeMentalRepositorio.findById(idSaudeMental).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de saúde mental!"));
+        return saudeMentalRepositorio.buscarSaudeMentalPorChaveEstrangeira(idSaudeMental).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de saúde mental!"));
 
     }
 }

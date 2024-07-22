@@ -69,6 +69,6 @@ public class ComportamentoServicoImplementacao implements ComportamentoServico {
 
     @Override
     public Comportamento buscarComportamentoPorId(Long idComportamento) {
-        return comportamentoRepositorio.findById(idComportamento).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de comportamento!"));
+        return comportamentoRepositorio.buscarComportamentoPorChaveEstrangeira(idComportamento).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de comportamento!"));
     }
 }

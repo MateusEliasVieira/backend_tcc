@@ -69,6 +69,6 @@ public class PlanoTerapeuticoSingularServicoImplementacao implements PlanoTerape
 
 
     public PlanoTerapeuticoSingular buscarPlanoTerapeuticoSingular(Long idPlanoTerapeuticoSingular) {
-        return planoTerapeuticoSingularRepositorio.findById(idPlanoTerapeuticoSingular).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Plano terapêutico singular do praticante não encontrado!"));
+        return planoTerapeuticoSingularRepositorio.buscarPlanoTerapeuticoSingularPorChaveEstrangeira(idPlanoTerapeuticoSingular).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Plano terapêutico singular do praticante não encontrado!"));
     }
 }

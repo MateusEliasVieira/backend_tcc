@@ -69,7 +69,7 @@ public class EmPeServicoImplementacao implements EmPeServico {
 
     @Override
     public EmPe buscarEmPePorId(Long idEmPe) {
-        return emPeRepositorio.findById(idEmPe).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de Em Pé!"));
+        return emPeRepositorio.buscarEmPePorChaveEstrangeira(idEmPe).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de Em Pé!"));
 
     }
 }

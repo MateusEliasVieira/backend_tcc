@@ -69,7 +69,7 @@ public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
 
     @Override
     public QuadroAtual buscarQuadroAtualPorId(Long idQuadroAtual) {
-        return quadroAtualRepositorio.findById(idQuadroAtual).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de quadro atual!"));
+        return quadroAtualRepositorio.buscarQuadroAtualPorChaveEstrangeira(idQuadroAtual).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de quadro atual!"));
 
     }
 }

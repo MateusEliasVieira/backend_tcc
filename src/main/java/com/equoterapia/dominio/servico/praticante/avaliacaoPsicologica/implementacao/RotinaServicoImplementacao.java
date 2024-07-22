@@ -69,6 +69,6 @@ public class RotinaServicoImplementacao implements RotinaServico {
 
     @Override
     public Rotina buscarRotinaPorId(Long idRotina) {
-        return rotinaRepositorio.findById(idRotina).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de rotina!"));
+        return rotinaRepositorio.buscarRotinaPorChaveEstrangeira(idRotina).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de rotina!"));
     }
 }

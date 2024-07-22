@@ -24,6 +24,6 @@ public class FichaCadastroAdmissionalServicoImplementacao implements FichaCadast
 
     @Override
     public FichaCadastroAdmissional buscarFichaCadastroAdmissionalPorId(long idFichaCadastroAdmissional) {
-        return fichaCadastroAdmissionalRepositorio.findById(idFichaCadastroAdmissional).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi encontrado a data de cadastro da ficha de cadastro admissional!"));
+        return fichaCadastroAdmissionalRepositorio.buscarFichaCadastroAdmissionalPorChaveEstrangeira(idFichaCadastroAdmissional).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi encontrado a data de cadastro da ficha de cadastro admissional!"));
     }
 }

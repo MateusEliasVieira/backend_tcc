@@ -69,7 +69,7 @@ public class AvaliacaoPsicologicaServicoImplementacao implements AvaliacaoPsicol
 
     @Override
     public AvaliacaoPsicologica buscarAvaliacaoPsicologicaPorId(Long idAvaliacaoPsicologica) {
-        return avaliacaoPsicologicaRepositorio.findById(idAvaliacaoPsicologica).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliacao psicologica!"));
+        return avaliacaoPsicologicaRepositorio.buscarAvaliacaoPsicologicaPorChaveEstrangeira(idAvaliacaoPsicologica).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliacao psicologica!"));
 
     }
 }

@@ -69,6 +69,6 @@ public class AfetividadeServicoImplementacao implements AfetividadeServico {
 
     @Override
     public Afetividade buscarAfetividadePorId(Long idAfetividade) {
-        return afetividadeRepositorio.findById(idAfetividade).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de afetividade!"));
+        return afetividadeRepositorio.buscarAfetividadePorChaveEstrangeira(idAfetividade).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de afetividade!"));
     }
 }

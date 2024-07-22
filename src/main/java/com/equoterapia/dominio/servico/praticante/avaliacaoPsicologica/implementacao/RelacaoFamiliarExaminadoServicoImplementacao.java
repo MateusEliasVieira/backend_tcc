@@ -69,7 +69,7 @@ public class RelacaoFamiliarExaminadoServicoImplementacao implements RelacaoFami
 
     @Override
     public RelacaoFamiliarExaminado buscarRelacaoFamiliarExaminadoPorId(Long idRelacaoFamiliarExaminado) {
-        return relacaoFamiliarExaminadoRepositorio.findById(idRelacaoFamiliarExaminado).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliacao psicologica!"));
+        return relacaoFamiliarExaminadoRepositorio.buscarRelacaoFamiliarExaminadoPorChaveEstrangeira(idRelacaoFamiliarExaminado).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliacao psicologica!"));
 
     }
 }

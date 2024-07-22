@@ -68,7 +68,7 @@ public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraS
 
     @Override
     public CoordenacaoMotora buscarCoordenacaoMotoraPorId(Long idCoordenacaoMotora) {
-        return coordenacaoMotoraRepositorio.findById(idCoordenacaoMotora).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de coordenação motora!"));
+        return coordenacaoMotoraRepositorio.buscarCoordenacaoMotoraPorChaveEstrangeira(idCoordenacaoMotora).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de coordenação motora!"));
 
     }
 }

@@ -68,7 +68,7 @@ public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicaca
 
     @Override
     public FormaDeComunicacao buscarFormaDeComunicacaoPorId(Long idFormaDeComunicacao) {
-        return formaDeComunicacaoRepositorio.findById(idFormaDeComunicacao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de forma de comunicação!"));
+        return formaDeComunicacaoRepositorio.buscarFormaDeComunicacaoPorChaveEstrangeira(idFormaDeComunicacao).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de forma de comunicação!"));
 
     }
 }

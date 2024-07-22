@@ -68,6 +68,6 @@ public class EquilibrioDinamicoServicoImplementacao implements EquilibrioDinamic
 
     @Override
     public EquilibrioDinamico buscarEquilibrioDinamicoPorId(Long idEquilibrioDinamico) {
-        return equilibrioDinamicoRepositorio.findById(idEquilibrioDinamico).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de equilibrio dinamico!"));
+        return equilibrioDinamicoRepositorio.buscarEquilibrioDinamicoPorChaveEstrangeira(idEquilibrioDinamico).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de equilibrio dinamico!"));
     }
 }

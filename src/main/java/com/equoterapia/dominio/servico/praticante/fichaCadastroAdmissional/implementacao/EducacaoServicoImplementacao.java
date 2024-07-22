@@ -69,7 +69,7 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
 
     @Override
     public EducacaoPraticante buscarEducacaoPraticante(Long idEducacaoPraticante) {
-        return educacaoPraticanteRepositorio.findById(idEducacaoPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Educação do praticante não encontrada!"));
+        return educacaoPraticanteRepositorio.buscarEducacaoPraticantePorChaveEstrangeira(idEducacaoPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Educação do praticante não encontrada!"));
     }
 
 }

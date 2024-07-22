@@ -69,7 +69,7 @@ public class SobreACriancaServicoImplementacao implements SobreACriancaServico {
 
     @Override
     public SobreACrianca buscarSobreACriancaPorId(Long idSobreACrianca) {
-        return sobreACriancaRepositorio.findById(idSobreACrianca).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro dos dados sobre a criança!"));
+        return sobreACriancaRepositorio.buscarSobreACriancaPorChaveEstrangeira(idSobreACrianca).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro dos dados sobre a criança!"));
 
     }
 }

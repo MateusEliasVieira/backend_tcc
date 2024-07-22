@@ -96,7 +96,7 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
 
     @Override
     public ResponsavelPraticante buscarPorId(Long idResponsavelPraticante) {
-        return responsavelPraticanteRepositorio.findById(idResponsavelPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Responsável do praticante não encontrado!!"));
+        return responsavelPraticanteRepositorio.buscarResponsavelPraticantePorChaveEstrangeira(idResponsavelPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Responsável do praticante não encontrado!!"));
     }
 
     @Override

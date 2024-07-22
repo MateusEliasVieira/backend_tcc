@@ -69,7 +69,7 @@ public class SaudeServicoImplementacao implements SaudeServico {
 
     @Override
     public Saude buscarSaudePorId(Long idSaude) {
-        return saudeRepositorio.findById(idSaude).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro dos dados da saúde!"));
+        return saudeRepositorio.buscarSaudePorChaveEstrangeira(idSaude).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro dos dados da saúde!"));
 
     }
 }

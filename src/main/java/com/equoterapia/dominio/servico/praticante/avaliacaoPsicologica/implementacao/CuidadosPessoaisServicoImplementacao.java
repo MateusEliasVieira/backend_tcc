@@ -70,7 +70,7 @@ public class CuidadosPessoaisServicoImplementacao implements CuidadosPessoaisSer
 
     @Override
     public CuidadosPessoais buscarCuidadosPessoaisPorId(Long idCuidadosPessoais) {
-        return cuidadosPessoaisRepositorio.findById(idCuidadosPessoais).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de cuidados pessoais!"));
+        return cuidadosPessoaisRepositorio.buscarCuidadosPessoaisPorChaveEstrangeira(idCuidadosPessoais).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de cuidados pessoais!"));
     }
 
 }
