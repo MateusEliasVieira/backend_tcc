@@ -86,6 +86,7 @@ public class FiltroConfiguracaoWeb {
                 .requestMatchers(HttpMethod.POST, "/praticante/dados-pessoais/salvar-dados-pessoais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/dados-pessoais/atualizar-dados-pessoais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.GET, "/praticante/dados-pessoais/buscar-dados-pessoais-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/dados-pessoais/buscar-dados-pessoais-do-praticante-por-cpf").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.GET, "/praticante/dados-pessoais/buscar-dados-pessoais-dos-praticantes").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Educação Praticante
                 .requestMatchers(HttpMethod.POST, "/praticante/educacao-praticante/salvar-educacao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())

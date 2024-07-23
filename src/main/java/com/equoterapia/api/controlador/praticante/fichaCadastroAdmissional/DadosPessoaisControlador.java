@@ -6,6 +6,7 @@ import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.DadosPessoaisServico;
 import jakarta.validation.Valid;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,17 +38,24 @@ public class DadosPessoaisControlador {
     }
 
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-id")
-    public ResponseEntity<?> buscarDadosPessoaisDosPacientes(@RequestParam("id") Long id){
+    public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorID(@RequestParam("id") Long id){
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorID(id);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/buscar-dados-pessoais-do-praticante-por-cpf")
+    public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorCPF(@RequestParam("cpf") @Valid @CPF String cpf){
+        DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorCPF(cpf);
+        DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
+        return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
+    }
+
     @GetMapping("/buscar-dados-pessoais-dos-praticantes")
-    public ResponseEntity<?> buscarDadosPessoaisDosPacientes(){
-        List<DadosPessoais> listaDeDadosPessoaisDosPacientes = dadosPessoaisServico.buscarDadosPessoaisDosPraticantes();
-        List<DadosPessoaisSaidaDTO> listaDadosPessoaisDosPacientesSaidaDTO = PraticanteMapeador.converterListaDeDadosPessoaisParaListaDeDadosPessoaisSaidaDTO(listaDeDadosPessoaisDosPacientes);
-        return new ResponseEntity<List<DadosPessoaisSaidaDTO>>(listaDadosPessoaisDosPacientesSaidaDTO, HttpStatus.OK);
+    public ResponseEntity<?> buscarDadosPessoaisDosPraticantes(){
+        List<DadosPessoais> listaDeDadosPessoaisDosPraticantes = dadosPessoaisServico.buscarDadosPessoaisDosPraticantes();
+        List<DadosPessoaisSaidaDTO> listaDadosPessoaisDosPraticantesSaidaDTO = PraticanteMapeador.converterListaDeDadosPessoaisParaListaDeDadosPessoaisSaidaDTO(listaDeDadosPessoaisDosPraticantes);
+        return new ResponseEntity<List<DadosPessoaisSaidaDTO>>(listaDadosPessoaisDosPraticantesSaidaDTO, HttpStatus.OK);
     }
 
 }

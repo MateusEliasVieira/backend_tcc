@@ -18,9 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class DadosPessoais {
-
     // Dados Pessoais do Praticante
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDadosPessoais;
@@ -44,10 +42,8 @@ public class DadosPessoais {
     private String bairro;
     private String cidade;
     private String cep;
-
     @OneToOne
     @JoinColumn
     private Praticante praticante;
-
 }
 

@@ -13,6 +13,7 @@ public interface DadosPessoaisServico {
     DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais);
 
     DadosPessoais buscarDadosPessoaisPorID(Long idDadosPessoais);
+    DadosPessoais buscarDadosPessoaisPorCPF(String cpf);
 
     List<DadosPessoais> buscarDadosPessoaisDosPraticantes();
 }

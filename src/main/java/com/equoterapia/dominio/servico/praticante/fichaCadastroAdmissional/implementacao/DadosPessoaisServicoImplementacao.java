@@ -98,6 +98,11 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
     }
 
     @Override
+    public DadosPessoais buscarDadosPessoaisPorCPF(String cpf) {
+        return dadosPessoaisRepositorio.findByCpf(cpf).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante cadastrado no sistema com o cpf "+cpf));
+    }
+
+    @Override
     public List<DadosPessoais> buscarDadosPessoaisDosPraticantes() {
         return dadosPessoaisRepositorio.findAll();
     }
