@@ -4,6 +4,7 @@ import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -16,14 +17,11 @@ public class CompreensaoEntradaDTO {
     // Compreensão
 
     private Long idCompreensao;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum compreendeOrdens;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum executaOrdensVerbaisSimples;
-    @Enumerated @NotBlank
     private PreencherLegendaEnum executaOrdensComplexas;
 
-
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

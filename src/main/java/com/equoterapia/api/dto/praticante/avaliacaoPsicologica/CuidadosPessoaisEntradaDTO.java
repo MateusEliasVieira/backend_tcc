@@ -16,13 +16,11 @@ public class CuidadosPessoaisEntradaDTO {
     // Cuidados pessoais
 
     private Long idCuidadosPessoais;
-    @Enumerated @NotNull
     private PreencherLegendaEnum higienePessoalSozinho;
-    @Enumerated @NotNull
     private PreencherLegendaEnum vesteRoupasCalcadosSozinho;
-    @Enumerated @NotNull
     private PreencherLegendaEnum seAlimentaSozinho;
 
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

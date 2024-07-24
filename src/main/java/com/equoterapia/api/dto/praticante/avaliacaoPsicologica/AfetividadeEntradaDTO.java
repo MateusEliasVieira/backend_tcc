@@ -16,15 +16,12 @@ public class AfetividadeEntradaDTO {
     // Afetividade
 
     private Long idAfetividade;
-    @Enumerated @NotNull
     private PreencherLegendaEnum demonstraAfeicaoEspecialPorAlguem;
-    @Enumerated @NotNull
     private PreencherLegendaEnum compartilhaSuasCoisas;
-    @Enumerated @NotNull
     private PreencherLegendaEnum ajudaQuandoSolicitado;
-    @Enumerated @NotNull
     private PreencherLegendaEnum expressaoDeSentimentos;
 
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

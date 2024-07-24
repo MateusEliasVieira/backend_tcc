@@ -16,23 +16,16 @@ public class TracosDePersonalidadeEntradaDTO {
     // Traços de personalidade
 
     private Long idTracosDePersonalidade;
-    @Enumerated @NotNull
     private PreencherLegendaEnum extroversao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum fobia;
-    @Enumerated @NotNull
     private PreencherLegendaEnum obsessao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum introversao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum ansiedade;
-    @Enumerated @NotNull
     private PreencherLegendaEnum histeria;
-    @Enumerated @NotNull
     private PreencherLegendaEnum dependenciaEmocional;
-    @Enumerated @NotNull
     private PreencherLegendaEnum timidez;
 
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

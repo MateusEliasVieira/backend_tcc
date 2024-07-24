@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ public class FichaCadastroAdmissionalEntradaDTO {
     private Long idFichaCadastroAdmissional;
     private Date dataAvaliacao; // Data da avaliação
 
+    @NotNull
     private PraticanteIdDTO praticante;
 }
 

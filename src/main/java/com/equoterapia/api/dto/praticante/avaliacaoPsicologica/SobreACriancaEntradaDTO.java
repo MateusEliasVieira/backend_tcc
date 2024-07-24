@@ -14,17 +14,14 @@ public class SobreACriancaEntradaDTO {
     // Perguntas iniciais sobre a criança
 
     private Long idSobreACrianca;
-    @NotNull
     private Boolean fezTerapiaEquina;
-    @NotNull
     private Boolean criancaPlanejada;
-    @NotNull
     private Boolean cuidadosPreNatais;
-    @NotNull
     private Boolean chorouNoNascimento;
     private String alimentacao;
     private String observacao;
 
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

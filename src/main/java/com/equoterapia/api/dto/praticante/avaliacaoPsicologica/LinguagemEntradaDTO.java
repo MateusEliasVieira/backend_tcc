@@ -16,22 +16,15 @@ public class LinguagemEntradaDTO {
     // Linguagem
 
     private Long idLinguagem;
-    @Enumerated @NotNull
     private PreencherLegendaEnum compreensaoVerbal;
-    @Enumerated @NotNull
     private PreencherLegendaEnum gesto;
-    @Enumerated @NotNull
     private PreencherLegendaEnum gritos;
-    @Enumerated @NotNull
     private PreencherLegendaEnum mimicaFacial;
-    @Enumerated @NotNull
     private PreencherLegendaEnum monossilabos;
-    @Enumerated @NotNull
     private PreencherLegendaEnum frasesCurtas;
-    @Enumerated @NotNull
     private PreencherLegendaEnum frasesCompletas;
 
-
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

@@ -19,21 +19,13 @@ public class EquilibrioDinamicoEntradaDTO {
     // Equilíbrio Dinâmico
 
     private Long idEquilibrioDinamico;
-    @Enumerated @NotBlank
     private EquilibrioDinamicoEnum engatinhar;
-    @NotBlank
     private String comentariosEngatinhar;
-    @Enumerated @NotBlank
     private EquilibrioDinamicoEnum marchaVoluntaria;
-    @NotBlank
     private String comentariosMarchaVoluntaria;
-    @Enumerated @NotBlank
     private EquilibrioDinamicoEnum saltarPesJuntos;
-    @NotBlank
     private String comentariosSaltarPesJuntos;
-    @Enumerated @NotBlank
     private EquilibrioDinamicoEnum correrDesviandoObstaculos;
-    @NotBlank
     private String comentariosCorrerDesviandoObstaculos;
 
     @NotNull

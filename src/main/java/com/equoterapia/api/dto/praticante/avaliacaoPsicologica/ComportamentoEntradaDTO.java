@@ -16,18 +16,13 @@ public class ComportamentoEntradaDTO {
     // Comportamento
 
     private Long idComportamento;
-    @Enumerated @NotNull
     private PreencherLegendaEnum agitacao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum toleranciaFrustracao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum respeitaLimitesRegras;
-    @Enumerated @NotNull
     private PreencherLegendaEnum oposicao;
-    @Enumerated @NotNull
     private PreencherLegendaEnum atencaoConcentracao;
 
-
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

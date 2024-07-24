@@ -2,6 +2,7 @@ package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class EmPeSaidaDTO {
     private String consideracoesSeqMovRolaSenta;
     private Boolean passaParaSentado;
     private String consideracoesPassaParaSentado;
+    private String observacoes;
 
 }
 

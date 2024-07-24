@@ -16,11 +16,8 @@ public class QuadroAtualEntradaDTO {
     // Quadro atual
 
     private Long idQuadroAtual;
-    @NotBlank
     private String locomocaoAtual;
-    @NotBlank
     private String restricoes;
-    @NotBlank
     private String deformidades;
 
     @NotNull

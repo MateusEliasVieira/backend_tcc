@@ -15,17 +15,11 @@ public class AvaliacaoFisioterapeuticaEntradaDTO {
 
     // Avaliação Fisioterapêutica
     private Long idAvaliacaoFisioterapeutica;
-    @NotBlank
     private String diagnosticoFisioterapeutico;
-    @NotBlank
     private String historicoGravidez;
-
     // Descrever Tonus Muscular
-    @NotBlank
     private String tonusMuscular;
-
     // Conclusão/Indicação para Equoterapia
-    @NotBlank
     private String conclusaoIndicacaoEquoterapia;
 
     @NotNull

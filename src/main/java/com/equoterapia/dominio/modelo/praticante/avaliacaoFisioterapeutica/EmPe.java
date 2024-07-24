@@ -31,6 +31,7 @@ public class EmPe {
     private String consideracoesSeqMovRolaSenta;
     private Boolean passaParaSentado;
     private String consideracoesPassaParaSentado;
+    private String observacoes;
 
 
     @OneToOne

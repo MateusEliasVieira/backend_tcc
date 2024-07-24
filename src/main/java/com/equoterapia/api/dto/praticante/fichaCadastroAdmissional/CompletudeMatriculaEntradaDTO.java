@@ -21,8 +21,8 @@ public class CompletudeMatriculaEntradaDTO {
 
     private Long idCompletudeMatricula;
     private Date dataCompletudeMatricula;
-    @NotBlank(message = ASSINATURA_IMAGEM)
     private String imagemAssinaturaResponsavel;
+
     @NotNull
     private PraticanteIdDTO praticante;
 

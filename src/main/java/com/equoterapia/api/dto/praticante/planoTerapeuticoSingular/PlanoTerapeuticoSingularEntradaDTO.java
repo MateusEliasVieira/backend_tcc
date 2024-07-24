@@ -20,26 +20,28 @@ public class PlanoTerapeuticoSingularEntradaDTO {
     // Plano Terapêutico Singular (PTS)
 
     private Long idPlanoTerapeuticoSingular;
-    @NotNull
+
     private Date dataPlanejamento;
-    @NotBlank
+
     private String responsavelTerapeutico;
-    @NotBlank
+
     private String problema;
-    @NotBlank
+
     private String justificativaHipotesesBiologicasSociaisEmocionais;
-    @NotBlank
+
     private String objetivoTerapeutico;
-    @NotBlank
+
     private String medida;
-    @NotBlank
+
     private String estrategiasIntervencao;
-    @NotBlank
+
     private String selasMediadorasAnimais;
-    @NotBlank
+
     private String evolucao;
-    @NotBlank
+
     private String fisioterapeutaImagemDaAssinaturaOuCarimbo;
+
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }

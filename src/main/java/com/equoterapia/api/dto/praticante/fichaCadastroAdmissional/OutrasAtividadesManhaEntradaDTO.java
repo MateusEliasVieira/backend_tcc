@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -21,6 +22,7 @@ public class OutrasAtividadesManhaEntradaDTO {
     private String sabado;
     private String domingo;
 
+    @NotNull
     private PraticanteIdDTO praticante;
 
 }
