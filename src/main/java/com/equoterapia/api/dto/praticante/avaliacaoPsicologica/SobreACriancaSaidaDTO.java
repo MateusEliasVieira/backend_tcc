@@ -1,7 +1,5 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
-import com.equoterapia.api.dto.praticante.Praticante;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter

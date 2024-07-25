@@ -8,6 +8,8 @@ import com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.*;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -95,18 +97,9 @@ public class Praticante {
     @OneToOne(mappedBy = "praticante")
     private PlanoTerapeuticoSingular planoTerapeuticoSingular;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "usuario_id")
-//    private Usuario usuario;
 
+    @OneToMany(mappedBy = "praticante")
+    private List<Evolucao> historicoDeEvolucao;
 
-    // Ficha Cadastro Admissional
-
-    // Plano Terapeutico Singular
-
-
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "usuario_id")
-//    private Usuario usuario;
 
 }

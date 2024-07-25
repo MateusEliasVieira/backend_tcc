@@ -1,10 +1,13 @@
 package com.equoterapia.api.mapeador.praticante;
 
+import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
+import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularEntradaDTO;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularSaidaDTO;
+import com.equoterapia.dominio.modelo.praticante.Evolucao;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
@@ -15,6 +18,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PraticanteMapeador {
+
+
+    // Evolução
+    public static Evolucao converterEvolucaoEntradaDTOParaEvolucao(EvolucaoEntradaDTO evolucaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(evolucaoEntradaDTO, Evolucao.class);
+    }
+
+    public static EvolucaoSaidaDTO converterEvolucaoParaEvolucaoSaidaDTO(Evolucao evolucao) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(evolucao, EvolucaoSaidaDTO.class);
+    }
+
+    public static List<EvolucaoSaidaDTO> converterListaDeEvolucaoParaListaDeEvolucaoSaidaDTO(List<Evolucao> evolucoes) {
+        List<EvolucaoSaidaDTO> listaEvolucaoSaidaDTO = new ArrayList<>();
+        for (Evolucao e : evolucoes) {
+            ModelMapper modelMapper = new ModelMapper();
+            EvolucaoSaidaDTO evolucaoSaidaDTO = modelMapper.map(e, EvolucaoSaidaDTO.class);
+            listaEvolucaoSaidaDTO.add(evolucaoSaidaDTO);
+        }
+        return listaEvolucaoSaidaDTO;
+    }
 
     // Dados Pessoais
     public static DadosPessoais converterDadosPessoaisEntradaDTOParaDadosPessoais(DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO) {

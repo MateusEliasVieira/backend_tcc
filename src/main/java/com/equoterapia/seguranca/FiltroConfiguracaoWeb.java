@@ -77,6 +77,11 @@ public class FiltroConfiguracaoWeb {
                 // ======================================================================================================================= //
                 //												     Endpoints do Praticante										       //
                 // ======================================================================================================================= //
+                //  *********************************************** Evolução ************************************************************  //
+                // # Evolução
+                .requestMatchers(HttpMethod.POST, "/praticante/evolucao/salvar-evolucao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.PUT, "/praticante/evolucao/atualizar-evolucao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/evolucao/buscar-evolucoes-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 //  *********************************************** Ficha Cadastro Admissional *******************************************
                 // # Completude Matricula
                 .requestMatchers(HttpMethod.POST, "/praticante/completude-matricula/salvar-completude-matricula-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
