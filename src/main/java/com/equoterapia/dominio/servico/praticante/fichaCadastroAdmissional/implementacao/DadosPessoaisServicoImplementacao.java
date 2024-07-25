@@ -107,4 +107,12 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
         return dadosPessoaisRepositorio.findAll();
     }
 
+    @Override
+    public List<DadosPessoais> buscarDadosPessoaisPorNome(String nome) {
+        if(nome.isEmpty()){
+            return buscarDadosPessoaisDosPraticantes();
+        }
+        return dadosPessoaisRepositorio.findByNomeCompleto(nome);
+    }
+
 }

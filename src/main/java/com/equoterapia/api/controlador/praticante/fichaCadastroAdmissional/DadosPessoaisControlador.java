@@ -39,6 +39,7 @@ public class DadosPessoaisControlador {
 
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-id")
     public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorID(@RequestParam("id") Long id){
+        System.out.println("Entrou aqui");
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorID(id);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
@@ -49,6 +50,13 @@ public class DadosPessoaisControlador {
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorCPF(cpf);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/buscar-dados-pessoais-do-praticante-por-nome")
+    public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorNome(@RequestParam("nome") @Valid String nome){
+        List<DadosPessoais> dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorNome(nome);
+        List<DadosPessoaisSaidaDTO> dadosPessoaisSaidaDTO = PraticanteMapeador.converterListaDeDadosPessoaisParaListaDeDadosPessoaisSaidaDTO(dadosPessoais);
+        return new ResponseEntity<List<DadosPessoaisSaidaDTO>>(dadosPessoaisSaidaDTO, HttpStatus.OK);
     }
 
     @GetMapping("/buscar-dados-pessoais-dos-praticantes")

@@ -12,9 +12,7 @@ import lombok.*;
 public class Praticante {
 
     private Long idPraticante;
-
     private SaudeGeralDoPraticante saudeGeralDoPraticante;
-
     private UsuarioEntradaDTO usuarioEntradaDTO;
 
 }

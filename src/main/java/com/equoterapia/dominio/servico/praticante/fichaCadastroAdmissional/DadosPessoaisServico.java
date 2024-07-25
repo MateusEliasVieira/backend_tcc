@@ -16,6 +16,8 @@ public interface DadosPessoaisServico {
     DadosPessoais buscarDadosPessoaisPorCPF(String cpf);
 
     List<DadosPessoais> buscarDadosPessoaisDosPraticantes();
+
+    List<DadosPessoais> buscarDadosPessoaisPorNome(String nome);
 }
 
 
