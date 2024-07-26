@@ -19,5 +19,35 @@ public class FormataData {
             throw new ExcecaoDeRegrasDeNegocio("Erro interno do sistema!");
         }
     }
+    public static final String verificarMes(int mes) {
+        if (mes == 1) {
+            return "Jan";
+        } else if (mes == 2) {
+            return "Fev";
+        } else if (mes == 3) {
+            return "Mar";
+        } else if (mes == 4) {
+            return "Abril";
+        } else if (mes == 5) {
+            return "Maio";
+        } else if (mes == 6) {
+            return "Jun";
+        } else if (mes == 7) {
+            return "Jul";
+        } else if (mes == 8) {
+            return "Ago";
+        } else if (mes == 9) {
+            return "Set";
+        } else if (mes == 10) {
+            return "Out";
+        } else if (mes == 11) {
+            return "Nov";
+        } else if (mes == 12) {
+            return "Dez";
+        } else {
+            return "";
+        }
+    }
+
 
 }

@@ -2,6 +2,8 @@ package com.equoterapia.api.controlador.praticante;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
+import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoEntradaDTO;
+import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoSaidaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.Evolucao;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -22,7 +25,7 @@ public class EvolucaoControlador {
 
     @PostMapping("/salvar-evolucao-do-praticante")
     public ResponseEntity<?> salvarEvolucao(@RequestBody EvolucaoEntradaDTO evolucaoEntradaDTO) {
-        System.out.println("Entrou aqui. "+evolucaoEntradaDTO.toString());
+        System.out.println("Entrou aqui. " + evolucaoEntradaDTO.toString());
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.salvarEvolucao(evolucao);
         return new ResponseEntity<Mensagem>(new Mensagem("Evolucao do praticante cadastrada com sucesso!"), HttpStatus.CREATED);
@@ -39,4 +42,11 @@ public class EvolucaoControlador {
     public ResponseEntity<?> buscarEvolucoesPorId(@RequestParam("id") Long id) {
         return new ResponseEntity<List<EvolucaoSaidaDTO>>(PraticanteMapeador.converterListaDeEvolucaoParaListaDeEvolucaoSaidaDTO(evolucaoServico.listarTodasEvolucoesDoPraticante(id)), HttpStatus.OK);
     }
+
+    @PostMapping ("/buscar-evolucao-do-praticante-por-intervalo-de-datas")
+    public ResponseEntity<?> buscarEvolucaoPorIntervaloDeDatas(@RequestBody EvolucaoParaGraficoEntradaDTO evolucaoParaGraficoEntradaDTO) {
+        return new ResponseEntity<EvolucaoParaGraficoSaidaDTO>(evolucaoServico.buscarEvolucaoPorIntervaloDeDatas(evolucaoParaGraficoEntradaDTO.getDataInicial(), evolucaoParaGraficoEntradaDTO.getDataFinal(), evolucaoParaGraficoEntradaDTO.getPraticante().getIdPraticante()), HttpStatus.OK);
+    }
+
+
 }
