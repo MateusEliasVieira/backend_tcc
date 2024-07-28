@@ -27,7 +27,7 @@ public class UsuarioServicoImpl implements UsuarioServico {
 
     private final PasswordEncoder encriptadorDeSenha = new BCryptPasswordEncoder();
 
-    private final int  MINUTOS_PARA_NOVA_TENTATIVA = 1;
+    private final int  MINUTOS_PARA_NOVA_TENTATIVA = 60;
 
     @Transactional(readOnly = false)
     @Override

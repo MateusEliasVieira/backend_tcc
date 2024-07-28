@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class EvolucaoParaGraficoSaidaDTO {
 
-    private List<EvolucaoConsultaFrequenciaProjection> frequencia;
-    private List<EvolucaoConsultaFaltasProjection> faltas;
+    private List<Integer> frequencia;
+    private List<Integer> faltas;
     private List<String> meses;
 
 }
