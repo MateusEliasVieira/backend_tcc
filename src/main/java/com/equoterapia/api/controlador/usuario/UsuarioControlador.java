@@ -10,6 +10,7 @@ import com.equoterapia.api.mapeador.usuario.UsuarioMapeador;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import com.equoterapia.dominio.servico.usuario.UsuarioServico;
 import com.equoterapia.utilidades.Resposta;
+import com.equoterapia.utilidades.ValidadorDeSenha;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class UsuarioControlador {
 
     @PostMapping("/salvar-novo-usuario")
     public ResponseEntity<Mensagem> salvarNovoUsuario(@RequestBody @Valid UsuarioEntradaDTO usuarioEntradaDTO) {
+        ValidadorDeSenha.isStrong(usuarioEntradaDTO.getSenha());
         usuarioServico.salvar(UsuarioMapeador.converterUsuarioEntradaDTOEmUsuario(usuarioEntradaDTO));
         return new ResponseEntity<Mensagem>(new Mensagem(Resposta.USUARIO_CAD_OK), HttpStatus.CREATED);
     }

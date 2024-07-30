@@ -70,6 +70,7 @@ public class FiltroConfiguracaoWeb {
                 //										       Endpoints de Recuperação de Conta									       //
                 // ======================================================================================================================= //
                 .requestMatchers(HttpMethod.GET, "/recuperacao-de-conta/enviar-email/*").permitAll()
+                .requestMatchers(HttpMethod.POST, "/recuperacao-de-conta/nova-senha").permitAll()
                 // ======================================================================================================================= //
                 //												     Endpoints do Usuário										           //
                 // ======================================================================================================================= //

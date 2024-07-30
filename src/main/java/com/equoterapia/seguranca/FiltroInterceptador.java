@@ -31,7 +31,7 @@ public class FiltroInterceptador extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         // Pula a verificação de token para o endpoint de login de documentação do swagger
-        if (request.getRequestURI().startsWith("/login") || request.getRequestURI().startsWith("/recuperacao-de-conta/enviar-email/")) {
+        if (request.getRequestURI().startsWith("/login") || request.getRequestURI().startsWith("/recuperacao-de-conta/enviar-email/") || request.getRequestURI().startsWith("/recuperacao-de-conta/nova-senha")) {
             filterChain.doFilter(request, response);
             return;
         }
