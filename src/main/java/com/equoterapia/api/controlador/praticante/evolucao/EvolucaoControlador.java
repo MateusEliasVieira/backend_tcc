@@ -1,4 +1,4 @@
-package com.equoterapia.api.controlador.praticante;
+package com.equoterapia.api.controlador.praticante.evolucao;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
@@ -28,14 +28,14 @@ public class EvolucaoControlador {
         System.out.println("Entrou aqui. " + evolucaoEntradaDTO.toString());
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.salvarEvolucao(evolucao);
-        return new ResponseEntity<Mensagem>(new Mensagem("Evolucao do praticante cadastrada com sucesso!"), HttpStatus.CREATED);
+        return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante cadastrada com sucesso!"), HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar-evolucao-do-praticante")
     public ResponseEntity<?> atualizarEvolucao(@RequestBody EvolucaoEntradaDTO evolucaoEntradaDTO) {
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.atualizarEvolucao(evolucao);
-        return new ResponseEntity<Mensagem>(new Mensagem("Evolucao do praticante atualizada com sucesso!"), HttpStatus.CREATED);
+        return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante atualizada com sucesso!"), HttpStatus.CREATED);
     }
 
     @GetMapping("/buscar-evolucoes-do-praticante-por-id")

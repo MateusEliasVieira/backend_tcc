@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.CorOuRaca;
 import com.equoterapia.dominio.enums.SexoEnum;
 import com.equoterapia.dominio.enums.TipoSanguineoEnum;
