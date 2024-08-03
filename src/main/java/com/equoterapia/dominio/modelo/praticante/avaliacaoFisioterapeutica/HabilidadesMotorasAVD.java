@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,23 +19,23 @@ public class HabilidadesMotorasAVD {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHabilidadesMotorasAVD;
-    private Boolean alcancarObjetos;
+    private SImOuNaoEnum alcancarObjetos;
     private String consideracoesAlcancarObjetos;
-    private Boolean usoBimanual;
+    private SImOuNaoEnum usoBimanual;
     private String consideracoesUsoBimanual;
-    private Boolean alimentacaoIndependente;
+    private SImOuNaoEnum alimentacaoIndependente;
     private String consideracoesAlimentacaoIndependente;
-    private Boolean vestirIndependente;
+    private SImOuNaoEnum vestirIndependente;
     private String consideracoesVestirIndependente;
-    private Boolean pegarObjetos;
+    private SImOuNaoEnum pegarObjetos;
     private String consideracoesPegarObjetos;
-    private Boolean negligenciaMembro;
+    private SImOuNaoEnum negligenciaMembro;
     private String consideracoesNegligenciaMembro;
-    private Boolean higienePessoal;
+    private SImOuNaoEnum higienePessoal;
     private String consideracoesHigienePessoal;
-    private Boolean andar;
+    private SImOuNaoEnum andar;
     private String consideracoesAndar;
-    private Boolean escritaManual;
+    private SImOuNaoEnum escritaManual;
     private String consideracoesEscritaManual;
 
     @OneToOne

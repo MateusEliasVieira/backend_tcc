@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,17 +20,17 @@ public class EmPe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmPe;
-    private Boolean sequenciaDeMovimentos;
+    private SImOuNaoEnum sequenciaDeMovimentos;
     private String consideracoesSequenciaDeMovimentos;
-    private Boolean entrarSairPosicaoSentadoChao;
+    private SImOuNaoEnum entrarSairPosicaoSentadoChao;
     private String consideracoesEntrarSairPosicaoSentadoChao;
-    private Boolean sentadoCadeira;
+    private SImOuNaoEnum sentadoCadeira;
     private String consideracoesSentadoCadeira;
-    private Boolean posturaEquilibrio;
+    private SImOuNaoEnum posturaEquilibrio;
     private String consideracoesPosturaEquilibrio;
-    private Boolean seqMovRolaSenta;
+    private SImOuNaoEnum seqMovRolaSenta;
     private String consideracoesSeqMovRolaSenta;
-    private Boolean passaParaSentado;
+    private SImOuNaoEnum passaParaSentado;
     private String consideracoesPassaParaSentado;
     private String observacoes;
 

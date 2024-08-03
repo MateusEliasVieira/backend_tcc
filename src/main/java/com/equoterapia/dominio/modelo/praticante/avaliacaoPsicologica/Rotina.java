@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class Rotina {
     private Long idRotina;
     private String brincadeiras;
     private String preferenciasPorBrincadeiras;
-    private Boolean aceitaMudancasNaRotina;
+    private SImOuNaoEnum aceitaMudancasNaRotina;
     private String consideracoesSobreRotina;
 
     @OneToOne

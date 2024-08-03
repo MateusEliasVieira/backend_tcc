@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,11 +19,11 @@ public class FormaDeComunicacao {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFormaDeComunicacao;
-    private Boolean fala;
+    private SImOuNaoEnum fala;
     private String consideracoesFala;
-    private Boolean gestos;
+    private SImOuNaoEnum gestos;
     private String consideracoesGestos;
-    private Boolean usoDosOlhos;
+    private SImOuNaoEnum usoDosOlhos;
     private String consideracoesUsoDosOlhos;
 
     @OneToOne

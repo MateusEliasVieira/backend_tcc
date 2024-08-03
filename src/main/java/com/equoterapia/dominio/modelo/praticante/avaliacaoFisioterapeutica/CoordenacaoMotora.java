@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,15 +20,15 @@ public class CoordenacaoMotora {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCoordenacaoMotora;
-    private Boolean testeMaoObjeto;
+    private SImOuNaoEnum testeMaoObjeto;
     private String consideracoesTesteMaoObjeto;
-    private Boolean indiceNarizUnilateral;
+    private SImOuNaoEnum indiceNarizUnilateral;
     private String consideracoesIndiceNarizUnilateral;
-    private Boolean testeIndiceIndice;
+    private SImOuNaoEnum testeIndiceIndice;
     private String consideracoesTesteIndiceIndice;
-    private Boolean movimentosAlternados;
+    private SImOuNaoEnum movimentosAlternados;
     private String consideracoesMovimentosAlternados;
-    private Boolean testeAlcancePegar;
+    private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
 
     @OneToOne

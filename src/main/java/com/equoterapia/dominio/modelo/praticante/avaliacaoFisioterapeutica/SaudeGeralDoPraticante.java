@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,26 +19,26 @@ public class SaudeGeralDoPraticante {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSaudeGeralDoPraticante;
-    private Boolean convulsoesAnteriores;
+    private SImOuNaoEnum convulsoesAnteriores;
     private String consideracoesConvulsoesAnteriores;
-    private Boolean convulsoesAtuais;
+    private SImOuNaoEnum convulsoesAtuais;
     private String consideracoesConvulsoesAtuais;
     private String frequenciaConvulsoesAtuais;
-    private Boolean medicamentos;
+    private SImOuNaoEnum medicamentos;
     private String consideracoesMedicamentos;
-    private Boolean constipacao;
+    private SImOuNaoEnum constipacao;
     private String consideracoesConstipacao;
-    private Boolean sono;
+    private SImOuNaoEnum sono;
     private String consideracoesSono;
-    private Boolean audicao;
+    private SImOuNaoEnum audicao;
     private String consideracoesAudicao;
-    private Boolean visao;
+    private SImOuNaoEnum visao;
     private String consideracoesVisao;
-    private Boolean refluxoGastroesofagico;
+    private SImOuNaoEnum refluxoGastroesofagico;
     private String consideracoesRefluxoGastroesofagico;
-    private Boolean intervencoesCirurgicas;
+    private SImOuNaoEnum intervencoesCirurgicas;
     private String consideracoesIntervencoesCirurgicas;
-    private Boolean alergias;
+    private SImOuNaoEnum alergias;
     private String consideracoesAlergias;
 
     @OneToOne

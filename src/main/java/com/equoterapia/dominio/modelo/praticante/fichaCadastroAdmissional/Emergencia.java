@@ -1,5 +1,6 @@
 package com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class Emergencia {
     private String ligarPara;
     @Column(unique = true)
     private String telefone;
-    private Boolean possuiPlanoDeSaude;
+    private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano; // Caso tenha, qual é?
 
     @OneToOne
