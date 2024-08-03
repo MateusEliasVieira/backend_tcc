@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -14,10 +15,10 @@ public class SobreACriancaEntradaDTO {
     // Perguntas iniciais sobre a criança
 
     private Long idSobreACrianca;
-    private Boolean fezTerapiaEquina;
-    private Boolean criancaPlanejada;
-    private Boolean cuidadosPreNatais;
-    private Boolean chorouNoNascimento;
+    private SImOuNaoEnum fezTerapiaEquina;
+    private SImOuNaoEnum criancaPlanejada;
+    private SImOuNaoEnum cuidadosPreNatais;
+    private SImOuNaoEnum chorouNoNascimento;
     private String alimentacao;
     private String observacao;
 

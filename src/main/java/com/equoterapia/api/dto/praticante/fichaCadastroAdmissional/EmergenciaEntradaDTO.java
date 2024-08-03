@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -21,7 +22,7 @@ public class EmergenciaEntradaDTO {
 
     private String ligarPara;
     private String telefone;
-    private Boolean possuiPlanoDeSaude;
+    private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano; // Caso tenha, qual é?
 
     @NotNull

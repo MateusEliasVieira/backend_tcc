@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import lombok.*;
 
 @Getter
@@ -13,7 +14,7 @@ public class EmergenciaSaidaDTO {
     private Long idEmergencia;
     private String ligarPara;
     private String telefone;
-    private Boolean possuiPlanoDeSaude;
+    private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano;
 
 }

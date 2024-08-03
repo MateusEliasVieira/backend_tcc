@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,15 +16,15 @@ public class CoordenacaoMotoraSaidaDTO {
     // Coordenação Motora
 
     private Long idCoordenacaoMotora;
-    private Boolean testeMaoObjeto;
+    private SImOuNaoEnum testeMaoObjeto;
     private String consideracoesTesteMaoObjeto;
-    private Boolean indiceNarizUnilateral;
+    private SImOuNaoEnum indiceNarizUnilateral;
     private String consideracoesIndiceNarizUnilateral;
-    private Boolean testeIndiceIndice;
+    private SImOuNaoEnum testeIndiceIndice;
     private String consideracoesTesteIndiceIndice;
-    private Boolean movimentosAlternados;
+    private SImOuNaoEnum movimentosAlternados;
     private String consideracoesMovimentosAlternados;
-    private Boolean testeAlcancePegar;
+    private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
 
 }

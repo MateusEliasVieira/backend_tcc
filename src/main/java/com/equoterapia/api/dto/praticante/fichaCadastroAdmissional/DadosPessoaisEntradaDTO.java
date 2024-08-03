@@ -42,8 +42,6 @@ public class DadosPessoaisEntradaDTO {
     private String cidade;
     private String cep;
 
-    @NotNull
-    private Praticante praticante;
 
 }
 

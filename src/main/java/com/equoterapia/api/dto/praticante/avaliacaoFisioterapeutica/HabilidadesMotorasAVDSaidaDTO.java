@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,23 +16,23 @@ public class HabilidadesMotorasAVDSaidaDTO {
     // Habilidades Motoras/AVD's
 
     private Long idHabilidadesMotorasAVD;
-    private Boolean alcancarObjetos;
+    private SImOuNaoEnum alcancarObjetos;
     private String consideracoesAlcancarObjetos;
-    private Boolean usoBimanual;
+    private SImOuNaoEnum usoBimanual;
     private String consideracoesUsoBimanual;
-    private Boolean alimentacaoIndependente;
+    private SImOuNaoEnum alimentacaoIndependente;
     private String consideracoesAlimentacaoIndependente;
-    private Boolean vestirIndependente;
+    private SImOuNaoEnum vestirIndependente;
     private String consideracoesVestirIndependente;
-    private Boolean pegarObjetos;
+    private SImOuNaoEnum pegarObjetos;
     private String consideracoesPegarObjetos;
-    private Boolean negligenciaMembro;
+    private SImOuNaoEnum negligenciaMembro;
     private String consideracoesNegligenciaMembro;
-    private Boolean higienePessoal;
+    private SImOuNaoEnum higienePessoal;
     private String consideracoesHigienePessoal;
-    private Boolean andar;
+    private SImOuNaoEnum andar;
     private String consideracoesAndar;
-    private Boolean escritaManual;
+    private SImOuNaoEnum escritaManual;
     private String consideracoesEscritaManual;
 
 }
