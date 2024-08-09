@@ -25,7 +25,6 @@ public class EvolucaoControlador {
 
     @PostMapping("/salvar-evolucao-do-praticante")
     public ResponseEntity<?> salvarEvolucao(@RequestBody EvolucaoEntradaDTO evolucaoEntradaDTO) {
-        System.out.println("Entrou aqui. " + evolucaoEntradaDTO.toString());
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.salvarEvolucao(evolucao);
         return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante cadastrada com sucesso!"), HttpStatus.CREATED);

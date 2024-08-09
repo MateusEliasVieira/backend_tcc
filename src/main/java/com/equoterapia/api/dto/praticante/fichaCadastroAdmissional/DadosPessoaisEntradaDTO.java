@@ -35,6 +35,7 @@ public class DadosPessoaisEntradaDTO {
     private SexoEnum sexo;
     private String naturalidade;
     private CorOuRaca corOuRaca;
+    @CPF
     private String cpf;
     private String cartaoSUS;
     private String enderecoResidencial;

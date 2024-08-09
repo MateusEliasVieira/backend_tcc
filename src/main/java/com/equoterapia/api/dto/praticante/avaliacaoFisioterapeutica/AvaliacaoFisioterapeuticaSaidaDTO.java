@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
 import com.equoterapia.dominio.modelo.praticante.Praticante;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Getter

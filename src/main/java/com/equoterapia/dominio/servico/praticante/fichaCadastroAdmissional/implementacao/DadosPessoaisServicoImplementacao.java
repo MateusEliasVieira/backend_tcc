@@ -30,34 +30,32 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais salvarDadosPessoais(DadosPessoais dadosPessoais) {
-        try {
-            if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
 
-                throw new ExcecaoDeRegrasDeNegocio("O praticante com CPF "
-                        + dadosPessoais.getCpf() + " já está cadastrado no sistema!");
+        if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
 
-            } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).isPresent()) {
+            throw new ExcecaoDeRegrasDeNegocio("O praticante com CPF "
+                    + dadosPessoais.getCpf() + " já está cadastrado no sistema!");
 
-                throw new ExcecaoDeRegrasDeNegocio("O praticante com cartão do SUS "
-                        + dadosPessoais.getCartaoSUS()
-                        + " já está cadastrado no sistema!");
+        } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).isPresent()) {
 
+            throw new ExcecaoDeRegrasDeNegocio("O praticante com cartão do SUS "
+                    + dadosPessoais.getCartaoSUS()
+                    + " já está cadastrado no sistema!");
+
+        } else {
+            Praticante praticante = new Praticante();
+            praticante = praticanteRepositorio.save(praticante);
+            dadosPessoais.setPraticante(praticante);
+            FichaCadastroAdmissional fichaCadastroAdmissional = new FichaCadastroAdmissional();
+            fichaCadastroAdmissional.setPraticante(praticante);
+            fichaCadastroAdmissional.setDataAvaliacao(new Date());
+            if (fichaCadastroAdmissionalServico.salvarFichaCadastroAdmissional(fichaCadastroAdmissional) != null) {
+                return dadosPessoaisRepositorio.save(dadosPessoais);
             } else {
-                Praticante praticante = new Praticante();
-                praticante = praticanteRepositorio.save(praticante);
-                dadosPessoais.setPraticante(praticante);
-                FichaCadastroAdmissional fichaCadastroAdmissional = new FichaCadastroAdmissional();
-                fichaCadastroAdmissional.setPraticante(praticante);
-                fichaCadastroAdmissional.setDataAvaliacao(new Date());
-                if (fichaCadastroAdmissionalServico.salvarFichaCadastroAdmissional(fichaCadastroAdmissional) != null) {
-                    return dadosPessoaisRepositorio.save(dadosPessoais);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
-                }
+                throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");
         }
+
     }
 
     @Override
@@ -99,7 +97,7 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais buscarDadosPessoaisPorCPF(String cpf) {
-        return dadosPessoaisRepositorio.findByCpf(cpf).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante cadastrado no sistema com o cpf "+cpf));
+        return dadosPessoaisRepositorio.findByCpf(cpf).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe nenhum praticante cadastrado no sistema com o cpf " + cpf));
     }
 
     @Override
@@ -109,7 +107,7 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public List<DadosPessoais> buscarDadosPessoaisPorNome(String nome) {
-        if(nome.isEmpty()){
+        if (nome.isEmpty()) {
             return buscarDadosPessoaisDosPraticantes();
         }
         return dadosPessoaisRepositorio.findByNomeCompleto(nome);

@@ -2,6 +2,7 @@ package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

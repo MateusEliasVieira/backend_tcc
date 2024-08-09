@@ -20,6 +20,7 @@ public class EmergenciaControlador {
 
     @PostMapping("/salvar-emergencia-do-praticante")
     public ResponseEntity<?> salvarEmergencia(@RequestBody @Valid EmergenciaEntradaDTO emergenciaEntradaDTO){
+        System.out.println("Dados = "+emergenciaEntradaDTO.toString());
         Emergencia emergencia = PraticanteMapeador.converterEmergenciaEntradaDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.salvarEmergencia(emergencia);
         EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaSalva);
