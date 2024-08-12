@@ -22,42 +22,38 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
 
     @Override
     public ResponsavelPraticante salvar(ResponsavelPraticante responsavelPraticante) {
-        try {
-            if (responsavelPraticante.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(responsavelPraticante
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
-
-                if (!responsavelPraticanteRepositorio.buscarResponsavelPraticantePorChaveEstrangeira(responsavelPraticante.getPraticante().getIdPraticante()).isPresent()) {
-
-                    if (responsavelPraticanteRepositorio.findByTelefoneTrabalho(responsavelPraticante.getTelefoneTrabalho()).isPresent()) {
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone de trabalho "
-                                + responsavelPraticante.getTelefoneTrabalho() + " cadastrado no sistema!");
-
-                    } else if (responsavelPraticanteRepositorio.findByTelefone(responsavelPraticante.getTelefone()).isPresent()) {
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone "
-                                + responsavelPraticante.getTelefone() + " cadastrado no sistema!");
-
-                    } else if (responsavelPraticanteRepositorio.findByEmail(responsavelPraticante.getEmail()).isPresent()) {
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o email "
-                                + responsavelPraticante.getEmail() + " cadastrado no sistema!");
-
-                    } else {
-                        return responsavelPraticanteRepositorio.save(responsavelPraticante);
-                    }
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado o responsável do praticante!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados do responsável do praticante!");
+        if (responsavelPraticante.getPraticante().getIdPraticante() == null) {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
         }
 
+        praticanteRepositorio.findById(responsavelPraticante
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
+
+        if (!responsavelPraticanteRepositorio.buscarResponsavelPraticantePorChaveEstrangeira(responsavelPraticante.getPraticante().getIdPraticante()).isPresent()) {
+
+            if (responsavelPraticanteRepositorio.findByTelefoneTrabalho(responsavelPraticante.getTelefoneTrabalho()).isPresent()) {
+                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone de trabalho "
+                        + responsavelPraticante.getTelefoneTrabalho() + " cadastrado no sistema!");
+
+            } else if (responsavelPraticanteRepositorio.findByTelefone(responsavelPraticante.getTelefone()).isPresent()) {
+                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone "
+                        + responsavelPraticante.getTelefone() + " cadastrado no sistema!");
+
+            } else if (responsavelPraticanteRepositorio.findByEmail(responsavelPraticante.getEmail()).isPresent()) {
+                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o email "
+                        + responsavelPraticante.getEmail() + " cadastrado no sistema!");
+
+            } else {
+                return responsavelPraticanteRepositorio.save(responsavelPraticante);
+            }
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado o responsável do praticante!");
+        }
     }
+
 
     @Override
     public ResponsavelPraticante atualizar(ResponsavelPraticante responsavelPraticante) {

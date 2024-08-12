@@ -7,6 +7,7 @@ import com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional.C
 import com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.CompletudeMatriculaServico;
 import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,28 +20,26 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
 
     public CompletudeMatricula salvarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        try {
-            if (completudeMatricula.getPraticante().getIdPraticante() != null) {
+        if (completudeMatricula.getPraticante().getIdPraticante() == null) {
+            throw new ExcecaoDeRegrasDeNegocio("Praticante não identificado para salvar a completude de matrícula.");
+        }
 
-                praticanteRepositorio.findById(completudeMatricula
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + completudeMatricula.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!completudeMatriculaRepositorio.buscarCompletudeMatriculaPorChaveEstrangeira(completudeMatricula.getPraticante().getIdPraticante()).isPresent()) {
+        praticanteRepositorio.findById(completudeMatricula.getPraticante().getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                        Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS + completudeMatricula.getPraticante().getIdPraticante() + "!"
+                ));
 
-                    return completudeMatriculaRepositorio.save(completudeMatricula);
-                } else {
+        completudeMatriculaRepositorio.buscarCompletudeMatriculaPorChaveEstrangeira(completudeMatricula.getPraticante().getIdPraticante())
+                .ifPresent(c -> {
                     throw new ExcecaoDeRegrasDeNegocio("Essa completude de matrícula já foi cadastrada!");
-                }
+                });
 
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a completude de matrícula, pois não foi possível identificar a qual praticante esse cadastro se refere!");
-            }
+        try {
+            return completudeMatriculaRepositorio.save(completudeMatricula);
+        } catch (DataAccessException e) {
+            throw new ExcecaoDeRegrasDeNegocio("Erro ao acessar o banco de dados ao salvar a completude de matrícula do praticante.");
         } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a completude de matrícula do praticante!");
+            throw new ExcecaoDeRegrasDeNegocio("Erro inesperado ao salvar a completude de matrícula do praticante.");
         }
     }
 

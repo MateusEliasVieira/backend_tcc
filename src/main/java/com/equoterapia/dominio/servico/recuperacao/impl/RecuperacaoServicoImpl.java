@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.Optional;
 
 @Service
 public class RecuperacaoServicoImpl implements RecuperacaoServico {
@@ -59,34 +60,34 @@ public class RecuperacaoServicoImpl implements RecuperacaoServico {
 
     @Override
     public void recuperarConta(String para) {
+
+        Usuario usuario = usuarioRepositorio.findByEmail(para)
+                .orElseThrow(() -> {
+                    throw new ExcecaoDeRegrasDeNegocio("Email não encontrado!");
+                });
+
+
+        System.out.println("Usuario = " + usuario.getNome());
+
         try {
-            Usuario usuario = usuarioRepositorio.findByEmail(para).get();
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
 
-            if (usuario != null) {
-                // exist usuario
+            // Define o destinatário, assunpara e o conteúdo HTML do e-mail
+            helper.setTo(para);
+            helper.setSubject("Recuperação de conta");
 
-                MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            String newToken = JwtToken.generateTokenJWT(usuario); // gerar novo token
+            usuario.setToken(newToken); // atualizar token do usuario
+            Usuario usuarioAtualizadoComNovoToken = usuarioRepositorio.save(usuario); // salvar mudanças
+            String token = usuarioAtualizadoComNovoToken.getToken(); // obter o token atualizado
 
-                // Define o destinatário, assunpara e o conteúdo HTML do e-mail
-                helper.setTo(para);
-                helper.setSubject("Recuperação de conta");
+            // Use HTML para criar um link estilizado
+            String HTML = new HtmlEmail().gerarHtmlDeEmail("http://localhost:3000/#/nova-senha?token=" + token);
+            helper.setSubject("Equipe de Equoterapia");
+            helper.setText(HTML, true);
+            javaMailSender.send(mimeMessage);
 
-                String newToken = JwtToken.generateTokenJWT(usuario); // gerar novo token
-                usuario.setToken(newToken); // atualizar token do usuario
-                Usuario usuarioAtualizadoComNovoToken = usuarioRepositorio.save(usuario); // salvar mudanças
-                String token = usuarioAtualizadoComNovoToken.getToken(); // obter o token atualizado
-
-                // Use HTML para criar um link estilizado
-                String HTML = new HtmlEmail().gerarHtmlDeEmail("http://localhost:3000/#/nova-senha?token=" + token);
-                helper.setSubject("Equipe de Equoterapia");
-                helper.setText(HTML, true);
-                javaMailSender.send(mimeMessage);
-
-            } else {
-                // not exist usuario
-                throw new ExcecaoDeRegrasDeNegocio("Não existe usuário cadastrado no sistema com o email informado!");
-            }
         } catch (MailException | MessagingException e) {
             throw new ExcecaoDeRegrasDeNegocio("Erro ao recuperar conta para " + para);
         }

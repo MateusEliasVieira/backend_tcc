@@ -20,6 +20,7 @@ public class CompletudeMatriculaControlador {
 
     @PostMapping("/salvar-completude-matricula-do-praticante")
     public ResponseEntity<?> salvarCompletudeMatricula(@RequestBody @Valid CompletudeMatriculaEntradaDTO completudeMatriculaEntradaDTO){
+        System.out.println("Data "+completudeMatriculaEntradaDTO.getDataCompletudeMatricula());
         CompletudeMatricula completudeMatriculaSalvar = PraticanteMapeador.converterCompletudeMatriculaEntradaDTOParaCompletudeMatricula(completudeMatriculaEntradaDTO);
         CompletudeMatriculaSaidaDTO completudeMatriculaSaidaDTO = PraticanteMapeador.converterCompletudeMatriculaParaCompletudeMatriculaSaidaDTO(completudeMatriculaServico.salvarCompletudeMatricula(completudeMatriculaSalvar));
         return new ResponseEntity<CompletudeMatriculaSaidaDTO>(completudeMatriculaSaidaDTO, HttpStatus.CREATED);
