@@ -3,10 +3,7 @@ package com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica;
 import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -22,8 +19,8 @@ public class Linguagem {
     private PreencherLegendaEnum compreensaoVerbal;
     private PreencherLegendaEnum gesto;
     private PreencherLegendaEnum gritos;
-    private PreencherLegendaEnum mímicaFacial;
-    private PreencherLegendaEnum monossílabos;
+    private PreencherLegendaEnum mimicaFacial;
+    private PreencherLegendaEnum monossilabos;
     private PreencherLegendaEnum frasesCurtas;
     private PreencherLegendaEnum frasesCompletas;
 

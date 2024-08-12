@@ -24,6 +24,8 @@ public class SobreACrianca {
     private SImOuNaoEnum cuidadosPreNatais;
     private SImOuNaoEnum chorouNoNascimento;
     private String alimentacao;
+    @Lob // usada em JPA para indicar que um atributo de uma entidade deve ser mapeado para um tipo de objeto grande no banco de dados
+    @Column(columnDefinition = "LONGTEXT")
     private String observacao;
 
     @OneToOne

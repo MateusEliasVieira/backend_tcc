@@ -32,6 +32,8 @@ public class EmPe {
     private String consideracoesSeqMovRolaSenta;
     private SImOuNaoEnum passaParaSentado;
     private String consideracoesPassaParaSentado;
+    @Lob // usada em JPA para indicar que um atributo de uma entidade deve ser mapeado para um tipo de objeto grande no banco de dados
+    @Column(columnDefinition = "LONGTEXT")
     private String observacoes;
 
 

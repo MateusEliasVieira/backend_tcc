@@ -9,6 +9,8 @@ import com.equoterapia.utilidades.Resposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
@@ -20,16 +22,17 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
     @Override
     public Emergencia salvarEmergencia(Emergencia emergencia) {
-        try {
-            if (emergencia.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(emergencia
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
+        if (emergencia.getPraticante().getIdPraticante() != null) {
 
-                if (!emergenciaRepositorio.buscarEmergenciaPorChaveEstrangeira(emergencia.getPraticante().getIdPraticante()).isPresent()) {
+            praticanteRepositorio.findById(emergencia
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
+            if (!emergenciaRepositorio.buscarEmergenciaPorChaveEstrangeira(emergencia.getPraticante().getIdPraticante()).isPresent()) {
+
+                if (emergencia.getTelefone() != null) {
                     if (emergenciaRepositorio.findByTelefone(emergencia.getTelefone()).isPresent()) {
                         throw new ExcecaoDeRegrasDeNegocio("Já existe um registro de emergência com esse telefone "
                                 + emergencia.getTelefone() + " para o praticante!");
@@ -38,14 +41,16 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
                         return emergenciaRepositorio.save(emergencia);
                     }
                 } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado os dados de emergência do praticante!");
+                    return emergenciaRepositorio.save(emergencia);
                 }
+
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado os dados de emergência do praticante!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados de emergência do praticante!");
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override
@@ -66,7 +71,7 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
                     } else {
                         return emergenciaRepositorio.save(emergencia);
                     }
-                }else{
+                } else {
                     throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois ainda não foi cadastrado!");
                 }
 
