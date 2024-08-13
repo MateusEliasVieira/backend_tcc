@@ -122,3 +122,6 @@ Data: 12/08/2024 13:30:40, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Op
 Data: 12/08/2024 14:13:30, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)
 Data: 12/08/2024 15:18:31, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)
 Data: 12/08/2024 15:33:47, IP: 0:0:0:0:0:0:0:1, Navegador: Mobile Safari, Sistema Operacional: Mac OS X (iPhone) Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)
+Data: 12/08/2024 17:24:34, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)
+Data: 12/08/2024 21:47:04, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)
+Data: 13/08/2024 09:22:25, IP: 127.0.0.1, Navegador: Chrome 12, Sistema Operacional: Windows 10 Login = (Nome de Usuário: mateus10, Senha: mateus1024!!)

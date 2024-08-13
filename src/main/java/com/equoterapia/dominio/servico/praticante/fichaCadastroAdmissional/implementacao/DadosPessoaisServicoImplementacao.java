@@ -31,6 +31,14 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
     @Override
     public DadosPessoais salvarDadosPessoais(DadosPessoais dadosPessoais) {
 
+        if (dadosPessoais.getCpf().isEmpty()) {
+            throw new ExcecaoDeRegrasDeNegocio("Informe o CPF!");
+        }
+
+        if (dadosPessoais.getCartaoSUS().isEmpty()) {
+            throw new ExcecaoDeRegrasDeNegocio("Informe o cartão do SUS!");
+        }
+
         if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
 
             throw new ExcecaoDeRegrasDeNegocio("O praticante com CPF "
@@ -60,34 +68,40 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais) {
-        try {
-            if (dadosPessoais.getIdDadosPessoais() != null) {
 
-                praticanteRepositorio.findById(dadosPessoais
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos dados pessoais!"));
-
-                if (dadosPessoaisRepositorio.findById(dadosPessoais.getIdDadosPessoais()).isPresent()) {
-
-                    if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
-                        // cadastros diferentes
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cpf " + dadosPessoais.getCpf());
-                    } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
-                        // cadastros diferentes
-                        throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cartão do SUS " + dadosPessoais.getCartaoSUS());
-                    } else {
-                        return dadosPessoaisRepositorio.save(dadosPessoais);
-                    }
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de dados pessoais!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados pessoais, pois não foi possível encontra-lo!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (dadosPessoais.getIdDadosPessoais() == null) {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados pessoais, pois não foi possível encontra-lo!");
         }
+
+        if (dadosPessoais.getCpf().isEmpty()) {
+            throw new ExcecaoDeRegrasDeNegocio("Informe o CPF!");
+        }
+
+        if (dadosPessoais.getCartaoSUS().isEmpty()) {
+            throw new ExcecaoDeRegrasDeNegocio("Informe o cartão do SUS!");
+        }
+
+        if (dadosPessoaisRepositorio.findById(dadosPessoais.getIdDadosPessoais()).isPresent()) {
+
+            if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).isPresent()) {
+
+                if (dadosPessoaisRepositorio.findByCpf(dadosPessoais.getCpf()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
+                    // cadastros diferentes
+                    throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cpf " + dadosPessoais.getCpf());
+                }
+
+            } else if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).isPresent()) {
+                if (dadosPessoaisRepositorio.findByCartaoSUS(dadosPessoais.getCartaoSUS()).get().getIdDadosPessoais() != dadosPessoais.getIdDadosPessoais()) {
+                    // cadastros diferentes
+                    throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o cartão do SUS " + dadosPessoais.getCartaoSUS());
+                }
+            }
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de dados pessoais!");
+        }
+
+        return dadosPessoaisRepositorio.save(dadosPessoais);
+
     }
 
     @Override
