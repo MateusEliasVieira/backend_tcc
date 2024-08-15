@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -25,6 +26,8 @@ public class ResponsavelPraticanteSaidaDTO {
     private String email;
     private String telefoneTrabalho;
     private Double rendaFamiliar;
+
+    private PraticanteIdDTO praticante;
 
 }
 

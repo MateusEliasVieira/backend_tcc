@@ -42,25 +42,18 @@ public class OutrasAtividadesTardeServicoImplementacao implements OutrasAtividad
 
     @Override
     public OutrasAtividadesTarde atualizarOutrasAtividadesTarde(OutrasAtividadesTarde outrasAtividadesTarde) {
-        try {
-            if (outrasAtividadesTarde.getPraticante().getIdPraticante() != null) {
+        if (outrasAtividadesTarde.getIdOutrasAtividadesTarde() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as atividades da tarde do praticante, pois não foi possível encontra-la!");
 
-                praticanteRepositorio.findById(outrasAtividadesTarde
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a outras atividades da manhã!"));
+        praticanteRepositorio.findById(outrasAtividadesTarde
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a outras atividades da tarde!"));
 
-                if (outrasAtividadesTardeRepositorio.findById(outrasAtividadesTarde.getIdOutrasAtividadesTarde()).isPresent()) {
-                    return outrasAtividadesTardeRepositorio.save(outrasAtividadesTarde);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividades de manhã do praticante, pois ainda não foi cadastrada!");
-                }
-
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (outrasAtividadesTardeRepositorio.findById(outrasAtividadesTarde.getIdOutrasAtividadesTarde()).isPresent()) {
+            return outrasAtividadesTardeRepositorio.save(outrasAtividadesTarde);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividades de tarde do praticante, pois ainda não foi cadastrada!");
         }
     }
 

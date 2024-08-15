@@ -45,26 +45,22 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
 
     @Override
     public EducacaoPraticante atualizarEducacaoPraticante(EducacaoPraticante educacaoPraticante) {
-        try {
-            if (educacaoPraticante.getIdEducacaoPraticante() != null) {
 
-                praticanteRepositorio.findById(educacaoPraticante
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a educação!"));
+        if (educacaoPraticante.getIdEducacaoPraticante() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a educação do praticante, pois não foi possível encontra-la!");
 
-                if (educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPraticante()).isPresent()) {
-                    return educacaoPraticanteRepositorio.save(educacaoPraticante);
+        praticanteRepositorio.findById(educacaoPraticante
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a educação!"));
 
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe registros sobre a educação do praticante cadastrado no sistema!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a educação do praticante, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPraticante()).isPresent()) {
+            return educacaoPraticanteRepositorio.save(educacaoPraticante);
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe registros sobre a educação do praticante cadastrado no sistema!");
         }
+
     }
 
     @Override

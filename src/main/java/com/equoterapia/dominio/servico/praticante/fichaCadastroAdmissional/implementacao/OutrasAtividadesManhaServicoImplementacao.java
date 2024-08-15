@@ -47,26 +47,21 @@ public class OutrasAtividadesManhaServicoImplementacao implements OutrasAtividad
 
     @Override
     public OutrasAtividadesManha atualizarOutrasAtividadesManha(OutrasAtividadesManha outrasAtividadesManha) {
-        try {
-            if (outrasAtividadesManha.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(outrasAtividadesManha
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a outras atividades da manhã!"));
+        if (outrasAtividadesManha.getIdOutrasAtividadesManha() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividdades da manhã do praticante, pois não foi possível encontra-la!");
 
-                if (outrasAtividadesManhaRepositorio.findById(outrasAtividadesManha.getIdOutrasAtividadesManha()).isPresent()) {
-                    return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividades de manhã do praticante, pois ainda não foi cadastrada!");
-                }
+        praticanteRepositorio.findById(outrasAtividadesManha
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a outras atividades da manhã!"));
 
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (outrasAtividadesManhaRepositorio.findById(outrasAtividadesManha.getIdOutrasAtividadesManha()).isPresent()) {
+            return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividades de manhã do praticante, pois ainda não foi cadastrada!");
         }
+
     }
 
     @Override

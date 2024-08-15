@@ -29,7 +29,7 @@ public class EducacaoPraticanteControlador {
     public ResponseEntity<?> atualizarEducacaoPraticante(@RequestBody @Valid EducacaoPraticanteEntradaDTO educacaoPraticanteEntradaDTO){
         EducacaoPraticante educacaoPraticante = PraticanteMapeador.converterEducacaoPraticanteEntradaDTOParaEducacaoPraticante(educacaoPraticanteEntradaDTO);
         EducacaoPraticanteSaidaDTO educacaoPraticanteSaidaDTO = PraticanteMapeador.converterEducacaoPraticanteParaEducacaoPraticanteSaidaDTO(educacaoServico.atualizarEducacaoPraticante(educacaoPraticante));
-        return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.OK);
+        return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/buscar-educacao-do-praticante-por-id")

@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.ClasseDeEscola;
 import com.equoterapia.dominio.enums.PeriodoEnum;
 import com.equoterapia.dominio.enums.TipoDeInstituicaoEducacionalEnum;
@@ -22,5 +23,7 @@ public class EducacaoPraticanteSaidaDTO {
     private String instituicaoEducacional;
     private TipoDeInstituicaoEducacionalEnum tipoDeInstituicaoEducacional;
     private PeriodoEnum periodo;
+
+    private PraticanteIdDTO praticante;
 }
 

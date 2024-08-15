@@ -28,7 +28,7 @@ public class ResponsavelPeloPraticanteControlador {
     public ResponseEntity<?> atualizarResponsavelPeloPraticante(@RequestBody @Valid ResponsavelPraticanteEntradaDTO responsavelPraticanteEntradaDTO){
         ResponsavelPraticante responsavelPraticante = PraticanteMapeador.converterResponsavelPraticanteEntradaDTOEmResponsavelPraticante(responsavelPraticanteEntradaDTO);
         ResponsavelPraticanteSaidaDTO responsavelPraticanteSaidaDTO = PraticanteMapeador.converterResponsavelPraticanteEmResponsavelPraticanteSaidaDTO(responsavelPraticanteServico.atualizar(responsavelPraticante));
-        return new ResponseEntity<ResponsavelPraticanteSaidaDTO>(responsavelPraticanteSaidaDTO, HttpStatus.OK);
+        return new ResponseEntity<ResponsavelPraticanteSaidaDTO>(responsavelPraticanteSaidaDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/buscar-responsavel-do-praticante-por-id")

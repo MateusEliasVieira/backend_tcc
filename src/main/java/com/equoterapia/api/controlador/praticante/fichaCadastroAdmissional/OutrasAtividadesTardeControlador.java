@@ -24,7 +24,7 @@ public class OutrasAtividadesTardeControlador {
     }
 
     @PutMapping("/atualizar-outras-atividades-tarde-do-praticante")
-    public ResponseEntity<?> atualizarOutrasAtividadesTarde(OutrasAtividadesTardeEntradaDTO outrasAtividadesTardeEntradaDTO){
+    public ResponseEntity<?> atualizarOutrasAtividadesTarde(@RequestBody @Valid OutrasAtividadesTardeEntradaDTO outrasAtividadesTardeEntradaDTO){
         servico.atualizarOutrasAtividadesTarde(PraticanteMapeador.converterOutrasAtividadesTardeEntradaDTOEmOutrasAtividadesTarde(outrasAtividadesTardeEntradaDTO));
         return new ResponseEntity<Mensagem>(new Mensagem("Outras atividades da tarde atualizadas com sucesso!"), HttpStatus.CREATED);
     }

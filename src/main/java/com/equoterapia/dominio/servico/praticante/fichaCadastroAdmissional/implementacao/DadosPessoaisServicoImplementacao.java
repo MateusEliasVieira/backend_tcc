@@ -69,17 +69,20 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
     @Override
     public DadosPessoais atualizarDadosPessoais(DadosPessoais dadosPessoais) {
 
-        if (dadosPessoais.getIdDadosPessoais() == null) {
+        if (dadosPessoais.getIdDadosPessoais() == null)
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados pessoais, pois não foi possível encontra-lo!");
-        }
 
-        if (dadosPessoais.getCpf().isEmpty()) {
+
+        praticanteRepositorio.findById(dadosPessoais.getPraticante().getIdPraticante())
+                .orElseThrow(()->{throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados pessoais do praticante pois não foi possível identifica-lo!");});
+
+        if (dadosPessoais.getCpf().isEmpty())
             throw new ExcecaoDeRegrasDeNegocio("Informe o CPF!");
-        }
 
-        if (dadosPessoais.getCartaoSUS().isEmpty()) {
+
+        if (dadosPessoais.getCartaoSUS().isEmpty())
             throw new ExcecaoDeRegrasDeNegocio("Informe o cartão do SUS!");
-        }
+
 
         if (dadosPessoaisRepositorio.findById(dadosPessoais.getIdDadosPessoais()).isPresent()) {
 

@@ -22,7 +22,7 @@ public class OutrasAtividadesManhaEntradaDTO {
     private String sabado;
     private String domingo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

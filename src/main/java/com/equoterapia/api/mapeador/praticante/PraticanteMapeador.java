@@ -46,6 +46,11 @@ public class PraticanteMapeador {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(dadosPessoaisEntradaDTO, DadosPessoais.class);
     }
+    public static DadosPessoais converterDadosPessoaisAtualizacaoEntradaDTOParaDadosPessoais(DadosPessoaisAtualizacaoEntradaDTO dadosPessoaisAtualizacaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(dadosPessoaisAtualizacaoEntradaDTO, DadosPessoais.class);
+    }
+
 
     public static DadosPessoaisSaidaDTO converterDadosPessoaisParaDadosPessoaisSaidaDTO(DadosPessoais dadosPessoais) {
         ModelMapper modelMapper = new ModelMapper();

@@ -1,5 +1,6 @@
 package com.equoterapia.api.controlador.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.DadosPessoaisAtualizacaoEntradaDTO;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.DadosPessoaisEntradaDTO;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.DadosPessoaisSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
@@ -30,8 +31,8 @@ public class DadosPessoaisControlador {
     }
 
     @PutMapping("/atualizar-dados-pessoais-do-praticante")
-    public ResponseEntity<?> atualizarDadosPessoais(@RequestBody @Valid DadosPessoaisEntradaDTO dadosPessoaisEntradaDTO){
-        DadosPessoais dadosPessoais = PraticanteMapeador.converterDadosPessoaisEntradaDTOParaDadosPessoais(dadosPessoaisEntradaDTO);
+    public ResponseEntity<?> atualizarDadosPessoais(@RequestBody @Valid DadosPessoaisAtualizacaoEntradaDTO dadosPessoaisAtualizacaoEntradaDTO){
+        DadosPessoais dadosPessoais = PraticanteMapeador.converterDadosPessoaisAtualizacaoEntradaDTOParaDadosPessoais(dadosPessoaisAtualizacaoEntradaDTO);
         DadosPessoais dadosPessoaisAtualizado = dadosPessoaisServico.atualizarDadosPessoais(dadosPessoais);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoaisAtualizado);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.CREATED);

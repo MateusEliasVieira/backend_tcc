@@ -33,7 +33,7 @@ public class EducacaoPraticanteEntradaDTO {
     private PeriodoEnum periodo;
 
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }
