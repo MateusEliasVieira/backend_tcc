@@ -46,25 +46,21 @@ public class PlanoTerapeuticoSingularServicoImplementacao implements PlanoTerape
 
 
     public PlanoTerapeuticoSingular atualizarPlanoTerapeuticoSingular(PlanoTerapeuticoSingular planoTerapeuticoSingular) {
-        try {
-            if (planoTerapeuticoSingular.getIdPlanoTerapeuticoSingular() != null) {
 
-                praticanteRepositorio.findById(planoTerapeuticoSingular
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao plano terapêutico singular!"));
+        if (planoTerapeuticoSingular.getIdPlanoTerapeuticoSingular() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar o plano terapêutico singular, pois não foi possível encontra-lo!");
 
-                if (planoTerapeuticoSingularRepositorio.findById(planoTerapeuticoSingular.getIdPlanoTerapeuticoSingular()).isPresent()) {
-                    return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de plano terapêutico singular!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar o plano terapêutico singular, pois não foi possível encontra-lo!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(planoTerapeuticoSingular
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao plano terapêutico singular!"));
+
+        if (planoTerapeuticoSingularRepositorio.findById(planoTerapeuticoSingular.getIdPlanoTerapeuticoSingular()).isPresent()) {
+            return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de plano terapêutico singular!");
         }
+
     }
 
 
