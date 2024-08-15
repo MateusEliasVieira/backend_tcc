@@ -55,33 +55,27 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
 
     @Override
     public Emergencia atualizarEmergencia(Emergencia emergencia) { // id obrigatório
-        try {
 
-            if (emergencia.getPraticante().getIdPraticante() != null) {
+        if (emergencia.getPraticante().getIdPraticante() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
 
-                praticanteRepositorio.findById(emergencia
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a emergência!"));
+        praticanteRepositorio.findById(emergencia
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a emergência!"));
 
-                if (emergenciaRepositorio.findById(emergencia.getIdEmergencia()).isPresent()) {
-                    if (emergenciaRepositorio.findByTelefone(emergencia.getTelefone()).get().getIdEmergencia() != emergencia.getIdEmergencia()) {
-                        // cadastros diferentes
-                        throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois já existe um cadastro com o telefone " + emergencia.getTelefone() + "!");
-                    } else {
-                        return emergenciaRepositorio.save(emergencia);
-                    }
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois ainda não foi cadastrado!");
-                }
-
+        if (emergenciaRepositorio.findById(emergencia.getIdEmergencia()).isPresent()) {
+            Optional<Emergencia> optional = emergenciaRepositorio.findByTelefone(emergencia.getTelefone());
+            if (optional.isPresent() && optional.get().getIdEmergencia() != emergencia.getIdEmergencia()) {
+                // cadastros diferentes
+                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois já existe um cadastro com o telefone " + emergencia.getTelefone() + "!");
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
+                return emergenciaRepositorio.save(emergencia);
             }
-
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois ainda não foi cadastrado!");
         }
+
     }
 
     @Override

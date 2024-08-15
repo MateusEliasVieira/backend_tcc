@@ -32,7 +32,7 @@ public class EmergenciaControlador {
         Emergencia emergencia = PraticanteMapeador.converterEmergenciaEntradaDTOParaEmergencia(emergenciaEntradaDTO);
         Emergencia emergenciaSalva = emergenciaServico.atualizarEmergencia(emergencia);
         EmergenciaSaidaDTO emergenciaSaidaDTO = PraticanteMapeador.converterEmergenciaParaEmergenciaSaidaDTO(emergenciaSalva);
-        return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.OK);
+        return new ResponseEntity<EmergenciaSaidaDTO>(emergenciaSaidaDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/buscar-emergencia-do-praticante-por-id")

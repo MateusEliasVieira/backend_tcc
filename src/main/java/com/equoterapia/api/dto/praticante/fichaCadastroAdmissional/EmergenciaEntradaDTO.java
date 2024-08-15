@@ -25,7 +25,7 @@ public class EmergenciaEntradaDTO {
     private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano; // Caso tenha, qual é?
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

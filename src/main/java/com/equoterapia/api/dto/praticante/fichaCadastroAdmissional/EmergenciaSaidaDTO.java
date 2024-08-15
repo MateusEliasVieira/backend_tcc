@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import lombok.*;
 
@@ -16,5 +17,7 @@ public class EmergenciaSaidaDTO {
     private String telefone;
     private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano;
+
+    private PraticanteIdDTO praticante;
 
 }
