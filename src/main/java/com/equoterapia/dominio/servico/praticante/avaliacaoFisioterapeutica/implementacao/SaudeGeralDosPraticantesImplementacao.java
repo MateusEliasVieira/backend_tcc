@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPraticantesServico {
-  
+
     @Autowired
     private SaudeGeralDosPraticantesRepositorio saudeGeralDosPraticantesRepositorio;
     @Autowired
@@ -46,24 +46,19 @@ public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPrati
 
     @Override
     public SaudeGeralDoPraticante atualizarSaudeGeralDosPraticantes(SaudeGeralDoPraticante saudeGeralDoPraticante) {
-        try {
-            if (saudeGeralDoPraticante.getIdSaudeGeralDoPraticante() != null) {
 
-                praticanteRepositorio.findById(saudeGeralDoPraticante
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde geral do praticante!"));
+        if (saudeGeralDoPraticante.getIdSaudeGeralDoPraticante() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a saúde geral do praticante, pois não foi possível encontra-la!");
 
-                if (saudeGeralDosPraticantesRepositorio.findById(saudeGeralDoPraticante.getIdSaudeGeralDoPraticante()).isPresent()) {
-                    return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde geral dos praticante!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a saúde geral do praticante, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(saudeGeralDoPraticante
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde geral do praticante!"));
+
+        if (saudeGeralDosPraticantesRepositorio.findById(saudeGeralDoPraticante.getIdSaudeGeralDoPraticante()).isPresent()) {
+            return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde geral dos praticante!");
         }
     }
 

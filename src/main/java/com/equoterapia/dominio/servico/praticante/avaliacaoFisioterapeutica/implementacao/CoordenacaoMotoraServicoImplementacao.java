@@ -1,4 +1,5 @@
 package com.equoterapia.dominio.servico.praticante.avaliacaoFisioterapeutica.implementacao;
+
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.CoordenacaoMotora;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraServico {
-  
+
     @Autowired
     private CoordenacaoMotoraRepositorio coordenacaoMotoraRepositorio;
     @Autowired
@@ -45,25 +46,20 @@ public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraS
 
     @Override
     public CoordenacaoMotora atualizarCoordenacaoMotora(CoordenacaoMotora coordenacaoMotora) {
-        try {
-            if (coordenacaoMotora.getIdCoordenacaoMotora() != null) {
+        if (coordenacaoMotora.getIdCoordenacaoMotora() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a coordenação motora, pois não foi possível encontra-la!");
 
-                praticanteRepositorio.findById(coordenacaoMotora
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a coordenação motora!"));
+        praticanteRepositorio.findById(coordenacaoMotora
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a coordenação motora!"));
 
-                if (coordenacaoMotoraRepositorio.findById(coordenacaoMotora.getIdCoordenacaoMotora()).isPresent()) {
-                    return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de coordenação motora!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a coordenação motora, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (coordenacaoMotoraRepositorio.findById(coordenacaoMotora.getIdCoordenacaoMotora()).isPresent()) {
+            return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de coordenação motora!");
         }
+
     }
 
     @Override

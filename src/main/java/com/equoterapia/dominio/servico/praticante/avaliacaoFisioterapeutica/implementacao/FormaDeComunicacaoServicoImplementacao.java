@@ -1,4 +1,5 @@
 package com.equoterapia.dominio.servico.praticante.avaliacaoFisioterapeutica.implementacao;
+
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.FormaDeComunicacao;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicacaoServico {
-  
+
     @Autowired
     private FormaDeComunicacaoRepositorio formaDeComunicacaoRepositorio;
     @Autowired
@@ -45,25 +46,21 @@ public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicaca
 
     @Override
     public FormaDeComunicacao atualizarFormaDeComunicacao(FormaDeComunicacao formaDeComunicacao) {
-        try {
-            if (formaDeComunicacao.getIdFormaDeComunicacao() != null) {
 
-                praticanteRepositorio.findById(formaDeComunicacao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a forma de comunicação!"));
+        if (formaDeComunicacao.getIdFormaDeComunicacao() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a forma de comunicação, pois não foi possível encontra-la!");
 
-                if (formaDeComunicacaoRepositorio.findById(formaDeComunicacao.getIdFormaDeComunicacao()).isPresent()) {
-                    return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de forma de comunicação!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a forma de comunicação, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(formaDeComunicacao
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a forma de comunicação!"));
+
+        if (formaDeComunicacaoRepositorio.findById(formaDeComunicacao.getIdFormaDeComunicacao()).isPresent()) {
+            return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de forma de comunicação!");
         }
+
     }
 
     @Override

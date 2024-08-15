@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
-  
+
     @Autowired
     private QuadroAtualRepositorio quadroAtualRepositorio;
     @Autowired
@@ -46,25 +46,21 @@ public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
 
     @Override
     public QuadroAtual atualizarQuadroAtual(QuadroAtual quadroAtual) {
-        try {
-            if (quadroAtual.getIdQuadroAtual() != null) {
 
-                praticanteRepositorio.findById(quadroAtual
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao quadro atual!"));
+        if (quadroAtual.getIdQuadroAtual() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar o quadro atual, pois não foi possível encontra-la!");
 
-                if (quadroAtualRepositorio.findById(quadroAtual.getIdQuadroAtual()).isPresent()) {
-                    return quadroAtualRepositorio.save(quadroAtual);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de quadro atual!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar o quadro atual, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(quadroAtual
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao quadro atual!"));
+
+        if (quadroAtualRepositorio.findById(quadroAtual.getIdQuadroAtual()).isPresent()) {
+            return quadroAtualRepositorio.save(quadroAtual);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de quadro atual!");
         }
+
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmPeServicoImplementacao implements EmPeServico {
-  
+
     @Autowired
     private EmPeRepositorio emPeRepositorio;
     @Autowired
@@ -46,25 +46,21 @@ public class EmPeServicoImplementacao implements EmPeServico {
 
     @Override
     public EmPe atualizarEmPe(EmPe emPe) {
-        try {
-            if (emPe.getIdEmPe() != null) {
 
-                praticanteRepositorio.findById(emPe
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a Em Pé!"));
+        if (emPe.getIdEmPe() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar Em Pé, pois não foi possível encontra-lo!");
 
-                if (emPeRepositorio.findById(emPe.getIdEmPe()).isPresent()) {
-                    return emPeRepositorio.save(emPe);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de Em Pé!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar Em Pé, pois não foi possível encontra-lo!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(emPe
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a Em Pé!"));
+
+        if (emPeRepositorio.findById(emPe.getIdEmPe()).isPresent()) {
+            return emPeRepositorio.save(emPe);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de Em Pé!");
         }
+
     }
 
     @Override

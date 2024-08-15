@@ -1,4 +1,5 @@
 package com.equoterapia.dominio.servico.praticante.avaliacaoFisioterapeutica.implementacao;
+
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.EquilibrioEstatico;
 import com.equoterapia.dominio.repositorio.praticante.PraticanteRepositorio;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstaticoServico {
-  
+
     @Autowired
     private EquilibrioEstaticoRepositorio equilibrioEstaticoRepositorio;
     @Autowired
@@ -45,25 +46,21 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
 
     @Override
     public EquilibrioEstatico atualizarEquilibrioEstatico(EquilibrioEstatico equilibrioEstatico) {
-        try {
-            if (equilibrioEstatico.getIdEquilibrioEstatico() != null) {
 
-                praticanteRepositorio.findById(equilibrioEstatico
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a equilibrio estático!"));
+        if (equilibrioEstatico.getIdEquilibrioEstatico() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a equilibrio estático, pois não foi possível encontra-la!");
 
-                if (equilibrioEstaticoRepositorio.findById(equilibrioEstatico.getIdEquilibrioEstatico()).isPresent()) {
-                    return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de equilibrio estático!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a equilibrio estático, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(equilibrioEstatico
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a equilibrio estático!"));
+
+        if (equilibrioEstaticoRepositorio.findById(equilibrioEstatico.getIdEquilibrioEstatico()).isPresent()) {
+            return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de equilibrio estático!");
         }
+        
     }
 
     @Override

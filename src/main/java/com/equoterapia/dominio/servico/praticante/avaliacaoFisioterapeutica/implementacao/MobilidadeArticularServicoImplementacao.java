@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MobilidadeArticularServicoImplementacao implements MobilidadeArticularServico {
-  
+
     @Autowired
     private MobilidadeArticularRepositorio mobilidadeArticularRepositorio;
     @Autowired
@@ -46,25 +46,20 @@ public class MobilidadeArticularServicoImplementacao implements MobilidadeArticu
 
     @Override
     public MobilidadeArticular atualizarMobilidadeArticular(MobilidadeArticular mobilidadeArticular) {
-        try {
-            if (mobilidadeArticular.getIdMobilidadeArticular() != null) {
+        if (mobilidadeArticular.getIdMobilidadeArticular() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a mobilidade articular, pois não foi possível encontra-la!");
 
-                praticanteRepositorio.findById(mobilidadeArticular
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a mobilidade articular!"));
+        praticanteRepositorio.findById(mobilidadeArticular
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a mobilidade articular!"));
 
-                if (mobilidadeArticularRepositorio.findById(mobilidadeArticular.getIdMobilidadeArticular()).isPresent()) {
-                    return mobilidadeArticularRepositorio.save(mobilidadeArticular);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de mobilidade articular!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a mobilidade articular, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        if (mobilidadeArticularRepositorio.findById(mobilidadeArticular.getIdMobilidadeArticular()).isPresent()) {
+            return mobilidadeArticularRepositorio.save(mobilidadeArticular);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de mobilidade articular!");
         }
+
     }
 
     @Override

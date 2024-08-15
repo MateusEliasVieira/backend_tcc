@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoFisioterapeuticaServico {
-  
+
     @Autowired
     private AvaliacaoFisioterapeuticaRepositorio avaliacaoFisioterapeuticaRepositorio;
     @Autowired
@@ -46,25 +46,21 @@ public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoF
 
     @Override
     public AvaliacaoFisioterapeutica atualizarAvaliacaoFisioterapeutica(AvaliacaoFisioterapeutica avaliacaoFisioterapeutica) {
-        try {
-            if (avaliacaoFisioterapeutica.getIdAvaliacaoFisioterapeutica() != null) {
 
-                praticanteRepositorio.findById(avaliacaoFisioterapeutica
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliação fisioterapeutica!"));
+        if (avaliacaoFisioterapeutica.getIdAvaliacaoFisioterapeutica() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a avaliação fisioterapeutica, pois não foi possível encontra-la!");
 
-                if (avaliacaoFisioterapeuticaRepositorio.findById(avaliacaoFisioterapeutica.getIdAvaliacaoFisioterapeutica()).isPresent()) {
-                    return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliação fisioterapeutica!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a avaliação fisioterapeutica, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(avaliacaoFisioterapeutica
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliação fisioterapeutica!"));
+
+        if (avaliacaoFisioterapeuticaRepositorio.findById(avaliacaoFisioterapeutica.getIdAvaliacaoFisioterapeutica()).isPresent()) {
+            return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliação fisioterapeutica!");
         }
+
     }
 
     @Override

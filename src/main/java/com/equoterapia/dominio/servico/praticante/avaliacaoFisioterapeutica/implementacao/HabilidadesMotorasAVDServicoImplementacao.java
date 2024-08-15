@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMotorasAVDServico {
-  
+
     @Autowired
     private HabilidadesMotorasAVDRepositorio habilidadesMotorasAVDRepositorio;
     @Autowired
@@ -46,25 +46,21 @@ public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMot
 
     @Override
     public HabilidadesMotorasAVD atualizarHabilidadesMotorasAVD(HabilidadesMotorasAVD habilidadesMotorasAVD) {
-        try {
-            if (habilidadesMotorasAVD.getIdHabilidadesMotorasAVD() != null) {
 
-                praticanteRepositorio.findById(habilidadesMotorasAVD
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades motoras AVD!"));
+        if (habilidadesMotorasAVD.getIdHabilidadesMotorasAVD() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as habilidades motoras AVD, pois não foi possível encontra-la!");
 
-                if (habilidadesMotorasAVDRepositorio.findById(habilidadesMotorasAVD.getIdHabilidadesMotorasAVD()).isPresent()) {
-                    return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades motoras AVD!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as habilidades motoras AVD, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(habilidadesMotorasAVD
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades motoras AVD!"));
+
+        if (habilidadesMotorasAVDRepositorio.findById(habilidadesMotorasAVD.getIdHabilidadesMotorasAVD()).isPresent()) {
+            return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades motoras AVD!");
         }
+
     }
 
     @Override

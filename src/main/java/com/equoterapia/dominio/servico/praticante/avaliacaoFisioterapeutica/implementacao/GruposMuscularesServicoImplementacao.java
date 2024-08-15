@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GruposMuscularesServicoImplementacao implements GruposMuscularesServico {
-  
+
     @Autowired
     private GruposMuscularesRepositorio gruposMuscularesRepositorio;
     @Autowired
@@ -46,25 +46,21 @@ public class GruposMuscularesServicoImplementacao implements GruposMuscularesSer
 
     @Override
     public GruposMusculares atualizarGruposMusculares(GruposMusculares gruposMusculares) {
-        try {
-            if (gruposMusculares.getIdGruposMusculares() != null) {
 
-                praticanteRepositorio.findById(gruposMusculares
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a grupos musculares!"));
+        if (gruposMusculares.getIdGruposMusculares() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a grupos musculares, pois não foi possível encontra-la!");
 
-                if (gruposMuscularesRepositorio.findById(gruposMusculares.getIdGruposMusculares()).isPresent()) {
-                    return gruposMuscularesRepositorio.save(gruposMusculares);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de grupos musculares!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a grupos musculares, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(gruposMusculares
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a grupos musculares!"));
+
+        if (gruposMuscularesRepositorio.findById(gruposMusculares.getIdGruposMusculares()).isPresent()) {
+            return gruposMuscularesRepositorio.save(gruposMusculares);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de grupos musculares!");
         }
+
     }
 
     @Override
