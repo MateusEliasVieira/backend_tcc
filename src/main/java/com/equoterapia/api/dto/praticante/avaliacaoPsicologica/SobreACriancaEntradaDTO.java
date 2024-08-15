@@ -22,7 +22,7 @@ public class SobreACriancaEntradaDTO {
     private String alimentacao;
     private String observacao;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

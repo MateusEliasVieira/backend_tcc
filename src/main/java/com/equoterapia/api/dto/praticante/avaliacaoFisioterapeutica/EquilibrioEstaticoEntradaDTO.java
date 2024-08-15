@@ -37,7 +37,7 @@ public class EquilibrioEstaticoEntradaDTO {
     private EquilibrioEstaticoEnum umPeOlhosFechados;
     private String comentariosUmPeOlhosFechados;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

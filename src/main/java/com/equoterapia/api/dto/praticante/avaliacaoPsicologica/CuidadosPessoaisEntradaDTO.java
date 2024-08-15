@@ -20,7 +20,7 @@ public class CuidadosPessoaisEntradaDTO {
     private PreencherLegendaEnum vesteRoupasCalcadosSozinho;
     private PreencherLegendaEnum seAlimentaSozinho;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

@@ -27,7 +27,7 @@ public class PlanoTerapeuticoSingularEntradaDTO {
     private String evolucao;
     private String fisioterapeutaImagemDaAssinaturaOuCarimbo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

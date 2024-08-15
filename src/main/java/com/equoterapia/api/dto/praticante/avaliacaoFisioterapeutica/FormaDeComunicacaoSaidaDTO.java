@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +23,9 @@ public class FormaDeComunicacaoSaidaDTO {
     private String consideracoesGestos;
     private SImOuNaoEnum usoDosOlhos;
     private String consideracoesUsoDosOlhos;
+
+    private PraticanteIdDTO praticante;
+
 
 }
 

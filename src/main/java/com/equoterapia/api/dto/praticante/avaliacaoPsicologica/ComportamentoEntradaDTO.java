@@ -22,7 +22,7 @@ public class ComportamentoEntradaDTO {
     private PreencherLegendaEnum oposicao;
     private PreencherLegendaEnum atencaoConcentracao;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

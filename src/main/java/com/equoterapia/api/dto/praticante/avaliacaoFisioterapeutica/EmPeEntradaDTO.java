@@ -34,7 +34,7 @@ public class EmPeEntradaDTO {
     private String consideracoesPassaParaSentado;
     private String observacoes;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

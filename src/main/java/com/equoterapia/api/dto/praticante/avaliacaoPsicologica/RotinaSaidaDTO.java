@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import lombok.*;
 
@@ -17,6 +18,8 @@ public class RotinaSaidaDTO {
     private String preferenciasPorBrincadeiras;
     private SImOuNaoEnum aceitaMudancasNaRotina;
     private String consideracoesSobreRotina;
+
+    private PraticanteIdDTO praticante;
 
 }
 

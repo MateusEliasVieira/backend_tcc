@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
@@ -31,6 +32,8 @@ public class EmPeSaidaDTO {
     private SImOuNaoEnum passaParaSentado;
     private String consideracoesPassaParaSentado;
     private String observacoes;
+
+    private PraticanteIdDTO praticante;
 
 }
 

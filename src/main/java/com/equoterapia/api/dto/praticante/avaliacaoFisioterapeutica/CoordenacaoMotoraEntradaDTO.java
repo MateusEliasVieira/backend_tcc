@@ -27,7 +27,7 @@ public class CoordenacaoMotoraEntradaDTO {
     private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

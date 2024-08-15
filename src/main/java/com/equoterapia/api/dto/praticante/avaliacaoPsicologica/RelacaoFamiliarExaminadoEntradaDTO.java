@@ -23,7 +23,7 @@ public class RelacaoFamiliarExaminadoEntradaDTO {
     private PreencherLegendaEnum indiferenca;
     private PreencherLegendaEnum ansiedadePercebidaEntrevistador;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

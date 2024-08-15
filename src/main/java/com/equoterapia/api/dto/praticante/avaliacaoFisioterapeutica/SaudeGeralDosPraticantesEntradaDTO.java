@@ -39,7 +39,7 @@ public class SaudeGeralDosPraticantesEntradaDTO {
     private SImOuNaoEnum alergias;
     private String consideracoesAlergias;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 

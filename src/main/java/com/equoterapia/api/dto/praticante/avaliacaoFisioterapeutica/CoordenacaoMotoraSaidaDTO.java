@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,6 +28,9 @@ public class CoordenacaoMotoraSaidaDTO {
     private String consideracoesMovimentosAlternados;
     private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
+
+    private PraticanteIdDTO praticante;
+
 
 }
 

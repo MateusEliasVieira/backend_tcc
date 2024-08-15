@@ -1,6 +1,7 @@
 package com.equoterapia.api.dto.praticante.evolucao;
 
 import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ public class EvolucaoParaGraficoEntradaDTO {
 
     private Date dataInicial;
     private Date dataFinal;
+
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

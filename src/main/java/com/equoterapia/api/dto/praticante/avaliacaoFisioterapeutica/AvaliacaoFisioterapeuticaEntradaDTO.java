@@ -23,7 +23,7 @@ public class AvaliacaoFisioterapeuticaEntradaDTO {
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

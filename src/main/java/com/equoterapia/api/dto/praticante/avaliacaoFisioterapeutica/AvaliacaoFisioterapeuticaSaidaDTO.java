@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -21,6 +22,8 @@ public class AvaliacaoFisioterapeuticaSaidaDTO {
 
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
+
+    private PraticanteIdDTO praticante;
 
 
 }

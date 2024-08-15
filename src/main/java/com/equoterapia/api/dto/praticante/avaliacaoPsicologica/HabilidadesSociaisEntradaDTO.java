@@ -22,7 +22,7 @@ public class HabilidadesSociaisEntradaDTO {
     private PreencherLegendaEnum heteroagressividade;
     private PreencherLegendaEnum assertividade;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

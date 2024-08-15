@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import lombok.*;
 
@@ -18,5 +19,7 @@ public class ComportamentoSaidaDTO {
     private PreencherLegendaEnum respeitaLimitesRegras;
     private PreencherLegendaEnum oposicao;
     private PreencherLegendaEnum atencaoConcentracao;
+
+    private PraticanteIdDTO praticante;
 
 }

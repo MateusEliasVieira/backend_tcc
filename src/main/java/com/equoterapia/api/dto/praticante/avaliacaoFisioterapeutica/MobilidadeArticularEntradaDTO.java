@@ -51,7 +51,7 @@ public class MobilidadeArticularEntradaDTO {
     private String flexaoPlantarAtivaTornozelo;
     private String flexaoPlantarPassivaTornozelo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 }
 

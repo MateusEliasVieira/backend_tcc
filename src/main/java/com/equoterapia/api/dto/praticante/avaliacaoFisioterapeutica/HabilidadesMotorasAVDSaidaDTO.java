@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.validation.constraints.NotBlank;
@@ -34,6 +35,9 @@ public class HabilidadesMotorasAVDSaidaDTO {
     private String consideracoesAndar;
     private SImOuNaoEnum escritaManual;
     private String consideracoesEscritaManual;
+
+    private PraticanteIdDTO praticante;
+
 
 }
 

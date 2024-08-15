@@ -24,7 +24,7 @@ public class SocializacaoEntradaDTO {
     private PreencherLegendaEnum temOportunidadeContato;
     private PreencherLegendaEnum fazContatoVisual;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

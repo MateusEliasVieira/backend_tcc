@@ -25,7 +25,7 @@ public class TracosDePersonalidadeEntradaDTO {
     private PreencherLegendaEnum dependenciaEmocional;
     private PreencherLegendaEnum timidez;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

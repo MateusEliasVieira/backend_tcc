@@ -24,7 +24,7 @@ public class SaudeEntradaDTO {
     private String sono;
     private String deficitCognitivo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

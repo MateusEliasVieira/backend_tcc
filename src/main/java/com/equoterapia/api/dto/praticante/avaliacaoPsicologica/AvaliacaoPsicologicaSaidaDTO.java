@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import lombok.*;
 
 @Getter
@@ -15,6 +16,8 @@ public class AvaliacaoPsicologicaSaidaDTO {
     private String expectativasFamiliaresTerapiaEquina;
     private String resumoCasoObservacoesComplementares;
     private String imagemAssinaturaOuCRPECarimbo;
+
+    private PraticanteIdDTO praticante;
 
 }
 

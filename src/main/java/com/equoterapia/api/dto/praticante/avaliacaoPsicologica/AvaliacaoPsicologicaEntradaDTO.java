@@ -18,7 +18,7 @@ public class AvaliacaoPsicologicaEntradaDTO {
     private String resumoCasoObservacoesComplementares;
     private String imagemAssinaturaOuCRPECarimbo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import lombok.*;
 
 @Getter
@@ -20,6 +21,8 @@ public class SaudeSaidaDTO {
     private String respiracao;
     private String sono;
     private String deficitCognitivo;
+
+    private PraticanteIdDTO praticante;
 
 }
 

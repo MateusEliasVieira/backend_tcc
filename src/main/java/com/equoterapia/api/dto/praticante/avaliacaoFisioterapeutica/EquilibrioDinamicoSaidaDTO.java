@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.EquilibrioDinamicoEnum;
 import com.equoterapia.dominio.enums.EquilibrioEstaticoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
@@ -25,6 +26,9 @@ public class EquilibrioDinamicoSaidaDTO {
     private String comentariosSaltarPesJuntos;
     private EquilibrioDinamicoEnum correrDesviandoObstaculos;
     private String comentariosCorrerDesviandoObstaculos;
+
+    private PraticanteIdDTO praticante;
+
 
 }
 

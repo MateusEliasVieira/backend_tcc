@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import lombok.*;
 
@@ -35,6 +36,9 @@ public class GruposMuscularesSaidaDTO {
     private String dorsiflexoresTornozeloEsquerdo;
     private String plantiflexoresTornozeloDireito;
     private String plantiflexoresTornozeloEsquerdo;
+
+    private PraticanteIdDTO praticante;
+
 
 }
 

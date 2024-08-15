@@ -39,7 +39,7 @@ public class GruposMuscularesEntradaDTO {
     private String plantiflexoresTornozeloDireito;
     private String plantiflexoresTornozeloEsquerdo;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

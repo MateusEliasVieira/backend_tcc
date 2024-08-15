@@ -21,7 +21,7 @@ public class CompreensaoEntradaDTO {
     private PreencherLegendaEnum executaOrdensVerbaisSimples;
     private PreencherLegendaEnum executaOrdensComplexas;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

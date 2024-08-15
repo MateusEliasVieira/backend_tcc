@@ -21,7 +21,7 @@ public class RotinaEntradaDTO {
     private SImOuNaoEnum aceitaMudancasNaRotina;
     private String consideracoesSobreRotina;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }

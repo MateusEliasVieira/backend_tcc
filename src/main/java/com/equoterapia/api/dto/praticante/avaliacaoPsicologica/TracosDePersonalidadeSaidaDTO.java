@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.avaliacaoPsicologica;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.PreencherLegendaEnum;
 import lombok.*;
 
@@ -21,5 +22,7 @@ public class TracosDePersonalidadeSaidaDTO {
     private PreencherLegendaEnum histeria;
     private PreencherLegendaEnum dependenciaEmocional;
     private PreencherLegendaEnum timidez;
+
+    private PraticanteIdDTO praticante;
 
 }

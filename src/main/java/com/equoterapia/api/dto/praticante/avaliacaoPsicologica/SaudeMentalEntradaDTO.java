@@ -20,7 +20,7 @@ public class SaudeMentalEntradaDTO {
     private PreencherLegendaEnum apresentaDelirios;
     private PreencherLegendaEnum apresentaAlucinacoes;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }
