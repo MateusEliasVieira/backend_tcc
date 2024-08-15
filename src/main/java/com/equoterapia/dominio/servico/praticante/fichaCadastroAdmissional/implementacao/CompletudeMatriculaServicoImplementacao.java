@@ -45,25 +45,21 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
 
     public CompletudeMatricula atualizarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
-        try {
-            if (completudeMatricula.getIdCompletudeMatricula() != null) {
 
-                praticanteRepositorio.findById(completudeMatricula
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a completude de matrícula!"));
+        if (completudeMatricula.getIdCompletudeMatricula() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
 
-                if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
-                    return completudeMatriculaRepositorio.save(completudeMatricula);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de completude de matrícula!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(completudeMatricula
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a completude de matrícula!"));
+
+        if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
+            return completudeMatriculaRepositorio.save(completudeMatricula);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de completude de matrícula!");
         }
+
     }
 
 

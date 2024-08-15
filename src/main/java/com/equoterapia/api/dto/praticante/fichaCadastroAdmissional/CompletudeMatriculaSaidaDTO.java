@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -19,6 +20,8 @@ public class CompletudeMatriculaSaidaDTO {
     private Long idCompletudeMatricula;
     private Date dataCompletudeMatricula;
     private String imagemAssinaturaResponsavel;
+
+    private PraticanteIdDTO praticante;
 
 }
 

@@ -23,7 +23,7 @@ public class CompletudeMatriculaEntradaDTO {
     private Date dataCompletudeMatricula;
     private String imagemAssinaturaResponsavel;
 
-    @NotNull
+    @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 
 }
