@@ -46,25 +46,21 @@ public class SaudeMentalServicoImplementacao implements SaudeMentalServico {
 
     @Override
     public SaudeMental atualizarSaudeMental(SaudeMental saudeMental) {
-        try {
-            if (saudeMental.getIdSaudeMental() != null) {
 
-                praticanteRepositorio.findById(saudeMental
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde mental!"));
+        if (saudeMental.getIdSaudeMental() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a saúde mental, pois não foi possível encontra-la!");
 
-                if (saudeMentalRepositorio.findById(saudeMental.getIdSaudeMental()).isPresent()) {
-                    return saudeMentalRepositorio.save(saudeMental);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde mental!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a saúde mental, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(saudeMental
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde mental!"));
+
+        if (saudeMentalRepositorio.findById(saudeMental.getIdSaudeMental()).isPresent()) {
+            return saudeMentalRepositorio.save(saudeMental);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde mental!");
         }
+
     }
 
     @Override

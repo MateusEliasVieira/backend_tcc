@@ -46,25 +46,21 @@ public class AvaliacaoPsicologicaServicoImplementacao implements AvaliacaoPsicol
 
     @Override
     public AvaliacaoPsicologica atualizarAvaliacaoPsicologica(AvaliacaoPsicologica avaliacaoPsicologica) {
-        try {
-            if (avaliacaoPsicologica.getIdAvaliacaoPsicologica() != null) {
 
-                praticanteRepositorio.findById(avaliacaoPsicologica
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliacao psicologica!"));
+        if (avaliacaoPsicologica.getIdAvaliacaoPsicologica() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a avaliacao psicologica, pois não foi possível encontra-la!");
 
-                if (avaliacaoPsicologicaRepositorio.findById(avaliacaoPsicologica.getIdAvaliacaoPsicologica()).isPresent()) {
-                    return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliacao psicologica!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a avaliacao psicologica, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(avaliacaoPsicologica
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliacao psicologica!"));
+
+        if (avaliacaoPsicologicaRepositorio.findById(avaliacaoPsicologica.getIdAvaliacaoPsicologica()).isPresent()) {
+            return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliacao psicologica!");
         }
+
     }
 
     @Override

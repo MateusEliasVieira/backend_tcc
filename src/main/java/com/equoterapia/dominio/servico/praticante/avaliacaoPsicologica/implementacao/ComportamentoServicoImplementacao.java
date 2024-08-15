@@ -46,25 +46,21 @@ public class ComportamentoServicoImplementacao implements ComportamentoServico {
 
     @Override
     public Comportamento atualizarComportamento(Comportamento comportamento) {
-        try {
-            if (comportamento.getIdComportamento() != null) {
 
-                praticanteRepositorio.findById(comportamento
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a comportamento!"));
+        if (comportamento.getIdComportamento() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a comportamento, pois não foi possível encontra-la!");
 
-                if (comportamentoRepositorio.findById(comportamento.getIdComportamento()).isPresent()) {
-                    return comportamentoRepositorio.save(comportamento);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de comportamento!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a comportamento, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(comportamento
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a comportamento!"));
+
+        if (comportamentoRepositorio.findById(comportamento.getIdComportamento()).isPresent()) {
+            return comportamentoRepositorio.save(comportamento);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de comportamento!");
         }
+
     }
 
     @Override

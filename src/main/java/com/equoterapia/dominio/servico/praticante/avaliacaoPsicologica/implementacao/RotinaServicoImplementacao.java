@@ -46,25 +46,21 @@ public class RotinaServicoImplementacao implements RotinaServico {
 
     @Override
     public Rotina atualizarRotina(Rotina rotina) {
-        try {
-            if (rotina.getIdRotina() != null) {
 
-                praticanteRepositorio.findById(rotina
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a rotina!"));
+        if (rotina.getIdRotina() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a rotina, pois não foi possível encontra-la!");
 
-                if (rotinaRepositorio.findById(rotina.getIdRotina()).isPresent()) {
-                    return rotinaRepositorio.save(rotina);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de rotina!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a rotina, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(rotina
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a rotina!"));
+
+        if (rotinaRepositorio.findById(rotina.getIdRotina()).isPresent()) {
+            return rotinaRepositorio.save(rotina);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de rotina!");
         }
+
     }
 
     @Override

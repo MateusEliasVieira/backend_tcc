@@ -46,25 +46,21 @@ public class TracosDePersonalidadeServicoImplementacao implements TracosDePerson
 
     @Override
     public TracosDePersonalidade atualizarTracosDePersonalidade(TracosDePersonalidade tracosDePersonalidade) {
-        try {
-            if (tracosDePersonalidade.getIdTracosDePersonalidade() != null) {
 
-                praticanteRepositorio.findById(tracosDePersonalidade
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos traços de personalidade!"));
+        if (tracosDePersonalidade.getIdTracosDePersonalidade() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os traços de personalidade, pois não foi possível encontra-lo!");
 
-                if (tracosDePersonalidadeRepositorio.findById(tracosDePersonalidade.getIdTracosDePersonalidade()).isPresent()) {
-                    return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de traços de personalidade!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os traços de personalidade, pois não foi possível encontra-lo!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(tracosDePersonalidade
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos traços de personalidade!"));
+
+        if (tracosDePersonalidadeRepositorio.findById(tracosDePersonalidade.getIdTracosDePersonalidade()).isPresent()) {
+            return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de traços de personalidade!");
         }
+
     }
 
     @Override

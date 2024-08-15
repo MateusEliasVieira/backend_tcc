@@ -46,25 +46,21 @@ public class SocializacaoServicoImplementacao implements SocializacaoServico {
 
     @Override
     public Socializacao atualizarSocializacao(Socializacao socializacao) {
-        try {
-            if (socializacao.getIdSocializacao() != null) {
 
-                praticanteRepositorio.findById(socializacao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a socialização!"));
+        if (socializacao.getIdSocializacao() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a socialização, pois não foi possível encontra-la!");
 
-                if (socializacaoRepositorio.findById(socializacao.getIdSocializacao()).isPresent()) {
-                    return socializacaoRepositorio.save(socializacao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de socialização!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a socialização, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(socializacao
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a socialização!"));
+
+        if (socializacaoRepositorio.findById(socializacao.getIdSocializacao()).isPresent()) {
+            return socializacaoRepositorio.save(socializacao);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de socialização!");
         }
+
     }
 
     @Override

@@ -47,25 +47,21 @@ public class CuidadosPessoaisServicoImplementacao implements CuidadosPessoaisSer
 
     @Override
     public CuidadosPessoais atualizarCuidadosPessoais(CuidadosPessoais cuidadosPessoais) {
-        try {
-            if (cuidadosPessoais.getIdCuidadosPessoais() != null) {
 
-                praticanteRepositorio.findById(cuidadosPessoais
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos cuidados pessoais!"));
+        if (cuidadosPessoais.getIdCuidadosPessoais() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os cuidados pessoais, pois não foi possível encontra-lo!");
 
-                if (cuidadosPessoaisRepositorio.findById(cuidadosPessoais.getIdCuidadosPessoais()).isPresent()) {
-                    return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de cuidados pessoais!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os cuidados pessoais, pois não foi possível encontra-lo!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(cuidadosPessoais
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos cuidados pessoais!"));
+
+        if (cuidadosPessoaisRepositorio.findById(cuidadosPessoais.getIdCuidadosPessoais()).isPresent()) {
+            return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de cuidados pessoais!");
         }
+
     }
 
     @Override

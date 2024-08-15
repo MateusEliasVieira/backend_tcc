@@ -46,25 +46,21 @@ public class SaudeServicoImplementacao implements SaudeServico {
 
     @Override
     public Saude atualizarSaude(Saude saude) {
-        try {
-            if (saude.getIdSaude() != null) {
 
-                praticanteRepositorio.findById(saude
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde cadastrada!"));
+        if (saude.getIdSaude() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados da saúde, pois não foi possível encontra-la!");
 
-                if (saudeRepositorio.findById(saude.getIdSaude()).isPresent()) {
-                    return saudeRepositorio.save(saude);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados da saúde, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(saude
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde cadastrada!"));
+
+        if (saudeRepositorio.findById(saude.getIdSaude()).isPresent()) {
+            return saudeRepositorio.save(saude);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde!");
         }
+
     }
 
     @Override

@@ -46,25 +46,21 @@ public class SobreACriancaServicoImplementacao implements SobreACriancaServico {
 
     @Override
     public SobreACrianca atualizarSobreACrianca(SobreACrianca sobreACrianca) {
-        try {
-            if (sobreACrianca.getIdSobreACrianca() != null) {
 
-                praticanteRepositorio.findById(sobreACrianca
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente sobre a criança!"));
+        if (sobreACrianca.getIdSobreACrianca() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados sobre a criança, pois não foi possível encontra-la!");
 
-                if (sobreACriancaRepositorio.findById(sobreACrianca.getIdSobreACrianca()).isPresent()) {
-                    return sobreACriancaRepositorio.save(sobreACrianca);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro sobre a criança!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados sobre a criança, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(sobreACrianca
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente sobre a criança!"));
+
+        if (sobreACriancaRepositorio.findById(sobreACrianca.getIdSobreACrianca()).isPresent()) {
+            return sobreACriancaRepositorio.save(sobreACrianca);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro sobre a criança!");
         }
+
     }
 
     @Override

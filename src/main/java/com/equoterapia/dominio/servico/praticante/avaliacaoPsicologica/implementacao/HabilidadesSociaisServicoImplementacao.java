@@ -46,25 +46,21 @@ public class HabilidadesSociaisServicoImplementacao implements HabilidadesSociai
 
     @Override
     public HabilidadesSociais atualizarHabilidadesSociais(HabilidadesSociais habilidadesSociais) {
-        try {
-            if (habilidadesSociais.getIdHabilidadesSociais() != null) {
 
-                praticanteRepositorio.findById(habilidadesSociais
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades sociais!"));
+        if (habilidadesSociais.getIdHabilidadesSociais() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as habilidades sociais, pois não foi possível encontra-la!");
 
-                if (habilidadesSociaisRepositorio.findById(habilidadesSociais.getIdHabilidadesSociais()).isPresent()) {
-                    return habilidadesSociaisRepositorio.save(habilidadesSociais);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades sociais!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as habilidades sociais, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(habilidadesSociais
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades sociais!"));
+
+        if (habilidadesSociaisRepositorio.findById(habilidadesSociais.getIdHabilidadesSociais()).isPresent()) {
+            return habilidadesSociaisRepositorio.save(habilidadesSociais);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades sociais!");
         }
+
     }
 
     @Override

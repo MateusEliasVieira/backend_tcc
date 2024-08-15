@@ -46,25 +46,21 @@ public class LinguagemServicoImplementacao implements LinguagemServico {
 
     @Override
     public Linguagem atualizarLinguagem(Linguagem saude) {
-        try {
-            if (saude.getIdLinguagem() != null) {
 
-                praticanteRepositorio.findById(saude
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a linguagem cadastrada!"));
+        if (saude.getIdLinguagem() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a linguagem, pois não foi possível encontra-la!");
 
-                if (saudeRepositorio.findById(saude.getIdLinguagem()).isPresent()) {
-                    return saudeRepositorio.save(saude);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de linguagem!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a linguagem, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(saude
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a linguagem cadastrada!"));
+
+        if (saudeRepositorio.findById(saude.getIdLinguagem()).isPresent()) {
+            return saudeRepositorio.save(saude);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de linguagem!");
         }
+
     }
 
     @Override

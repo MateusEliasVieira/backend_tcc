@@ -46,25 +46,21 @@ public class CompreensaoServicoImplementacao implements CompreensaoServico {
 
     @Override
     public Compreensao atualizarCompreensao(Compreensao compreensao) {
-        try {
-            if (compreensao.getIdCompreensao() != null) {
 
-                praticanteRepositorio.findById(compreensao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a compreensão!"));
+        if (compreensao.getIdCompreensao() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a compreensão, pois não foi possível encontra-la!");
 
-                if (compreensaoRepositorio.findById(compreensao.getIdCompreensao()).isPresent()) {
-                    return compreensaoRepositorio.save(compreensao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de compreensão!");
-                }
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a compreensão, pois não foi possível encontra-la!");
-            }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível realizar a atualização do cadastro!");
+        praticanteRepositorio.findById(compreensao
+                        .getPraticante()
+                        .getIdPraticante())
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a compreensão!"));
+
+        if (compreensaoRepositorio.findById(compreensao.getIdCompreensao()).isPresent()) {
+            return compreensaoRepositorio.save(compreensao);
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de compreensão!");
         }
+
     }
 
     @Override
