@@ -9,7 +9,7 @@ public class HtmlEmail {
                 "            width: 350px;\n" +
                 "            height: 40px;\n" +
                 "            background-color: #f01d35;\n" +
-                "            font-size: 30px;\n" +
+                "            font-size: 20px;\n" +
                 "            text-align: center;\n" +
                 "            color: white;\n" +
                 "            padding: 10px;\n" +
