@@ -88,7 +88,7 @@ public class RecuperacaoServicoImpl implements RecuperacaoServico {
             String token = usuarioAtualizadoComNovoToken.getToken(); // obter o token atualizado
 
             // Use HTML para criar um link estilizado
-            String HTML = new HtmlEmail().gerarHtmlDeEmail(this.DOMINIO_FRONT+"/#/nova-senha?token=" + token);
+            String HTML = new HtmlEmail().gerarHtmlDeEmail(this.DOMINIO_FRONT+"/nova-senha?token=" + token);
             helper.setSubject("Equipe de Equoterapia");
             helper.setText(HTML, true);
             javaMailSender.send(mimeMessage);
