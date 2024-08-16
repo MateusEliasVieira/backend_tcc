@@ -16,7 +16,7 @@ public class SaudeGeralDosPraticantesSaidaDTO {
 
     // Saúde geral do paciente
 
-    private Long idSaudeGeralDosPacientes;
+    private Long idSaudeGeralDoPraticante;
     private SImOuNaoEnum convulsoesAnteriores;
     private String consideracoesConvulsoesAnteriores;
     private SImOuNaoEnum convulsoesAtuais;

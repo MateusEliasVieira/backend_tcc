@@ -24,6 +24,9 @@ public class RecuperacaoServicoImpl implements RecuperacaoServico {
     @Value("${spring.mail.username}")
     private String MY_GMAIL;
 
+    @Value("${dominio.front}")
+    private String DOMINIO_FRONT;
+
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -48,7 +51,9 @@ public class RecuperacaoServicoImpl implements RecuperacaoServico {
 
             // Use HTML para criar um link estilizado
             String htmlContent = "<p>Por favor, clique no link abaixo para confirmar sua conta!</p>" +
-                    "<p><a href=\"http://localhost:5173/confirmation?token=" + tokenBase64String + "\" style=\"color: #007BFF; text-decoration: none;\">Confirmar!</a></p>";
+                    "<p><a href=\"" +
+                    this.DOMINIO_FRONT +
+                    "/confirmation?token=" + tokenBase64String + "\" style=\"color: #007BFF; text-decoration: none;\">Confirmar!</a></p>";
             helper.setText(htmlContent, true);
 
             javaMailSender.send(mimeMessage);
@@ -83,7 +88,7 @@ public class RecuperacaoServicoImpl implements RecuperacaoServico {
             String token = usuarioAtualizadoComNovoToken.getToken(); // obter o token atualizado
 
             // Use HTML para criar um link estilizado
-            String HTML = new HtmlEmail().gerarHtmlDeEmail("http://localhost:3000/#/nova-senha?token=" + token);
+            String HTML = new HtmlEmail().gerarHtmlDeEmail(this.DOMINIO_FRONT+"/#/nova-senha?token=" + token);
             helper.setSubject("Equipe de Equoterapia");
             helper.setText(HTML, true);
             javaMailSender.send(mimeMessage);

@@ -1,5 +1,6 @@
 package com.equoterapia.api.dto.praticante.planoTerapeuticoSingular;
 
+import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -24,5 +25,8 @@ public class PlanoTerapeuticoSingularSaidaDTO {
     private String selasMediadorasAnimais;
     private String evolucao;
     private String fisioterapeutaImagemDaAssinaturaOuCarimbo;
+
+    private PraticanteIdDTO praticante;
+
 
 }
