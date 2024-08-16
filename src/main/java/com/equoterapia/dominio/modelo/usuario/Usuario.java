@@ -2,6 +2,7 @@ package com.equoterapia.dominio.modelo.usuario;
 
 import com.equoterapia.dominio.enums.EstadoCivilEnum;
 import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.enums.VinculoEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -47,7 +48,7 @@ public class Usuario implements UserDetails {
     private String logradouro;
     private RoleEnum role;
     private VinculoEnum vinculo;
-    private Boolean possuiFormacao;
+    private SImOuNaoEnum possuiFormacao;
     private String token;
     private boolean status;
     private int tentativasLogin;

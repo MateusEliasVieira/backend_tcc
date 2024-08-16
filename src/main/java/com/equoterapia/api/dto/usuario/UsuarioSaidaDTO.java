@@ -2,6 +2,7 @@ package com.equoterapia.api.dto.usuario;
 
 import com.equoterapia.dominio.enums.EstadoCivilEnum;
 import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.enums.VinculoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,6 @@ public class UsuarioSaidaDTO {
     private String logradouro;
     private RoleEnum role;
     private VinculoEnum vinculo;
-    private Boolean possuiFormacao;
+    private SImOuNaoEnum possuiFormacao;
 
 }
