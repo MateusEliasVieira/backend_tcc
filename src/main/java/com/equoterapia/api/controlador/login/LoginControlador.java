@@ -18,6 +18,7 @@ public class LoginControlador {
 
     @PostMapping("/logar")
     public ResponseEntity<?> login(@RequestBody @Valid LoginEntradaDTO loginEntradaDTO, HttpServletRequest request) {
+        System.out.println("Chegou");
         return servico.filtrarLogin(loginEntradaDTO,request);
     }
 

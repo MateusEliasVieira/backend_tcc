@@ -2,6 +2,7 @@ package com.equoterapia.seguranca;
 
 import com.equoterapia.dominio.enums.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,9 @@ public class FiltroConfiguracaoWeb {
 
     @Autowired
     private FiltroInterceptador filtroInterceptador;
+
+//    @Value("${server.servlet.context-path}")
+//    private String URL;
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -169,64 +173,64 @@ public class FiltroConfiguracaoWeb {
                 // # Afetividade
                 .requestMatchers(HttpMethod.POST, "/praticante/afetividade/salvar-afetividade-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/afetividade/atualizar-afetividade-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/afetividade/buscar-afetividade-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/afetividade/buscar-afetividade-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Avaliação Psicologica
                 .requestMatchers(HttpMethod.POST, "/praticante/avaliacao-psicologica/salvar-avaliacao-psicologica-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/avaliacao-psicologica/atualizar-avaliacao-psicologica-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/avaliacao-psicologica/buscar-avaliacao-psicologica-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/avaliacao-psicologica/buscar-avaliacao-psicologica-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Comportamento
                 .requestMatchers(HttpMethod.POST, "/praticante/comportamento/salvar-comportamento-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/comportamento/atualizar-comportamento-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/comportamento/buscar-comportamento-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/comportamento/buscar-comportamento-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Compreensao
                 .requestMatchers(HttpMethod.POST, "/praticante/compreensao/salvar-compreensao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/compreensao/atualizar-compreensao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/compreensao/buscar-compreensao-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/compreensao/buscar-compreensao-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Cuidados Pessoais
                 .requestMatchers(HttpMethod.POST, "/praticante/cuidados-pessoais/salvar-cuidados-pessoais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/cuidados-pessoais/atualizar-cuidados-pessoais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/cuidados-pessoais/buscar-cuidados-pessoais-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/cuidados-pessoais/buscar-cuidados-pessoais-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Habilidades Sociais
                 .requestMatchers(HttpMethod.POST, "/praticante/habilidades-sociais/salvar-habilidades-sociais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/habilidades-sociais/atualizar-habilidades-sociais-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/habilidades-sociais/buscar-habilidades-sociais-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/habilidades-sociais/buscar-habilidades-sociais-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Linguagem
                 .requestMatchers(HttpMethod.POST, "/praticante/linguagem/salvar-linguagem-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/linguagem/atualizar-linguagem-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/linguagem/buscar-linguagem-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/linguagem/buscar-linguagem-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Relação Familiar Examinado
                 .requestMatchers(HttpMethod.POST, "/praticante/relacao-familiar/salvar-relacao-familiar-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/relacao-familiar/atualizar-relacao-familiar-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/relacao-familiar/buscar-relacao-familiar-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/relacao-familiar/buscar-relacao-familiar-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Rotina
                 .requestMatchers(HttpMethod.POST, "/praticante/rotina/salvar-rotina-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/rotina/atualizar-rotina-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/rotina/buscar-rotina-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/rotina/buscar-rotina-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Saude
                 .requestMatchers(HttpMethod.POST, "/praticante/saude/salvar-saude-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/saude/atualizar-saude-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/saude/buscar-saude-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/saude/buscar-saude-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Saude Mental
                 .requestMatchers(HttpMethod.POST, "/praticante/saude-mental/salvar-saude-mental-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/saude-mental/atualizar-saude-mental-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/saude-mental/buscar-saude-mental-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/saude-mental/buscar-saude-mental-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Sobre a Criança
                 .requestMatchers(HttpMethod.POST, "/praticante/sobre-a-crianca/salvar-sobre-a-crianca-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/sobre-a-crianca/atualizar-sobre-a-crianca-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/sobre-a-crianca/buscar-sobre-a-crianca-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/sobre-a-crianca/buscar-sobre-a-crianca-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Socialização
                 .requestMatchers(HttpMethod.POST, "/praticante/socializacao/salvar-socializacao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/socializacao/atualizar-socializacao-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/socializacao/buscar-socializacao-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/socializacao/buscar-socializacao-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 // # Traços de Personalidade
                 .requestMatchers(HttpMethod.POST, "/praticante/traços-personalidade/salvar-traços-personalidade-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/traços-personalidade/atualizar-traços-personalidade-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/traços-personalidade/buscar-traços-personalidade-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/traços-personalidade/buscar-traços-personalidade-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
                 //  *********************************************** Plano Terapeutico Singular *******************************************
                 // # Plano Terapeutico Singular
                 .requestMatchers(HttpMethod.POST, "/praticante/plano-terapeutico-singular/salvar-plano-terapeutico-singular-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/plano-terapeutico-singular/atualizar-plano-terapeutico-singular-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET,"/praticante/plano-terapeutico-singular/buscar-plano-terapeutico-singular-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/plano-terapeutico-singular/buscar-plano-terapeutico-singular-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
 
                 .anyRequest().authenticated());
         http.addFilterBefore(this.filtroInterceptador, UsernamePasswordAuthenticationFilter.class);
