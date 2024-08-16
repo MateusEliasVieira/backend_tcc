@@ -2,6 +2,7 @@ package com.equoterapia.api.dto.usuario;
 
 import com.equoterapia.dominio.enums.EstadoCivilEnum;
 import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.enums.VinculoEnum;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
@@ -59,7 +60,7 @@ public class UsuarioEntradaDTO {
     @NotNull(message = VINCULO)
     private VinculoEnum vinculo;
     @NotNull(message = POSSUI_FORMACAO)
-    private Boolean possuiFormacao;
+    private SImOuNaoEnum possuiFormacao;
 
 
 }
