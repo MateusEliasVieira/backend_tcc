@@ -2,6 +2,7 @@ package com.equoterapia.dominio.repositorio.usuario;
 
 import com.equoterapia.dominio.enums.EstadoCivilEnum;
 import com.equoterapia.dominio.enums.RoleEnum;
+import com.equoterapia.dominio.enums.SImOuNaoEnum;
 import com.equoterapia.dominio.enums.VinculoEnum;
 import com.equoterapia.dominio.modelo.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,7 +30,7 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
                                       @Param("email") String email, @Param("detalhesFormacao") String detalhesFormacao,
                                       @Param("cidade") String cidade, @Param("bairro") String bairro,
                                       @Param("logradouro") String logradouro, @Param("role") RoleEnum role,
-                                      @Param("vinculo") VinculoEnum vinculo, @Param("possuiFormacao") Boolean possuiFormacao);
+                                      @Param("vinculo") VinculoEnum vinculo, @Param("possuiFormacao") SImOuNaoEnum possuiFormacao);
 
     @Query("SELECT u FROM Usuario u WHERE u.nomeUsuario LIKE %:nomeUsuario%")
     public List<Usuario> pesquisarUsuarioPorNomeComOperadorLike(@Param("nomeUsuario") String nomeUsuario);
