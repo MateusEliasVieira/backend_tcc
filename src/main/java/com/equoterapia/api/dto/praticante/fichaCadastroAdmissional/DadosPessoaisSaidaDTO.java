@@ -41,6 +41,8 @@ public class DadosPessoaisSaidaDTO {
     private String cidade;
     private String cep;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

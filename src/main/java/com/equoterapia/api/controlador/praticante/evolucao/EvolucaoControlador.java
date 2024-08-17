@@ -6,14 +6,13 @@ import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoEntradaDTO
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoSaidaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
-import com.equoterapia.dominio.modelo.praticante.Evolucao;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.servico.praticante.evolucao.EvolucaoServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

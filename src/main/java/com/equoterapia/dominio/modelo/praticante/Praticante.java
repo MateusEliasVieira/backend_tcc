@@ -2,6 +2,7 @@ package com.equoterapia.dominio.modelo.praticante;
 
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.*;
 
@@ -100,8 +101,5 @@ public class Praticante {
     @OneToMany(mappedBy = "praticante")
     private List<Evolucao> historicoDeEvolucao;
 
-    // Cadastro finalizado?
-    @OneToOne(mappedBy = "praticante")
-    private Finalizado finalizado;
 
 }

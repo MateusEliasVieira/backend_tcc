@@ -1,7 +1,7 @@
 package com.equoterapia.dominio.servico.praticante.evolucao;
 
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoSaidaDTO;
-import com.equoterapia.dominio.modelo.praticante.Evolucao;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 
 import java.util.Date;
 import java.util.List;

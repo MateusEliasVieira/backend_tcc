@@ -1,5 +1,6 @@
-package com.equoterapia.dominio.modelo.praticante;
+package com.equoterapia.dominio.modelo.praticante.evolucao;
 
+import com.equoterapia.dominio.modelo.praticante.Praticante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

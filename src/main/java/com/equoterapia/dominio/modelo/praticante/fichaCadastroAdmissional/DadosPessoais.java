@@ -42,6 +42,9 @@ public class DadosPessoais {
     private String bairro;
     private String cidade;
     private String cep;
+
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

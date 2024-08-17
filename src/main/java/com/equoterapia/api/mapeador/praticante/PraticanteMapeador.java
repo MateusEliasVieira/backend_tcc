@@ -1,7 +1,7 @@
 package com.equoterapia.api.mapeador.praticante;
 
-import com.equoterapia.api.dto.praticante.FinalizadoEntradaDTO;
-import com.equoterapia.api.dto.praticante.FinalizadoSaidaDTO;
+import com.equoterapia.api.dto.praticante.finalizado.FinalizadoEntradaDTO;
+import com.equoterapia.api.dto.praticante.finalizado.FinalizadoSaidaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
@@ -9,8 +9,8 @@ import com.equoterapia.api.dto.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularEntradaDTO;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularSaidaDTO;
-import com.equoterapia.dominio.modelo.praticante.Evolucao;
-import com.equoterapia.dominio.modelo.praticante.Finalizado;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
+import com.equoterapia.dominio.modelo.praticante.finalizado.Finalizado;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;

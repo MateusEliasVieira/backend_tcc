@@ -1,7 +1,6 @@
 package com.equoterapia.dominio.repositorio.praticante.evolucao;
 
-import com.equoterapia.dominio.modelo.praticante.Evolucao;
-import com.equoterapia.dominio.servico.praticante.evolucao.impl.EvolucaoConsultaFaltas;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

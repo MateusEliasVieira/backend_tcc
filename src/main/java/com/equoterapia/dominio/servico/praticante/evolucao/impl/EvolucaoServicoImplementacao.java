@@ -2,7 +2,7 @@ package com.equoterapia.dominio.servico.praticante.evolucao.impl;
 
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoSaidaDTO;
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
-import com.equoterapia.dominio.modelo.praticante.Evolucao;
+import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.repositorio.praticante.evolucao.EvolucaoConsultaFaltasProjection;
 import com.equoterapia.dominio.repositorio.praticante.evolucao.EvolucaoConsultaFrequenciaProjection;
 import com.equoterapia.dominio.repositorio.praticante.evolucao.EvolucaoGraficoRepositorio;

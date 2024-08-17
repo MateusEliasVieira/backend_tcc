@@ -1,13 +1,8 @@
 package com.equoterapia.api.dto.praticante.fichaCadastroAdmissional;
 
-import com.equoterapia.api.dto.praticante.PraticanteIdDTO;
 import com.equoterapia.dominio.enums.CorOuRaca;
 import com.equoterapia.dominio.enums.SexoEnum;
 import com.equoterapia.dominio.enums.TipoSanguineoEnum;
-import com.equoterapia.dominio.modelo.praticante.Praticante;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -42,6 +37,8 @@ public class DadosPessoaisEntradaDTO {
     private String bairro;
     private String cidade;
     private String cep;
+
+    private Boolean finalizado = false;
 
 
 }
