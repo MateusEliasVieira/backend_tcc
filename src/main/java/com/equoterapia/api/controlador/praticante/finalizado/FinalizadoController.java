@@ -28,9 +28,9 @@ public class FinalizadoController {
     }
 
 
-    @GetMapping("/verificar-status/{idPraticante}")
-    public ResponseEntity<FinalizadoSaidaDTO> verificarStatusDeCadastro(@PathVariable("idPraticante") Long idPraticante) {
-        Finalizado finalizado = servico.verificarStatusCadastro(idPraticante);
+    @GetMapping("/verificar-status")
+    public ResponseEntity<FinalizadoSaidaDTO> verificarStatusDeCadastro(@RequestParam("id") Long id) {
+        Finalizado finalizado = servico.verificarStatusCadastro(id);
         return new ResponseEntity<FinalizadoSaidaDTO>(PraticanteMapeador.converterFinalizadoParaFinalizadoSaidaDTO(finalizado), HttpStatus.OK);
     }
 
