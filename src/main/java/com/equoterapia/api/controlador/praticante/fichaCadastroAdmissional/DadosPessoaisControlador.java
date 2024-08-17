@@ -40,11 +40,18 @@ public class DadosPessoaisControlador {
 
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-id")
     public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorID(@RequestParam("id") Long id){
-        System.out.println("Entrou aqui");
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorID(id);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
     }
+
+    @GetMapping("/buscar-dados-pessoais-do-praticante-por-id-do-praticante")
+    public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorIdDoPraticante(@RequestParam("id") Long id){
+        DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorIdDoPraticante(id);
+        DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
+        return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
+    }
+
 
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-cpf")
     public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorCPF(@RequestParam("cpf") @Valid @CPF String cpf){

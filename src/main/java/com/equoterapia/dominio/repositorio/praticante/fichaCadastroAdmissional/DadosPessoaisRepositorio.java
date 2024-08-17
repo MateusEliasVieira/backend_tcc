@@ -19,4 +19,8 @@ public interface DadosPessoaisRepositorio extends JpaRepository<DadosPessoais, L
     @Query("SELECT dp FROM DadosPessoais dp WHERE dp.nomeCompleto LIKE %:nome%")
     public List<DadosPessoais> findByNomeCompleto(@Param("nome") String nome);
 
+    @Query("SELECT dp FROM DadosPessoais dp WHERE dp.praticante.idPraticante = :idPraticante")
+    public Optional<DadosPessoais> buscarDadosPessoaisPorIdDoPraticante(@Param("idPraticante") Long idPraticante);
+
+
 }
