@@ -76,6 +76,11 @@ public class FiltroConfiguracaoWeb {
                 .requestMatchers(HttpMethod.GET, "/recuperacao-de-conta/enviar-email/*").permitAll()
                 .requestMatchers(HttpMethod.POST, "/recuperacao-de-conta/nova-senha").permitAll()
                 // ======================================================================================================================= //
+                //										      Endpoints de Finalização de Cadastro								           //
+                // ======================================================================================================================= //
+                .requestMatchers(HttpMethod.POST, "/praticante/finalizado/finalizar-cadastro").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/finalizado/verificar-status/*").hasAuthority(RoleEnum.ROLE_USER.name())
+                // ======================================================================================================================= //
                 //												     Endpoints do Usuário										           //
                 // ======================================================================================================================= //
                 .requestMatchers(HttpMethod.POST, "/usuario/salvar-novo-usuario").hasAuthority(RoleEnum.ROLE_ADMIN.name())
@@ -231,11 +236,6 @@ public class FiltroConfiguracaoWeb {
                 .requestMatchers(HttpMethod.POST, "/praticante/plano-terapeutico-singular/salvar-plano-terapeutico-singular-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.PUT, "/praticante/plano-terapeutico-singular/atualizar-plano-terapeutico-singular-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.GET, "/praticante/plano-terapeutico-singular/buscar-plano-terapeutico-singular-do-praticante-por-id").hasAuthority(RoleEnum.ROLE_USER.name())
-                // ======================================================================================================================= //
-                //										      Endpoints de Finalização de Cadastro								           //
-                // ======================================================================================================================= //
-                .requestMatchers(HttpMethod.POST, "/praticante/finalizado/finalizar-cadastro").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET, "/praticante/finalizado/verificar-status/*").hasAuthority(RoleEnum.ROLE_USER.name())
 
                 .anyRequest().authenticated());
         http.addFilterBefore(this.filtroInterceptador, UsernamePasswordAuthenticationFilter.class);
