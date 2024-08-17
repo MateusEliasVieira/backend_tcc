@@ -1,5 +1,7 @@
 package com.equoterapia.api.mapeador.praticante;
 
+import com.equoterapia.api.dto.praticante.FinalizadoEntradaDTO;
+import com.equoterapia.api.dto.praticante.FinalizadoSaidaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
@@ -8,6 +10,7 @@ import com.equoterapia.api.dto.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularEntradaDTO;
 import com.equoterapia.api.dto.praticante.planoTerapeuticoSingular.PlanoTerapeuticoSingularSaidaDTO;
 import com.equoterapia.dominio.modelo.praticante.Evolucao;
+import com.equoterapia.dominio.modelo.praticante.Finalizado;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoFisioterapeutica.*;
 import com.equoterapia.dominio.modelo.praticante.avaliacaoPsicologica.*;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
@@ -18,6 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PraticanteMapeador {
+
+
+    // Finalizar cadastro de praticante
+    public static Finalizado converterFinalizadoEntradaDTOParaFinalizado(FinalizadoEntradaDTO finalizadoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(finalizadoEntradaDTO, Finalizado.class);
+    }
+    public static FinalizadoSaidaDTO converterFinalizadoParaFinalizadoSaidaDTO(Finalizado finalizado) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(finalizado, FinalizadoSaidaDTO.class);
+    }
 
 
     // Evolução

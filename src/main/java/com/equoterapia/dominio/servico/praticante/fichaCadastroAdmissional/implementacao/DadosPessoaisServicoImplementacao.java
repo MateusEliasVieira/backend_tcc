@@ -2,6 +2,7 @@ package com.equoterapia.dominio.servico.praticante.fichaCadastroAdmissional.impl
 
 
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
+import com.equoterapia.dominio.modelo.praticante.Finalizado;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.FichaCadastroAdmissional;
@@ -51,12 +52,18 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
                     + " já está cadastrado no sistema!");
 
         } else {
+            Finalizado finalizado = new Finalizado();
+            finalizado.setFinalizado(false);
+
             Praticante praticante = new Praticante();
+            praticante.setFinalizado(finalizado);
+
             praticante = praticanteRepositorio.save(praticante);
             dadosPessoais.setPraticante(praticante);
             FichaCadastroAdmissional fichaCadastroAdmissional = new FichaCadastroAdmissional();
             fichaCadastroAdmissional.setPraticante(praticante);
             fichaCadastroAdmissional.setDataAvaliacao(new Date());
+
             if (fichaCadastroAdmissionalServico.salvarFichaCadastroAdmissional(fichaCadastroAdmissional) != null) {
                 return dadosPessoaisRepositorio.save(dadosPessoais);
             } else {

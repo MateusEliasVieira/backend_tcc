@@ -97,9 +97,11 @@ public class Praticante {
     @OneToOne(mappedBy = "praticante")
     private PlanoTerapeuticoSingular planoTerapeuticoSingular;
 
-
     @OneToMany(mappedBy = "praticante")
     private List<Evolucao> historicoDeEvolucao;
 
+    // Cadastro finalizado?
+    @OneToOne(mappedBy = "praticante")
+    private Finalizado finalizado;
 
 }
