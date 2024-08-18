@@ -40,6 +40,8 @@ public class DadosPessoaisAtualizacaoEntradaDTO {
     private String cidade;
     private String cep;
 
+    private Boolean finalizado;
+
     @NotNull(message = "É preciso informar o praticante a ser atualizado!")
     private PraticanteIdDTO praticante;
 

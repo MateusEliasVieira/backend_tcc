@@ -105,6 +105,8 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de dados pessoais!");
         }
 
+        dadosPessoais.setFinalizado(true);
+
         return dadosPessoaisRepositorio.save(dadosPessoais);
 
     }

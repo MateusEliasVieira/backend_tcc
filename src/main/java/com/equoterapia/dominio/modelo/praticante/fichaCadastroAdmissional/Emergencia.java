@@ -20,7 +20,6 @@ public class Emergencia {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmergencia;
     private String ligarPara;
-    @Column(unique = true)
     private String telefone;
     private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano; // Caso tenha, qual é?

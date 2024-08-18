@@ -34,21 +34,7 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
 
         if (!responsavelPraticanteRepositorio.buscarResponsavelPraticantePorChaveEstrangeira(responsavelPraticante.getPraticante().getIdPraticante()).isPresent()) {
 
-            if (responsavelPraticanteRepositorio.findByTelefoneTrabalho(responsavelPraticante.getTelefoneTrabalho()).isPresent()) {
-                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone de trabalho "
-                        + responsavelPraticante.getTelefoneTrabalho() + " cadastrado no sistema!");
-
-            } else if (responsavelPraticanteRepositorio.findByTelefone(responsavelPraticante.getTelefone()).isPresent()) {
-                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o telefone "
-                        + responsavelPraticante.getTelefone() + " cadastrado no sistema!");
-
-            } else if (responsavelPraticanteRepositorio.findByEmail(responsavelPraticante.getEmail()).isPresent()) {
-                throw new ExcecaoDeRegrasDeNegocio("Já existe um responsável do praticante com o email "
-                        + responsavelPraticante.getEmail() + " cadastrado no sistema!");
-
-            } else {
                 return responsavelPraticanteRepositorio.save(responsavelPraticante);
-            }
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado o responsável do praticante!");
         }
@@ -67,18 +53,7 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao responsável do praticante!"));
 
         if (responsavelPraticanteRepositorio.findById(responsavelPraticante.getIdResponsavelPraticante()).isPresent()) {
-            if (responsavelPraticanteRepositorio.findByTelefone(responsavelPraticante.getTelefone()).get().getIdResponsavelPraticante() != responsavelPraticante.getIdResponsavelPraticante()) {
-                // cadastros diferentes
-                throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o telefone " + responsavelPraticante.getTelefone());
-            } else if (responsavelPraticanteRepositorio.findByTelefoneTrabalho(responsavelPraticante.getTelefoneTrabalho()).get().getIdResponsavelPraticante() != responsavelPraticante.getIdResponsavelPraticante()) {
-                // cadastros diferentes
-                throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o telefone de trabalho " + responsavelPraticante.getTelefoneTrabalho());
-            } else if (responsavelPraticanteRepositorio.findByEmail(responsavelPraticante.getEmail()).get().getIdResponsavelPraticante() != responsavelPraticante.getIdResponsavelPraticante()) {
-                // cadastros diferentes
-                throw new ExcecaoDeRegrasDeNegocio("Já existe outro registro que possui o email " + responsavelPraticante.getEmail());
-            } else {
-                return responsavelPraticanteRepositorio.save(responsavelPraticante);
-            }
+            return responsavelPraticanteRepositorio.save(responsavelPraticante);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe nenhum registro do responsável pelo praticante!");
         }

@@ -32,6 +32,7 @@ public class DadosPessoaisControlador {
 
     @PutMapping("/atualizar-dados-pessoais-do-praticante")
     public ResponseEntity<?> atualizarDadosPessoais(@RequestBody @Valid DadosPessoaisAtualizacaoEntradaDTO dadosPessoaisAtualizacaoEntradaDTO){
+
         DadosPessoais dadosPessoais = PraticanteMapeador.converterDadosPessoaisAtualizacaoEntradaDTOParaDadosPessoais(dadosPessoaisAtualizacaoEntradaDTO);
         DadosPessoais dadosPessoaisAtualizado = dadosPessoaisServico.atualizarDadosPessoais(dadosPessoais);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoaisAtualizado);
@@ -46,7 +47,8 @@ public class DadosPessoaisControlador {
     }
 
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-id-do-praticante")
-    public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorIdDoPraticante(@RequestParam("id") Long id){
+    public ResponseEntity<DadosPessoaisSaidaDTO> buscarDadosPessoaisDoPraticantePorIdDoPraticante(@RequestParam("id") Long id){
+
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorIdDoPraticante(id);
         DadosPessoaisSaidaDTO dadosPessoaisSaidaDTO = PraticanteMapeador.converterDadosPessoaisParaDadosPessoaisSaidaDTO(dadosPessoais);
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
