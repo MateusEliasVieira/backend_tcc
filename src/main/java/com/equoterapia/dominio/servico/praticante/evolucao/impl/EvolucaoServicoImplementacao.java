@@ -113,43 +113,38 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
     @Override
     public EvolucaoParaGraficoSaidaDTO buscarEvolucaoPorIntervaloDeDatas(Date dataInicial, Date dataFinal, Long idPraticante) {
 
-        try {
+        if (calcularDiasEntreDatas(dataInicial, dataFinal) <= 366) {
 
-            if (calcularDiasEntreDatas(dataInicial, dataFinal) <= 365) {
+            List<Evolucao> listaEvolucao = evolucaoRepositorio.buscarEvolucoesDoPraticanteEmIntervaloDeData(dataInicial, dataFinal, idPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe registro de evolução para o praticante entre o intervalo de datas especificado!"));
+            List<EvolucaoConsultaFrequenciaProjection> frequencia = evolucaoGraficoRepositorio.buscarQuantidadeDeFrequenciaDoPraticanteParaCadaMesEmUmIntervaloDeTempo(dataInicial, dataFinal, idPraticante);
+            List<EvolucaoConsultaFaltasProjection> faltas = evolucaoGraficoRepositorio.buscarQuantidadeDeFaltasDoPraticanteParaCadaMesEmUmIntervaloDeTempo(dataInicial, dataFinal, idPraticante);
 
-                List<Evolucao> listaEvolucao = evolucaoRepositorio.buscarEvolucoesDoPraticanteEmIntervaloDeData(dataInicial, dataFinal, idPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe registro de evolução para o praticante entre o intervalo de datas especificado!"));
-                List<EvolucaoConsultaFrequenciaProjection> frequencia = evolucaoGraficoRepositorio.buscarQuantidadeDeFrequenciaDoPraticanteParaCadaMesEmUmIntervaloDeTempo(dataInicial, dataFinal, idPraticante);
-                List<EvolucaoConsultaFaltasProjection> faltas = evolucaoGraficoRepositorio.buscarQuantidadeDeFaltasDoPraticanteParaCadaMesEmUmIntervaloDeTempo(dataInicial, dataFinal, idPraticante);
+            // Usando LinkedHashSet para remover duplicatas
+            LinkedHashSet<String> mesesHashSet = new LinkedHashSet<>();
 
-                // Usando LinkedHashSet para remover duplicatas
-                LinkedHashSet<String> mesesHashSet = new LinkedHashSet<>();
+            listaEvolucao.forEach((e) -> {
+                Calendar calendario = Calendar.getInstance();
+                calendario.setTime(e.getData());
 
-                listaEvolucao.forEach((e) -> {
-                    Calendar calendario = Calendar.getInstance();
-                    calendario.setTime(e.getData());
+                int mes = calendario.get(Calendar.MONTH) + 1; // Janeiro é 1, Dezembro é 12
+                mesesHashSet.add(FormataData.verificarMes(mes));
+            });
 
-                    int mes = calendario.get(Calendar.MONTH) + 1; // Janeiro é 1, Dezembro é 12
-                    mesesHashSet.add(FormataData.verificarMes(mes));
-                });
+            List<String> meses = new ArrayList<>(mesesHashSet); // recebe os meses sem repetir e converte em List
+            List<Integer> listaFrequencia = otimizarEvolucaoFrequencia(frequencia, meses);
+            List<Integer> listaFaltas = otimizarEvolucaoFaltas(faltas, meses);
+            meses = inverterMeses(meses);
 
-                List<String> meses = new ArrayList<>(mesesHashSet); // recebe os meses sem repetir e converte em List
-                List<Integer> listaFrequencia = otimizarEvolucaoFrequencia(frequencia, meses);
-                List<Integer> listaFaltas = otimizarEvolucaoFaltas(faltas, meses);
-                meses = inverterMeses(meses);
+            EvolucaoParaGraficoSaidaDTO evolucaoParaGraficoSaidaDTO = new EvolucaoParaGraficoSaidaDTO();
+            evolucaoParaGraficoSaidaDTO.setMeses(meses);
+            evolucaoParaGraficoSaidaDTO.setFrequencia(listaFrequencia);
+            evolucaoParaGraficoSaidaDTO.setFaltas(listaFaltas);
 
-                EvolucaoParaGraficoSaidaDTO evolucaoParaGraficoSaidaDTO = new EvolucaoParaGraficoSaidaDTO();
-                evolucaoParaGraficoSaidaDTO.setMeses(meses);
-                evolucaoParaGraficoSaidaDTO.setFrequencia(listaFrequencia);
-                evolucaoParaGraficoSaidaDTO.setFaltas(listaFaltas);
-
-                return evolucaoParaGraficoSaidaDTO;
-            } else {
-                throw new ExcecaoDeRegrasDeNegocio("Só é possível gerar gráficos com intervalo entre as datas de até 1 ano (365 dias)!");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+            return evolucaoParaGraficoSaidaDTO;
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Só é possível gerar gráficos com intervalo entre as datas de até 1 ano (365/366 dias)!");
         }
+
     }
 
 }

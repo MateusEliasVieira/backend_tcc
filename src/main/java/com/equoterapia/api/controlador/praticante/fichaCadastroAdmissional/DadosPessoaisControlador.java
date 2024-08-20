@@ -54,7 +54,6 @@ public class DadosPessoaisControlador {
         return new ResponseEntity<DadosPessoaisSaidaDTO>(dadosPessoaisSaidaDTO, HttpStatus.OK);
     }
 
-
     @GetMapping("/buscar-dados-pessoais-do-praticante-por-cpf")
     public ResponseEntity<?> buscarDadosPessoaisDoPraticantePorCPF(@RequestParam("cpf") @Valid @CPF String cpf){
         DadosPessoais dadosPessoais = dadosPessoaisServico.buscarDadosPessoaisPorCPF(cpf);
