@@ -117,7 +117,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
             throw new ExcecaoDeRegrasDeNegocio("Informe a data inicial!");
 
         if(dataFinal.equals(null))
-        throw new ExcecaoDeRegrasDeNegocio("Informe a data final!");
+            throw new ExcecaoDeRegrasDeNegocio("Informe a data final!");
 
         if(dataInicial.after(dataFinal))
             throw new ExcecaoDeRegrasDeNegocio("O intervalo de tempo das datas informadas é inválido!");
