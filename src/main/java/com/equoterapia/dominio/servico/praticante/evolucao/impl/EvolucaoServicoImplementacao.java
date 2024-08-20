@@ -113,6 +113,15 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
     @Override
     public EvolucaoParaGraficoSaidaDTO buscarEvolucaoPorIntervaloDeDatas(Date dataInicial, Date dataFinal, Long idPraticante) {
 
+        if(dataInicial.equals(null))
+            throw new ExcecaoDeRegrasDeNegocio("Informe a data inicial!");
+
+        if(dataFinal.equals(null))
+        throw new ExcecaoDeRegrasDeNegocio("Informe a data final!");
+
+        if(dataInicial.after(dataFinal))
+            throw new ExcecaoDeRegrasDeNegocio("O intervalo de tempo das datas informadas é inválido!");
+
         if (calcularDiasEntreDatas(dataInicial, dataFinal) <= 366) {
 
             List<Evolucao> listaEvolucao = evolucaoRepositorio.buscarEvolucoesDoPraticanteEmIntervaloDeData(dataInicial, dataFinal, idPraticante).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não existe registro de evolução para o praticante entre o intervalo de datas especificado!"));
@@ -142,7 +151,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
 
             return evolucaoParaGraficoSaidaDTO;
         } else {
-            throw new ExcecaoDeRegrasDeNegocio("Só é possível gerar gráficos com intervalo entre as datas de até 1 ano (365/366 dias)!");
+            throw new ExcecaoDeRegrasDeNegocio("Só é possível gerar gráficos com intervalo entre datas de até 1 ano (365/366 dias)!");
         }
 
     }
