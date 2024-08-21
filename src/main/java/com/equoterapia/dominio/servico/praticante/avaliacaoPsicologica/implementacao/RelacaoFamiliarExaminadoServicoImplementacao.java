@@ -33,11 +33,11 @@ public class RelacaoFamiliarExaminadoServicoImplementacao implements RelacaoFami
 
                 return relacaoFamiliarExaminadoRepositorio.save(relacaoFamiliarExaminado);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Essa avaliacao psicologica já foi cadastrada!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa relação da família com o examinado já foi cadastrada!");
             }
 
         } else {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a avaliacao psicologica, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a relação da família com o examinado, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
 
     }
@@ -46,24 +46,24 @@ public class RelacaoFamiliarExaminadoServicoImplementacao implements RelacaoFami
     public RelacaoFamiliarExaminado atualizarRelacaoFamiliarExaminado(RelacaoFamiliarExaminado relacaoFamiliarExaminado) {
 
         if (relacaoFamiliarExaminado.getIdRelacaoFamiliarExaminado() == null)
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a avaliacao psicologica, pois não foi possível encontra-la!");
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a relação da família com o examinado, pois não foi possível encontra-la!");
 
         praticanteRepositorio.findById(relacaoFamiliarExaminado
                         .getPraticante()
                         .getIdPraticante())
-                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliacao psicologica!"));
+                .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a relação da família com o examinado!"));
 
         if (relacaoFamiliarExaminadoRepositorio.findById(relacaoFamiliarExaminado.getIdRelacaoFamiliarExaminado()).isPresent()) {
             return relacaoFamiliarExaminadoRepositorio.save(relacaoFamiliarExaminado);
         } else {
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliacao psicologica!");
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de relação da família com o examinado!");
         }
 
     }
 
     @Override
     public RelacaoFamiliarExaminado buscarRelacaoFamiliarExaminadoPorId(Long idRelacaoFamiliarExaminado) {
-        return relacaoFamiliarExaminadoRepositorio.buscarRelacaoFamiliarExaminadoPorChaveEstrangeira(idRelacaoFamiliarExaminado).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de avaliacao psicologica!"));
+        return relacaoFamiliarExaminadoRepositorio.buscarRelacaoFamiliarExaminadoPorChaveEstrangeira(idRelacaoFamiliarExaminado).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de relação da família com o examinado!"));
 
     }
 }
