@@ -34,6 +34,7 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
                     throw new ExcecaoDeRegrasDeNegocio("Essa completude de matrícula já foi cadastrada!");
                 });
 
+
         try {
             return completudeMatriculaRepositorio.save(completudeMatricula);
         } catch (DataAccessException e) {
@@ -46,15 +47,16 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
     public CompletudeMatricula atualizarCompletudeMatricula(CompletudeMatricula completudeMatricula) {
 
-        if (completudeMatricula.getIdCompletudeMatricula() == null)
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
-
         praticanteRepositorio.findById(completudeMatricula
                         .getPraticante()
                         .getIdPraticante())
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a completude de matrícula!"));
 
-        if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
+        if (completudeMatricula.getIdCompletudeMatricula() == null)
+            return salvarCompletudeMatricula(completudeMatricula);
+//            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
+
+            if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
             return completudeMatriculaRepositorio.save(completudeMatricula);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de completude de matrícula!");
