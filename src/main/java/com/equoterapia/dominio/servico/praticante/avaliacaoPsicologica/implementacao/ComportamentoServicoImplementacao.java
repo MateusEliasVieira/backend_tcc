@@ -19,29 +19,27 @@ public class ComportamentoServicoImplementacao implements ComportamentoServico {
 
     @Override
     public Comportamento salvarComportamento(Comportamento comportamento) {
-        try {
-            if (comportamento.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(comportamento
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + comportamento.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!comportamentoRepositorio.buscarComportamentoPorChaveEstrangeira(comportamento.getPraticante().getIdPraticante()).isPresent()) {
+        if (comportamento.getPraticante().getIdPraticante() != null) {
 
-                    return comportamentoRepositorio.save(comportamento);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa comportamento já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(comportamento
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + comportamento.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!comportamentoRepositorio.buscarComportamentoPorChaveEstrangeira(comportamento.getPraticante().getIdPraticante()).isPresent()) {
 
+                return comportamentoRepositorio.save(comportamento);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a comportamento, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa comportamento já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a comportamento do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a comportamento, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

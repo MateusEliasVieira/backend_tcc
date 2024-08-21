@@ -19,29 +19,27 @@ public class RotinaServicoImplementacao implements RotinaServico {
 
     @Override
     public Rotina salvarRotina(Rotina rotina) {
-        try {
-            if (rotina.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(rotina
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + rotina.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!rotinaRepositorio.buscarRotinaPorChaveEstrangeira(rotina.getPraticante().getIdPraticante()).isPresent()) {
+        if (rotina.getPraticante().getIdPraticante() != null) {
 
-                    return rotinaRepositorio.save(rotina);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa rotina já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(rotina
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + rotina.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!rotinaRepositorio.buscarRotinaPorChaveEstrangeira(rotina.getPraticante().getIdPraticante()).isPresent()) {
 
+                return rotinaRepositorio.save(rotina);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a rotina, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa rotina já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a rotina do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a rotina, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

@@ -19,29 +19,27 @@ public class EquilibrioDinamicoServicoImplementacao implements EquilibrioDinamic
 
     @Override
     public EquilibrioDinamico salvarEquilibrioDinamico(EquilibrioDinamico equilibrioDinamico) {
-        try {
-            if (equilibrioDinamico.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(equilibrioDinamico
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + equilibrioDinamico.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!equilibrioDinamicoRepositorio.buscarEquilibrioDinamicoPorChaveEstrangeira(equilibrioDinamico.getPraticante().getIdPraticante()).isPresent()) {
+        if (equilibrioDinamico.getPraticante().getIdPraticante() != null) {
 
-                    return equilibrioDinamicoRepositorio.save(equilibrioDinamico);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio dinamico já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(equilibrioDinamico
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + equilibrioDinamico.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!equilibrioDinamicoRepositorio.buscarEquilibrioDinamicoPorChaveEstrangeira(equilibrioDinamico.getPraticante().getIdPraticante()).isPresent()) {
 
+                return equilibrioDinamicoRepositorio.save(equilibrioDinamico);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a equilibrio dinamico, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio dinamico já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a equilibrio dinamico do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a equilibrio dinamico, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

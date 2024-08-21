@@ -19,29 +19,27 @@ public class SobreACriancaServicoImplementacao implements SobreACriancaServico {
 
     @Override
     public SobreACrianca salvarSobreACrianca(SobreACrianca sobreACrianca) {
-        try {
-            if (sobreACrianca.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(sobreACrianca
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + sobreACrianca.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!sobreACriancaRepositorio.buscarSobreACriancaPorChaveEstrangeira(sobreACrianca.getPraticante().getIdPraticante()).isPresent()) {
+        if (sobreACrianca.getPraticante().getIdPraticante() != null) {
 
-                    return sobreACriancaRepositorio.save(sobreACrianca);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Os dados sobre a criança já foram cadastrados!");
-                }
+            praticanteRepositorio.findById(sobreACrianca
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + sobreACrianca.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!sobreACriancaRepositorio.buscarSobreACriancaPorChaveEstrangeira(sobreACrianca.getPraticante().getIdPraticante()).isPresent()) {
 
+                return sobreACriancaRepositorio.save(sobreACrianca);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a os dados sobre a criança, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Os dados sobre a criança já foram cadastrados!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados sobre a criança!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a os dados sobre a criança, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

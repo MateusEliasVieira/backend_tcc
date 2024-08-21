@@ -19,29 +19,27 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
 
     @Override
     public EquilibrioEstatico salvarEquilibrioEstatico(EquilibrioEstatico equilibrioEstatico) {
-        try {
-            if (equilibrioEstatico.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(equilibrioEstatico
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + equilibrioEstatico.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!equilibrioEstaticoRepositorio.buscarEquilibrioEstaticoPorChaveEstrangeira(equilibrioEstatico.getPraticante().getIdPraticante()).isPresent()) {
+        if (equilibrioEstatico.getPraticante().getIdPraticante() != null) {
 
-                    return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio estático já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(equilibrioEstatico
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + equilibrioEstatico.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!equilibrioEstaticoRepositorio.buscarEquilibrioEstaticoPorChaveEstrangeira(equilibrioEstatico.getPraticante().getIdPraticante()).isPresent()) {
 
+                return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a equilibrio estático, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio estático já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a equilibrio estático do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a equilibrio estático, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override
@@ -60,7 +58,7 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de equilibrio estático!");
         }
-        
+
     }
 
     @Override

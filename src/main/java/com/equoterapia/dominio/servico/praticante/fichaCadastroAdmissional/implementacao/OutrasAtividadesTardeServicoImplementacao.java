@@ -18,26 +18,24 @@ public class OutrasAtividadesTardeServicoImplementacao implements OutrasAtividad
 
     @Override
     public OutrasAtividadesTarde salvarOutrasAtividadesTarde(OutrasAtividadesTarde outrasAtividadesTarde) {
-        try {
-            if (outrasAtividadesTarde.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(outrasAtividadesTarde
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
+        if (outrasAtividadesTarde.getPraticante().getIdPraticante() != null) {
 
-                if (!outrasAtividadesTardeRepositorio.buscarOutrasAtividadesTardePorChaveEstrangeira(outrasAtividadesTarde.getPraticante().getIdPraticante()).isPresent()) {
-                    return outrasAtividadesTardeRepositorio.save(outrasAtividadesTarde);
+            praticanteRepositorio.findById(outrasAtividadesTarde
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado outras atividades à tarde para o praticante!");
-                }
+            if (!outrasAtividadesTardeRepositorio.buscarOutrasAtividadesTardePorChaveEstrangeira(outrasAtividadesTarde.getPraticante().getIdPraticante()).isPresent()) {
+                return outrasAtividadesTardeRepositorio.save(outrasAtividadesTarde);
+
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado outras atividades à tarde para o praticante!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados de outras atividades da tarde para o praticante!");
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

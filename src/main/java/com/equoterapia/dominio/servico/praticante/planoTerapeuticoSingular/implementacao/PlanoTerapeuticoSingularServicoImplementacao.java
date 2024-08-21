@@ -19,29 +19,27 @@ public class PlanoTerapeuticoSingularServicoImplementacao implements PlanoTerape
 
 
     public PlanoTerapeuticoSingular salvarPlanoTerapeuticoSingular(PlanoTerapeuticoSingular planoTerapeuticoSingular) {
-        try {
-            if (planoTerapeuticoSingular.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(planoTerapeuticoSingular
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + planoTerapeuticoSingular.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!planoTerapeuticoSingularRepositorio.buscarPlanoTerapeuticoSingularPorChaveEstrangeira(planoTerapeuticoSingular.getPraticante().getIdPraticante()).isPresent()) {
+        if (planoTerapeuticoSingular.getPraticante().getIdPraticante() != null) {
 
-                    return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Esse plano terapêutico singular já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(planoTerapeuticoSingular
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + planoTerapeuticoSingular.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!planoTerapeuticoSingularRepositorio.buscarPlanoTerapeuticoSingularPorChaveEstrangeira(planoTerapeuticoSingular.getPraticante().getIdPraticante()).isPresent()) {
 
+                return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar o plano terapêutico singular, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Esse plano terapêutico singular já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar o plano terapêutico singular do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar o plano terapêutico singular, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
 

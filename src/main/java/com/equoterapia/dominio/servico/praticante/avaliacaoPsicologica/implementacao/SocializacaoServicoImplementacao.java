@@ -19,29 +19,27 @@ public class SocializacaoServicoImplementacao implements SocializacaoServico {
 
     @Override
     public Socializacao salvarSocializacao(Socializacao socializacao) {
-        try {
-            if (socializacao.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(socializacao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + socializacao.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!socializacaoRepositorio.buscarSocializacaoPorChaveEstrangeira(socializacao.getPraticante().getIdPraticante()).isPresent()) {
+        if (socializacao.getPraticante().getIdPraticante() != null) {
 
-                    return socializacaoRepositorio.save(socializacao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa socialização já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(socializacao
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + socializacao.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!socializacaoRepositorio.buscarSocializacaoPorChaveEstrangeira(socializacao.getPraticante().getIdPraticante()).isPresent()) {
 
+                return socializacaoRepositorio.save(socializacao);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a socialização, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa socialização já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a socialização do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a socialização, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

@@ -19,29 +19,27 @@ public class TracosDePersonalidadeServicoImplementacao implements TracosDePerson
 
     @Override
     public TracosDePersonalidade salvarTracosDePersonalidade(TracosDePersonalidade tracosDePersonalidade) {
-        try {
-            if (tracosDePersonalidade.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(tracosDePersonalidade
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + tracosDePersonalidade.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!tracosDePersonalidadeRepositorio.buscarTracosDePersonalidadePorChaveEstrangeira(tracosDePersonalidade.getPraticante().getIdPraticante()).isPresent()) {
+        if (tracosDePersonalidade.getPraticante().getIdPraticante() != null) {
 
-                    return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Os traços de personalidade já foi cadastrado!");
-                }
+            praticanteRepositorio.findById(tracosDePersonalidade
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + tracosDePersonalidade.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!tracosDePersonalidadeRepositorio.buscarTracosDePersonalidadePorChaveEstrangeira(tracosDePersonalidade.getPraticante().getIdPraticante()).isPresent()) {
 
+                return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os traços de personalidade, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Os traços de personalidade já foi cadastrado!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os traços de personalidade do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os traços de personalidade, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

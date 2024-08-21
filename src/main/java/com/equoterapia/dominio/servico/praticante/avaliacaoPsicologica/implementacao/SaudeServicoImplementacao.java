@@ -19,29 +19,27 @@ public class SaudeServicoImplementacao implements SaudeServico {
 
     @Override
     public Saude salvarSaude(Saude saude) {
-        try {
-            if (saude.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(saude
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + saude.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!saudeRepositorio.buscarSaudePorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
+        if (saude.getPraticante().getIdPraticante() != null) {
 
-                    return saudeRepositorio.save(saude);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Os dados da saúde já foram cadastrados!");
-                }
+            praticanteRepositorio.findById(saude
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + saude.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!saudeRepositorio.buscarSaudePorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
 
+                return saudeRepositorio.save(saude);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os dados da saúde, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Os dados da saúde já foram cadastrados!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados da saúde!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os dados da saúde, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

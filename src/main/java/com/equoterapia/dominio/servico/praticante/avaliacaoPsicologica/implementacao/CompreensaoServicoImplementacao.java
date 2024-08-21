@@ -19,28 +19,25 @@ public class CompreensaoServicoImplementacao implements CompreensaoServico {
 
     @Override
     public Compreensao salvarCompreensao(Compreensao compreensao) {
-        try {
-            if (compreensao.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(compreensao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + compreensao.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!compreensaoRepositorio.buscarCompreensaoPorChaveEstrangeira(compreensao.getPraticante().getIdPraticante()).isPresent()) {
+        if (compreensao.getPraticante().getIdPraticante() != null) {
 
-                    return compreensaoRepositorio.save(compreensao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa compreensão já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(compreensao
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + compreensao.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!compreensaoRepositorio.buscarCompreensaoPorChaveEstrangeira(compreensao.getPraticante().getIdPraticante()).isPresent()) {
 
+                return compreensaoRepositorio.save(compreensao);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a compreensão, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa compreensão já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a compreensão do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a compreensão, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
     }
 

@@ -19,28 +19,25 @@ public class AvaliacaoPsicologicaServicoImplementacao implements AvaliacaoPsicol
 
     @Override
     public AvaliacaoPsicologica salvarAvaliacaoPsicologica(AvaliacaoPsicologica avaliacaoPsicologica) {
-        try {
-            if (avaliacaoPsicologica.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(avaliacaoPsicologica
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + avaliacaoPsicologica.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!avaliacaoPsicologicaRepositorio.buscarAvaliacaoPsicologicaPorChaveEstrangeira(avaliacaoPsicologica.getPraticante().getIdPraticante()).isPresent()) {
+        if (avaliacaoPsicologica.getPraticante().getIdPraticante() != null) {
 
-                    return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa avaliacao psicologica já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(avaliacaoPsicologica
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + avaliacaoPsicologica.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!avaliacaoPsicologicaRepositorio.buscarAvaliacaoPsicologicaPorChaveEstrangeira(avaliacaoPsicologica.getPraticante().getIdPraticante()).isPresent()) {
 
+                return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a avaliacao psicologica, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa avaliacao psicologica já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a avaliacao psicologica do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a avaliacao psicologica, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
     }
 

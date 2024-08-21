@@ -19,29 +19,27 @@ public class GruposMuscularesServicoImplementacao implements GruposMuscularesSer
 
     @Override
     public GruposMusculares salvarGruposMusculares(GruposMusculares gruposMusculares) {
-        try {
-            if (gruposMusculares.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(gruposMusculares
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + gruposMusculares.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!gruposMuscularesRepositorio.buscarGruposMuscularesPorChaveEstrangeira(gruposMusculares.getPraticante().getIdPraticante()).isPresent()) {
+        if (gruposMusculares.getPraticante().getIdPraticante() != null) {
 
-                    return gruposMuscularesRepositorio.save(gruposMusculares);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa grupos musculares já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(gruposMusculares
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + gruposMusculares.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!gruposMuscularesRepositorio.buscarGruposMuscularesPorChaveEstrangeira(gruposMusculares.getPraticante().getIdPraticante()).isPresent()) {
 
+                return gruposMuscularesRepositorio.save(gruposMusculares);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a grupos musculares, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa grupos musculares já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a grupos musculares do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a grupos musculares, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

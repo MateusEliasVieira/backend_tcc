@@ -20,27 +20,25 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
 
     @Override
     public EducacaoPraticante salvarEducacaoPraticante(EducacaoPraticante educacaoPraticante) {
-        try {
-            if (educacaoPraticante.getPraticante().getIdPraticante() != null) {
 
-                // passou o id do paciente
-                praticanteRepositorio.findById(
-                        educacaoPraticante.getPraticante().getIdPraticante()).orElseThrow(
-                        () -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
+        if (educacaoPraticante.getPraticante().getIdPraticante() != null) {
 
-                if (!educacaoPraticanteRepositorio.buscarEducacaoPraticantePorChaveEstrangeira(educacaoPraticante.getPraticante().getIdPraticante()).isPresent()) {
-                    return educacaoPraticanteRepositorio.save(educacaoPraticante);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado a educação do praticante!");
-                }
+            // passou o id do paciente
+            praticanteRepositorio.findById(
+                    educacaoPraticante.getPraticante().getIdPraticante()).orElseThrow(
+                    () -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
+            if (!educacaoPraticanteRepositorio.buscarEducacaoPraticantePorChaveEstrangeira(educacaoPraticante.getPraticante().getIdPraticante()).isPresent()) {
+                return educacaoPraticanteRepositorio.save(educacaoPraticante);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado a educação do praticante!");
             }
 
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados da educação do praticante!");
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
+
     }
 
     @Override

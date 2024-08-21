@@ -19,29 +19,27 @@ public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoF
 
     @Override
     public AvaliacaoFisioterapeutica salvarAvaliacaoFisioterapeutica(AvaliacaoFisioterapeutica avaliacaoFisioterapeutica) {
-        try {
-            if (avaliacaoFisioterapeutica.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(avaliacaoFisioterapeutica
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + avaliacaoFisioterapeutica.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!avaliacaoFisioterapeuticaRepositorio.buscarAvaliacaoFisioterapeuticaPorChaveEstrangeira(avaliacaoFisioterapeutica.getPraticante().getIdPraticante()).isPresent()) {
+        if (avaliacaoFisioterapeutica.getPraticante().getIdPraticante() != null) {
 
-                    return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa avaliação fisioterapeutica já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(avaliacaoFisioterapeutica
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + avaliacaoFisioterapeutica.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!avaliacaoFisioterapeuticaRepositorio.buscarAvaliacaoFisioterapeuticaPorChaveEstrangeira(avaliacaoFisioterapeutica.getPraticante().getIdPraticante()).isPresent()) {
 
+                return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a avaliação fisioterapeutica, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa avaliação fisioterapeutica já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a avaliação fisioterapeutica do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a avaliação fisioterapeutica, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

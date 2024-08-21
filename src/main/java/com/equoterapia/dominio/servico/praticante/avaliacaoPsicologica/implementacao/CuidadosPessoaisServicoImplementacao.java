@@ -20,29 +20,27 @@ public class CuidadosPessoaisServicoImplementacao implements CuidadosPessoaisSer
 
     @Override
     public CuidadosPessoais salvarCuidadosPessoais(CuidadosPessoais cuidadosPessoais) {
-        try {
-            if (cuidadosPessoais.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(cuidadosPessoais
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + cuidadosPessoais.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!cuidadosPessoaisRepositorio.buscarCuidadosPessoaisPorChaveEstrangeira(cuidadosPessoais.getPraticante().getIdPraticante()).isPresent()) {
+        if (cuidadosPessoais.getPraticante().getIdPraticante() != null) {
 
-                    return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Os cuidados pessoais já foi cadastrado!");
-                }
+            praticanteRepositorio.findById(cuidadosPessoais
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + cuidadosPessoais.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!cuidadosPessoaisRepositorio.buscarCuidadosPessoaisPorChaveEstrangeira(cuidadosPessoais.getPraticante().getIdPraticante()).isPresent()) {
 
+                return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os cuidados pessoais, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Os cuidados pessoais já foi cadastrado!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os cuidados pessoais do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar os cuidados pessoais, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

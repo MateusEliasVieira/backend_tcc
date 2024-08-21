@@ -19,29 +19,27 @@ public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicaca
 
     @Override
     public FormaDeComunicacao salvarFormaDeComunicacao(FormaDeComunicacao formaDeComunicacao) {
-        try {
-            if (formaDeComunicacao.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(formaDeComunicacao
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + formaDeComunicacao.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!formaDeComunicacaoRepositorio.buscarFormaDeComunicacaoPorChaveEstrangeira(formaDeComunicacao.getPraticante().getIdPraticante()).isPresent()) {
+        if (formaDeComunicacao.getPraticante().getIdPraticante() != null) {
 
-                    return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa forma de comunicação já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(formaDeComunicacao
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + formaDeComunicacao.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!formaDeComunicacaoRepositorio.buscarFormaDeComunicacaoPorChaveEstrangeira(formaDeComunicacao.getPraticante().getIdPraticante()).isPresent()) {
 
+                return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a forma de comunicação, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa forma de comunicação já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a forma de comunicação do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a forma de comunicação, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

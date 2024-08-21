@@ -19,29 +19,27 @@ public class LinguagemServicoImplementacao implements LinguagemServico {
 
     @Override
     public Linguagem salvarLinguagem(Linguagem saude) {
-        try {
-            if (saude.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(saude
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + saude.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!saudeRepositorio.buscarLinguagemPorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
+        if (saude.getPraticante().getIdPraticante() != null) {
 
-                    return saudeRepositorio.save(saude);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("A linguagem já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(saude
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + saude.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!saudeRepositorio.buscarLinguagemPorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
 
+                return saudeRepositorio.save(saude);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a linguagem, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("A linguagem já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a linguagem!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a linguagem, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

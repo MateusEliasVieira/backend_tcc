@@ -19,29 +19,27 @@ public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
 
     @Override
     public QuadroAtual salvarQuadroAtual(QuadroAtual quadroAtual) {
-        try {
-            if (quadroAtual.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(quadroAtual
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + quadroAtual.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!quadroAtualRepositorio.buscarQuadroAtualPorChaveEstrangeira(quadroAtual.getPraticante().getIdPraticante()).isPresent()) {
+        if (quadroAtual.getPraticante().getIdPraticante() != null) {
 
-                    return quadroAtualRepositorio.save(quadroAtual);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Esse quadro atual já foi cadastrado!");
-                }
+            praticanteRepositorio.findById(quadroAtual
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + quadroAtual.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!quadroAtualRepositorio.buscarQuadroAtualPorChaveEstrangeira(quadroAtual.getPraticante().getIdPraticante()).isPresent()) {
 
+                return quadroAtualRepositorio.save(quadroAtual);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a quadro atual, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Esse quadro atual já foi cadastrado!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar o quadro atual do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a quadro atual, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

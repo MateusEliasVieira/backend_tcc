@@ -19,29 +19,27 @@ public class AfetividadeServicoImplementacao implements AfetividadeServico {
 
     @Override
     public Afetividade salvarAfetividade(Afetividade afetividade) {
-        try {
-            if (afetividade.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(afetividade
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + afetividade.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!afetividadeRepositorio.buscarAfetividadePorChaveEstrangeira(afetividade.getPraticante().getIdPraticante()).isPresent()) {
+        if (afetividade.getPraticante().getIdPraticante() != null) {
 
-                    return afetividadeRepositorio.save(afetividade);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa afetividade já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(afetividade
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + afetividade.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!afetividadeRepositorio.buscarAfetividadePorChaveEstrangeira(afetividade.getPraticante().getIdPraticante()).isPresent()) {
 
+                return afetividadeRepositorio.save(afetividade);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a afetividade, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa afetividade já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a afetividade do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a afetividade, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

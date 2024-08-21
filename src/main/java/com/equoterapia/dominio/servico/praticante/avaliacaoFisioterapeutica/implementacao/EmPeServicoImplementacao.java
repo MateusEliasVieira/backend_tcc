@@ -19,29 +19,27 @@ public class EmPeServicoImplementacao implements EmPeServico {
 
     @Override
     public EmPe salvarEmPe(EmPe emPe) {
-        try {
-            if (emPe.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(emPe
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + emPe.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!emPeRepositorio.buscarEmPePorChaveEstrangeira(emPe.getPraticante().getIdPraticante()).isPresent()) {
+        if (emPe.getPraticante().getIdPraticante() != null) {
 
-                    return emPeRepositorio.save(emPe);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Em Pé já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(emPe
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + emPe.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!emPeRepositorio.buscarEmPePorChaveEstrangeira(emPe.getPraticante().getIdPraticante()).isPresent()) {
 
+                return emPeRepositorio.save(emPe);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar Em Pé, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Em Pé já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar Em Pé do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar Em Pé, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

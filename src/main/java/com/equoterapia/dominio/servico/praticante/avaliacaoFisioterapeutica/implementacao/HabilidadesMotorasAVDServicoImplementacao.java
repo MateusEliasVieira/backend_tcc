@@ -19,29 +19,27 @@ public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMot
 
     @Override
     public HabilidadesMotorasAVD salvarHabilidadesMotorasAVD(HabilidadesMotorasAVD habilidadesMotorasAVD) {
-        try {
-            if (habilidadesMotorasAVD.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(habilidadesMotorasAVD
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + habilidadesMotorasAVD.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!habilidadesMotorasAVDRepositorio.buscarHabilidadesMotorasAVDPorChaveEstrangeira(habilidadesMotorasAVD.getPraticante().getIdPraticante()).isPresent()) {
+        if (habilidadesMotorasAVD.getPraticante().getIdPraticante() != null) {
 
-                    return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("As habilidades motoras AVD já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(habilidadesMotorasAVD
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + habilidadesMotorasAVD.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!habilidadesMotorasAVDRepositorio.buscarHabilidadesMotorasAVDPorChaveEstrangeira(habilidadesMotorasAVD.getPraticante().getIdPraticante()).isPresent()) {
 
+                return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar as habilidades motoras AVD, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("As habilidades motoras AVD já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar as habilidades motoras AVD do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar as habilidades motoras AVD, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

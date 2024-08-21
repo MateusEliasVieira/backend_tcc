@@ -19,29 +19,27 @@ public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraS
 
     @Override
     public CoordenacaoMotora salvarCoordenacaoMotora(CoordenacaoMotora coordenacaoMotora) {
-        try {
-            if (coordenacaoMotora.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(coordenacaoMotora
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + coordenacaoMotora.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!coordenacaoMotoraRepositorio.buscarCoordenacaoMotoraPorChaveEstrangeira(coordenacaoMotora.getPraticante().getIdPraticante()).isPresent()) {
+        if (coordenacaoMotora.getPraticante().getIdPraticante() != null) {
 
-                    return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa coordenação motora já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(coordenacaoMotora
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + coordenacaoMotora.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!coordenacaoMotoraRepositorio.buscarCoordenacaoMotoraPorChaveEstrangeira(coordenacaoMotora.getPraticante().getIdPraticante()).isPresent()) {
 
+                return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a coordenação motora, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa coordenação motora já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a coordenação motora do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a coordenação motora, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

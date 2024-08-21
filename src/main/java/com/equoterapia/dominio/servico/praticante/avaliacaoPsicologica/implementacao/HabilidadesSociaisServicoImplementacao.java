@@ -19,29 +19,27 @@ public class HabilidadesSociaisServicoImplementacao implements HabilidadesSociai
 
     @Override
     public HabilidadesSociais salvarHabilidadesSociais(HabilidadesSociais habilidadesSociais) {
-        try {
-            if (habilidadesSociais.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(habilidadesSociais
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + habilidadesSociais.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!habilidadesSociaisRepositorio.buscarHabilidadesSociaisPorChaveEstrangeira(habilidadesSociais.getPraticante().getIdPraticante()).isPresent()) {
+        if (habilidadesSociais.getPraticante().getIdPraticante() != null) {
 
-                    return habilidadesSociaisRepositorio.save(habilidadesSociais);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("As habilidades sociais já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(habilidadesSociais
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + habilidadesSociais.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!habilidadesSociaisRepositorio.buscarHabilidadesSociaisPorChaveEstrangeira(habilidadesSociais.getPraticante().getIdPraticante()).isPresent()) {
 
+                return habilidadesSociaisRepositorio.save(habilidadesSociais);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar as habilidades sociais, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("As habilidades sociais já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar as habilidades sociais do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar as habilidades sociais, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

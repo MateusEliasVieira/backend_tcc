@@ -19,29 +19,27 @@ public class SaudeMentalServicoImplementacao implements SaudeMentalServico {
 
     @Override
     public SaudeMental salvarSaudeMental(SaudeMental saudeMental) {
-        try {
-            if (saudeMental.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(saudeMental
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + saudeMental.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!saudeMentalRepositorio.buscarSaudeMentalPorChaveEstrangeira(saudeMental.getPraticante().getIdPraticante()).isPresent()) {
+        if (saudeMental.getPraticante().getIdPraticante() != null) {
 
-                    return saudeMentalRepositorio.save(saudeMental);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa saúde mental já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(saudeMental
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + saudeMental.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!saudeMentalRepositorio.buscarSaudeMentalPorChaveEstrangeira(saudeMental.getPraticante().getIdPraticante()).isPresent()) {
 
+                return saudeMentalRepositorio.save(saudeMental);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a saúde mental, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa saúde mental já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a saúde mental do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a saúde mental, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

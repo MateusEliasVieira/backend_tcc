@@ -19,29 +19,27 @@ public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPrati
 
     @Override
     public SaudeGeralDoPraticante salvarSaudeGeralDosPraticantes(SaudeGeralDoPraticante saudeGeralDoPraticante) {
-        try {
-            if (saudeGeralDoPraticante.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(saudeGeralDoPraticante
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + saudeGeralDoPraticante.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!saudeGeralDosPraticantesRepositorio.buscarSaudeGeralDosPraticantesPorChaveEstrangeira(saudeGeralDoPraticante.getPraticante().getIdPraticante()).isPresent()) {
+        if (saudeGeralDoPraticante.getPraticante().getIdPraticante() != null) {
 
-                    return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("A saúde geral do praticante já foi cadastrado!");
-                }
+            praticanteRepositorio.findById(saudeGeralDoPraticante
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + saudeGeralDoPraticante.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!saudeGeralDosPraticantesRepositorio.buscarSaudeGeralDosPraticantesPorChaveEstrangeira(saudeGeralDoPraticante.getPraticante().getIdPraticante()).isPresent()) {
 
+                return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a saúde geral do praticante, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("A saúde geral do praticante já foi cadastrado!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a saúde geral do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a saúde geral do praticante, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override

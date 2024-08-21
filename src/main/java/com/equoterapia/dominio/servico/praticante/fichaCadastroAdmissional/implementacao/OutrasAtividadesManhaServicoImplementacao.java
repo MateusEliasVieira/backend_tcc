@@ -20,27 +20,24 @@ public class OutrasAtividadesManhaServicoImplementacao implements OutrasAtividad
 
     @Override
     public OutrasAtividadesManha salvarOutrasAtividadesManha(OutrasAtividadesManha outrasAtividadesManha) {
-        try {
-            if (outrasAtividadesManha.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(outrasAtividadesManha
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
+        if (outrasAtividadesManha.getPraticante().getIdPraticante() != null) {
 
-                if (!outrasAtividadesManhaRepositorio.buscarOutrasAtividadesManhaPorChaveEstrangeira(outrasAtividadesManha.getPraticante().getIdPraticante()).isPresent()) {
-                    return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
+            praticanteRepositorio.findById(outrasAtividadesManha
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado outras atividades da manhã para o praticante!");
-                }
+            if (!outrasAtividadesManhaRepositorio.buscarOutrasAtividadesManhaPorChaveEstrangeira(outrasAtividadesManha.getPraticante().getIdPraticante()).isPresent()) {
+                return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
+
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado outras atividades da manhã para o praticante!");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados de outras atividades da manhã do praticante!");
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
 
     }
 

@@ -19,29 +19,27 @@ public class MobilidadeArticularServicoImplementacao implements MobilidadeArticu
 
     @Override
     public MobilidadeArticular salvarMobilidadeArticular(MobilidadeArticular mobilidadeArticular) {
-        try {
-            if (mobilidadeArticular.getPraticante().getIdPraticante() != null) {
 
-                praticanteRepositorio.findById(mobilidadeArticular
-                                .getPraticante()
-                                .getIdPraticante())
-                        .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
-                                Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                        + mobilidadeArticular.getPraticante().getIdPraticante() + "!"
-                        ));
-                if (!mobilidadeArticularRepositorio.buscarMobilidadeArticularPorChaveEstrangeira(mobilidadeArticular.getPraticante().getIdPraticante()).isPresent()) {
+        if (mobilidadeArticular.getPraticante().getIdPraticante() != null) {
 
-                    return mobilidadeArticularRepositorio.save(mobilidadeArticular);
-                } else {
-                    throw new ExcecaoDeRegrasDeNegocio("Essa mobilidade articular já foi cadastrada!");
-                }
+            praticanteRepositorio.findById(mobilidadeArticular
+                            .getPraticante()
+                            .getIdPraticante())
+                    .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
+                            Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
+                                    + mobilidadeArticular.getPraticante().getIdPraticante() + "!"
+                    ));
+            if (!mobilidadeArticularRepositorio.buscarMobilidadeArticularPorChaveEstrangeira(mobilidadeArticular.getPraticante().getIdPraticante()).isPresent()) {
 
+                return mobilidadeArticularRepositorio.save(mobilidadeArticular);
             } else {
-                throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a mobilidade articular, pois não foi possível identificar a qual praticante esse cadastro se refere!");
+                throw new ExcecaoDeRegrasDeNegocio("Essa mobilidade articular já foi cadastrada!");
             }
-        } catch (Exception e) {
-            throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar a mobilidade articular do praticante!");
+
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a mobilidade articular, pois não foi possível identificar a qual praticante esse cadastro se refere!");
         }
+
     }
 
     @Override
