@@ -53,8 +53,8 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a completude de matrícula!"));
 
         if (completudeMatricula.getIdCompletudeMatricula() == null)
-            return salvarCompletudeMatricula(completudeMatricula);
-//            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
+//            return salvarCompletudeMatricula(completudeMatricula);
 
             if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
             return completudeMatriculaRepositorio.save(completudeMatricula);
