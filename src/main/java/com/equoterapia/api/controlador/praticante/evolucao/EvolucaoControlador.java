@@ -8,6 +8,7 @@ import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.servico.praticante.evolucao.EvolucaoServico;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,14 @@ public class EvolucaoControlador {
     private EvolucaoServico evolucaoServico;
 
     @PostMapping("/salvar-evolucao-do-praticante")
-    public ResponseEntity<?> salvarEvolucao(@RequestBody EvolucaoEntradaDTO evolucaoEntradaDTO) {
+    public ResponseEntity<?> salvarEvolucao(@RequestBody @Valid EvolucaoEntradaDTO evolucaoEntradaDTO) {
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.salvarEvolucao(evolucao);
         return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante cadastrada com sucesso!"), HttpStatus.CREATED);
     }
 
     @PutMapping("/atualizar-evolucao-do-praticante")
-    public ResponseEntity<?> atualizarEvolucao(@RequestBody EvolucaoEntradaDTO evolucaoEntradaDTO) {
+    public ResponseEntity<?> atualizarEvolucao(@RequestBody @Valid EvolucaoEntradaDTO evolucaoEntradaDTO) {
         Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
         evolucaoServico.atualizarEvolucao(evolucao);
         return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante atualizada com sucesso!"), HttpStatus.CREATED);
@@ -42,7 +43,7 @@ public class EvolucaoControlador {
     }
 
     @PostMapping ("/buscar-evolucao-do-praticante-por-intervalo-de-datas")
-    public ResponseEntity<?> buscarEvolucaoPorIntervaloDeDatas(@RequestBody EvolucaoParaGraficoEntradaDTO evolucaoParaGraficoEntradaDTO) {
+    public ResponseEntity<?> buscarEvolucaoPorIntervaloDeDatas(@RequestBody @Valid EvolucaoParaGraficoEntradaDTO evolucaoParaGraficoEntradaDTO) {
         return new ResponseEntity<EvolucaoParaGraficoSaidaDTO>(evolucaoServico.buscarEvolucaoPorIntervaloDeDatas(evolucaoParaGraficoEntradaDTO.getDataInicial(), evolucaoParaGraficoEntradaDTO.getDataFinal(), evolucaoParaGraficoEntradaDTO.getPraticante().getIdPraticante()), HttpStatus.OK);
     }
 

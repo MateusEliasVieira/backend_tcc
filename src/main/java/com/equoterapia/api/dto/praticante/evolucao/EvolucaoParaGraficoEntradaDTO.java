@@ -15,7 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class EvolucaoParaGraficoEntradaDTO {
 
+    @NotNull(message = "É preciso informar a data inicial!")
     private Date dataInicial;
+    @NotNull(message = "É preciso informar a data final!")
     private Date dataFinal;
 
     @NotNull(message = "É preciso informar o praticante a ser atualizado!")

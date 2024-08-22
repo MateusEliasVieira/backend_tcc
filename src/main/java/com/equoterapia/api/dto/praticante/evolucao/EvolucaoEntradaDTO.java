@@ -13,7 +13,9 @@ import java.util.Date;
 @ToString
 public class EvolucaoEntradaDTO {
 
+    @NotNull(message = "A data da evolução deve ser informada!")
     private Date data;
+    @NotNull(message = "Deve ser informado se o praticante estava presente ou não!")
     private Boolean estavaPresente;
     private String observacao;
 
