@@ -55,7 +55,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFrequenciaProjectionList.forEach((e) -> {
-                if (FormataData.verificarMes(e.getMes()).equals(m)) {
+                if (FormataData.verificarMes(e.getMes()).equals(m.split("/")[0])) {
                     auxiliar[0] += (Integer) e.getFrequencia();
                 }
             });
@@ -76,7 +76,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFaltasProjectionList.forEach((e) -> {
-                if (FormataData.verificarMes(e.getMes()).equals(m)) {
+                if (FormataData.verificarMes(e.getMes()).equals(m.split("/")[0])) {
                     auxiliar[0] += (Integer) e.getFaltas();
                 }
             });
@@ -140,8 +140,6 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
                 mesesHashSet.add(FormataData.verificarMesEAno(mes,ano));
             });
 
-            FormataData.limparDatas();
-
             List<String> meses = new ArrayList<>(mesesHashSet); // recebe os meses sem repetir e converte em List
             List<Integer> listaFrequencia = otimizarEvolucaoFrequencia(frequencia, meses);
             List<Integer> listaFaltas = otimizarEvolucaoFaltas(faltas, meses);
@@ -151,6 +149,8 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
             evolucaoParaGraficoSaidaDTO.setMeses(meses);
             evolucaoParaGraficoSaidaDTO.setFrequencia(listaFrequencia);
             evolucaoParaGraficoSaidaDTO.setFaltas(listaFaltas);
+
+            FormataData.limparDatas();
 
             return evolucaoParaGraficoSaidaDTO;
         } else {
