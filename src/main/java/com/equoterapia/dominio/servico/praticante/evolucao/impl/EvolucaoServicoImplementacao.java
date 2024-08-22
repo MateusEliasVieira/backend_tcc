@@ -55,7 +55,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFrequenciaProjectionList.forEach((e) -> {
-                if (String.valueOf(e.getMes()+"/"+e.getAno()).equals(m)) {
+                if (String.valueOf(FormataData.verificarMes(e.getMes())+"/"+e.getAno()).equals(m)) {
                     auxiliar[0] += (Integer) e.getFrequencia();
                 }
             });
@@ -76,7 +76,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFaltasProjectionList.forEach((e) -> {
-                if (String.valueOf(e.getMes()+"/"+e.getAno()).equals(m)) {
+                if (String.valueOf(FormataData.verificarMes(e.getMes())+"/"+e.getAno()).equals(m)) {
                     auxiliar[0] += (Integer) e.getFaltas();
                 }
             });
