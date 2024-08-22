@@ -3,9 +3,16 @@ package com.equoterapia.utilidades;
 import com.equoterapia.dominio.excecaoDeDominio.ExcecaoDeRegrasDeNegocio;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FormataData {
+
+    private static List<String> datas = new ArrayList<>();
+    private static boolean add = false;
+    private static int contador = 0;
 
     public static final String formateMinhaData(Date data) {
         if (data != null) {
@@ -14,39 +21,62 @@ public class FormataData {
             // Formatar a data em uma string
             String dataFormatada = meuFormato.format(data);
             return dataFormatada;
-        }else{
+        } else {
             System.out.println("Data ta nula na classe FormataData");
             throw new ExcecaoDeRegrasDeNegocio("Erro interno do sistema!");
         }
     }
-    public static final String verificarMes(int mes) {
+
+    public static final String verificarMesEAno(int mes, int ano) {
+
+        add = false;
+
+        String mesSelecionado = "";
+
         if (mes == 1) {
-            return "Jan";
+            mesSelecionado = "Jan";
         } else if (mes == 2) {
-            return "Fev";
+            mesSelecionado = "Fev";
         } else if (mes == 3) {
-            return "Mar";
+            mesSelecionado = "Mar";
         } else if (mes == 4) {
-            return "Abril";
+            mesSelecionado = "Abril";
         } else if (mes == 5) {
-            return "Maio";
+            mesSelecionado = "Maio";
         } else if (mes == 6) {
-            return "Jun";
+            mesSelecionado = "Jun";
         } else if (mes == 7) {
-            return "Jul";
+            mesSelecionado = "Jul";
         } else if (mes == 8) {
-            return "Ago";
+            mesSelecionado = "Ago";
         } else if (mes == 9) {
-            return "Set";
+            mesSelecionado = "Set";
         } else if (mes == 10) {
-            return "Out";
+            mesSelecionado = "Out";
         } else if (mes == 11) {
-            return "Nov";
+            mesSelecionado = "Nov";
         } else if (mes == 12) {
-            return "Dez";
-        } else {
-            return "";
+            mesSelecionado = "Dez";
         }
+
+        String data = mesSelecionado + "/" + ano;
+
+        datas.forEach((dt) -> {
+            if (dt.equals(data)) { // caso ja tenha add
+                add = true;
+            }
+        });
+
+        if(add == false){ // não está na lista, pode add
+            datas.add(data);
+        }
+
+        return data;
+
+    }
+
+    public static void limparDatas(){
+        datas.clear();
     }
 
 

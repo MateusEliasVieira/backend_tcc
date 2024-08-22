@@ -136,8 +136,11 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
                 calendario.setTime(e.getData());
 
                 int mes = calendario.get(Calendar.MONTH) + 1; // Janeiro é 1, Dezembro é 12
-                mesesHashSet.add(FormataData.verificarMes(mes));
+                int ano = calendario.get(Calendar.YEAR);
+                mesesHashSet.add(FormataData.verificarMesEAno(mes,ano));
             });
+
+            FormataData.limparDatas();
 
             List<String> meses = new ArrayList<>(mesesHashSet); // recebe os meses sem repetir e converte em List
             List<Integer> listaFrequencia = otimizarEvolucaoFrequencia(frequencia, meses);
