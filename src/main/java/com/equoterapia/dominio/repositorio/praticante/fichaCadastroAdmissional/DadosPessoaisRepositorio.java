@@ -16,6 +16,8 @@ public interface DadosPessoaisRepositorio extends JpaRepository<DadosPessoais, L
     public Optional<DadosPessoais> findByCpf(String cpf);
     public Optional<DadosPessoais> findByCartaoSUS(String cartaoSUS);
 
+    public Optional<List<DadosPessoais>> findAllByOrderByIdDadosPessoaisDesc();
+
     @Query("SELECT dp FROM DadosPessoais dp WHERE dp.nomeCompleto LIKE %:nome%")
     public List<DadosPessoais> findByNomeCompleto(@Param("nome") String nome);
 
