@@ -21,6 +21,9 @@ public class Evolucao {
     private long idEvolucao;
     private Date data;
     private Boolean estavaPresente;
+
+    @Lob // usada em JPA para indicar que um atributo de uma entidade deve ser mapeado para um tipo de objeto grande no banco de dados
+    @Column(columnDefinition = "LONGTEXT")
     private String observacao;
 
     @ManyToOne
