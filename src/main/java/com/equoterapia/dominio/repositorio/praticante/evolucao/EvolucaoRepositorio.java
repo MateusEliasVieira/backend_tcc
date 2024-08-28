@@ -16,7 +16,8 @@ public interface EvolucaoRepositorio extends JpaRepository<Evolucao, Long> {
     @Query("select e from Evolucao e where e.praticante.idPraticante = :idPraticante order by e.data desc")
     public Optional<List<Evolucao>> buscarEvolucoesPorChaveEstrangeira(@Param("idPraticante") Long idPraticante);
 
-    @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante AND FUNCTION('DATE', e.data) = :data")
+//    @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante AND FUNCTION('DATE', e.data) = :data")
+    @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante and e.data = :data")
     public Optional<Evolucao> buscarEvolucaoDoPraticantePorData(@Param("idPraticante") Long idPraticante, @Param("data") Date data);
 
     @Query("SELECT e FROM Evolucao e WHERE e.data BETWEEN :dataInicial AND :dataFinal AND e.praticante.idPraticante = :idPraticante")
