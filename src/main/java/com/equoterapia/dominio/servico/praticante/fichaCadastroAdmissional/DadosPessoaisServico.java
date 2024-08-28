@@ -14,7 +14,7 @@ public interface DadosPessoaisServico {
 
     DadosPessoais buscarDadosPessoaisPorID(Long idDadosPessoais);
     public DadosPessoais buscarDadosPessoaisPorIdDoPraticante(Long idPraticante);
-        DadosPessoais buscarDadosPessoaisPorCPF(String cpf);
+    DadosPessoais buscarDadosPessoaisPorCPF(String cpf);
 
     List<DadosPessoais> buscarDadosPessoaisDosPraticantes();
 
