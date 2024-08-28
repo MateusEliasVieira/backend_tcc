@@ -1,5 +1,6 @@
 package com.equoterapia.api.mapeador.praticante;
 
+import com.equoterapia.api.dto.praticante.evolucao.EvolucaoAtualizacaoEntradaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
 import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
 import com.equoterapia.api.dto.praticante.avaliacaoFisioterapeutica.*;
@@ -25,6 +26,11 @@ public class PraticanteMapeador {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(evolucaoEntradaDTO, Evolucao.class);
     }
+    public static Evolucao converterEvolucaoAtualizacaoEntradaDTOParaEvolucao(EvolucaoAtualizacaoEntradaDTO evolucaoAtualizacaoEntradaDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(evolucaoAtualizacaoEntradaDTO, Evolucao.class);
+    }
+
 
     public static EvolucaoSaidaDTO converterEvolucaoParaEvolucaoSaidaDTO(Evolucao evolucao) {
         ModelMapper modelMapper = new ModelMapper();

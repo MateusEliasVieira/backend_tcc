@@ -41,7 +41,10 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
 
     @Override
     public Evolucao atualizarEvolucao(Evolucao evolucao) {
-        return null; //evolucaoRepositorio.updateEvolucaoByIdEvolucao(evolucao);
+        if(evolucaoRepositorio.findById(evolucao.getIdEvolucao()).isPresent())
+            return evolucaoRepositorio.save(evolucao);
+
+        throw new ExcecaoDeRegrasDeNegocio("Não foi encontrado a evolução para ser atualizada!");
     }
 
     @Override

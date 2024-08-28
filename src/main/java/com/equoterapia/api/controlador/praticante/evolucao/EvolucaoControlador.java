@@ -1,10 +1,7 @@
 package com.equoterapia.api.controlador.praticante.evolucao;
 
 import com.equoterapia.api.controlador.utilidades.Mensagem;
-import com.equoterapia.api.dto.praticante.evolucao.EvolucaoEntradaDTO;
-import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoEntradaDTO;
-import com.equoterapia.api.dto.praticante.evolucao.EvolucaoParaGraficoSaidaDTO;
-import com.equoterapia.api.dto.praticante.evolucao.EvolucaoSaidaDTO;
+import com.equoterapia.api.dto.praticante.evolucao.*;
 import com.equoterapia.api.mapeador.praticante.PraticanteMapeador;
 import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.servico.praticante.evolucao.EvolucaoServico;
@@ -31,8 +28,8 @@ public class EvolucaoControlador {
     }
 
     @PutMapping("/atualizar-evolucao-do-praticante")
-    public ResponseEntity<?> atualizarEvolucao(@RequestBody @Valid EvolucaoEntradaDTO evolucaoEntradaDTO) {
-        Evolucao evolucao = PraticanteMapeador.converterEvolucaoEntradaDTOParaEvolucao(evolucaoEntradaDTO);
+    public ResponseEntity<?> atualizarEvolucao(@RequestBody @Valid EvolucaoAtualizacaoEntradaDTO evolucaoAtualizacaoEntradaDTO) {
+        Evolucao evolucao = PraticanteMapeador.converterEvolucaoAtualizacaoEntradaDTOParaEvolucao(evolucaoAtualizacaoEntradaDTO);
         evolucaoServico.atualizarEvolucao(evolucao);
         return new ResponseEntity<Mensagem>(new Mensagem("Evolução do praticante atualizada com sucesso!"), HttpStatus.CREATED);
     }

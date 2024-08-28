@@ -18,7 +18,7 @@ public class Evolucao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idEvolucao;
+    private Long idEvolucao;
     private Date data;
     private Boolean estavaPresente;
 
