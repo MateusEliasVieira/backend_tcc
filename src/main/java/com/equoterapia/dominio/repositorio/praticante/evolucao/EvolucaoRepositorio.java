@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface EvolucaoRepositorio extends JpaRepository<Evolucao, Long> {
 
-    @Query("select e from Evolucao e where e.praticante.idPraticante = :idPraticante")
+    @Query("select e from Evolucao e where e.praticante.idPraticante = :idPraticante order by e.data desc")
     public Optional<List<Evolucao>> buscarEvolucoesPorChaveEstrangeira(@Param("idPraticante") Long idPraticante);
 
     @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante AND FUNCTION('DATE', e.data) = :data")
