@@ -54,7 +54,7 @@ public class Log {
             // O cabeçalho X-Forwarded-For pode conter uma lista de endereços IP, onde o primeiro endereço é o endereço do cliente.
             enderecoIpDoCliente = xForwardedForHeader.split(",")[0].trim();
         }
-        return "Data: " + FormataData.formateMinhaData(data) + ", IP: " + enderecoIpDoCliente + ", Navegador: " + browserClient + ", Sistema Operacional: " + so + " Login = (Nome de Usuário: " + loginEntradaDTO.getNomeUsuario() + ", Senha: " + loginEntradaDTO.getSenha() + ")\n";
+        return "Data: " + FormataData.formateMinhaData(data) + ", IP: " + enderecoIpDoCliente + ", Navegador: " + browserClient + ", Sistema Operacional: " + so + "\n";
     }
 
 
