@@ -41,10 +41,16 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
 
     @Override
     public Evolucao atualizarEvolucao(Evolucao evolucao) {
-        if(evolucaoRepositorio.findById(evolucao.getIdEvolucao()).isPresent())
-            return evolucaoRepositorio.save(evolucao);
+        if (evolucaoRepositorio.findById(evolucao.getIdEvolucao()).isPresent()) {
+            if (evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData()).isPresent()) {
+                throw new ExcecaoDeRegrasDeNegocio("Já foi aplicada anteriormente a evolução para o praticante nesta data!");
+            } else {
+                return evolucaoRepositorio.save(evolucao);
+            }
+        } else {
+            throw new ExcecaoDeRegrasDeNegocio("Não foi encontrado a evolução para ser atualizada!");
+        }
 
-        throw new ExcecaoDeRegrasDeNegocio("Não foi encontrado a evolução para ser atualizada!");
     }
 
     @Override
@@ -58,7 +64,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFrequenciaProjectionList.forEach((e) -> {
-                if (String.valueOf(FormataData.verificarMes(e.getMes())+"/"+e.getAno()).equals(m)) {
+                if (String.valueOf(FormataData.verificarMes(e.getMes()) + "/" + e.getAno()).equals(m)) {
                     auxiliar[0] += (Integer) e.getFrequencia();
                 }
             });
@@ -79,7 +85,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         final Integer[] auxiliar = {0};
         meses.forEach((m) -> {
             evolucaoConsultaFaltasProjectionList.forEach((e) -> {
-                if (String.valueOf(FormataData.verificarMes(e.getMes())+"/"+e.getAno()).equals(m)) {
+                if (String.valueOf(FormataData.verificarMes(e.getMes()) + "/" + e.getAno()).equals(m)) {
                     auxiliar[0] += (Integer) e.getFaltas();
                 }
             });
@@ -116,13 +122,13 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
     @Override
     public EvolucaoParaGraficoSaidaDTO buscarEvolucaoPorIntervaloDeDatas(Date dataInicial, Date dataFinal, Long idPraticante) {
 
-        if(dataInicial.equals(null))
+        if (dataInicial.equals(null))
             throw new ExcecaoDeRegrasDeNegocio("Informe a data inicial!");
 
-        if(dataFinal.equals(null))
+        if (dataFinal.equals(null))
             throw new ExcecaoDeRegrasDeNegocio("Informe a data final!");
 
-        if(dataInicial.after(dataFinal))
+        if (dataInicial.after(dataFinal))
             throw new ExcecaoDeRegrasDeNegocio("O intervalo de tempo das datas informadas é inválido!");
 
         if (calcularDiasEntreDatas(dataInicial, dataFinal) <= 366) {
@@ -140,7 +146,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
 
                 int mes = calendario.get(Calendar.MONTH) + 1; // Janeiro é 1, Dezembro é 12
                 int ano = calendario.get(Calendar.YEAR);
-                mesesHashSet.add(FormataData.verificarMesEAno(mes,ano));
+                mesesHashSet.add(FormataData.verificarMesEAno(mes, ano));
             });
 
             List<String> meses = new ArrayList<>(mesesHashSet); // recebe os meses sem repetir e converte em List
