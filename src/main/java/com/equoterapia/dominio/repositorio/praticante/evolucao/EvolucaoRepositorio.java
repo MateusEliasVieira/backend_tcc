@@ -17,7 +17,7 @@ public interface EvolucaoRepositorio extends JpaRepository<Evolucao, Long> {
     public Optional<List<Evolucao>> buscarEvolucoesPorChaveEstrangeira(@Param("idPraticante") Long idPraticante);
 
     //@Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante and e.data = :data") // se você está comparando datas com precisão até o nível de segundos.
-    @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante AND FUNCTION('DATE', e.data) = :data") // se você está comparando apenas as partes de data, ignorando horas, minutos e segundos.
+    @Query("SELECT e FROM Evolucao e WHERE e.praticante.idPraticante = :idPraticante AND DATE(e.data) = :data") // se você está comparando apenas as partes de data, ignorando horas, minutos e segundos.
     public Optional<Evolucao> buscarEvolucaoDoPraticantePorData(@Param("idPraticante") Long idPraticante, @Param("data") Date data);
 
     @Query("SELECT e FROM Evolucao e WHERE e.data BETWEEN :dataInicial AND :dataFinal AND e.praticante.idPraticante = :idPraticante")
