@@ -31,27 +31,30 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         if (evolucao.getData().after(new Date(System.currentTimeMillis()))) {
             throw new ExcecaoDeRegrasDeNegocio("Não é possível aplicar data futura para evolução do praticante!");
         } else {
-            if (evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData()).isPresent()) {
+            Optional<Evolucao> evolucaoExistente = evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData());
+            if (evolucaoExistente.isPresent()) {
                 throw new ExcecaoDeRegrasDeNegocio("Já foi aplicada anteriormente a evolução para o praticante nesta data!");
             } else {
                 return evolucaoRepositorio.save(evolucao);
             }
         }
     }
+
 
     @Override
     public Evolucao atualizarEvolucao(Evolucao evolucao) {
-        if (evolucaoRepositorio.findById(evolucao.getIdEvolucao()).isPresent()) {
-            if (evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData()).isPresent()) {
-                throw new ExcecaoDeRegrasDeNegocio("Já foi aplicada anteriormente a evolução para o praticante nesta data!");
-            } else {
-                return evolucaoRepositorio.save(evolucao);
-            }
-        } else {
+        if (!evolucaoRepositorio.findById(evolucao.getIdEvolucao()).isPresent()) {
             throw new ExcecaoDeRegrasDeNegocio("Não foi encontrado a evolução para ser atualizada!");
         }
 
+        Optional<Evolucao> evolucaoExistente = evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData());
+        if (evolucaoExistente.isPresent() && !evolucaoExistente.get().getIdEvolucao().equals(evolucao.getIdEvolucao())) {
+            throw new ExcecaoDeRegrasDeNegocio("Já existe uma evolução para o praticante nesta data!");
+        } else {
+            return evolucaoRepositorio.save(evolucao);
+        }
     }
+
 
     @Override
     public List<Evolucao> listarTodasEvolucoesDoPraticante(Long idPraticante) {
