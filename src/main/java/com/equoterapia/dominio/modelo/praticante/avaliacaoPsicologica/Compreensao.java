@@ -23,6 +23,8 @@ public class Compreensao {
     private PreencherLegendaEnum executaOrdensVerbaisSimples;
     private PreencherLegendaEnum executaOrdensComplexas;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

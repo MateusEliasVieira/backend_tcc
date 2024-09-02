@@ -24,6 +24,8 @@ public class Linguagem {
     private PreencherLegendaEnum frasesCurtas;
     private PreencherLegendaEnum frasesCompletas;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

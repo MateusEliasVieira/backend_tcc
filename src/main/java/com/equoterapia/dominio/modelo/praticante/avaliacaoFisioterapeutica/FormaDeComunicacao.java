@@ -26,6 +26,8 @@ public class FormaDeComunicacao {
     private SImOuNaoEnum usoDosOlhos;
     private String consideracoesUsoDosOlhos;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -25,6 +25,8 @@ public class CompletudeMatricula {
     @Column(columnDefinition = "LONGTEXT")
     private String imagemAssinaturaResponsavel;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

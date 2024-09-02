@@ -25,6 +25,8 @@ public class Comportamento {
     private PreencherLegendaEnum oposicao;
     private PreencherLegendaEnum atencaoConcentracao;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

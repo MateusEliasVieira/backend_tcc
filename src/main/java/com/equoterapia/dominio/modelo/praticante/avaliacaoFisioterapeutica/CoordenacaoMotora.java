@@ -31,6 +31,8 @@ public class CoordenacaoMotora {
     private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

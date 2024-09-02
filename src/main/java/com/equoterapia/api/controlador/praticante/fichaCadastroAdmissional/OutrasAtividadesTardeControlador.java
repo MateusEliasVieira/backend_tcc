@@ -33,4 +33,5 @@ public class OutrasAtividadesTardeControlador {
     public ResponseEntity<?> buscarOutrasAtividadesTarde(@RequestParam("id") Long id){
         return new ResponseEntity<OutrasAtividadesTardeSaidaDTO>(PraticanteMapeador.converterOutrasAtividadesTardeEmOutrasAtividadesTardeSaidaDTO(servico.buscarOutrasAtividadesTardePorId(id)), HttpStatus.OK);
     }
+
 }

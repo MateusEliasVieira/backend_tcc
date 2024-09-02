@@ -45,7 +45,8 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
     public EducacaoPraticante atualizarEducacaoPraticante(EducacaoPraticante educacaoPraticante) {
 
         if (educacaoPraticante.getIdEducacaoPraticante() == null)
-            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a educação do praticante, pois não foi possível encontra-la!");
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não foi encontrado o id da educação!");
+            //salvarEducacaoPraticante(educacaoPraticante);
 
         praticanteRepositorio.findById(educacaoPraticante
                         .getPraticante()

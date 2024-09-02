@@ -23,6 +23,8 @@ public class SaudeMental {
     private PreencherLegendaEnum apresentaDelirios;
     private PreencherLegendaEnum apresentaAlucinacoes;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

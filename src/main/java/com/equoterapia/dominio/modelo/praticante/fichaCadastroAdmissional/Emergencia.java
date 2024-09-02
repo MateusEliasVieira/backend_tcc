@@ -24,6 +24,8 @@ public class Emergencia {
     private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano; // Caso tenha, qual é?
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -59,4 +59,5 @@ public class OutrasAtividadesTardeServicoImplementacao implements OutrasAtividad
     public OutrasAtividadesTarde buscarOutrasAtividadesTardePorId(Long id) {
         return outrasAtividadesTardeRepositorio.buscarOutrasAtividadesTardePorChaveEstrangeira(id).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Outras atividades da tarde do praticante não encontrada!"));
     }
+
 }

@@ -22,6 +22,8 @@ public class AvaliacaoPsicologica {
     @Column(columnDefinition = "LONGTEXT")
     private String imagemAssinaturaOuCRPECarimbo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

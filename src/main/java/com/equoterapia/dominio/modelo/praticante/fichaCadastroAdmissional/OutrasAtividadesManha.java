@@ -26,6 +26,8 @@ public class OutrasAtividadesManha {
     private String sabado;
     private String domingo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

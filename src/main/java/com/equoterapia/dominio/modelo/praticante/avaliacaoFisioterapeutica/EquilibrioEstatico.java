@@ -39,6 +39,8 @@ public class EquilibrioEstatico {
     private EquilibrioEstaticoEnum umPeOlhosFechados;
     private String comentariosUmPeOlhosFechados;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

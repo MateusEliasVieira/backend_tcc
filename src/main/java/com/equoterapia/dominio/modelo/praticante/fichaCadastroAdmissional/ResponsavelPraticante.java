@@ -29,6 +29,8 @@ public class ResponsavelPraticante {
     private String telefoneTrabalho;
     private Double rendaFamiliar;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

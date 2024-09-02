@@ -28,6 +28,8 @@ public class TracosDePersonalidade {
     private PreencherLegendaEnum dependenciaEmocional;
     private PreencherLegendaEnum timidez;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

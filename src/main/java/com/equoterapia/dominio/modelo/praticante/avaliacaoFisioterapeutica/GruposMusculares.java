@@ -42,6 +42,8 @@ public class GruposMusculares {
     private GruposMuscularesEnum plantiflexoresTornozeloDireito;
     private GruposMuscularesEnum plantiflexoresTornozeloEsquerdo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

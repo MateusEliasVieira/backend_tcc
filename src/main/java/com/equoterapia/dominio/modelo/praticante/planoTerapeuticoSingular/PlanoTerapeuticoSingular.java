@@ -29,6 +29,8 @@ public class PlanoTerapeuticoSingular {
     private String selasMediadorasAnimais;
     private String evolucao;
 
+    private Boolean finalizado;
+
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String fisioterapeutaImagemDaAssinaturaOuCarimbo;

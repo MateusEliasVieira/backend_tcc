@@ -26,6 +26,8 @@ public class AvaliacaoFisioterapeutica {
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -22,6 +22,8 @@ public class QuadroAtual {
     private String restricoes;
     private String deformidades;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

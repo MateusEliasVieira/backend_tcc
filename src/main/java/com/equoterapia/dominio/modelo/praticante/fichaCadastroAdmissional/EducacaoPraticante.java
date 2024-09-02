@@ -25,6 +25,8 @@ public class EducacaoPraticante {
     private TipoDeInstituicaoEducacionalEnum tipoDeInstituicaoEducacional;
     private PeriodoEnum periodo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

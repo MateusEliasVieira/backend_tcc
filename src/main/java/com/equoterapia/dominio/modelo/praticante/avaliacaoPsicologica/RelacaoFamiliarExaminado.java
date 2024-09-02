@@ -26,6 +26,8 @@ public class RelacaoFamiliarExaminado {
     private PreencherLegendaEnum indiferenca;
     private PreencherLegendaEnum ansiedadePercebidaEntrevistador;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

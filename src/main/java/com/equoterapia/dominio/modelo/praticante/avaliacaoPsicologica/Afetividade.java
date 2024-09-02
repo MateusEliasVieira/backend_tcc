@@ -24,6 +24,8 @@ public class Afetividade {
     private PreencherLegendaEnum ajudaQuandoSolicitado;
     private PreencherLegendaEnum expressaoDeSentimentos;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

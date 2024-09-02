@@ -27,6 +27,8 @@ public class Saude {
     private String sono;
     private String deficitCognitivo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -41,6 +41,8 @@ public class SaudeGeralDoPraticante {
     private SImOuNaoEnum alergias;
     private String consideracoesAlergias;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

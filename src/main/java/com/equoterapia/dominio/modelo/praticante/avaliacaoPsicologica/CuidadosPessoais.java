@@ -23,6 +23,8 @@ public class CuidadosPessoais {
     private PreencherLegendaEnum vesteRoupasCalcadosSozinho;
     private PreencherLegendaEnum seAlimentaSozinho;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -28,6 +28,8 @@ public class EquilibrioDinamico {
     private EquilibrioDinamicoEnum correrDesviandoObstaculos;
     private String comentariosCorrerDesviandoObstaculos;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

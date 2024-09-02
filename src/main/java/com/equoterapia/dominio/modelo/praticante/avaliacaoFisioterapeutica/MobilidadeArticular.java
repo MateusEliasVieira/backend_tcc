@@ -60,6 +60,8 @@ public class MobilidadeArticular {
     private String flexaoPlantarAtivaTornozelo;
     private String flexaoPlantarPassivaTornozelo;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

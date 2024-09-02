@@ -36,6 +36,7 @@ public class EmPe {
     @Column(columnDefinition = "LONGTEXT")
     private String observacoes;
 
+    private Boolean finalizado;
 
     @OneToOne
     @JoinColumn

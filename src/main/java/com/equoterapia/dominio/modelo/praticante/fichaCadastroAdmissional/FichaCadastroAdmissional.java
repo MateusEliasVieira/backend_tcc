@@ -19,6 +19,8 @@ public class FichaCadastroAdmissional {
     private Long idFichaCadastroAdmissional;
     private Date dataAvaliacao; // Data da avaliação
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

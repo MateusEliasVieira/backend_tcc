@@ -28,6 +28,8 @@ public class SobreACrianca {
     @Column(columnDefinition = "LONGTEXT")
     private String observacao;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -34,6 +34,7 @@ public class DadosPessoais {
     private SexoEnum sexo;
     private String naturalidade;
     private CorOuRaca corOuRaca;
+    @Column(unique = false)
     private String cpf;
     @Column(unique = true)
     private String cartaoSUS;

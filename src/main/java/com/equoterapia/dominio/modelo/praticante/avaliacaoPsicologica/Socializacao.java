@@ -25,6 +25,9 @@ public class Socializacao {
     private PreencherLegendaEnum temOportunidadeContato;
     private PreencherLegendaEnum fazContatoVisual;
 
+    private Boolean finalizado;
+
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

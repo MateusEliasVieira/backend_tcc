@@ -24,6 +24,8 @@ public class Rotina {
     private SImOuNaoEnum aceitaMudancasNaRotina;
     private String consideracoesSobreRotina;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

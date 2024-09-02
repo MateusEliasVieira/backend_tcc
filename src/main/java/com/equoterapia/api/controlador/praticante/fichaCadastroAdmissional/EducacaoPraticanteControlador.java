@@ -39,4 +39,5 @@ public class EducacaoPraticanteControlador {
         return new ResponseEntity<EducacaoPraticanteSaidaDTO>(educacaoPraticanteSaidaDTO, HttpStatus.OK);
     }
 
+
 }

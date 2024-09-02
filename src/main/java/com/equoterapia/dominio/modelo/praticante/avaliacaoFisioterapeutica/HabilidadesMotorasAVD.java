@@ -38,6 +38,8 @@ public class HabilidadesMotorasAVD {
     private SImOuNaoEnum escritaManual;
     private String consideracoesEscritaManual;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;

@@ -24,6 +24,8 @@ public class HabilidadesSociais {
     private PreencherLegendaEnum heteroagressividade;
     private PreencherLegendaEnum assertividade;
 
+    private Boolean finalizado;
+
     @OneToOne
     @JoinColumn
     private Praticante praticante;
