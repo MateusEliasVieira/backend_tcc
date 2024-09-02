@@ -30,7 +30,7 @@ public class PlanoTerapeuticoSingularServicoImplementacao implements PlanoTerape
                                     + planoTerapeuticoSingular.getPraticante().getIdPraticante() + "!"
                     ));
             if (!planoTerapeuticoSingularRepositorio.buscarPlanoTerapeuticoSingularPorChaveEstrangeira(planoTerapeuticoSingular.getPraticante().getIdPraticante()).isPresent()) {
-
+                planoTerapeuticoSingular.setFinalizado(true);
                 return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Esse plano terapêutico singular já foi cadastrada!");
@@ -54,6 +54,7 @@ public class PlanoTerapeuticoSingularServicoImplementacao implements PlanoTerape
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao plano terapêutico singular!"));
 
         if (planoTerapeuticoSingularRepositorio.findById(planoTerapeuticoSingular.getIdPlanoTerapeuticoSingular()).isPresent()) {
+            planoTerapeuticoSingular.setFinalizado(true);
             return planoTerapeuticoSingularRepositorio.save(planoTerapeuticoSingular);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de plano terapêutico singular!");

@@ -30,7 +30,7 @@ public class HabilidadesSociaisServicoImplementacao implements HabilidadesSociai
                                     + habilidadesSociais.getPraticante().getIdPraticante() + "!"
                     ));
             if (!habilidadesSociaisRepositorio.buscarHabilidadesSociaisPorChaveEstrangeira(habilidadesSociais.getPraticante().getIdPraticante()).isPresent()) {
-
+                habilidadesSociais.setFinalizado(true);
                 return habilidadesSociaisRepositorio.save(habilidadesSociais);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("As habilidades sociais já foi cadastrada!");
@@ -54,6 +54,7 @@ public class HabilidadesSociaisServicoImplementacao implements HabilidadesSociai
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades sociais!"));
 
         if (habilidadesSociaisRepositorio.findById(habilidadesSociais.getIdHabilidadesSociais()).isPresent()) {
+            habilidadesSociais.setFinalizado(true);
             return habilidadesSociaisRepositorio.save(habilidadesSociais);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades sociais!");

@@ -30,7 +30,7 @@ public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicaca
                                     + formaDeComunicacao.getPraticante().getIdPraticante() + "!"
                     ));
             if (!formaDeComunicacaoRepositorio.buscarFormaDeComunicacaoPorChaveEstrangeira(formaDeComunicacao.getPraticante().getIdPraticante()).isPresent()) {
-
+                formaDeComunicacao.setFinalizado(true);
                 return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa forma de comunicação já foi cadastrada!");
@@ -54,6 +54,7 @@ public class FormaDeComunicacaoServicoImplementacao implements FormaDeComunicaca
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a forma de comunicação!"));
 
         if (formaDeComunicacaoRepositorio.findById(formaDeComunicacao.getIdFormaDeComunicacao()).isPresent()) {
+            formaDeComunicacao.setFinalizado(true);
             return formaDeComunicacaoRepositorio.save(formaDeComunicacao);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de forma de comunicação!");

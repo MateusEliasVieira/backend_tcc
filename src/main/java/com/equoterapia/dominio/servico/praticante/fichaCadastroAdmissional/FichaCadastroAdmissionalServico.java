@@ -5,6 +5,7 @@ import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.FichaC
 public interface FichaCadastroAdmissionalServico {
 
     public FichaCadastroAdmissional salvarFichaCadastroAdmissional(FichaCadastroAdmissional fichaCadastroAdmissional);
+    public FichaCadastroAdmissional atualizarFichaCadastroAdmissional(FichaCadastroAdmissional fichaCadastroAdmissional);
     public FichaCadastroAdmissional buscarFichaCadastroAdmissionalPorId(long idFichaCadastroAdmissional);
 
 }

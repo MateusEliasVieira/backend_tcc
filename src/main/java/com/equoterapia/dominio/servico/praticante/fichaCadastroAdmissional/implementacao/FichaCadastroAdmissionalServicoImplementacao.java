@@ -16,9 +16,24 @@ public class FichaCadastroAdmissionalServicoImplementacao implements FichaCadast
     @Override
     public FichaCadastroAdmissional salvarFichaCadastroAdmissional(FichaCadastroAdmissional fichaCadastroAdmissional) {
         try {
+            fichaCadastroAdmissional.setFinalizado(true);
             return fichaCadastroAdmissionalRepositorio.save(fichaCadastroAdmissional);
         }catch (Exception e){
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível salvar a data de cadastro da ficha de cadastro admissional!");
+        }
+    }
+
+    @Override
+    public FichaCadastroAdmissional atualizarFichaCadastroAdmissional(FichaCadastroAdmissional fichaCadastroAdmissional) {
+
+        if(fichaCadastroAdmissional.getIdFichaCadastroAdmissional() == null)
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a ficha de cadastro admissional pois não foi encontrada!");
+
+        if(fichaCadastroAdmissionalRepositorio.findById(fichaCadastroAdmissional.getIdFichaCadastroAdmissional()).isPresent()){
+            fichaCadastroAdmissional.setFinalizado(true);
+            return fichaCadastroAdmissionalRepositorio.save(fichaCadastroAdmissional);
+        }else{
+            throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a ficha de cadastro admissional pois esse registro não existe no sistema!");
         }
     }
 

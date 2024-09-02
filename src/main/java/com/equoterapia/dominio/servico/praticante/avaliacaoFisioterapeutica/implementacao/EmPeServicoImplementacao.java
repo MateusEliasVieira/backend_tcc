@@ -30,7 +30,7 @@ public class EmPeServicoImplementacao implements EmPeServico {
                                     + emPe.getPraticante().getIdPraticante() + "!"
                     ));
             if (!emPeRepositorio.buscarEmPePorChaveEstrangeira(emPe.getPraticante().getIdPraticante()).isPresent()) {
-
+                emPe.setFinalizado(true);
                 return emPeRepositorio.save(emPe);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Em Pé já foi cadastrada!");
@@ -54,6 +54,7 @@ public class EmPeServicoImplementacao implements EmPeServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a Em Pé!"));
 
         if (emPeRepositorio.findById(emPe.getIdEmPe()).isPresent()) {
+            emPe.setFinalizado(true);
             return emPeRepositorio.save(emPe);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de Em Pé!");

@@ -30,7 +30,7 @@ public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMot
                                     + habilidadesMotorasAVD.getPraticante().getIdPraticante() + "!"
                     ));
             if (!habilidadesMotorasAVDRepositorio.buscarHabilidadesMotorasAVDPorChaveEstrangeira(habilidadesMotorasAVD.getPraticante().getIdPraticante()).isPresent()) {
-
+                habilidadesMotorasAVD.setFinalizado(true);
                 return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("As habilidades motoras AVD já foi cadastrada!");
@@ -54,6 +54,7 @@ public class HabilidadesMotorasAVDServicoImplementacao implements HabilidadesMot
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente as habilidades motoras AVD!"));
 
         if (habilidadesMotorasAVDRepositorio.findById(habilidadesMotorasAVD.getIdHabilidadesMotorasAVD()).isPresent()) {
+            habilidadesMotorasAVD.setFinalizado(true);
             return habilidadesMotorasAVDRepositorio.save(habilidadesMotorasAVD);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de habilidades motoras AVD!");

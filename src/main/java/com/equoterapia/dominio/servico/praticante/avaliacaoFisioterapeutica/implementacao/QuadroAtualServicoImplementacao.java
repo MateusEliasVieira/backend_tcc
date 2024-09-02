@@ -30,7 +30,7 @@ public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
                                     + quadroAtual.getPraticante().getIdPraticante() + "!"
                     ));
             if (!quadroAtualRepositorio.buscarQuadroAtualPorChaveEstrangeira(quadroAtual.getPraticante().getIdPraticante()).isPresent()) {
-
+                quadroAtual.setFinalizado(true);
                 return quadroAtualRepositorio.save(quadroAtual);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Esse quadro atual já foi cadastrado!");
@@ -54,6 +54,7 @@ public class QuadroAtualServicoImplementacao implements QuadroAtualServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao quadro atual!"));
 
         if (quadroAtualRepositorio.findById(quadroAtual.getIdQuadroAtual()).isPresent()) {
+            quadroAtual.setFinalizado(true);
             return quadroAtualRepositorio.save(quadroAtual);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de quadro atual!");

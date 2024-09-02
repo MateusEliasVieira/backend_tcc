@@ -30,7 +30,7 @@ public class SocializacaoServicoImplementacao implements SocializacaoServico {
                                     + socializacao.getPraticante().getIdPraticante() + "!"
                     ));
             if (!socializacaoRepositorio.buscarSocializacaoPorChaveEstrangeira(socializacao.getPraticante().getIdPraticante()).isPresent()) {
-
+                socializacao.setFinalizado(true);
                 return socializacaoRepositorio.save(socializacao);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa socialização já foi cadastrada!");
@@ -54,6 +54,7 @@ public class SocializacaoServicoImplementacao implements SocializacaoServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a socialização!"));
 
         if (socializacaoRepositorio.findById(socializacao.getIdSocializacao()).isPresent()) {
+            socializacao.setFinalizado(true);
             return socializacaoRepositorio.save(socializacao);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de socialização!");

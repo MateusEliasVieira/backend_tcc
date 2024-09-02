@@ -30,7 +30,7 @@ public class SaudeServicoImplementacao implements SaudeServico {
                                     + saude.getPraticante().getIdPraticante() + "!"
                     ));
             if (!saudeRepositorio.buscarSaudePorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
-
+                saude.setFinalizado(true);
                 return saudeRepositorio.save(saude);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Os dados da saúde já foram cadastrados!");
@@ -54,6 +54,7 @@ public class SaudeServicoImplementacao implements SaudeServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde cadastrada!"));
 
         if (saudeRepositorio.findById(saude.getIdSaude()).isPresent()) {
+            saude.setFinalizado(true);
             return saudeRepositorio.save(saude);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde!");

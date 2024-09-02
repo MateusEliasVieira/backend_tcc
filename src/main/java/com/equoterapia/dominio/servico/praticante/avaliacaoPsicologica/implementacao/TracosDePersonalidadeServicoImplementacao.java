@@ -30,7 +30,7 @@ public class TracosDePersonalidadeServicoImplementacao implements TracosDePerson
                                     + tracosDePersonalidade.getPraticante().getIdPraticante() + "!"
                     ));
             if (!tracosDePersonalidadeRepositorio.buscarTracosDePersonalidadePorChaveEstrangeira(tracosDePersonalidade.getPraticante().getIdPraticante()).isPresent()) {
-
+                tracosDePersonalidade.setFinalizado(true);
                 return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Os traços de personalidade já foi cadastrado!");
@@ -54,6 +54,7 @@ public class TracosDePersonalidadeServicoImplementacao implements TracosDePerson
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos traços de personalidade!"));
 
         if (tracosDePersonalidadeRepositorio.findById(tracosDePersonalidade.getIdTracosDePersonalidade()).isPresent()) {
+            tracosDePersonalidade.setFinalizado(true);
             return tracosDePersonalidadeRepositorio.save(tracosDePersonalidade);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de traços de personalidade!");

@@ -56,6 +56,7 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
             fichaCadastroAdmissional.setDataAvaliacao(new Date());
 
             if (fichaCadastroAdmissionalServico.salvarFichaCadastroAdmissional(fichaCadastroAdmissional) != null) {
+                dadosPessoais.setFinalizado(true);
                 return dadosPessoaisRepositorio.save(dadosPessoais);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Houve um erro ao salvar os dados pessoais do praticante!");

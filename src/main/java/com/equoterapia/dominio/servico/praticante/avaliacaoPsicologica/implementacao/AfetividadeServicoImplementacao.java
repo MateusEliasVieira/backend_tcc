@@ -30,7 +30,7 @@ public class AfetividadeServicoImplementacao implements AfetividadeServico {
                                     + afetividade.getPraticante().getIdPraticante() + "!"
                     ));
             if (!afetividadeRepositorio.buscarAfetividadePorChaveEstrangeira(afetividade.getPraticante().getIdPraticante()).isPresent()) {
-
+                afetividade.setFinalizado(true);
                 return afetividadeRepositorio.save(afetividade);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa afetividade já foi cadastrada!");
@@ -54,6 +54,7 @@ public class AfetividadeServicoImplementacao implements AfetividadeServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a afetividade!"));
 
         if (afetividadeRepositorio.findById(afetividade.getIdAfetividade()).isPresent()) {
+            afetividade.setFinalizado(true);
             return afetividadeRepositorio.save(afetividade);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de afetividade!");

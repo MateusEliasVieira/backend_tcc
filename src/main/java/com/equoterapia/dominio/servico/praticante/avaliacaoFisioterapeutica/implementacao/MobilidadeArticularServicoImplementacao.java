@@ -30,7 +30,7 @@ public class MobilidadeArticularServicoImplementacao implements MobilidadeArticu
                                     + mobilidadeArticular.getPraticante().getIdPraticante() + "!"
                     ));
             if (!mobilidadeArticularRepositorio.buscarMobilidadeArticularPorChaveEstrangeira(mobilidadeArticular.getPraticante().getIdPraticante()).isPresent()) {
-
+                mobilidadeArticular.setFinalizado(true);
                 return mobilidadeArticularRepositorio.save(mobilidadeArticular);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa mobilidade articular já foi cadastrada!");
@@ -53,6 +53,7 @@ public class MobilidadeArticularServicoImplementacao implements MobilidadeArticu
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a mobilidade articular!"));
 
         if (mobilidadeArticularRepositorio.findById(mobilidadeArticular.getIdMobilidadeArticular()).isPresent()) {
+            mobilidadeArticular.setFinalizado(true);
             return mobilidadeArticularRepositorio.save(mobilidadeArticular);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de mobilidade articular!");

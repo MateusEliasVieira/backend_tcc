@@ -30,7 +30,7 @@ public class AvaliacaoPsicologicaServicoImplementacao implements AvaliacaoPsicol
                                     + avaliacaoPsicologica.getPraticante().getIdPraticante() + "!"
                     ));
             if (!avaliacaoPsicologicaRepositorio.buscarAvaliacaoPsicologicaPorChaveEstrangeira(avaliacaoPsicologica.getPraticante().getIdPraticante()).isPresent()) {
-
+                avaliacaoPsicologica.setFinalizado(true);
                 return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa avaliacao psicologica já foi cadastrada!");
@@ -53,6 +53,7 @@ public class AvaliacaoPsicologicaServicoImplementacao implements AvaliacaoPsicol
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliacao psicologica!"));
 
         if (avaliacaoPsicologicaRepositorio.findById(avaliacaoPsicologica.getIdAvaliacaoPsicologica()).isPresent()) {
+            avaliacaoPsicologica.setFinalizado(true);
             return avaliacaoPsicologicaRepositorio.save(avaliacaoPsicologica);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliacao psicologica!");

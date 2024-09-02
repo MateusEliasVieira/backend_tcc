@@ -30,7 +30,7 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
                                     + equilibrioEstatico.getPraticante().getIdPraticante() + "!"
                     ));
             if (!equilibrioEstaticoRepositorio.buscarEquilibrioEstaticoPorChaveEstrangeira(equilibrioEstatico.getPraticante().getIdPraticante()).isPresent()) {
-
+                equilibrioEstatico.setFinalizado(true);
                 return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio estático já foi cadastrada!");
@@ -54,6 +54,7 @@ public class EquilibrioEstaticoServicoImplementacao implements EquilibrioEstatic
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a equilibrio estático!"));
 
         if (equilibrioEstaticoRepositorio.findById(equilibrioEstatico.getIdEquilibrioEstatico()).isPresent()) {
+            equilibrioEstatico.setFinalizado(true);
             return equilibrioEstaticoRepositorio.save(equilibrioEstatico);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de equilibrio estático!");

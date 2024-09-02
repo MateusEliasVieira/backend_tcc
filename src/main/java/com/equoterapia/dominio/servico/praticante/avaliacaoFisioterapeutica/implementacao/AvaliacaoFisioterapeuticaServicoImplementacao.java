@@ -30,7 +30,7 @@ public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoF
                                     + avaliacaoFisioterapeutica.getPraticante().getIdPraticante() + "!"
                     ));
             if (!avaliacaoFisioterapeuticaRepositorio.buscarAvaliacaoFisioterapeuticaPorChaveEstrangeira(avaliacaoFisioterapeutica.getPraticante().getIdPraticante()).isPresent()) {
-
+                avaliacaoFisioterapeutica.setFinalizado(true);
                 return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa avaliação fisioterapeutica já foi cadastrada!");
@@ -54,6 +54,7 @@ public class AvaliacaoFisioterapeuticaServicoImplementacao implements AvaliacaoF
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a avaliação fisioterapeutica!"));
 
         if (avaliacaoFisioterapeuticaRepositorio.findById(avaliacaoFisioterapeutica.getIdAvaliacaoFisioterapeutica()).isPresent()) {
+            avaliacaoFisioterapeutica.setFinalizado(true);
             return avaliacaoFisioterapeuticaRepositorio.save(avaliacaoFisioterapeutica);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de avaliação fisioterapeutica!");

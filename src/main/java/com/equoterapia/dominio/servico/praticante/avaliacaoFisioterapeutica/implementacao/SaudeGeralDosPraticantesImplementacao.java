@@ -30,7 +30,7 @@ public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPrati
                                     + saudeGeralDoPraticante.getPraticante().getIdPraticante() + "!"
                     ));
             if (!saudeGeralDosPraticantesRepositorio.buscarSaudeGeralDosPraticantesPorChaveEstrangeira(saudeGeralDoPraticante.getPraticante().getIdPraticante()).isPresent()) {
-
+                saudeGeralDoPraticante.setFinalizado(true);
                 return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("A saúde geral do praticante já foi cadastrado!");
@@ -54,6 +54,7 @@ public class SaudeGeralDosPraticantesImplementacao implements SaudeGeralDosPrati
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde geral do praticante!"));
 
         if (saudeGeralDosPraticantesRepositorio.findById(saudeGeralDoPraticante.getIdSaudeGeralDoPraticante()).isPresent()) {
+            saudeGeralDoPraticante.setFinalizado(true);
             return saudeGeralDosPraticantesRepositorio.save(saudeGeralDoPraticante);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde geral dos praticante!");

@@ -30,7 +30,7 @@ public class GruposMuscularesServicoImplementacao implements GruposMuscularesSer
                                     + gruposMusculares.getPraticante().getIdPraticante() + "!"
                     ));
             if (!gruposMuscularesRepositorio.buscarGruposMuscularesPorChaveEstrangeira(gruposMusculares.getPraticante().getIdPraticante()).isPresent()) {
-
+                gruposMusculares.setFinalizado(true);
                 return gruposMuscularesRepositorio.save(gruposMusculares);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa grupos musculares já foi cadastrada!");
@@ -54,6 +54,7 @@ public class GruposMuscularesServicoImplementacao implements GruposMuscularesSer
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a grupos musculares!"));
 
         if (gruposMuscularesRepositorio.findById(gruposMusculares.getIdGruposMusculares()).isPresent()) {
+            gruposMusculares.setFinalizado(true);
             return gruposMuscularesRepositorio.save(gruposMusculares);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de grupos musculares!");

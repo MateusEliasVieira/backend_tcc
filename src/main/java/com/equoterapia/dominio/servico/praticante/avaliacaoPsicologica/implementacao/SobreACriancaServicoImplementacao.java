@@ -30,7 +30,7 @@ public class SobreACriancaServicoImplementacao implements SobreACriancaServico {
                                     + sobreACrianca.getPraticante().getIdPraticante() + "!"
                     ));
             if (!sobreACriancaRepositorio.buscarSobreACriancaPorChaveEstrangeira(sobreACrianca.getPraticante().getIdPraticante()).isPresent()) {
-
+                sobreACrianca.setFinalizado(true);
                 return sobreACriancaRepositorio.save(sobreACrianca);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Os dados sobre a criança já foram cadastrados!");
@@ -54,6 +54,7 @@ public class SobreACriancaServicoImplementacao implements SobreACriancaServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente sobre a criança!"));
 
         if (sobreACriancaRepositorio.findById(sobreACrianca.getIdSobreACrianca()).isPresent()) {
+            sobreACrianca.setFinalizado(true);
             return sobreACriancaRepositorio.save(sobreACrianca);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro sobre a criança!");

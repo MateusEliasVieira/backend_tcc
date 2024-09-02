@@ -30,7 +30,7 @@ public class RelacaoFamiliarExaminadoServicoImplementacao implements RelacaoFami
                                     + relacaoFamiliarExaminado.getPraticante().getIdPraticante() + "!"
                     ));
             if (!relacaoFamiliarExaminadoRepositorio.buscarRelacaoFamiliarExaminadoPorChaveEstrangeira(relacaoFamiliarExaminado.getPraticante().getIdPraticante()).isPresent()) {
-
+                relacaoFamiliarExaminado.setFinalizado(true);
                 return relacaoFamiliarExaminadoRepositorio.save(relacaoFamiliarExaminado);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa relação da família com o examinado já foi cadastrada!");
@@ -54,6 +54,7 @@ public class RelacaoFamiliarExaminadoServicoImplementacao implements RelacaoFami
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a relação da família com o examinado!"));
 
         if (relacaoFamiliarExaminadoRepositorio.findById(relacaoFamiliarExaminado.getIdRelacaoFamiliarExaminado()).isPresent()) {
+            relacaoFamiliarExaminado.setFinalizado(true);
             return relacaoFamiliarExaminadoRepositorio.save(relacaoFamiliarExaminado);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de relação da família com o examinado!");

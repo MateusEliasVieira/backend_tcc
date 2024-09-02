@@ -30,7 +30,7 @@ public class SaudeMentalServicoImplementacao implements SaudeMentalServico {
                                     + saudeMental.getPraticante().getIdPraticante() + "!"
                     ));
             if (!saudeMentalRepositorio.buscarSaudeMentalPorChaveEstrangeira(saudeMental.getPraticante().getIdPraticante()).isPresent()) {
-
+                saudeMental.setFinalizado(true);
                 return saudeMentalRepositorio.save(saudeMental);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa saúde mental já foi cadastrada!");
@@ -54,6 +54,7 @@ public class SaudeMentalServicoImplementacao implements SaudeMentalServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a saúde mental!"));
 
         if (saudeMentalRepositorio.findById(saudeMental.getIdSaudeMental()).isPresent()) {
+            saudeMental.setFinalizado(true);
             return saudeMentalRepositorio.save(saudeMental);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de saúde mental!");

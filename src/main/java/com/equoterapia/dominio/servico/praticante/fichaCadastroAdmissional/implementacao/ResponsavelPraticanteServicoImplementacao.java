@@ -33,8 +33,8 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
         if (!responsavelPraticanteRepositorio.buscarResponsavelPraticantePorChaveEstrangeira(responsavelPraticante.getPraticante().getIdPraticante()).isPresent()) {
-
-                return responsavelPraticanteRepositorio.save(responsavelPraticante);
+            responsavelPraticante.setFinalizado(true);
+            return responsavelPraticanteRepositorio.save(responsavelPraticante);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado o responsável do praticante!");
         }
@@ -53,6 +53,7 @@ public class ResponsavelPraticanteServicoImplementacao implements ResponsavelPra
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente ao responsável do praticante!"));
 
         if (responsavelPraticanteRepositorio.findById(responsavelPraticante.getIdResponsavelPraticante()).isPresent()) {
+            responsavelPraticante.setFinalizado(true);
             return responsavelPraticanteRepositorio.save(responsavelPraticante);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe nenhum registro do responsável pelo praticante!");

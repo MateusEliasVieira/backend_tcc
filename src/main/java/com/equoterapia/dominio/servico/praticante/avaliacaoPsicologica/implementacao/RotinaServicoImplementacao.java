@@ -30,7 +30,7 @@ public class RotinaServicoImplementacao implements RotinaServico {
                                     + rotina.getPraticante().getIdPraticante() + "!"
                     ));
             if (!rotinaRepositorio.buscarRotinaPorChaveEstrangeira(rotina.getPraticante().getIdPraticante()).isPresent()) {
-
+                rotina.setFinalizado(true);
                 return rotinaRepositorio.save(rotina);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa rotina já foi cadastrada!");
@@ -54,6 +54,7 @@ public class RotinaServicoImplementacao implements RotinaServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a rotina!"));
 
         if (rotinaRepositorio.findById(rotina.getIdRotina()).isPresent()) {
+            rotina.setFinalizado(true);
             return rotinaRepositorio.save(rotina);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de rotina!");

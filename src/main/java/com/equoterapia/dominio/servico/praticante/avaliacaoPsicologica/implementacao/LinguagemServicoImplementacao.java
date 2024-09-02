@@ -13,25 +13,25 @@ import org.springframework.stereotype.Service;
 public class LinguagemServicoImplementacao implements LinguagemServico {
 
     @Autowired
-    private LinguagemRepositorio saudeRepositorio;
+    private LinguagemRepositorio linguagemRepositorio;
     @Autowired
     private PraticanteRepositorio praticanteRepositorio;
 
     @Override
-    public Linguagem salvarLinguagem(Linguagem saude) {
+    public Linguagem salvarLinguagem(Linguagem linguagem) {
 
-        if (saude.getPraticante().getIdPraticante() != null) {
+        if (linguagem.getPraticante().getIdPraticante() != null) {
 
-            praticanteRepositorio.findById(saude
+            praticanteRepositorio.findById(linguagem
                             .getPraticante()
                             .getIdPraticante())
                     .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(
                             Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS
-                                    + saude.getPraticante().getIdPraticante() + "!"
+                                    + linguagem.getPraticante().getIdPraticante() + "!"
                     ));
-            if (!saudeRepositorio.buscarLinguagemPorChaveEstrangeira(saude.getPraticante().getIdPraticante()).isPresent()) {
-
-                return saudeRepositorio.save(saude);
+            if (!linguagemRepositorio.buscarLinguagemPorChaveEstrangeira(linguagem.getPraticante().getIdPraticante()).isPresent()) {
+                linguagem.setFinalizado(true);
+                return linguagemRepositorio.save(linguagem);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("A linguagem já foi cadastrada!");
             }
@@ -43,18 +43,19 @@ public class LinguagemServicoImplementacao implements LinguagemServico {
     }
 
     @Override
-    public Linguagem atualizarLinguagem(Linguagem saude) {
+    public Linguagem atualizarLinguagem(Linguagem linguagem) {
 
-        if (saude.getIdLinguagem() == null)
+        if (linguagem.getIdLinguagem() == null)
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a linguagem, pois não foi possível encontra-la!");
 
-        praticanteRepositorio.findById(saude
+        praticanteRepositorio.findById(linguagem
                         .getPraticante()
                         .getIdPraticante())
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a linguagem cadastrada!"));
 
-        if (saudeRepositorio.findById(saude.getIdLinguagem()).isPresent()) {
-            return saudeRepositorio.save(saude);
+        if (linguagemRepositorio.findById(linguagem.getIdLinguagem()).isPresent()) {
+            linguagem.setFinalizado(true);
+            return linguagemRepositorio.save(linguagem);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de linguagem!");
         }
@@ -63,7 +64,7 @@ public class LinguagemServicoImplementacao implements LinguagemServico {
 
     @Override
     public Linguagem buscarLinguagemPorId(Long idLinguagem) {
-        return saudeRepositorio.buscarLinguagemPorChaveEstrangeira(idLinguagem).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de linguagem!"));
+        return linguagemRepositorio.buscarLinguagemPorChaveEstrangeira(idLinguagem).orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível localizar o registro de linguagem!"));
 
     }
 }

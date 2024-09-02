@@ -29,6 +29,7 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
                     () -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
             if (!educacaoPraticanteRepositorio.buscarEducacaoPraticantePorChaveEstrangeira(educacaoPraticante.getPraticante().getIdPraticante()).isPresent()) {
+                educacaoPraticante.setFinalizado(true);
                 return educacaoPraticanteRepositorio.save(educacaoPraticante);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado a educação do praticante!");
@@ -46,16 +47,14 @@ public class EducacaoServicoImplementacao implements EducacaoServico {
 
         if (educacaoPraticante.getIdEducacaoPraticante() == null)
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não foi encontrado o id da educação!");
-            //salvarEducacaoPraticante(educacaoPraticante);
-
         praticanteRepositorio.findById(educacaoPraticante
                         .getPraticante()
                         .getIdPraticante())
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a educação!"));
 
         if (educacaoPraticanteRepositorio.findById(educacaoPraticante.getIdEducacaoPraticante()).isPresent()) {
+            educacaoPraticante.setFinalizado(true);
             return educacaoPraticanteRepositorio.save(educacaoPraticante);
-
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe registros sobre a educação do praticante cadastrado no sistema!");
         }

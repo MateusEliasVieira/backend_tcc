@@ -30,7 +30,7 @@ public class CompreensaoServicoImplementacao implements CompreensaoServico {
                                     + compreensao.getPraticante().getIdPraticante() + "!"
                     ));
             if (!compreensaoRepositorio.buscarCompreensaoPorChaveEstrangeira(compreensao.getPraticante().getIdPraticante()).isPresent()) {
-
+                compreensao.setFinalizado(true);
                 return compreensaoRepositorio.save(compreensao);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa compreensão já foi cadastrada!");
@@ -53,6 +53,7 @@ public class CompreensaoServicoImplementacao implements CompreensaoServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a compreensão!"));
 
         if (compreensaoRepositorio.findById(compreensao.getIdCompreensao()).isPresent()) {
+            compreensao.setFinalizado(true);
             return compreensaoRepositorio.save(compreensao);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de compreensão!");

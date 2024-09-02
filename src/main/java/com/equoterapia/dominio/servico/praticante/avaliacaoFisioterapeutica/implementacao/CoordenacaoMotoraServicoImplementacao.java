@@ -30,7 +30,7 @@ public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraS
                                     + coordenacaoMotora.getPraticante().getIdPraticante() + "!"
                     ));
             if (!coordenacaoMotoraRepositorio.buscarCoordenacaoMotoraPorChaveEstrangeira(coordenacaoMotora.getPraticante().getIdPraticante()).isPresent()) {
-
+                coordenacaoMotora.setFinalizado(true);
                 return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa coordenação motora já foi cadastrada!");
@@ -53,6 +53,7 @@ public class CoordenacaoMotoraServicoImplementacao implements CoordenacaoMotoraS
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a coordenação motora!"));
 
         if (coordenacaoMotoraRepositorio.findById(coordenacaoMotora.getIdCoordenacaoMotora()).isPresent()) {
+            coordenacaoMotora.setFinalizado(true);
             return coordenacaoMotoraRepositorio.save(coordenacaoMotora);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de coordenação motora!");

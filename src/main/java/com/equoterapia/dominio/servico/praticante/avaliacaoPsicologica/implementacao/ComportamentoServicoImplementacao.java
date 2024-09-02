@@ -30,7 +30,7 @@ public class ComportamentoServicoImplementacao implements ComportamentoServico {
                                     + comportamento.getPraticante().getIdPraticante() + "!"
                     ));
             if (!comportamentoRepositorio.buscarComportamentoPorChaveEstrangeira(comportamento.getPraticante().getIdPraticante()).isPresent()) {
-
+                comportamento.setFinalizado(true);
                 return comportamentoRepositorio.save(comportamento);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa comportamento já foi cadastrada!");
@@ -54,6 +54,7 @@ public class ComportamentoServicoImplementacao implements ComportamentoServico {
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a comportamento!"));
 
         if (comportamentoRepositorio.findById(comportamento.getIdComportamento()).isPresent()) {
+            comportamento.setFinalizado(true);
             return comportamentoRepositorio.save(comportamento);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de comportamento!");

@@ -30,7 +30,7 @@ public class EquilibrioDinamicoServicoImplementacao implements EquilibrioDinamic
                                     + equilibrioDinamico.getPraticante().getIdPraticante() + "!"
                     ));
             if (!equilibrioDinamicoRepositorio.buscarEquilibrioDinamicoPorChaveEstrangeira(equilibrioDinamico.getPraticante().getIdPraticante()).isPresent()) {
-
+                equilibrioDinamico.setFinalizado(true);
                 return equilibrioDinamicoRepositorio.save(equilibrioDinamico);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Essa equilibrio dinamico já foi cadastrada!");
@@ -53,6 +53,7 @@ public class EquilibrioDinamicoServicoImplementacao implements EquilibrioDinamic
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a equilibrio dinamico!"));
 
         if (equilibrioDinamicoRepositorio.findById(equilibrioDinamico.getIdEquilibrioDinamico()).isPresent()) {
+            equilibrioDinamico.setFinalizado(true);
             return equilibrioDinamicoRepositorio.save(equilibrioDinamico);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de equilibrio dinamico!");

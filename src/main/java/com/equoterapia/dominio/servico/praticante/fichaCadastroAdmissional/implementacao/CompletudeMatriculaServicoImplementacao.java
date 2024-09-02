@@ -36,6 +36,9 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
 
         try {
+
+            completudeMatricula.setFinalizado(true);
+
             return completudeMatriculaRepositorio.save(completudeMatricula);
         } catch (DataAccessException e) {
             throw new ExcecaoDeRegrasDeNegocio("Erro ao acessar o banco de dados ao salvar a completude de matrícula do praticante.");
@@ -54,9 +57,8 @@ public class CompletudeMatriculaServicoImplementacao implements CompletudeMatric
 
         if (completudeMatricula.getIdCompletudeMatricula() == null)
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar a completude de matrícula, pois não foi possível encontra-la!");
-//            return salvarCompletudeMatricula(completudeMatricula);
-
-            if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
+        if (completudeMatriculaRepositorio.findById(completudeMatricula.getIdCompletudeMatricula()).isPresent()) {
+            completudeMatricula.setFinalizado(true);
             return completudeMatriculaRepositorio.save(completudeMatricula);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de completude de matrícula!");

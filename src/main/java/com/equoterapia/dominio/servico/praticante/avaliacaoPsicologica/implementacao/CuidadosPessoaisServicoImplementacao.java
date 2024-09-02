@@ -31,7 +31,7 @@ public class CuidadosPessoaisServicoImplementacao implements CuidadosPessoaisSer
                                     + cuidadosPessoais.getPraticante().getIdPraticante() + "!"
                     ));
             if (!cuidadosPessoaisRepositorio.buscarCuidadosPessoaisPorChaveEstrangeira(cuidadosPessoais.getPraticante().getIdPraticante()).isPresent()) {
-
+                cuidadosPessoais.setFinalizado(true);
                 return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Os cuidados pessoais já foi cadastrado!");
@@ -55,6 +55,7 @@ public class CuidadosPessoaisServicoImplementacao implements CuidadosPessoaisSer
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente aos cuidados pessoais!"));
 
         if (cuidadosPessoaisRepositorio.findById(cuidadosPessoais.getIdCuidadosPessoais()).isPresent()) {
+            cuidadosPessoais.setFinalizado(true);
             return cuidadosPessoaisRepositorio.save(cuidadosPessoais);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o cadastro de cuidados pessoais!");

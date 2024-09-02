@@ -31,16 +31,17 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
                     .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
             if (!emergenciaRepositorio.buscarEmergenciaPorChaveEstrangeira(emergencia.getPraticante().getIdPraticante()).isPresent()) {
-
                 if (emergencia.getTelefone() != null) {
                     if (emergenciaRepositorio.findByTelefone(emergencia.getTelefone()).isPresent()) {
                         throw new ExcecaoDeRegrasDeNegocio("Já existe um registro de emergência com esse telefone "
                                 + emergencia.getTelefone() + " para o praticante!");
 
                     } else {
+                        emergencia.setFinalizado(true);
                         return emergenciaRepositorio.save(emergencia);
                     }
                 } else {
+                    emergencia.setFinalizado(true);
                     return emergenciaRepositorio.save(emergencia);
                 }
 
@@ -70,6 +71,7 @@ public class EmergenciaServicoImplementacao implements EmergenciaServico {
                 // cadastros diferentes
                 throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar os dados de emergência do praticante, pois já existe um cadastro com o telefone " + emergencia.getTelefone() + "!");
             } else {
+                emergencia.setFinalizado(true);
                 return emergenciaRepositorio.save(emergencia);
             }
         } else {

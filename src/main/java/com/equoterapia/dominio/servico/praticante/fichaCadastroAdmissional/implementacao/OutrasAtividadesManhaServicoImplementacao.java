@@ -29,8 +29,8 @@ public class OutrasAtividadesManhaServicoImplementacao implements OutrasAtividad
                     .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio(Resposta.DADOS_PESSOAIS_NAO_CADASTRADOS));
 
             if (!outrasAtividadesManhaRepositorio.buscarOutrasAtividadesManhaPorChaveEstrangeira(outrasAtividadesManha.getPraticante().getIdPraticante()).isPresent()) {
+                outrasAtividadesManha.setFinalizado(true);
                 return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
-
             } else {
                 throw new ExcecaoDeRegrasDeNegocio("Já foi cadastrado outras atividades da manhã para o praticante!");
             }
@@ -54,6 +54,7 @@ public class OutrasAtividadesManhaServicoImplementacao implements OutrasAtividad
                 .orElseThrow(() -> new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar, pois não existe o praticante referente a outras atividades da manhã!"));
 
         if (outrasAtividadesManhaRepositorio.findById(outrasAtividadesManha.getIdOutrasAtividadesManha()).isPresent()) {
+            outrasAtividadesManha.setFinalizado(true);
             return outrasAtividadesManhaRepositorio.save(outrasAtividadesManha);
         } else {
             throw new ExcecaoDeRegrasDeNegocio("Não foi possível atualizar as outras atividades de manhã do praticante, pois ainda não foi cadastrada!");
