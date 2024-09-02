@@ -77,7 +77,7 @@ public class FiltroConfiguracaoWeb {
                 // ======================================================================================================================= //
 //                .requestMatchers(HttpMethod.POST, "/praticante/finalizado/finalizar-cadastro").hasAuthority(RoleEnum.ROLE_USER.name())
 //                .requestMatchers(HttpMethod.GET, "/praticante/finalizado/verificar-status").hasAuthority(RoleEnum.ROLE_USER.name())
-                .requestMatchers(HttpMethod.GET, "/praticante/status-cadastro/verificar-status-do-cadastro-do-praticante").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/status-cadastro/*").hasAuthority(RoleEnum.ROLE_USER.name())
                 // ======================================================================================================================= //
                 //												     Endpoints do Usuário										           //
                 // ======================================================================================================================= //

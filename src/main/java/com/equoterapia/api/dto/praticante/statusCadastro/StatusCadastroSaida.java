@@ -10,12 +10,12 @@ import lombok.*;
 public class StatusCadastroSaida {
 
     // Total de tabelas analisadas
-    private final int TOTAL = 36;
+    private final int TOTAL = 33;
 
     // Total de tabelas concluidas
-    private int finalizados;
+    private int finalizados = 0;
 
     // true = cadastro finalizado, false = não finalizado
-    private boolean status;
+    private boolean status = false;
 
 }
