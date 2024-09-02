@@ -27,6 +27,8 @@ public class ResponsavelPraticanteSaidaDTO {
     private String telefoneTrabalho;
     private Double rendaFamiliar;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

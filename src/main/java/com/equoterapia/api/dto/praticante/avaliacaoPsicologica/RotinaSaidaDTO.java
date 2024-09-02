@@ -19,6 +19,8 @@ public class RotinaSaidaDTO {
     private SImOuNaoEnum aceitaMudancasNaRotina;
     private String consideracoesSobreRotina;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

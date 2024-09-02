@@ -33,6 +33,8 @@ public class EmPeSaidaDTO {
     private String consideracoesPassaParaSentado;
     private String observacoes;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

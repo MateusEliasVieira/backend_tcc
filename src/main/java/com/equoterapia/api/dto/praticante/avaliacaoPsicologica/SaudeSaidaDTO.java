@@ -22,6 +22,8 @@ public class SaudeSaidaDTO {
     private String sono;
     private String deficitCognitivo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

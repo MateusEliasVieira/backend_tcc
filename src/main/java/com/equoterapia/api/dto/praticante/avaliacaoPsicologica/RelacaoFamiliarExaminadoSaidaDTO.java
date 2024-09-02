@@ -21,6 +21,8 @@ public class RelacaoFamiliarExaminadoSaidaDTO {
     private PreencherLegendaEnum indiferenca;
     private PreencherLegendaEnum ansiedadePercebidaEntrevistador;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

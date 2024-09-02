@@ -18,6 +18,8 @@ public class CuidadosPessoaisSaidaDTO {
     private PreencherLegendaEnum vesteRoupasCalcadosSozinho;
     private PreencherLegendaEnum seAlimentaSozinho;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

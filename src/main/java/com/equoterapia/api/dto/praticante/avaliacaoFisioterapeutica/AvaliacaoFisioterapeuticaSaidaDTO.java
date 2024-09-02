@@ -23,6 +23,8 @@ public class AvaliacaoFisioterapeuticaSaidaDTO {
     // Conclusão/Indicação para Equoterapia
     private String conclusaoIndicacaoEquoterapia;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

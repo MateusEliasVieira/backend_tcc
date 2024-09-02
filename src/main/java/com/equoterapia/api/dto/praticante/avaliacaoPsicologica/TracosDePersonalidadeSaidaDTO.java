@@ -23,6 +23,8 @@ public class TracosDePersonalidadeSaidaDTO {
     private PreencherLegendaEnum dependenciaEmocional;
     private PreencherLegendaEnum timidez;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

@@ -37,6 +37,8 @@ public class GruposMuscularesSaidaDTO {
     private String plantiflexoresTornozeloDireito;
     private String plantiflexoresTornozeloEsquerdo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

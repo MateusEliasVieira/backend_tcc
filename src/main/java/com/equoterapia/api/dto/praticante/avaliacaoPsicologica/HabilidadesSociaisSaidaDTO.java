@@ -19,6 +19,8 @@ public class HabilidadesSociaisSaidaDTO {
     private PreencherLegendaEnum heteroagressividade;
     private PreencherLegendaEnum assertividade;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

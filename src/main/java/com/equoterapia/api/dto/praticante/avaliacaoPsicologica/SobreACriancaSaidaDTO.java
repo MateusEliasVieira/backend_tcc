@@ -21,6 +21,8 @@ public class SobreACriancaSaidaDTO {
     private String alimentacao;
     private String observacao;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

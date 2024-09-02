@@ -24,6 +24,8 @@ public class EducacaoPraticanteSaidaDTO {
     private TipoDeInstituicaoEducacionalEnum tipoDeInstituicaoEducacional;
     private PeriodoEnum periodo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 }
 

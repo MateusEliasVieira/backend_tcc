@@ -24,6 +24,8 @@ public class FormaDeComunicacaoSaidaDTO {
     private SImOuNaoEnum usoDosOlhos;
     private String consideracoesUsoDosOlhos;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

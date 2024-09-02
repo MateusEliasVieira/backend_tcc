@@ -39,6 +39,8 @@ public class SaudeGeralDosPraticantesSaidaDTO {
     private SImOuNaoEnum alergias;
     private String consideracoesAlergias;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

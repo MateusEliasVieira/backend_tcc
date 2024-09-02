@@ -19,6 +19,8 @@ public class AfetividadeSaidaDTO {
     private PreencherLegendaEnum ajudaQuandoSolicitado;
     private PreencherLegendaEnum expressaoDeSentimentos;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

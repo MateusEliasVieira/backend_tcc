@@ -18,6 +18,8 @@ public class EmergenciaSaidaDTO {
     private SImOuNaoEnum possuiPlanoDeSaude;
     private String plano;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

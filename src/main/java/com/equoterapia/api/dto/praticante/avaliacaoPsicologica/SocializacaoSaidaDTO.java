@@ -20,6 +20,8 @@ public class SocializacaoSaidaDTO {
     private PreencherLegendaEnum temOportunidadeContato;
     private PreencherLegendaEnum fazContatoVisual;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

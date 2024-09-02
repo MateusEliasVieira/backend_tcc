@@ -22,6 +22,8 @@ public class LinguagemSaidaDTO {
     private PreencherLegendaEnum frasesCurtas;
     private PreencherLegendaEnum frasesCompletas;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

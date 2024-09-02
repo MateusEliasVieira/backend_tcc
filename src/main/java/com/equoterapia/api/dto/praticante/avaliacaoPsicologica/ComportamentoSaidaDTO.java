@@ -20,6 +20,8 @@ public class ComportamentoSaidaDTO {
     private PreencherLegendaEnum oposicao;
     private PreencherLegendaEnum atencaoConcentracao;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

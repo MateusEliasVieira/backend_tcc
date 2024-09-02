@@ -17,6 +17,8 @@ public class AvaliacaoPsicologicaSaidaDTO {
     private String resumoCasoObservacoesComplementares;
     private String imagemAssinaturaOuCRPECarimbo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

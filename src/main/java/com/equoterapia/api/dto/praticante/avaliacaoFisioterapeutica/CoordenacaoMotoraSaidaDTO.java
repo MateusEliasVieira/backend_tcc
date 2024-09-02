@@ -29,6 +29,8 @@ public class CoordenacaoMotoraSaidaDTO {
     private SImOuNaoEnum testeAlcancePegar;
     private String consideracoesTesteAlcancePegar;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

@@ -18,6 +18,8 @@ public class SaudeMentalSaidaDTO {
     private PreencherLegendaEnum apresentaDelirios;
     private PreencherLegendaEnum apresentaAlucinacoes;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

@@ -37,6 +37,8 @@ public class EquilibrioEstaticoSaidaDTO {
     private EquilibrioEstaticoEnum umPeOlhosFechados;
     private String comentariosUmPeOlhosFechados;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

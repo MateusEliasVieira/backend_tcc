@@ -27,6 +27,8 @@ public class EquilibrioDinamicoSaidaDTO {
     private EquilibrioDinamicoEnum correrDesviandoObstaculos;
     private String comentariosCorrerDesviandoObstaculos;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

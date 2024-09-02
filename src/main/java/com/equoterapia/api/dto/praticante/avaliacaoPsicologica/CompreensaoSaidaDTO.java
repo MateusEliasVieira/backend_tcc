@@ -18,6 +18,8 @@ public class CompreensaoSaidaDTO {
     private PreencherLegendaEnum executaOrdensVerbaisSimples;
     private PreencherLegendaEnum executaOrdensComplexas;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

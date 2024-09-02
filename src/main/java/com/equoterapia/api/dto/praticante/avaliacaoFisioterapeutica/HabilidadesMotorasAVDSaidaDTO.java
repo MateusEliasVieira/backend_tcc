@@ -36,6 +36,8 @@ public class HabilidadesMotorasAVDSaidaDTO {
     private SImOuNaoEnum escritaManual;
     private String consideracoesEscritaManual;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

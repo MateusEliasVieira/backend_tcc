@@ -19,6 +19,8 @@ public class QuadroAtualSaidaDTO {
     private String restricoes;
     private String deformidades;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

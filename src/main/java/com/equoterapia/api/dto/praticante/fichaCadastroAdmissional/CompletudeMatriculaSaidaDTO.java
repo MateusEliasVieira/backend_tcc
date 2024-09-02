@@ -21,6 +21,8 @@ public class CompletudeMatriculaSaidaDTO {
     private Date dataCompletudeMatricula;
     private String imagemAssinaturaResponsavel;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

@@ -26,6 +26,8 @@ public class PlanoTerapeuticoSingularSaidaDTO {
     private String evolucao;
     private String fisioterapeutaImagemDaAssinaturaOuCarimbo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 

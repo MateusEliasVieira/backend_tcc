@@ -56,6 +56,8 @@ public class MobilidadeArticularSaidaDTO {
     private String flexaoPlantarAtivaTornozelo;
     private String flexaoPlantarPassivaTornozelo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }

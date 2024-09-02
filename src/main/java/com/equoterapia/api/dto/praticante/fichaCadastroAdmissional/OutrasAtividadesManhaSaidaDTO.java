@@ -22,6 +22,8 @@ public class OutrasAtividadesManhaSaidaDTO {
     private String sabado;
     private String domingo;
 
+    private Boolean finalizado;
+
     private PraticanteIdDTO praticante;
 
 }
