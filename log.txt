@@ -35,3 +35,9 @@ Data: 02/09/2024 14:40:01, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Op
 Data: 02/09/2024 15:16:05, IP: 127.0.0.1, Navegador: Unknown, Sistema Operacional: Unknown
 Data: 02/09/2024 15:16:11, IP: 127.0.0.1, Navegador: Unknown, Sistema Operacional: Unknown
 Data: 02/09/2024 15:43:05, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 02/09/2024 16:18:14, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 02/09/2024 16:33:17, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 02/09/2024 16:43:18, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 02/09/2024 16:44:55, IP: 127.0.0.1, Navegador: Unknown, Sistema Operacional: Unknown
+Data: 02/09/2024 17:26:13, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 02/09/2024 17:28:01, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10

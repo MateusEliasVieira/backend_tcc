@@ -20,9 +20,6 @@ public class StatusCadastroControlador {
     @GetMapping("/verificar-status-do-cadastro-do-praticante")
     public ResponseEntity<StatusCadastroSaida> verificarStatusDoCadastro(@RequestParam("id") Long idPraticante){
         StatusCadastroSaida scs = servico.verificarQuantidadeCadastroRestante(idPraticante);
-        System.out.println("=========================================================");
-        System.out.println("Status = "+scs.toString());
-        System.out.println("=========================================================");
         return new ResponseEntity<StatusCadastroSaida>(scs, HttpStatus.OK);
     }
 
