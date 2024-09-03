@@ -6,6 +6,7 @@ import com.equoterapia.dominio.modelo.praticante.evolucao.Evolucao;
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.*;
 import com.equoterapia.dominio.modelo.praticante.planoTerapeuticoSingular.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 

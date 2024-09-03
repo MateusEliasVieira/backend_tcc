@@ -4,6 +4,7 @@ import com.equoterapia.dominio.enums.CorOuRaca;
 import com.equoterapia.dominio.enums.SexoEnum;
 import com.equoterapia.dominio.enums.TipoSanguineoEnum;
 import com.equoterapia.dominio.modelo.praticante.Praticante;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

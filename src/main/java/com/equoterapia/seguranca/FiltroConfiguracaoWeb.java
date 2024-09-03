@@ -68,6 +68,11 @@ public class FiltroConfiguracaoWeb {
                 // ======================================================================================================================= //
                 .requestMatchers(HttpMethod.POST, "/login/*").permitAll()
                 // ======================================================================================================================= //
+                //												Endpoints de Paginação										               //
+                // ======================================================================================================================= //
+                .requestMatchers(HttpMethod.GET, "/praticante/paginacao/buscar-pagina").hasAuthority(RoleEnum.ROLE_USER.name())
+                .requestMatchers(HttpMethod.GET, "/praticante/paginacao/buscar-quantidade-total-de-praticantes-e-paginas").hasAuthority(RoleEnum.ROLE_USER.name())
+                // ======================================================================================================================= //
                 //										       Endpoints de Recuperação de Conta									       //
                 // ======================================================================================================================= //
                 .requestMatchers(HttpMethod.GET, "/recuperacao-de-conta/enviar-email/*").permitAll()
@@ -75,8 +80,6 @@ public class FiltroConfiguracaoWeb {
                 // ======================================================================================================================= //
                 //										      Endpoints de Finalização de Cadastro								           //
                 // ======================================================================================================================= //
-//                .requestMatchers(HttpMethod.POST, "/praticante/finalizado/finalizar-cadastro").hasAuthority(RoleEnum.ROLE_USER.name())
-//                .requestMatchers(HttpMethod.GET, "/praticante/finalizado/verificar-status").hasAuthority(RoleEnum.ROLE_USER.name())
                 .requestMatchers(HttpMethod.GET, "/praticante/status-cadastro/*").hasAuthority(RoleEnum.ROLE_USER.name())
                 // ======================================================================================================================= //
                 //												     Endpoints do Usuário										           //
