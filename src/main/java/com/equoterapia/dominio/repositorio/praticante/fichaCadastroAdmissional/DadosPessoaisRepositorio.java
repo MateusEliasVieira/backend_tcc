@@ -15,10 +15,10 @@ public interface DadosPessoaisRepositorio extends JpaRepository<DadosPessoais, L
     public Optional<DadosPessoais> findByCpf(String cpf);
     public Optional<DadosPessoais> findByCartaoSUS(String cartaoSUS);
 
-    @Query(value = "SELECT * FROM dados_pessoais LIMIT 5 OFFSET 0",nativeQuery = true)
+    @Query(value = "SELECT * FROM dados_pessoais ORDER BY id_dados_pessoais DESC LIMIT 5 OFFSET 0",nativeQuery = true)
     public Optional<List<DadosPessoais>> buscarPrimeiraPagina();
 
-    @Query(value = "SELECT * FROM dados_pessoais WHERE nome_completo LIKE CONCAT('%', :nome, '%') LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT * FROM dados_pessoais WHERE nome_completo LIKE CONCAT('%', :nome, '%') ORDER BY id_dados_pessoais DESC LIMIT 5", nativeQuery = true)
     public List<DadosPessoais> findByNomeCompleto(@Param("nome") String nome);
 
     @Query("SELECT dp FROM DadosPessoais dp WHERE dp.praticante.idPraticante = :idPraticante")

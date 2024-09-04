@@ -20,7 +20,7 @@ public interface PraticantePaginacaoRepositorio extends JpaRepository<DadosPesso
     @Query("SELECT COUNT(p) FROM Praticante p")
     public int quantidadeTotalDePraticantes();
 
-    @Query(value = "SELECT * FROM dados_pessoais LIMIT :maximo OFFSET :inicio",nativeQuery = true)
+    @Query(value = "SELECT * FROM dados_pessoais ORDER BY id_dados_pessoais DESC LIMIT :maximo OFFSET :inicio",nativeQuery = true)
     public List<DadosPessoais> buscarPraticantesPorPagina(@Param("maximo") int maximo, @Param("inicio") int inicio);
 
 }
