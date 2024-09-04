@@ -27,10 +27,13 @@ public class PraticantePaginacaoServicoImplementacao implements PraticantePagina
     public PraticantePaginacaoComDadosDTO buscarPraticantesPorPaginas(int pagina) {
         ModelMapper modelMapper = new ModelMapper();
         List<DadosPessoaisSaidaDTO> lista = new ArrayList<>();
+
         int totalPraticantes = quantidadeTotalDePraticantes().getQuantidade();
-        int quantidadePaginas = totalPraticantes / ITENS_POR_PAGINA;
+        int quantidadePaginas = (int) Math.ceil(Double.valueOf(totalPraticantes) / Double.valueOf(ITENS_POR_PAGINA)); // arredonda para o próximo número inteiro mais próximo
         int inicio = ((pagina * ITENS_POR_PAGINA) - ITENS_POR_PAGINA);
+
         List<DadosPessoais> resultado = repositorio.buscarPraticantesPorPagina(ITENS_POR_PAGINA, inicio);
+
         for (DadosPessoais dp : resultado) {
             lista.add(modelMapper.map(dp, DadosPessoaisSaidaDTO.class));
         }

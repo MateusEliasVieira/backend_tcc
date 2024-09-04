@@ -121,7 +121,7 @@ public class DadosPessoaisServicoImplementacao implements DadosPessoaisServico {
 
     @Override
     public List<DadosPessoais> buscarDadosPessoaisDosPraticantes() {
-        return dadosPessoaisRepositorio.findAllByOrderByIdDadosPessoaisDesc().orElseThrow(()->{throw new ExcecaoDeRegrasDeNegocio("Nenhum registro encontrado no momento!");});
+        return dadosPessoaisRepositorio.buscarPrimeiraPagina().orElseThrow(()->{throw new ExcecaoDeRegrasDeNegocio("Nenhum registro encontrado no momento!");});
     }
 
     @Override

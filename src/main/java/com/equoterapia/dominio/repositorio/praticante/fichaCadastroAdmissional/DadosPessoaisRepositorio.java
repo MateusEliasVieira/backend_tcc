@@ -1,7 +1,6 @@
 package com.equoterapia.dominio.repositorio.praticante.fichaCadastroAdmissional;
 
 import com.equoterapia.dominio.modelo.praticante.fichaCadastroAdmissional.DadosPessoais;
-import com.equoterapia.dominio.modelo.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,9 +15,10 @@ public interface DadosPessoaisRepositorio extends JpaRepository<DadosPessoais, L
     public Optional<DadosPessoais> findByCpf(String cpf);
     public Optional<DadosPessoais> findByCartaoSUS(String cartaoSUS);
 
-    public Optional<List<DadosPessoais>> findAllByOrderByIdDadosPessoaisDesc();
+    @Query(value = "SELECT * FROM dados_pessoais LIMIT 5 OFFSET 0",nativeQuery = true)
+    public Optional<List<DadosPessoais>> buscarPrimeiraPagina();
 
-    @Query("SELECT dp FROM DadosPessoais dp WHERE dp.nomeCompleto LIKE %:nome%")
+    @Query(value = "SELECT * FROM dados_pessoais WHERE nome_completo LIKE CONCAT('%', :nome, '%') LIMIT 5", nativeQuery = true)
     public List<DadosPessoais> findByNomeCompleto(@Param("nome") String nome);
 
     @Query("SELECT dp FROM DadosPessoais dp WHERE dp.praticante.idPraticante = :idPraticante")
