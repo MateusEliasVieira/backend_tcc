@@ -48,7 +48,7 @@ public class EvolucaoServicoImplementacao implements EvolucaoServico {
         }
 
         Optional<Evolucao> evolucaoExistente = evolucaoRepositorio.buscarEvolucaoDoPraticantePorData(evolucao.getPraticante().getIdPraticante(), evolucao.getData());
-        if (evolucaoExistente.isPresent() && !evolucaoExistente.get().getIdEvolucao().equals(evolucao.getIdEvolucao())) {
+        if (evolucaoExistente.isPresent()) {
             throw new ExcecaoDeRegrasDeNegocio("Já existe uma evolução para o praticante nesta data!");
         } else {
             return evolucaoRepositorio.save(evolucao);
