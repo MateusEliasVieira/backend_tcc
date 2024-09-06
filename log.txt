@@ -68,3 +68,6 @@ Data: 04/09/2024 10:02:55, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Op
 Data: 04/09/2024 10:07:18, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
 Data: 04/09/2024 11:00:02, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
 Data: 04/09/2024 11:15:55, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 06/09/2024 19:34:43, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 06/09/2024 19:34:52, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
+Data: 06/09/2024 19:34:57, IP: 0:0:0:0:0:0:0:1, Navegador: Chrome 12, Sistema Operacional: Windows 10
